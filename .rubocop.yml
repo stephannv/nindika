@@ -1,0 +1,76 @@
+require:
+  - rubocop-performance
+  - rubocop-rails
+  - rubocop-rspec
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/*'
+    - 'vendor/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*'
+    - 'node_modules/**/*'
+    - 'public/**/*'
+
+Layout/ArgumentAlignment:
+  EnforcedStyle: with_fixed_indentation
+
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+Layout/EmptyLineAfterMagicComment:
+  Enabled: true
+
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: start_of_line
+
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/LineLength:
+  Max: 120
+
+Layout/MultilineMethodCallBraceLayout:
+  EnforcedStyle: new_line
+
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
+Lint/SuppressedException:
+  AllowComments: true
+
+Lint/UnusedMethodArgument:
+  AllowUnusedKeywordArguments: true
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'config/environments/*'
+
+Metrics/MethodLength:
+  CountAsOne: ['array', 'hash', 'heredoc']
+
+Naming/VariableNumber:
+  Enabled: false
+
+RSpec/ExampleLength:
+  CountAsOne: ['array', 'hash', 'heredoc']
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/StringLiterals:
+  AutoCorrect: true
+
+Style/SymbolProc:
+  AllowMethodsWithArguments: true
+
+Style/UnlessLogicalOperators:
+  EnforcedStyle: forbid_logical_operators

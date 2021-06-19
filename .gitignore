@@ -34,3 +34,9 @@
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
+
+# Mac OS files
+.DS_Store
+
+# Simplecov
+/coverage
