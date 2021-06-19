@@ -5,12 +5,16 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
 
+gem 'algolia', '2.1.1'
 gem 'awesome_print', '1.9.2'
 gem 'bootsnap', '1.7.5', require: false
 gem 'pg', '1.2.3'
 gem 'puma', '5.3.2'
 gem 'rails', '6.1.3.2'
 gem 'sass-rails', '6.0.0'
+gem 'sentry-rails', '4.5.1'
+gem 'sentry-ruby', '4.5.1'
+gem 'service_actor', '3.1.1'
 gem 'tzinfo-data', '2.0.4', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'webpacker', '5.4.0'
 
@@ -35,4 +39,5 @@ group :test do
   gem 'rspec-rails', '5.0.1'
   gem 'shoulda-matchers', '4.5.1'
   gem 'simplecov', '0.21.2'
+  gem 'webmock', '3.13.0'
 end
