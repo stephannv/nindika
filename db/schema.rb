@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_19_191540) do
+ActiveRecord::Schema.define(version: 2021_06_19_212239) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -38,6 +38,17 @@ ActiveRecord::Schema.define(version: 2021_06_19_191540) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["external_id"], name: "index_items_on_external_id", unique: true
+  end
+
+  create_table "price_history_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "price_id", null: false
+    t.date "reference_date", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "USD", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["price_id", "reference_date"], name: "index_price_history_items_on_price_id_and_reference_date", unique: true
+    t.index ["price_id"], name: "index_price_history_items_on_price_id"
   end
 
   create_table "prices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -71,6 +82,7 @@ ActiveRecord::Schema.define(version: 2021_06_19_191540) do
     t.index ["item_id"], name: "index_raw_items_on_item_id", unique: true, where: "(item_id IS NOT NULL)"
   end
 
+  add_foreign_key "price_history_items", "prices"
   add_foreign_key "prices", "items"
   add_foreign_key "raw_items", "items"
 end

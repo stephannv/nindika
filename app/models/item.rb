@@ -4,6 +4,8 @@ class Item < ApplicationRecord
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
 
+  has_many :price_history_items, through: :price, source: :history_items
+
   scope :with_nsuid, -> { where.not(nsuid: nil) }
 
   validates :title, presence: true
