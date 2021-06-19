@@ -18,6 +18,7 @@ module Prices
       price.item ||= Item.find_by(nsuid: data[:nsuid])
       price.assign_attributes(data)
       price.save!
+      CreateHistoryItem.result(price: price)
     rescue StandardError => e
       raise e if Rails.env.development?
 

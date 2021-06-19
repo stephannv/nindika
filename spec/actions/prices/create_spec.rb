@@ -55,6 +55,12 @@ RSpec.describe Prices::Create, type: :actions do
           'state' => adapted_data[:state]
         )
       end
+
+      it 'creates price history item' do
+        expect(Prices::CreateHistoryItem).to receive(:result).with(price: an_instance_of(Price))
+
+        result
+      end
     end
 
     context 'when nsuid is taken' do
@@ -77,6 +83,12 @@ RSpec.describe Prices::Create, type: :actions do
           'regular_amount_currency' => adapted_data[:regular_amount].currency.iso_code,
           'state' => adapted_data[:state]
         )
+      end
+
+      it 'creates price history item' do
+        expect(Prices::CreateHistoryItem).to receive(:result).with(price: an_instance_of(Price))
+
+        result
       end
     end
 
