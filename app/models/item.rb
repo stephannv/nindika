@@ -2,6 +2,9 @@
 
 class Item < ApplicationRecord
   has_one :raw_item, dependent: :destroy
+  has_one :price, dependent: :destroy
+
+  scope :with_nsuid, -> { where.not(nsuid: nil) }
 
   validates :title, presence: true
   validates :external_id, presence: true

@@ -3,6 +3,8 @@
 class RawItem < ApplicationRecord
   belongs_to :item, optional: true
 
+  scope :pending, -> { where(imported: false) }
+
   validates :external_id, presence: true
   validates :checksum, presence: true
 
@@ -11,6 +13,4 @@ class RawItem < ApplicationRecord
 
   validates :external_id, length: { maximum: 256 }
   validates :checksum, length: { maximum: 512 }
-
-  scope :pending, -> { where(imported: false) }
 end
