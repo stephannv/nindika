@@ -1,0 +1,69 @@
+name: Rspec, Rubocop & Brakeman
+on: [push]
+jobs:
+  rubocop:
+    name: Rubocop
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Lint code
+        run: bundle exec rubocop
+
+  brakeman:
+    name: Brakeman
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+
+      - name: Install brakeman
+        run: gem install brakeman
+
+      - name: Scan code
+        run: brakeman -A -z -q
+
+  rspec:
+    name: RSpec
+    needs:
+      - rubocop
+      - brakeman
+    runs-on: ubuntu-20.04
+    env:
+      DATABASE_URL: postgres://postgres:example@localhost:5432/nindika_test
+    services:
+      postgres:
+        image: postgres:latest
+        ports: ['5432:5432']
+        env:
+          POSTGRES_DB: nindika_test
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: example
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Install postgres client
+        run: sudo apt-get install libpq-dev
+
+      - name: Create database structure
+        run: RAILS_ENV=test bundle exec rails db:schema:load
+
+      - name: Run tests
+        run: bundle exec rspec spec --format progress
