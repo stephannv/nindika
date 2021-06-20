@@ -79,15 +79,51 @@ RSpec.describe NintendoAlgoliaDataAdapter, type: :data_adapters do
   end
 
   describe '#boxart_url' do
-    let(:data) { { 'boxart' => Faker::Lorem.word } }
+    context 'when boxart is present' do
+      let(:data) do
+        { 'boxart' => Faker::Internet.url, 'horizontalHeaderImage' => Faker::Internet.url }
+      end
 
-    it 'adds nintendo domain as prefix to boxart' do
-      expect(adapted_data[:boxart_url]).to eq "https://www.nintendo.com#{data['boxart']}"
+      it 'returns boxart url' do
+        expect(adapted_data[:boxart_url]).to eq data['boxart']
+      end
+    end
+
+    context 'when boxart isn`t present' do
+      let(:data) { { 'horizontalHeaderImage' => Faker::Internet.url } }
+
+      it 'returns horizontalHeaderImage url' do
+        expect(adapted_data[:boxart_url]).to eq data['horizontalHeaderImage']
+      end
+    end
+
+    context 'when boxart and horizontalHeaderImage aren`t present' do
+      let(:data) { {} }
+
+      it 'returns placeholder url' do
+        expect(adapted_data[:boxart_url]).to eq 'https://via.placeholder.com/540x360?text=nindika'
+      end
+    end
+
+    context 'when url doesn`t have domain' do
+      let(:data) { { 'boxart' => Faker::Lorem.word } }
+
+      it 'adds nintendo domain as prefix to url' do
+        expect(adapted_data[:boxart_url]).to eq "https://www.nintendo.com#{data['boxart']}"
+      end
     end
   end
 
   describe '#banner_url' do
     context 'when horizontalHeaderImage is present' do
+      let(:data) { { 'horizontalHeaderImage' => Faker::Internet.url } }
+
+      it 'returns horizontalHeaderImage' do
+        expect(adapted_data[:banner_url]).to eq data['horizontalHeaderImage']
+      end
+    end
+
+    context 'when horizontalHeaderImage doesn`t have domain' do
       let(:data) { { 'horizontalHeaderImage' => Faker::Lorem.word } }
 
       it 'adds nintendo domain as prefix to horizontalHeaderImage' do
