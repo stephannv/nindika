@@ -1,3 +1,13 @@
+- title @game.title
+- description t('.description')
+- keywords 'Nintendo Switch, Games, Jogos, Nintendo, eShop'
+- set_meta_tags og: { \
+  title: @game.title,
+  type: 'website',
+  url: game_url(@game.slug),
+  image: @game.banner_url,
+}
+
 .container-fluid
   .row.justify-content-center
     .col-6
