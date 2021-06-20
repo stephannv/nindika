@@ -9,6 +9,7 @@ gem 'algolia', '2.1.1'
 gem 'awesome_print', '1.9.2'
 gem 'bootsnap', '1.7.5', require: false
 gem 'enumerate_it', '3.2.0'
+gem 'friendly_id', '5.4.2'
 gem 'httparty', '0.18.1'
 gem 'money-rails', '1.14.0'
 gem 'pg', '1.2.3'

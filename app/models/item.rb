@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class Item < ApplicationRecord
+  include FriendlyId
+
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
 
   has_many :notifications, as: :subject, dependent: :destroy
 
   has_many :price_history_items, through: :price, source: :history_items
+
+  friendly_id :title, use: :history
 
   scope :with_nsuid, -> { where.not(nsuid: nil) }
 
@@ -25,4 +29,10 @@ class Item < ApplicationRecord
   validates :banner_url, length: { maximum: 1024 }
   validates :release_date_display, length: { maximum: 64 }
   validates :content_rating, length: { maximum: 64 }
+
+  private
+
+  def should_generate_new_friendly_id?
+    title_changed? || super
+  end
 end
