@@ -32,6 +32,14 @@ RSpec.describe Price, type: :model do
     it { is_expected.to validate_numericality_of(:discount_amount).is_greater_than_or_equal_to(0) }
   end
 
+  describe '#eshop_url' do
+    it 'returns eShop URL using nsuid' do
+      price = described_class.new(nsuid: '123')
+
+      expect(price.eshop_url).to eq 'https://ec.nintendo.com/title_purchase_confirm?title=123'
+    end
+  end
+
   describe '#current_amount' do
     context 'when discount amount is present' do
       it 'returns discount amount' do

@@ -10,4 +10,14 @@ RSpec.describe GamesController, type: :controller do
       expect(response).to have_http_status(:ok)
     end
   end
+
+  describe 'GET /game/:slug' do
+    let(:item) { create(:item) }
+
+    it 'has ok status' do
+      get :show, params: { slug: item.slug }
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
 end

@@ -1,0 +1,28 @@
+.container-fluid
+  .row.justify-content-center
+    .col-6
+      .card.shadow.rounded-3
+        img.card-img-top src=@game.banner_url
+        .text-center
+          img.img-fluid.img-thumbnail.shadow src=@game.boxart_url style="height: 200px; margin-top: -100px;"
+        .card-body
+          h3.card-title.fw-bold.text-center.mb-3 = @game.title
+          p
+            .text-center.text-muted.fw-bold = @game.release_date_text
+          - if @game.price.present?
+            - if @game.price.discount?
+              .text-center.mb-1
+                span.text-decoration-line-through.text-muted.fw-bold => @game.price.regular_amount.formatted
+                span.fw-bold.badge.bg-dark
+                  = @game.price.discount_percentage
+                  | % OFF
+            .text-center.mb-3
+              = link_to  @game.price.current_amount.formatted,  @game.price.eshop_url,
+                class: 'btn btn-primary btn-lg rounded-pill fw-bold text-white shadow',
+                target: '_blank',
+                rel: "noopener noreferrer"
+          .text-center.mb-3
+            - @game.genres.each do |genre|
+              span.badge.bg-dark.mx-1 = genre
+          .card-text = @game.description
+

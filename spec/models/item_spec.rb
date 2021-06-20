@@ -90,4 +90,22 @@ RSpec.describe Item, type: :model do
       end
     end
   end
+
+  describe '#release_date_text' do
+    context 'when release_date_date is a valid date' do
+      it 'returns formatted date' do
+        item = described_class.new(release_date_display: '2022-04-01')
+
+        expect(item.release_date_text).to eq '01/04/2022'
+      end
+    end
+
+    context 'when release_date_date is an invalid date' do
+      it 'returns release_date_display' do
+        item = described_class.new(release_date_display: 'invalid-date')
+
+        expect(item.release_date_text).to eq 'invalid-date'
+      end
+    end
+  end
 end

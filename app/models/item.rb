@@ -36,6 +36,12 @@ class Item < ApplicationRecord
     banner_url.to_s.gsub('upload/ncom', "upload/#{medium_path}/ncom")
   end
 
+  def release_date_text
+    I18n.l(release_date_display.to_date)
+  rescue Date::Error
+    release_date_display
+  end
+
   private
 
   def should_generate_new_friendly_id?
