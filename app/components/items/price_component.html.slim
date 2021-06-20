@@ -1,10 +1,10 @@
 - if price.present?
   - if price.discount?
     span.text-decoration-line-through => price.regular_amount.formatted
-    = link_to '#' do
+    = link_to game_path(price.item.slug) do
       span.fs-6.fw-bold.badge.bg-primary = price.current_amount.formatted
   - else
-    = link_to '#' do
+    = link_to game_path(price.item.slug) do
       span.fs-6.fw-bold.badge.bg-dark = price.current_amount.formatted
 - else
   span.fs-6.fw-bold.badge.bg-light.text-dark = t('.blank')

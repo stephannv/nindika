@@ -2,4 +2,5 @@
 
 Rails.application.routes.draw do
   get 'games(/:page)', to: 'games#index', as: :games
+  get 'game/:slug', to: 'games#show', as: :game
 end

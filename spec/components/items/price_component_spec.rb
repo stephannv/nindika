@@ -15,7 +15,7 @@ RSpec.describe Items::PriceComponent, type: :component do
   end
 
   context 'when price has discount' do
-    let(:price) { build(:price, :with_discount) }
+    let(:price) { build(:price, :with_discount, item: Item.new(slug: 'abc')) }
 
     it 'renders regular amount with line through decoration' do
       content = rendered.css('span.text-decoration-line-through').to_html
@@ -30,7 +30,7 @@ RSpec.describe Items::PriceComponent, type: :component do
   end
 
   context 'when price doesn`t have discount' do
-    let(:price) { build(:price) }
+    let(:price) { build(:price, item: Item.new(slug: 'abc')) }
 
     it 'renders regular amount inside dark colored badge' do
       content = rendered.css('span.fs-6.fw-bold.badge.bg-dark').to_html

@@ -19,6 +19,10 @@ class Price < ApplicationRecord
   validates :gold_points, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_nil: true
   validates :discount_percentage, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_nil: true
 
+  def eshop_url
+    "https://ec.nintendo.com/title_purchase_confirm?title=#{nsuid}"
+  end
+
   def current_amount
     discount_amount || regular_amount
   end
