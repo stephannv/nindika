@@ -1,7 +1,0 @@
-en:
-  enumerations:
-    notification_types:
-      price_uncovered: 'Price uncovered'
-      discounted_price: 'Discounted price'
-      price_readjustment: 'Price readjustment'
-      pre_order_discount: 'Pre-order discount'

@@ -1,7 +1,0 @@
-en:
-  enumerations:
-    price_states:
-      pre_order: 'Pre-order'
-      on_sale: 'On Sale'
-      unavailable: 'Unavailable'
-      unreleased: 'Unreleased'

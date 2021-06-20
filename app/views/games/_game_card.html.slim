@@ -1,0 +1,8 @@
+.col
+  .card.shadow-sm
+    = link_to '#' do
+      img.card-img-top src=game.medium_banner_url loading="lazy"
+    .card-body
+      h6.card-title.fw-bold = game.title
+      .text-end.fw-bold
+        = render Items::PriceComponent.new(game.price)

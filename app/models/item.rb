@@ -30,6 +30,12 @@ class Item < ApplicationRecord
   validates :release_date_display, length: { maximum: 64 }
   validates :content_rating, length: { maximum: 64 }
 
+  def medium_banner_url
+    medium_path = 'c_fill,f_auto,q_auto,w_560'
+
+    banner_url.to_s.gsub('upload/ncom', "upload/#{medium_path}/ncom")
+  end
+
   private
 
   def should_generate_new_friendly_id?

@@ -12,14 +12,18 @@ gem 'enumerate_it', '3.2.0'
 gem 'friendly_id', '5.4.2'
 gem 'httparty', '0.18.1'
 gem 'money-rails', '1.14.0'
+gem 'pagy', '4.8.0'
 gem 'pg', '1.2.3'
 gem 'puma', '5.3.2'
 gem 'rails', '6.1.3.2'
+gem 'rails-i18n', '6.0.0'
 gem 'sass-rails', '6.0.0'
 gem 'sentry-rails', '4.5.1'
 gem 'sentry-ruby', '4.5.1'
 gem 'service_actor', '3.1.1'
+gem 'slim-rails', '3.2.0'
 gem 'tzinfo-data', '2.0.4', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'view_component', '2.34.0', require: 'view_component/engine'
 gem 'webpacker', '5.4.0'
 
 group :development, :test do

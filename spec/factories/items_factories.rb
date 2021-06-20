@@ -16,5 +16,9 @@ FactoryBot.define do
     developers { Faker::Lorem.words(number: 2) }
     genres { Faker::Lorem.words(number: 3) }
     franchises { Faker::Lorem.words(number: 2) }
+
+    trait :with_price do
+      association :price
+    end
   end
 end

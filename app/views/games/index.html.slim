@@ -1,0 +1,11 @@
+.container-fluid
+  .row
+    .col-12
+      h2.mb-4.fw-bold = t('.games')
+
+      .row.row-cols-1.row-cols-md-2.row-cols-lg-3.row-cols-xxl-4.g-4
+        = render partial: 'game_card', collection: @games, as: :game
+  .row
+    .col
+      .mb-5
+      == render 'pagy/nav', pagy: @pagy
