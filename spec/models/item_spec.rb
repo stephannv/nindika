@@ -62,4 +62,32 @@ RSpec.describe Item, type: :model do
       expect(described_class.friendly.find('new-title')).to eq item_a
     end
   end
+
+  describe '#medium_banner_url' do
+    let(:item) { described_class.new(banner_url: banner_url) }
+
+    context 'when banner_url includes `upload/ncom`' do
+      let(:banner_url) { 'http://example.com/upload/ncom/image.png' }
+
+      it 'inserts resize path into banner_url' do
+        expect(item.medium_banner_url).to eq 'http://example.com/upload/c_fill,f_auto,q_auto,w_560/ncom/image.png'
+      end
+    end
+
+    context 'when banner_url doesn`t include `upload/ncom`' do
+      let(:banner_url) { 'http://example.com/ncom/image.png' }
+
+      it 'returns banner url' do
+        expect(item.medium_banner_url).to eq 'http://example.com/ncom/image.png'
+      end
+    end
+
+    context 'when banner_url is nil' do
+      let(:banner_url) { nil }
+
+      it 'returns blank string' do
+        expect(item.medium_banner_url).to eq ''
+      end
+    end
+  end
 end

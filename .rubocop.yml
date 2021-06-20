@@ -37,6 +37,9 @@ Layout/MultilineMethodCallBraceLayout:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
+Lint/MissingSuper:
+  Enabled: false
+
 Lint/SuppressedException:
   AllowComments: true
 

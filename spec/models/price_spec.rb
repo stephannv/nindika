@@ -78,4 +78,22 @@ RSpec.describe Price, type: :model do
       end
     end
   end
+
+  describe '#discount?' do
+    context 'when discount amount is present' do
+      it 'returns true' do
+        price = described_class.new(discount_amount: 10)
+
+        expect(price.discount?).to eq true
+      end
+    end
+
+    context 'when discount amount is blank' do
+      it 'returns false' do
+        price = described_class.new(discount_amount: nil)
+
+        expect(price.discount?).to eq false
+      end
+    end
+  end
 end

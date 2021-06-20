@@ -26,4 +26,8 @@ class Price < ApplicationRecord
   def saved_change_to_current_amount?
     saved_change_to_regular_amount_cents? || saved_change_to_discount_amount_cents?
   end
+
+  def discount?
+    discount_amount.present?
+  end
 end

@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    title Nindika
+
+    meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
+    meta content="width=device-width,initial-scale=1" name="viewport"
+
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag 'application', media: 'all'
+    = javascript_pack_tag 'application'
+  body
+    header
+      = render App::NavbarComponent.new
+
+    main.pt-4
+      = yield
