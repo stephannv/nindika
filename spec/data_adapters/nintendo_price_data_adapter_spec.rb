@@ -73,7 +73,7 @@ RSpec.describe NintendoPriceDataAdapter, type: :data_adapters do
       let(:data) { discount_data }
 
       it 'returns discount start date as date object' do
-        expect(adapted_data[:discount_started_at]).to eq Time.zone.yesterday
+        expect(adapted_data[:discount_started_at]).to eq Time.zone.yesterday.beginning_of_day
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe NintendoPriceDataAdapter, type: :data_adapters do
       let(:data) { discount_data }
 
       it 'returns discount end date as date object' do
-        expect(adapted_data[:discount_ends_at]).to eq Time.zone.tomorrow
+        expect(adapted_data[:discount_ends_at]).to eq Time.zone.tomorrow.beginning_of_day
       end
     end
 

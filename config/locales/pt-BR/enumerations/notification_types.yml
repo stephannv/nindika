@@ -2,6 +2,6 @@ pt-BR:
   enumerations:
     notification_types:
       price_uncovered: 'Preço revelado'
-      discounted_price: 'Preço promocional'
+      discounted_price: 'Jogo em promoção'
       price_readjustment: 'Reajuste de preço'
       pre_order_discount: 'Desconto de pré-venda'

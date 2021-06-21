@@ -1,0 +1,11 @@
+.container-fluid
+  .row.justify-content-center
+    .col-xxl-4.col-xl-6.col-lg-8.col-sm-10.col-xs-12
+      h2.mb-4.fw-bold.text-center = t('.notifications')
+
+      .row.row-cols-1.g-2
+        = render partial: 'notification_card', collection: @notifications, as: :notification
+      .row
+        .col
+          .mb-5
+          == render 'pagy/nav', pagy: @pagy
