@@ -15,6 +15,12 @@ nav.navbar.navbar-light.bg-light.navbar-expand-lg.fixed-top
     .navbar-main-menu-section.collapse.navbar-collapse.navbar-content.flex-column#navbarSupportedContent
       ul.navbar-nav
         li.nav-item
-          = link_to t('.games'), games_path, class: 'nav-link fw-bold fs-4 text-decoration-underline', 'aria-current' => 'page'
+          = link_to t('.games'), games_path,
+            class: class_names('nav-link fw-bold fs-4 text-decoration-underline', active_class(games_path)),
+            'aria-current' => 'page'
+        li.nav-item
+          = link_to t('.notifications'), notifications_path,
+            class: class_names('nav-link fw-bold fs-4 text-decoration-underline', active_class(notifications_path)),
+            'aria-current' => 'page'
 
     .navbar-right-menu-section.collapse.navbar-collapse.navbar-content

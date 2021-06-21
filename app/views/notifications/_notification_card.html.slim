@@ -1,0 +1,8 @@
+.col
+  .card.shadow
+    .card-body
+      h6.card-title.fw-bold = notification.title
+      .card-text = notification.body
+      .card-text.text-muted(title=I18n.l(notification.created_at)) = time_ago_in_words(notification.created_at)
+      .text-end
+        = link_to t('.go_to_game'), notification.url, class: 'btn btn-primary fw-bold text-white'
