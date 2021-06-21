@@ -1,7 +1,8 @@
 nav.navbar.navbar-light.bg-light.navbar-expand-lg.fixed-top
   .container-fluid
     .navbar-brand-section
-      = link_to 'nindika', games_path, class: 'navbar-brand fs-3 fw-bold align-middle'
+      = link_to games_path, class: 'navbar-brand fs-3 fw-bold align-middle'
+        = image_tag 'nindika', height: '48px'
     button.navbar-toggler(
       type="button"
       data-bs-toggle="collapse"

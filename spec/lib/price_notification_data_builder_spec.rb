@@ -15,7 +15,7 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
           notification_type: NotificationTypes::PRICE_UNCOVERED,
           title: item.title,
           body: NotificationTypes.t(NotificationTypes::PRICE_UNCOVERED),
-          url: '# TODO',
+          url: Rails.application.routes.url_helpers.game_url(item.slug),
           image_url: item.boxart_url,
           fields: [
             { name: :current_price, value: price.current_amount.format },
@@ -41,7 +41,7 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
           notification_type: NotificationTypes::DISCOUNTED_PRICE,
           title: item.title,
           body: NotificationTypes.t(NotificationTypes::DISCOUNTED_PRICE),
-          url: '# TODO',
+          url: Rails.application.routes.url_helpers.game_url(item.slug),
           image_url: item.boxart_url,
           fields: [
             { name: :current_price, value: price.current_amount.format },
@@ -69,7 +69,7 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
           notification_type: NotificationTypes::PRICE_READJUSTMENT,
           title: item.title,
           body: NotificationTypes.t(NotificationTypes::PRICE_READJUSTMENT),
-          url: '# TODO',
+          url: Rails.application.routes.url_helpers.game_url(item.slug),
           image_url: item.boxart_url,
           fields: [
             { name: :current_price, value: price.current_amount.format },
@@ -89,7 +89,7 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
           notification_type: NotificationTypes::PRE_ORDER_DISCOUNT,
           title: item.title,
           body: NotificationTypes.t(NotificationTypes::PRE_ORDER_DISCOUNT),
-          url: '# TODO',
+          url: Rails.application.routes.url_helpers.game_url(item.slug),
           image_url: item.boxart_url,
           fields: [
             { name: :current_price, value: price.current_amount.format },

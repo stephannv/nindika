@@ -10,3 +10,8 @@ $danger: #FF2300;
 
 $body-bg: $light;
 
+@import url('https://rsms.me/inter/inter.css');
+$font-family-sans-serif: 'Inter', sans-serif;
+@supports (font-variation-settings: normal) {
+  $font-family-sans-serif: 'Inter var', sans-serif;
+}
