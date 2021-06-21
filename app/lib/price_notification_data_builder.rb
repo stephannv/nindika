@@ -20,7 +20,7 @@ class PriceNotificationDataBuilder
       notification_type: type,
       title: item.title,
       body: NotificationTypes.t(type),
-      url: '# TODO',
+      url: Rails.application.routes.url_helpers.game_url(item.slug),
       image_url: item.boxart_url,
       fields: fields
     }
