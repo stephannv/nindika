@@ -34,9 +34,7 @@ class Item < ApplicationRecord
   validates :content_rating, length: { maximum: 64 }
 
   def medium_banner_url
-    medium_path = 'c_fill,f_auto,q_auto,w_560'
-
-    banner_url.to_s.gsub('upload/ncom', "upload/#{medium_path}/ncom")
+    NintendoImageTransformer.medium(banner_url)
   end
 
   def release_date_text

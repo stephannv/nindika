@@ -59,7 +59,7 @@ class NintendoAlgoliaDataAdapter
   def boxart_url
     url = data['boxart'] || data['horizontalHeaderImage'] || 'https://via.placeholder.com/540x360?text=nindika'
     url = "https://www.nintendo.com#{url}" unless url.start_with?('http')
-    url
+    NintendoImageTransformer.medium(url)
   end
 
   def banner_url
