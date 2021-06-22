@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_105829) do
+ActiveRecord::Schema.define(version: 2021_06_22_012044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "unaccent"
+
+  create_table "admin_tasks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.string "status"
+    t.string "message"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -69,7 +77,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_105829) do
     t.uuid "price_id", null: false
     t.date "reference_date", null: false
     t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "USD", null: false
+    t.string "amount_currency", default: "BRL", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["price_id", "reference_date"], name: "index_price_history_items_on_price_id_and_reference_date", unique: true
@@ -80,9 +88,9 @@ ActiveRecord::Schema.define(version: 2021_06_20_105829) do
     t.uuid "item_id", null: false
     t.string "nsuid", null: false
     t.integer "regular_amount_cents", default: 0, null: false
-    t.string "regular_amount_currency", default: "USD", null: false
+    t.string "regular_amount_currency", default: "BRL", null: false
     t.integer "discount_amount_cents"
-    t.string "discount_amount_currency", default: "USD", null: false
+    t.string "discount_amount_currency", default: "BRL", null: false
     t.datetime "discount_started_at"
     t.string "discount_ends_at"
     t.integer "discount_percentage"
