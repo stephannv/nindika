@@ -1,0 +1,8 @@
+{
+  "cron": [
+    {
+      "command": "bundle exec rake admin:import_data",
+      "schedule": "0 * * * *"
+    }
+  ]
+}
