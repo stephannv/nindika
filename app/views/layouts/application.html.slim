@@ -11,6 +11,8 @@ html
 
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
+
+    script(defer data-domain="nindika.com" src="https://plausible.io/js/plausible.js")
   body
     header
       = render App::NavbarComponent.new
