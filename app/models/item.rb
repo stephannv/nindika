@@ -2,6 +2,7 @@
 
 class Item < ApplicationRecord
   include FriendlyId
+  include PgSearch::Model
 
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
@@ -11,6 +12,8 @@ class Item < ApplicationRecord
   has_many :price_history_items, through: :price, source: :history_items
 
   friendly_id :title, use: :history
+
+  pg_search_scope :search_by_title, against: :title, using: { tsearch: { dictionary: 'english' } }, ignoring: :accents
 
   scope :with_nsuid, -> { where.not(nsuid: nil) }
 
