@@ -1,24 +1,40 @@
-# README
+# nindika
+[nindika](https://nindika.com) is a web application that helps users to discover their next Nintendo Switch game.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Development
+### System dependencies
+**Ruby:** 3.0.1
 
-Things you may want to cover:
+**PostgreSQL:** 13
 
-* Ruby version
+**Node.js:** >15
 
-* System dependencies
+#### Run projects
+Clone project
+```
+git@github.com:stephannv/nindika.git
+cd nindika
+```
 
-* Configuration
+Install project dependencies:
+```
+bundle install
+yarn install
+```
 
-* Database creation
+Setup database:
+```
+rails db:setup
+```
 
-* Database initialization
+Import data
+```
+rake admin:import_data
+```
 
-* How to run the test suite
+Run project
+```
+rails s -p 3000
+```
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Visit [http://localhost:3000](http://localhost:3000)
