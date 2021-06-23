@@ -8,25 +8,14 @@
   url: games_url,
   image: image_url('nindika.png'),
 }
+- content_for :title do
+  .navbar-brand.font-weight-bold = t('.games')
+
 .container-fluid
   .row
-    .col-12
-      h2.mb-4.fw-bold.text-center = t('.games')
-      .row.justify-content-center.pb-4
-        .col-12.col-xxl-6.col-xl-7.col-lg-8.col-xs-12
-          = form_with(url: games_path, method: :get) do |form|
-            = form.text_field :search,
-              class: 'form-control form-control-lg input-secondary shadow-sm',
-              value: params[:search],
-              type: 'search',
-              required: true,
-              placeholder: 'Zelda, Ys, Metroid, Mega Man...',
-              aria: { label: 'Search' }
+    = render partial: 'game_card', collection: @games, as: :game
 
-
-      .row.row-cols-1.row-cols-md-2.row-cols-lg-3.row-cols-xl-4.g-3
-        = render partial: 'game_card', collection: @games, as: :game
-  .row
-    .col
-      .mb-5
-      == render 'pagy/nav', pagy: @pagy
+  - if @pagy.pages > 1
+    .row
+      .col
+        == render 'pagy/nav', pagy: @pagy

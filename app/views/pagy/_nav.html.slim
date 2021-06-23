@@ -6,28 +6,16 @@
 
 - link = pagy_link_proc(pagy)
 
-nav.pagy-bootstrap-nav role="navigation" aria-label="pager"
-
-  ul.pagination.pagination-lg.justify-content-between
+nav.m-10 role="navigation" aria-label="pager"
+  ul.row.pagination.justify-content-between
     - if pagy.prev
-      li.page-item.prev.shadow-sm == link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
+      li.page-item.prev == link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
     - else
-      li.page-item.prev.disabled.shadow-sm
-        a.page-link href="#" == pagy_t('pagy.nav.prev')
-
-    / - pagy.series.each do |item|
-    /   - if item.is_a?(Integer)
-    /     li.page-item.shadow-sm == link.call(item)
-
-    /   - elsif item.is_a?(String)
-    /     li.page-item.active.shadow-sm == link.call(item)
-
-    /   - elsif item == :gap
-    /     li.page-item.disabled.gap.shadow-sm
-    /       a.page-link href="#" == pagy_t('pagy.nav.gap')
+      li.page-item.prev
+        a.btn.disabled.font-weight-bold href="#" == pagy_t('pagy.nav.prev')
 
     - if pagy.next
-      li.page-item.next.shadow-sm == link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
+      li.page-item.next == link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
     - else
-      li.page-item.next.disabled.shadow-sm
-        a.page-link href="#" == pagy_t('pagy.nav.next')
+      li.page-item.next
+        a.btn.disabled.font-weight-bold href="#" == pagy_t('pagy.nav.next')

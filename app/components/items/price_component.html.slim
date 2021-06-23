@@ -1,10 +1,11 @@
 - if price.present?
   - if price.discount?
-    span.text-decoration-line-through => price.regular_amount.formatted
-    = link_to game_path(price.item.slug) do
-      span.fs-6.fw-bold.badge.bg-primary = price.current_amount.formatted
+    = link_to game_path(item.slug), class: 'badge-group', role: 'group' do
+      span.badge.bg-dark.text-white = "#{price.discount_percentage}% OFF"
+      span.badge.badge-primary.font-weight-bold = price.current_amount.formatted
+
   - else
-    = link_to game_path(price.item.slug) do
-      span.fs-6.fw-bold.badge.bg-dark = price.current_amount.formatted
+    = link_to price.current_amount.formatted, game_path(item.slug), class: 'badge'
 - else
-  span.fs-6.fw-bold.badge.bg-light.text-dark = t('.blank')
+  = link_to t('.blank'), game_path(item.slug), class: 'badge'
+

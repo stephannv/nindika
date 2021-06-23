@@ -1,0 +1,28 @@
+$primary: #ff007d;
+$secondary: #00c4ff;
+$light: #f0eee2;
+$dark: #000000;
+
+$success: #21BA45;
+$info: #31CCEC;
+$warning: #FFB300;
+$danger: #FF2300;
+
+$body-bg: $light;
+
+@import url('https://rsms.me/inter/inter.css');
+body { font-family: 'Inter', sans-serif !important; }
+@supports (font-variation-settings: normal) {
+  body { font-family: 'Inter var', sans-serif !important; }
+}
+
+:root {
+  --light-color: #f0eee2;
+  --primary-color: #ff007d;
+  --primary-color-light: #ff66b1;
+
+  --lm-base-body-bg-color: var(--light-color);
+  --lm-navbar-bg-color: var(--lm-base-body-bg-color);
+
+  --navbar-brand-image-height: 3.2rem;
+}

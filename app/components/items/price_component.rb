@@ -2,10 +2,11 @@
 
 module Items
   class PriceComponent < ViewComponent::Base
-    attr_reader :price
+    attr_reader :item, :price
 
-    def initialize(price)
-      @price = price
+    def initialize(item)
+      @item = item
+      @price = item.price
     end
   end
 end

@@ -8,32 +8,56 @@
   url: game_url(@game.slug),
   image: @game.banner_url,
 }
+- content_for :title do
+  .navbar-brand.font-weight-bold.text-truncate = @game.title
 
 .container-fluid
   .row.justify-content-center
-    .col-xxl-6.col-lg-8.col-md-10.col-xs-12
-      .card.shadow.rounded-3
-        img.card-img-top src=@game.banner_url
+    .col-xl-8.col-lg-10.col-md-12.col-12
+      .card.shadow.p-0.border-0
+        = link_to game_path(@game.slug) do
+          = image_tag @game.banner_url, loading: 'lazy', class: 'img-fluid w-full rounded-top'
         .text-center
-          img.img-fluid.img-thumbnail.shadow src=@game.boxart_url style="height: 200px; margin-top: -100px;"
-        .card-body
-          h3.card-title.fw-bold.text-center.mb-3 = @game.title
-          p
-            .text-center.text-muted.fw-bold = @game.release_date_text
-          - if @game.price.present?
-            - if @game.price.discount?
-              .text-center.mb-1
-                span.text-decoration-line-through.text-muted.fw-bold => @game.price.regular_amount.formatted
-                span.fw-bold.badge.bg-dark
-                  = @game.price.discount_percentage
-                  | % OFF
-            .text-center.mb-3
-              = link_to  @game.price.current_amount.formatted,  @game.price.eshop_url,
-                class: 'btn btn-primary btn-lg rounded-pill fw-bold text-white shadow',
-                target: '_blank',
-                rel: "noopener noreferrer"
-          .text-center.mb-3
-            - @game.genres.each do |genre|
-              span.badge.bg-dark.mx-1 = genre
-          .card-text = @game.description
+          img.img-fluid.shadow-lg.p-5.bg-light src=@game.boxart_url style="height: 200px; margin-top: -100px;"
 
+        h3.card-title.font-weight-bold.text-center = @game.title
+        - if @game.price.present?
+          .row
+            .col-12
+              - if @game.price.discount?
+                .text-center.mb-5
+                  strike.text-muted.font-weight-bold => @game.price.regular_amount.formatted
+                  span.badge.bg-dark.text-white.font-weight-bold
+                    = @game.price.discount_percentage
+                    | % OFF
+              .text-center
+                = link_to  @game.price.current_amount.formatted,  @game.price.eshop_url,
+                  class: 'btn btn-primary btn-rounded font-weight-bold text-white shadow',
+                  target: '_blank',
+                  rel: "noopener noreferrer"
+              - if @game.price.discount?
+                .text-center.text-muted.font-size-12.font-weight-bold.p-5
+                  = "Encerra em " + time_ago_in_words(@game.price.discount_ends_at)
+        .content
+          .row.align-items-center
+            .col-4
+              .text-center
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M17 3h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4V1h2v2h6V1h2v2zm3 6V5h-3v2h-2V5H9v2H7V5H4v4h16zm0 2H4v8h16v-8zM6 13h5v4H6v-4z"/></svg>
+                .font-weight-bold = @game.release_date_text
+            .col-4
+              .text-center
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M9 19h3v-6.058L8 9.454l-4 3.488V19h3v-4h2v4zm12 2H3a1 1 0 0 1-1-1v-7.513a1 1 0 0 1 .343-.754L6 8.544V4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1zm-5-10v2h2v-2h-2zm0 4v2h2v-2h-2zm0-8v2h2V7h-2zm-4 0v2h2V7h-2z"/></svg>
+                .font-weight-bold = @game.publishers.join
+            .col-4
+              .text-center
+                = link_to 'Visitar site oficial', @game.website_url, target: '_blank', rel: 'noopener noreferrer'
+
+          .row.py-20
+            .col-12
+              .text-center
+                - @game.genres.each do |genre|
+                  span.badge.bg-dark.text-white.m-5 = genre
+
+          .row
+            .col-12
+              p = @game.description
