@@ -6,7 +6,13 @@
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import 'bootstrap/dist/js/bootstrap'
+import halfmoon from 'halfmoon'
 
 Rails.start()
 ActiveStorage.start()
+
+document.addEventListener('DOMContentLoaded', () => {
+  halfmoon.onDOMContentLoaded();
+  document.getElementById('sidebar-overlay').addEventListener('click', () => halfmoon.toggleSidebar())
+  document.getElementById('sidebar-toggle').addEventListener('click', () => halfmoon.toggleSidebar())
+})

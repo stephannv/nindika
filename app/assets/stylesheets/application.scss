@@ -13,7 +13,6 @@
  *= require_self
  */
 
- @import "./layout";
- @import "./bootstrap-override";
- @import "bootstrap/scss/bootstrap";
- @import "bootstrap-icons/font/bootstrap-icons.css";
+
+@import "halfmoon/css/halfmoon-variables.min";
+@import "./custom";

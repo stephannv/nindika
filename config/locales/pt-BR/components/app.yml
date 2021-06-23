@@ -1,5 +1,9 @@
 pt-BR:
   app:
-    navbar_component:
+    sidebar_component:
       games: Jogos
-      notifications: Notificações
+      all: Todos
+      on_sale: Em Promoção
+      new_releases: Recém-lançados
+      coming_soon: Em Breve
+      pre_order: Pré-venda

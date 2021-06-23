@@ -1,8 +1,9 @@
-.col
-  .card.shadow-sm
+.col-12.col-md-6.col-lg-4.col-xl-3
+  .card.shadow-sm.p-0.m-10.border-0
     = link_to game_path(game.slug) do
-      img.card-img-top src=game.medium_banner_url loading="lazy"
-    .card-body
-      h6.card-title.fw-bold = game.title
-      .text-end.fw-bold
-        = render Items::PriceComponent.new(game.price)
+      = image_tag game.medium_banner_url, loading: 'lazy', class: 'img-fluid w-full rounded-top'
+    .p-10
+      = link_to game_path(game.slug) do
+        h3.text-center.text-truncate.card-title.text-dark.font-size-12.font-weight-bold.mb-5.text-decoration-none(title=game.title) = game.title
+      .text-center
+        = render Items::PriceComponent.new(game)
