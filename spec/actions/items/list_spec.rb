@@ -6,7 +6,11 @@ RSpec.describe Items::List, type: :actions do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 
-    it { is_expected.to include(search_term: { type: String, default: nil, allow_nil: true }) }
+    it do
+      expect(inputs).to include(
+        filter_params: { type: [Hash, ActionController::Parameters], default: {}, allow_nil: true }
+      )
+    end
   end
 
   describe 'Outputs' do
@@ -16,24 +20,19 @@ RSpec.describe Items::List, type: :actions do
   end
 
   describe '#call' do
-    subject(:result) { described_class.result }
+    subject(:result) { described_class.result(filter_params: filter_params) }
 
     let!(:items) { create_list(:item, 5, :with_price) }
+    let(:filter_params) { Faker::Types.rb_hash(number: 4) }
 
-    it 'returns all items' do
-      expect(result.items.to_a).to include(*items)
+    before do
+      allow(ItemsFilter).to receive(:apply)
+        .with(kind_of(ActiveRecord::Relation), filter_params)
+        .and_return(items)
     end
 
-    context 'when search term is present' do
-      subject(:result) { described_class.result(search_term: 'leslie') }
-
-      let!(:item) { create(:item, title: 'As confusões de Leslie') }
-
-      before { create_list(:item, 5, :with_price) }
-
-      it 'returns items filtering by title' do
-        expect(result.items.to_a).to eq [item]
-      end
+    it 'returns items with applied filters' do
+      expect(result.items.to_a).to include(*items)
     end
   end
 end

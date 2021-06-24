@@ -57,6 +57,9 @@ Metrics/MethodLength:
 Naming/VariableNumber:
   Enabled: false
 
+Rails/SkipsModelValidations:
+  Enabled: false
+
 RSpec/ExampleLength:
   CountAsOne: ['array', 'hash', 'heredoc']
 

@@ -7,6 +7,10 @@ module Prices
     def call
       prices_data.each do |price_data|
         import_price(price_data)
+      rescue StandardError => e
+        raise e if Rails.env.development?
+
+        Sentry.capture_exception(e, extra: price_data)
       end
     end
 
@@ -18,11 +22,7 @@ module Prices
 
       price = create_price(data)
       CreateHistoryItem.result(price: price)
-      CreateNotification.result(price: price)
-    rescue StandardError => e
-      raise e if Rails.env.development?
-
-      Sentry.capture_exception(e, extra: price_data)
+      CreateNotification.result(price: price) if price.saved_changes?
     end
 
     def create_price(data)
