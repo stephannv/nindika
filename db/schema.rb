@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_22_012044) do
+ActiveRecord::Schema.define(version: 2021_06_24_003839) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -56,7 +56,16 @@ ActiveRecord::Schema.define(version: 2021_06_22_012044) do
     t.string "franchises", default: [], null: false, array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "on_sale", default: false, null: false
+    t.boolean "new_release", default: false, null: false
+    t.boolean "coming_soon", default: false, null: false
+    t.boolean "pre_order", default: false, null: false
+    t.index ["coming_soon"], name: "index_items_on_coming_soon", where: "coming_soon"
     t.index ["external_id"], name: "index_items_on_external_id", unique: true
+    t.index ["new_release"], name: "index_items_on_new_release", where: "new_release"
+    t.index ["on_sale"], name: "index_items_on_on_sale", where: "on_sale"
+    t.index ["pre_order"], name: "index_items_on_pre_order", where: "pre_order"
+    t.index ["release_date"], name: "index_items_on_release_date"
   end
 
   create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

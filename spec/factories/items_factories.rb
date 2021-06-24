@@ -16,6 +16,10 @@ FactoryBot.define do
     developers { Faker::Lorem.words(number: 2) }
     genres { Faker::Lorem.words(number: 3) }
     franchises { Faker::Lorem.words(number: 2) }
+    on_sale { Faker::Boolean.boolean }
+    new_release { Faker::Boolean.boolean }
+    coming_soon { Faker::Boolean.boolean }
+    pre_order { Faker::Boolean.boolean }
 
     trait :with_price do
       association :price
