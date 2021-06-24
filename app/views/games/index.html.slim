@@ -12,10 +12,21 @@
   .navbar-brand.font-weight-bold = t('.games')
 
 .container-fluid
-  .row
-    = render partial: 'game_card', collection: @games, as: :game
-
-  - if @pagy.pages > 1
+  - if @games.exists?
     .row
-      .col
-        == render 'pagy/nav', pagy: @pagy
+      .col-12.p-15
+        .text-left.font-weight-bold.text-muted = t('.result_count', count: @pagy.items, total: @pagy.count)
+
+    .row
+      = render partial: 'game_card', collection: @games, as: :game
+
+    - if @pagy.pages > 1
+      .row
+        .col
+          == render 'pagy/nav', pagy: @pagy
+  - else
+    .row.justify-content-center
+      .col-xl-8.col-lg-10.col-md-12.col-12
+        .card.border-0.shadow-sm
+          .content
+            .text-center.font-weight-bold.text-muted = t('no_results')

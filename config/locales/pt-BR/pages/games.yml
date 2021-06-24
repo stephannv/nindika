@@ -2,3 +2,6 @@ pt-BR:
   games:
     index:
       games: Jogos
+      result_count:
+        one: 1 jogo encontrado
+        other: Mostrando %{count} de %{total} jogos encontrados
