@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_24_003839) do
+ActiveRecord::Schema.define(version: 2021_06_25_163748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -60,8 +60,12 @@ ActiveRecord::Schema.define(version: 2021_06_24_003839) do
     t.boolean "new_release", default: false, null: false
     t.boolean "coming_soon", default: false, null: false
     t.boolean "pre_order", default: false, null: false
+    t.integer "all_time_visits", default: 0, null: false
+    t.integer "last_week_visits", default: 0, null: false
+    t.index ["all_time_visits"], name: "index_items_on_all_time_visits"
     t.index ["coming_soon"], name: "index_items_on_coming_soon", where: "coming_soon"
     t.index ["external_id"], name: "index_items_on_external_id", unique: true
+    t.index ["last_week_visits"], name: "index_items_on_last_week_visits"
     t.index ["new_release"], name: "index_items_on_new_release", where: "new_release"
     t.index ["on_sale"], name: "index_items_on_on_sale", where: "on_sale"
     t.index ["pre_order"], name: "index_items_on_pre_order", where: "pre_order"
