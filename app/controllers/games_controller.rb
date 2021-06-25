@@ -4,7 +4,7 @@ class GamesController < ApplicationController
   include Pagy::Backend
 
   def index
-    result = Items::List.result(filter_params: params[:q])
+    result = Items::List.result(filter_params: params[:q], sort_param: params[:sort])
     @pagy, @games = pagy(result.items)
   end
 

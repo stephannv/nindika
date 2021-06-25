@@ -2,3 +2,14 @@ pt-BR:
   website_description: Descubra o próximo jogo do seu Nintendo Switch.
   free: Grátis
   no_results: Sem resultados
+
+  games:
+    sort_options:
+      title_asc: Título (A-Z)
+      release_date_asc: Antigos
+      release_date_desc: Recentes
+      price_asc: Mais baratos
+      price_desc: Mais caros
+      discount_percentage_desc: Maiores descontos
+      discount_start_date_desc: Promoções recentes
+      discount_end_date_asc: Promoções encerrando

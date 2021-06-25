@@ -1,0 +1,9 @@
+.dropdown.with-arrow
+  button#games-sort-button.btn(data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false")
+    i.fa.fa-sort-amount-down-alt
+    |  Ordenar
+
+  .dropdown-menu.dropdown-menu-right(aria-labelledby="games-sort-button")
+    - options.each do |option|
+      = link_to sort_path(option[:param]), class: dropdown_item_class(option[:param]) do
+        == option[:text]

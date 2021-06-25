@@ -8,7 +8,7 @@ module Prices
       fail!(error: 'Price didn`t change') unless price.saved_change_to_current_amount?
 
       data = ::PriceNotificationDataBuilder.build(price: price)
-      price.item.notifications.create!(data)
+      price.item.notifications.create!(data) if data
     end
   end
 end

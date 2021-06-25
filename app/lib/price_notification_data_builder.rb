@@ -14,7 +14,7 @@ class PriceNotificationDataBuilder
 
   def build
     type = notification_type
-    raise 'CANNOT BUILD NOTIFICATION' if type.blank?
+    return nil if type.blank?
 
     {
       notification_type: type,
