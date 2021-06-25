@@ -30,7 +30,7 @@ class ItemsFilter
 
   def filter_title
     self.relation = if params[:title].present?
-      relation.search_by_title(params[:title])
+      relation.search_by_title(params[:title]).reorder('')
     else
       relation
     end

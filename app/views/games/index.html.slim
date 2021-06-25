@@ -13,9 +13,12 @@
 
 .container-fluid
   - if @games.exists?
-    .row
-      .col-12.p-15
+    .row.px-15.py-10.align-items-center
+      .col-auto
         .text-left.font-weight-bold.text-muted = t('.result_count', count: @pagy.items, total: @pagy.count)
+
+      .col.text-right
+        = render Items::SortButtonComponent.new
 
     .row
       = render partial: 'game_card', collection: @games, as: :game

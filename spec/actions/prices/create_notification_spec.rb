@@ -48,5 +48,16 @@ RSpec.describe Prices::CreateNotification, type: :actions do
         expect(Notification.last.attributes).to include(notification_data.deep_stringify_keys)
       end
     end
+
+    context 'when notification builder returns nil' do
+      before do
+        allow(price).to receive(:saved_change_to_current_amount?).and_return(true)
+        allow(PriceNotificationDataBuilder).to receive(:build).with(price: price).and_return(nil)
+      end
+
+      it 'doesn`t creates a new notification' do
+        expect { result }.not_to change(Notification, :count)
+      end
+    end
   end
 end

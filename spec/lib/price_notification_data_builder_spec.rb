@@ -108,8 +108,8 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
 
       before { price.reload }
 
-      it 'raises error' do
-        expect { data }.to raise_error 'CANNOT BUILD NOTIFICATION'
+      it 'returns nil' do
+        expect(data).to be_nil
       end
     end
   end

@@ -14,7 +14,7 @@ nav.m-10 role="navigation" aria-label="pager"
       li.page-item.prev
         a.btn.disabled.font-weight-bold href="#" == pagy_t('pagy.nav.prev')
 
-    .text-center.font-weight-bold.text-muted = "#{pagy.page}/#{pagy.pages}"
+    .text-center.font-weight-bold.text-muted.align-self-center = "#{pagy.page}/#{pagy.pages}"
 
     - if pagy.next
       li.page-item.next == link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
