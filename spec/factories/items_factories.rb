@@ -20,6 +20,8 @@ FactoryBot.define do
     new_release { Faker::Boolean.boolean }
     coming_soon { Faker::Boolean.boolean }
     pre_order { Faker::Boolean.boolean }
+    all_time_visits { Faker::Number.number(digits: 3) }
+    last_week_visits { Faker::Number.number(digits: 2) }
 
     trait :with_price do
       association :price

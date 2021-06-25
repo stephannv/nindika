@@ -3,6 +3,10 @@
     {
       "command": "bundle exec rake admin:import_data",
       "schedule": "0 * * * *"
+    },
+    {
+      "command": "bundle exec rake admin:update_games_visits",
+      "schedule": "2 8 * * *"
     }
   ]
 }

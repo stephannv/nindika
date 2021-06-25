@@ -8,6 +8,10 @@ class DataTasks
       task import_data: :environment do
         Admin::ImportData.call
       end
+
+      task update_games_visits: :environment do
+        Items::UpdateVisits.call
+      end
     end
   end
 end
