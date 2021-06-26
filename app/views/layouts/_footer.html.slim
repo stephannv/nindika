@@ -1,13 +1,26 @@
-footer.row.bg-white.border
-  .col-12
-    .content.text-center
-      | © 2021, nindika
+footer.bg-white.border.font-size-12
+  .content
+    .row.justify-content-center
+      .col-12.col-md-6.col-lg-4.col-xl-3.mb-20.mb-lg-0.text-center
+        .font-weight-bold.font-size-14.mb-10 nindika
+        p.my-0 = link_to t('.home'), root_path
+        p.my-0 = link_to t('.changelog'),
+          'https://www.notion.so/nindika/1b43698955804bd8887b7e6164c9da62',
+          target: '_blank'
+        p.my-0 = link_to 'Twitter', 'https://twitter.com/nindika_com', target: '_blank'
+        p.my-0 = link_to 'Github', 'https://github.com/stephannv/nindika', target: '_blank'
 
-      p.text-center
-        | <a href="https://twitter.com/nindika_com" target="_blank">Twitter</a>
-        |  |
-        |  <a href="https://github.com/stephannv/nindika" target="_blank">Github</a>
+      .col-12.col-md-6.col-lg-4.col-xl-3.mb-20.mb-lg-0.text-center
+        .font-weight-bold.font-size-14.mb-10 Legal
+        p.my-0 = link_to t('.privacy_policy'),
+          'https://www.notion.so/nindika/c830ff3d5f714ee190e23c675be82e93',
+          target: '_blank'
+        p.my-0 = link_to t('.terms_of_service'),
+          'https://www.notion.so/nindika/e03af9afc8114cc89f79170e5534d458',
+          target: '_blank'
 
-      p.text-center
+      .col-12.col-md-6.col-lg-4.col-xl-3.mb-20.mb-lg-0.text-center
+        .my-0 = image_tag('nindika.svg', class: 'w-quarter img-fluid')
+        .my-0 © 2021, nindika
         => t('.built_by')
-        a href="https://twitter.com/stephann_v" target="_blank" @stephann_v
+        = link_to '@stephann_v', 'https://twitter.com/stephann_v', target: '_blank'

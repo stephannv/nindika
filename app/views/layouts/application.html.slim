@@ -23,7 +23,7 @@ html
 
       #sidebar-overlay.sidebar-overlay
 
-      = render App::SidebarComponent.new
+      = render App::SidebarComponent.new(current_user)
 
       .content-wrapper
         .row.h-full
@@ -32,5 +32,3 @@ html
 
           .col-12.align-self-end
             = render 'layouts/footer'
-  javascript:
-    halfmoon.onDOMContentLoaded();

@@ -1,0 +1,9 @@
+.py-5
+  = button_to user_twitter_omniauth_authorize_path, method: :post, class: 'btn btn-block' do
+    i.fab.fa-twitter.text-twitter.mr-5
+    = t('.sign_in_with', provider: 'Twitter')
+
+.py-5
+  = button_to user_discord_omniauth_authorize_path, method: :post, class: 'btn btn-block' do
+    i.fab.fa-discord.text-discord.mr-5
+    = t('.sign_in_with', provider: 'Discord')

@@ -1,0 +1,16 @@
+pt-BR:
+  users:
+    omniauth_callbacks:
+      discord:
+        success:
+  users:
+    omniauth_callbacks:
+      defaults: &defaults
+        success: Oi, %{user}!
+        error: Um erro aconteceu
+      twitter:
+        << : *defaults
+      discord:
+        << : *defaults
+      failure:
+        << : *defaults

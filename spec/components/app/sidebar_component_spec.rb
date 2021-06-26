@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe App::SidebarComponent, type: :component do
-  subject(:rendered) { render_inline(described_class.new) }
+  subject(:rendered) { render_inline(described_class.new(build(:user))) }
 
   it 'renders brand' do
     content = rendered.css('a.sidebar-brand img').to_html
