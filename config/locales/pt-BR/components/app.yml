@@ -7,3 +7,6 @@ pt-BR:
       new_releases: Recém-lançados
       coming_soon: Em Breve
       pre_order: Pré-venda
+
+    sign_in_buttons_component:
+      sign_in_with: Entrar com %{provider}

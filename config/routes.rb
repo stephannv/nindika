@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  root to: 'games#index'
+
+  devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+  devise_scope :user do
+    delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
   scope :games do
     get '/', to: 'games#index', as: :games
     get 'on_sale', to: 'games#index', as: :on_sale_games, defaults: { q: { on_sale: true } }
@@ -11,6 +18,4 @@ Rails.application.routes.draw do
 
   get 'game/:slug', to: 'games#show', as: :game
   get 'notifications', to: 'notifications#index', as: :notifications
-
-  root to: 'games#index'
 end

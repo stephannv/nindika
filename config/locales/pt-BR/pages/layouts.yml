@@ -1,4 +1,8 @@
 pt-BR:
   layouts:
     footer:
+      home: Início
+      changelog: Atualizações
+      privacy_policy: Política de Privacidade
+      terms_of_service: Termos de Uso
       built_by: Desenvolvido por

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_163748) do
+ActiveRecord::Schema.define(version: 2021_06_25_203658) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -126,6 +126,17 @@ ActiveRecord::Schema.define(version: 2021_06_25_163748) do
     t.index ["external_id"], name: "index_raw_items_on_external_id", unique: true
     t.index ["imported"], name: "index_raw_items_on_imported", where: "(imported = false)"
     t.index ["item_id"], name: "index_raw_items_on_item_id", unique: true, where: "(item_id IS NOT NULL)"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.string "profile_image_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
   add_foreign_key "price_history_items", "prices"
