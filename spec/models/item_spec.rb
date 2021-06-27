@@ -8,6 +8,8 @@ RSpec.describe Item, type: :model do
     it { is_expected.to have_one(:price).dependent(:destroy) }
 
     it { is_expected.to have_many(:notifications).dependent(:destroy) }
+    it { is_expected.to have_many(:wishlist_items).dependent(:destroy) }
+
     it { is_expected.to have_many(:price_history_items).through(:price).source(:history_items) }
   end
 
@@ -78,6 +80,14 @@ RSpec.describe Item, type: :model do
 
       it 'returns pre order items' do
         expect(described_class.pre_order.to_a).to eq [pre_order]
+      end
+    end
+
+    describe '.with_wishlisted_column' do
+      it 'users WithWishlistedColumn query' do
+        expect(Items::WithWishlistedColumnQuery).to receive(:call).with(user_id: 'example')
+
+        described_class.with_wishlisted_column(user_id: 'example')
       end
     end
   end

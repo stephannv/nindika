@@ -3,6 +3,10 @@
 class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: %i[twitter discord]
 
+  has_many :wishlist_items, dependent: :destroy
+
+  has_many :wishlist, through: :wishlist_items, source: :item
+
   validates :provider, presence: true
   validates :uid, presence: true
 

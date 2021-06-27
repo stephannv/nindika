@@ -1,0 +1,7 @@
+pt-BR:
+  games:
+    price_component:
+      blank: Em breve
+    wishlist_button_component:
+      text: Adicionar à lista de desejos
+      tooltip: Lista de desejos

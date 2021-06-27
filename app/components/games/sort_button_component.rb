@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Items
+module Games
   class SortButtonComponent < ViewComponent::Base
     def options
       ItemsSorter::OPTIONS.map { |key, options| { param: key, text: options[:text] } }

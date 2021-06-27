@@ -1,0 +1,18 @@
+- content_for :title do
+  .navbar-brand.font-weight-bold.text-truncate = t('.sign_in')
+
+.container-fluid
+  .row.justify-content-center
+    .col-xl-4.col-lg-10.col-md-12.col-12
+      .card
+        .card-title Entrar
+        .mb-15
+        = render App::SignInButtonsComponent.new(current_user: current_user)
+        .text-center
+          p = link_to t('privacy_policy'),
+            'https://www.notion.so/nindika/c830ff3d5f714ee190e23c675be82e93',
+            target: '_blank'
+          p = link_to t('terms_of_service'),
+            'https://www.notion.so/nindika/e03af9afc8114cc89f79170e5534d458',
+            target: '_blank'
+

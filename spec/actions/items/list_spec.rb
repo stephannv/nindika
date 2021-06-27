@@ -12,7 +12,8 @@ RSpec.describe Items::List, type: :actions do
       )
     end
 
-    it { expect(inputs).to include(sort_param: { type: String, default: nil, allow_nil: true }) }
+    it { is_expected.to include(sort_param: { type: String, default: nil, allow_nil: true }) }
+    it { is_expected.to include(current_user: { type: User, default: nil, allow_nil: true }) }
   end
 
   describe 'Outputs' do
@@ -41,6 +42,30 @@ RSpec.describe Items::List, type: :actions do
 
     it 'returns items with applied filters' do
       expect(result.items.to_a).to include(*ordered_items)
+    end
+
+    context 'when current user is present' do
+      subject(:result) do
+        described_class.result(filter_params: filter_params, sort_param: sort_param, current_user: user)
+      end
+
+      let(:user) { User.new(id: Faker::Internet.uuid) }
+
+      before do
+        allow(ItemsSorter).to receive(:apply)
+          .with(filtered_items, sort_param)
+          .and_return(Item)
+      end
+
+      it 'left joins with current user wishlist' do
+        expect(Items::WithWishlistedColumnQuery).to receive(:call).with(user_id: user.id)
+
+        result
+      end
+
+      it 'adds wishlisted column' do
+        expect(result.items.first).to respond_to(:wishlisted)
+      end
     end
   end
 end

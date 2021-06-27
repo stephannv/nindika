@@ -1,8 +1,9 @@
 pt-BR:
-  users:
-    omniauth_callbacks:
-      discord:
-        success:
+  wishlist_items:
+    create:
+      error: Houve um erro
+    destroy:
+      error: Houve um erro
   users:
     omniauth_callbacks:
       defaults: &defaults
