@@ -5,5 +5,9 @@
     .p-10
       = link_to game_path(game.slug) do
         h3.text-center.text-truncate.card-title.text-dark.font-size-12.font-weight-bold.mb-5.text-decoration-none(title=game.title) = game.title
-      .text-center
-        = render Items::PriceComponent.new(game)
+      .row.justify-content-between.align-items-center
+        .col
+          = render Games::WishlistButtonComponent.new(game: game, current_user: current_user)
+
+        .col-auto.text-right
+          = render Games::PriceComponent.new(game: game)

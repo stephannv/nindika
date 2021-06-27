@@ -13,10 +13,10 @@
           placeholder: 'Metroid...',
           aria: { label: 'Search' }
 
-    = render App::UserSidebarMenuComponent.new(current_user)
+    = render App::UserSidebarMenuComponent.new(current_user: current_user)
 
     .sidebar-content
-      = render App::SignInButtonsComponent.new(current_user)
+      = render App::SignInButtonsComponent.new(current_user: current_user)
 
     h5.sidebar-title.font-weight-bolder Jogos
     .sidebar-divider

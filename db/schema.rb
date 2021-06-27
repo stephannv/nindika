@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_25_203658) do
+ActiveRecord::Schema.define(version: 2021_06_26_234336) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -139,7 +139,19 @@ ActiveRecord::Schema.define(version: 2021_06_25_203658) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
+  create_table "wishlist_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_wishlist_items_on_item_id"
+    t.index ["user_id", "item_id"], name: "index_wishlist_items_on_user_id_and_item_id", unique: true
+    t.index ["user_id"], name: "index_wishlist_items_on_user_id"
+  end
+
   add_foreign_key "price_history_items", "prices"
   add_foreign_key "prices", "items"
   add_foreign_key "raw_items", "items"
+  add_foreign_key "wishlist_items", "items"
+  add_foreign_key "wishlist_items", "users"
 end

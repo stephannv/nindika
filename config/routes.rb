@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   devise_scope :user do
+    get :sign_in, to: 'devise/sessions#new', as: :new_user_session
     delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
@@ -18,4 +19,9 @@ Rails.application.routes.draw do
 
   get 'game/:slug', to: 'games#show', as: :game
   get 'notifications', to: 'notifications#index', as: :notifications
+
+  scope :wishlist do
+    post 'add/:item_id', to: 'wishlist_items#create', as: :add_wishlist_item
+    delete 'remove/:item_id', to: 'wishlist_items#destroy', as: :remove_wishlist_item
+  end
 end

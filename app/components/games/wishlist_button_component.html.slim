@@ -1,0 +1,23 @@
+- if current_user.present?
+  div(
+    data-controller="wishlist-button"
+    data-wishlist-button-active-button-class=active_button_class
+    data-wishlist-button-active-icon-class=active_icon_class
+    data-wishlist-button-inactive-button-class=inactive_button_class
+    data-wishlist-button-inactive-icon-class=inactive_icon_class
+    data-wishlist-button-loading-icon-class="fas fa-spinner fa-spin"
+    data-wishlist-button-is-active-value=wishlisted?
+    data-wishlist-button-add-path-value=add_wishlist_item_path(game.id)
+    data-wishlist-button-remove-path-value=remove_wishlist_item_path(game.id)
+  )
+    button(
+      class=button_class
+      data-wishlist-button-target="button"
+      data-action="click->wishlist-button#toggle"
+      *button_html_attributes
+    )
+      i(data-wishlist-button-target="icon" class=icon_class)
+      = with_text ? " #{t('.text')}" : ''
+- else
+  = link_to new_user_session_path, class: inactive_button_class do
+    i(class=inactive_icon_class)

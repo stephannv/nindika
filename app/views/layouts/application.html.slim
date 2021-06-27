@@ -14,7 +14,8 @@ html
     = stylesheet_link_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
 
-    script(async defer data-domain="nindika.com" src="https://analytics.nindika.com/js/plausible.js")
+    - Rails.env.production?
+      script(async defer data-domain="nindika.com" src="https://analytics.nindika.com/js/plausible.js")
   body.with-custom-webkit-scrollbars.with-custom-css-scrollbars
     .page-wrapper.with-navbar.with-sidebar(data-sidebar-type="full-height overlayed-sm-and-down")
       .sticky-alerts
@@ -23,7 +24,7 @@ html
 
       #sidebar-overlay.sidebar-overlay
 
-      = render App::SidebarComponent.new(current_user)
+      = render App::SidebarComponent.new(current_user: current_user)
 
       .content-wrapper
         .row.h-full

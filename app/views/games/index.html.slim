@@ -12,16 +12,16 @@
   .navbar-brand.font-weight-bold = t('.games')
 
 .container-fluid
-  - if @games.exists?
+  - if @pagy.count > 0
     .row.px-15.py-10.align-items-center
       .col-auto
         .text-left.font-weight-bold.text-muted = t('.result_count', count: @pagy.items, total: @pagy.count)
 
       .col.text-right
-        = render Items::SortButtonComponent.new
+        = render Games::SortButtonComponent.new
 
     .row
-      = render partial: 'game_card', collection: @games, as: :game
+      = render Games::CardComponent.with_collection(@games, current_user: current_user)
 
     - if @pagy.pages > 1
       .row

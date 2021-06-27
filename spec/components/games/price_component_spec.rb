@@ -2,17 +2,17 @@
 
 require 'rails_helper'
 
-RSpec.describe Items::PriceComponent, type: :component do
-  subject(:rendered) { render_inline(described_class.new(item)) }
+RSpec.describe Games::PriceComponent, type: :component do
+  subject(:rendered) { render_inline(described_class.new(game: game)) }
 
-  let(:item) { Item.new(slug: 'abc', price: price) }
+  let(:game) { Item.new(slug: 'abc', price: price) }
 
   context 'when price is nil' do
     let(:price) { nil }
 
     it 'renders blank message' do
       content = rendered.css('a.badge').to_html
-      expect(content).to include(I18n.t('items.price_component.blank'))
+      expect(content).to include(I18n.t('games.price_component.blank'))
     end
   end
 

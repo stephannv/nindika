@@ -5,3 +5,6 @@ pt-BR:
       result_count:
         one: 1 jogo encontrado
         other: Mostrando %{count} de %{total} jogos encontrados
+    show:
+      ends_in: Encerra em %{time}
+      visit_offical_webiste: Visitar site oficial
