@@ -4,7 +4,7 @@
 .container-fluid
   .row.justify-content-center
     .col-xl-4.col-lg-10.col-md-12.col-12
-      .card
+      .card.shadow-sm.border-0
         .card-title Entrar
         .mb-15
         = render App::SignInButtonsComponent.new(current_user: current_user)

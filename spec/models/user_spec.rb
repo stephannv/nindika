@@ -5,8 +5,10 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'Relations' do
     it { is_expected.to have_many(:wishlist_items).dependent(:destroy) }
+    it { is_expected.to have_many(:hidden_items).dependent(:destroy) }
 
     it { is_expected.to have_many(:wishlist).through(:wishlist_items).source(:item) }
+    it { is_expected.to have_many(:hidden_list).through(:hidden_items).source(:item) }
   end
 
   describe 'Validations' do

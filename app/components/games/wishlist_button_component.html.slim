@@ -17,7 +17,8 @@
       *button_html_attributes
     )
       i(data-wishlist-button-target="icon" class=icon_class)
-      = with_text ? " #{t('.text')}" : ''
+      = button_text
 - else
   = link_to new_user_session_path, class: inactive_button_class do
     i(class=inactive_icon_class)
+    = button_text

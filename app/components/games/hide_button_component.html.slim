@@ -1,0 +1,8 @@
+- if hidden?
+  = link_to remove_hidden_item_path(item_id: game.id), class: 'btn btn-secondary btn-action btn-sm text-white', method: :delete
+    i.fas.fa-eye-slash
+    |  Ocultar
+- else
+  = link_to add_hidden_item_path(item_id: game.id), class: 'btn btn-action btn-sm', method: :post
+    i.fas.fa-eye-slash
+    |  Ocultar

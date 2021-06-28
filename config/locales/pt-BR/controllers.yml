@@ -4,6 +4,14 @@ pt-BR:
       error: Houve um erro
     destroy:
       error: Houve um erro
+  hidden_items:
+    create:
+      success: O jogo não aparecerá mais nas suas listagens
+      error: Houve um erro
+
+    destroy:
+      success: O jogo voltará a aparcer nas suas listagens
+      error: Houve um erro
   users:
     omniauth_callbacks:
       defaults: &defaults

@@ -23,14 +23,18 @@ RSpec.describe Items::List, type: :actions do
   end
 
   describe '#call' do
-    subject(:result) { described_class.result(filter_params: filter_params, sort_param: sort_param) }
+    subject(:result) do
+      described_class.result(filter_params: filter_params, sort_param: sort_param, current_user: user)
+    end
 
-    let!(:filtered_items) { create_list(:item, 2, :with_price) }
-    let!(:ordered_items) { create_list(:item, 3, :with_price) }
+    let(:ordered_items) { create_list(:item, 3, :with_price) }
     let(:filter_params) { Faker::Types.rb_hash(number: 4) }
     let(:sort_param) { Faker::Lorem.word }
+    let(:user) { nil }
 
     before do
+      filtered_items = create_list(:item, 2, :with_price)
+
       allow(ItemsFilter).to receive(:apply)
         .with(kind_of(ActiveRecord::Relation), filter_params)
         .and_return(filtered_items)
@@ -45,26 +49,26 @@ RSpec.describe Items::List, type: :actions do
     end
 
     context 'when current user is present' do
-      subject(:result) do
-        described_class.result(filter_params: filter_params, sort_param: sort_param, current_user: user)
-      end
-
       let(:user) { User.new(id: Faker::Internet.uuid) }
 
       before do
-        allow(ItemsSorter).to receive(:apply)
-          .with(filtered_items, sort_param)
+        allow(ItemsSorter).to receive(:apply).and_return(Item)
+
+        allow(Item).to receive(:with_wishlisted_column)
+          .with(user_id: user.id)
           .and_return(Item)
       end
 
-      it 'left joins with current user wishlist' do
-        expect(Items::WithWishlistedColumnQuery).to receive(:call).with(user_id: user.id)
+      it 'adds wishlisted column' do
+        expect(Item).to receive(:with_wishlisted_column).with(user_id: user.id)
 
         result
       end
 
-      it 'adds wishlisted column' do
-        expect(result.items.first).to respond_to(:wishlisted)
+      it 'removes hidden items' do
+        expect(Item).to receive(:without_hidden).with(user_id: user.id).and_call_original
+
+        result
       end
     end
   end

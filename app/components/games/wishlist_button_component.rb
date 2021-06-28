@@ -43,5 +43,9 @@ module Games
 
       { 'data-toggle' => 'tooltip', 'data-title' => t('.tooltip'), 'data-placement' => 'bottom' }
     end
+
+    def button_text
+      with_text ? " #{t('.text')}" : ''
+    end
   end
 end

@@ -10,7 +10,7 @@ module WishlistItems
     def call
       self.wishlist_item = user.wishlist_items.new(item_id: item_id)
 
-      fail!(error: :invalid_wishlist) unless wishlist_item.save
+      fail!(error: :invalid_record) unless wishlist_item.save
     end
   end
 end
