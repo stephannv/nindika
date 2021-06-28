@@ -24,4 +24,8 @@ Rails.application.routes.draw do
     post 'add/:item_id', to: 'wishlist_items#create', as: :add_wishlist_item
     delete 'remove/:item_id', to: 'wishlist_items#destroy', as: :remove_wishlist_item
   end
+  scope :hidden_items do
+    post 'add/:item_id', to: 'hidden_items#create', as: :add_hidden_item
+    delete 'remove/:item_id', to: 'hidden_items#destroy', as: :remove_hidden_item
+  end
 end

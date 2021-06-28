@@ -3,11 +3,42 @@
     {
       "warning_type": "Dynamic Render Path",
       "warning_code": 15,
+      "fingerprint": "463ef826ace15674addb11ccb98cd6a27f42d3ba68d03072937056313a035a33",
+      "check_name": "Render",
+      "message": "Render path contains parameter value",
+      "file": "app/views/games/show.html.slim",
+      "line": 44,
+      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
+      "code": "render(action => Games::HideButtonComponent.new(:game => Items::Find.result(:slug => params[:slug], :current_user => current_user).item, :current_user => current_user), {})",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "GamesController",
+          "method": "show",
+          "line": 16,
+          "file": "app/controllers/games_controller.rb",
+          "rendered": {
+            "name": "games/show",
+            "file": "app/views/games/show.html.slim"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "games/show"
+      },
+      "user_input": "params[:slug]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Dynamic Render Path",
+      "warning_code": 15,
       "fingerprint": "a687f679de2ce1f733c1df2382257417087618355fff234fd3298261c3f3496b",
       "check_name": "Render",
       "message": "Render path contains parameter value",
       "file": "app/views/games/show.html.slim",
-      "line": 41,
+      "line": 42,
       "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
       "code": "render(action => Games::WishlistButtonComponent.new(:game => Items::Find.result(:slug => params[:slug], :current_user => current_user).item, :current_user => current_user, :with_text => true), {})",
       "render_path": [
@@ -52,6 +83,6 @@
       "note": ""
     }
   ],
-  "updated": "2021-06-27 20:17:24 -0300",
+  "updated": "2021-06-28 20:47:25 -0300",
   "brakeman_version": "5.0.4"
 }

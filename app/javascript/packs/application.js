@@ -5,11 +5,15 @@
 
 import Rails from "@rails/ujs"
 import 'controllers'
+import useAppToast from '@/app/use_app_toast'
 
 Rails.start()
 
-document.addEventListener('DOMContentLoaded', () => {
+const onPageLoad = () => {
   halfmoon.onDOMContentLoaded();
+  useAppToast()
   document.getElementById('sidebar-overlay').addEventListener('click', () => halfmoon.toggleSidebar())
   document.getElementById('sidebar-toggle').addEventListener('click', () => halfmoon.toggleSidebar())
-})
+}
+
+document.addEventListener('DOMContentLoaded', onPageLoad)

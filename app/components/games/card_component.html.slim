@@ -1,7 +1,9 @@
 .col-12.col-md-6.col-lg-4.col-xl-3
   .card.shadow-sm.p-0.m-10.border-0
-    = link_to game_path(game.slug) do
+    .image-with-actions
       = image_tag game.medium_banner_url, loading: 'lazy', class: 'img-fluid w-full rounded-top'
+      .actions
+        = render Games::CardActionsComponent.new(game: game)
     .p-10
       = link_to game_path(game.slug) do
         h3.text-center.text-truncate.card-title.text-dark.font-size-12.font-weight-bold.mb-5.text-decoration-none(title=game.title) = game.title

@@ -5,3 +5,5 @@ pt-BR:
     wishlist_button_component:
       text: Adicionar à lista de desejos
       tooltip: Lista de desejos
+    card_actions_component:
+      hide: Ocultar

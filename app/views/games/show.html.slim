@@ -37,8 +37,11 @@
               - if @game.price.discount?
                 .text-center.text-muted.font-size-12.font-weight-bold.mb-5
                   = t('.ends_in', time: time_ago_in_words(@game.price.discount_ends_at))
-              .text-center
-                = render Games::WishlistButtonComponent.new(game: @game, current_user: current_user, with_text: true)
+              .row.justify-content-center
+                .col-auto.mr-5
+                  = render Games::WishlistButtonComponent.new(game: @game, current_user: current_user, with_text: true)
+                .col-auto
+                  = render Games::HideButtonComponent.new(game: @game, current_user: current_user)
         .content
           .row.align-items-center
             .col-4
