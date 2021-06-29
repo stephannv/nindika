@@ -12,6 +12,7 @@ html
     = csp_meta_tag
 
     = stylesheet_link_tag 'application', media: 'all'
+    = stylesheet_pack_tag 'application'
     = javascript_pack_tag 'application'
 
     - Rails.env.production?
