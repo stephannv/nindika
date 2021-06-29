@@ -83,14 +83,6 @@ RSpec.describe Item, type: :model do
         expect(described_class.pre_order.to_a).to eq [pre_order]
       end
     end
-
-    describe '.with_wishlisted_column' do
-      it 'users WithWishlistedColumn query' do
-        expect(Items::WithWishlistedColumnQuery).to receive(:call).with(user_id: 'example')
-
-        described_class.with_wishlisted_column(user_id: 'example')
-      end
-    end
   end
 
   describe 'Friendly ID' do

@@ -22,8 +22,6 @@ class Item < ApplicationRecord
   scope :new_release, -> { where(new_release: true) }
   scope :coming_soon, -> { where(coming_soon: true) }
   scope :pre_order, -> { where(pre_order: true) }
-  scope :with_wishlisted_column, Items::WithWishlistedColumnQuery
-  scope :without_hidden, Items::WithoutHiddenQuery
 
   validates :title, presence: true
   validates :external_id, presence: true

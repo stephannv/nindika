@@ -3,3 +3,5 @@ pt-BR:
     sessions:
       new:
         sign_in: Entrar
+      user:
+        signed_out: Volte sempre

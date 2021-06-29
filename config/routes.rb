@@ -11,10 +11,11 @@ Rails.application.routes.draw do
 
   scope :games do
     get '/', to: 'games#index', as: :games
-    get 'on_sale', to: 'games#index', as: :on_sale_games, defaults: { q: { on_sale: true } }
-    get 'new_releases', to: 'games#index', as: :new_releases_games, defaults: { q: { new_release: true } }
-    get 'coming_soon', to: 'games#index', as: :coming_soon_games, defaults: { q: { coming_soon: true } }
-    get 'pre_order', to: 'games#index', as: :pre_order_games, defaults: { q: { pre_order: true } }
+    get :on_sale, to: 'games#on_sale', as: :on_sale_games
+    get :new_releases, to: 'games#new_releases', as: :new_releases_games
+    get :coming_soon, to: 'games#coming_soon', as: :coming_soon_games
+    get :pre_order, to: 'games#pre_order', as: :pre_order_games
+    get :wishlist, to: 'games#wishlist', as: :wishlist_games
   end
 
   get 'game/:slug', to: 'games#show', as: :game

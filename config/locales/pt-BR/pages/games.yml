@@ -1,10 +1,28 @@
 pt-BR:
   games:
     index:
-      games: Jogos
-      result_count:
-        one: 1 jogo encontrado
-        other: Mostrando %{count} de %{total} jogos encontrados
+      title: Jogos
+
+    on_sale:
+      title: Em promoção
+
+    new_releases:
+      title: Recém-lançados
+
+    coming_soon:
+      title: Em Breve
+
+    pre_order:
+      title: Pré-venda
+
+    wishlist:
+      title: Lista de desejos
+
     show:
       ends_in: Encerra em %{time}
       visit_offical_webiste: Visitar site oficial
+
+    list:
+      result_count:
+        one: 1 jogo encontrado
+        other: Mostrando %{count} de %{total} jogos encontrados

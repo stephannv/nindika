@@ -4,3 +4,9 @@
       class: 'img-fluid border rounded',
       onerror: "this.onerror=null;this.src='#{image_url('avatar-placeholder.jpg')}'"
   .text-truncate = current_user.name
+
+
+= link_to wishlist_games_path, class: 'sidebar-link sidebar-link-with-icon font-weight-semi-bold' do
+  .sidebar-icon
+    i.far.fa-bookmark
+  = t('.wishlist')

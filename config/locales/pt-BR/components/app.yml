@@ -10,3 +10,6 @@ pt-BR:
 
     sign_in_buttons_component:
       sign_in_with: Entrar com %{provider}
+
+    user_sidebar_menu_component:
+      wishlist: Lista de desejos
