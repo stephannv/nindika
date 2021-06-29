@@ -1,13 +1,5 @@
-- title @game.title
-- description t('.description')
-- keywords 'Nintendo Switch, Games, Jogos, Nintendo, eShop'
-- set_meta_tags og: { \
-  title: @game.title,
-  type: 'website',
-  description: @game.description,
-  url: game_url(@game.slug),
-  image: @game.banner_url,
-}
+= render 'metatags_show'
+
 - content_for :title do
   .navbar-brand.font-weight-bold.text-truncate = @game.title
 
