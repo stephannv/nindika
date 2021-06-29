@@ -1,13 +1,5 @@
-- title t('.games')
-- description t('.description')
-- keywords 'Nintendo Switch, Games, Jogos, Nintendo, eShop'
-- set_meta_tags og: { \
-  title: "nindika",
-  description: t('website_description'),
-  type: 'website',
-  url: games_url,
-  image: image_url('nindika.png'),
-}
+= render 'metatags_list', title: t('.title')
+
 - content_for :title do
   .navbar-brand.font-weight-bold = t('.title')
 
