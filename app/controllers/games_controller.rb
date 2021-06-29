@@ -6,7 +6,7 @@ class GamesController < ApplicationController
   before_action :authenticate_user!, only: %i[wishlist]
 
   def index
-    list_games(filter: filter_params, sort: sort_param)
+    list_games(filter: filter_params, sort: sort_param || 'release_date_desc')
   end
 
   def on_sale
@@ -40,7 +40,7 @@ class GamesController < ApplicationController
   def wishlist
     list_games(
       filter: filter_params.merge(wishlisted: true),
-      sort: sort_param
+      sort: sort_param.presence
     )
   end
 
@@ -63,7 +63,7 @@ class GamesController < ApplicationController
   end
 
   def sort_param
-    permitted_params[:sort].to_s
+    permitted_params[:sort].to_s.presence
   end
 
   def permitted_params
