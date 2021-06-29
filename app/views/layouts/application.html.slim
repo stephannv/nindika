@@ -15,8 +15,9 @@ html
     = stylesheet_pack_tag 'application'
     = javascript_pack_tag 'application'
 
-    - Rails.env.production?
+    - if Rails.env.production?
       script(async defer data-domain="nindika.com" src="https://analytics.nindika.com/js/plausible.js")
+
   body.with-custom-webkit-scrollbars.with-custom-css-scrollbars
     .page-wrapper.with-navbar.with-sidebar(data-sidebar-type="full-height overlayed-sm-and-down")
       .sticky-alerts
