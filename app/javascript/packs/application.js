@@ -7,6 +7,8 @@ import Rails from "@rails/ujs"
 import 'controllers'
 import useAppToast from '@/app/use_app_toast'
 
+import '@fortawesome/fontawesome-free/css/all.min.css'
+
 Rails.start()
 
 const onPageLoad = () => {
