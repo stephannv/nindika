@@ -2,9 +2,9 @@
 
 module Items
   class List < Actor
-    input :filter_params, type: [Hash, ActionController::Parameters], default: {}, allow_nil: true
+    input :filter_params, type: Hash, default: {}
     input :sort_param, type: String, default: nil, allow_nil: true
-    input :current_user, type: User, allow_nil: true, default: nil
+    input :user, type: User, allow_nil: true, default: nil
 
     output :items, type: Enumerable
 
@@ -18,11 +18,24 @@ module Items
       scope = Item.left_joins(:price).includes(:price)
       scope = ItemsFilter.apply(scope, filter_params)
       scope = ItemsSorter.apply(scope, sort_param)
-      if current_user.present?
-        scope = scope.with_wishlisted_column(user_id: current_user.id)
-        scope = scope.without_hidden(user_id: current_user.id)
-      end
-      scope
+      scope = apply_wishlist_scope(scope)
+      apply_hidden_scope(scope)
+    end
+
+    def apply_wishlist_scope(scope)
+      return scope if user.blank?
+
+      Items::WithWishlistedColumnQuery.call(
+        relation: scope,
+        user_id: user.id,
+        only_wishlisted: filter_params[:wishlisted]
+      )
+    end
+
+    def apply_hidden_scope(scope)
+      return scope if user.blank?
+
+      Items::WithoutHiddenQuery.call(relation: scope, user_id: user.id)
     end
   end
 end

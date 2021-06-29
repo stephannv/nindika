@@ -1,0 +1,22 @@
+.container-fluid
+  - if pagy.count > 0
+    .row.px-15.py-10.align-items-center
+      .col-auto
+        .text-left.font-weight-bold.text-muted = t('.result_count', count: pagy.items, total: pagy.count)
+
+      .col.text-right
+        = render Games::SortButtonComponent.new
+
+    .row
+      = render Games::CardComponent.with_collection(games, current_user: current_user)
+
+    - if pagy.pages > 1
+      .row
+        .col
+          == render 'pagy/nav', pagy: pagy
+  - else
+    .row.justify-content-center
+      .col-xl-8.col-lg-10.col-md-12.col-12
+        .card.border-0.shadow-sm
+          .content
+            .text-center.font-weight-bold.text-muted = t('no_results')

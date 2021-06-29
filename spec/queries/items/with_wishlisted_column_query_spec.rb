@@ -14,8 +14,18 @@ RSpec.describe Items::WithWishlistedColumnQuery, type: :query do
       create(:wishlist_item) # wishlisted by other user
     end
 
-    it 'doesn`t filter items' do
-      expect(result.size).to eq 7
+    context 'when only_wishlisted is false' do
+      it 'doesn`t filter items' do
+        expect(result.size).to eq 7
+      end
+    end
+
+    context 'when only_wishlisted is true' do
+      subject(:result) { described_class.call(user_id: user.id, only_wishlisted: true) }
+
+      it 'returns only items on user wishlist' do
+        expect(result.to_a).to eq [wishlisted_item]
+      end
     end
 
     context 'when item has been wishlisted by user' do

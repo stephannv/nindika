@@ -7,7 +7,7 @@ RSpec.describe Items::Find, type: :actions do
     subject(:inputs) { described_class.inputs }
 
     it { is_expected.to include(slug: { type: String }) }
-    it { is_expected.to include(current_user: { type: User, allow_nil: true, default: nil }) }
+    it { is_expected.to include(user: { type: User, allow_nil: true, default: nil }) }
   end
 
   describe 'Outputs' do
@@ -37,17 +37,11 @@ RSpec.describe Items::Find, type: :actions do
     end
 
     context 'when current user is present' do
-      subject(:result) { described_class.result(slug: slug, current_user: user) }
+      subject(:result) { described_class.result(slug: slug, user: user) }
 
       let(:user) { User.new(id: Faker::Internet.uuid) }
       let(:item) { create(:item) }
       let(:slug) { item.slug }
-
-      it 'left joins with current user wishlist' do
-        expect(Items::WithWishlistedColumnQuery).to receive(:call).with(user_id: user.id)
-
-        result
-      end
 
       it 'adds wishlisted column' do
         expect(result.item).to respond_to(:wishlisted)

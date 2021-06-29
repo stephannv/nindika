@@ -6,14 +6,9 @@ RSpec.describe Items::List, type: :actions do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 
-    it do
-      expect(inputs).to include(
-        filter_params: { type: [Hash, ActionController::Parameters], default: {}, allow_nil: true }
-      )
-    end
-
+    it { is_expected.to include(filter_params: { type: Hash, default: {} }) }
     it { is_expected.to include(sort_param: { type: String, default: nil, allow_nil: true }) }
-    it { is_expected.to include(current_user: { type: User, default: nil, allow_nil: true }) }
+    it { is_expected.to include(user: { type: User, default: nil, allow_nil: true }) }
   end
 
   describe 'Outputs' do
@@ -23,52 +18,59 @@ RSpec.describe Items::List, type: :actions do
   end
 
   describe '#call' do
-    subject(:result) do
-      described_class.result(filter_params: filter_params, sort_param: sort_param, current_user: user)
+    context 'when filter params is present' do
+      let!(:item_on_sale) { create(:item, on_sale: true) }
+
+      before { create(:item, on_sale: false) }
+
+      it 'filters items' do
+        result = described_class.result(filter_params: { on_sale: true })
+
+        expect(result.items.to_a).to eq [item_on_sale]
+      end
     end
 
-    let(:ordered_items) { create_list(:item, 3, :with_price) }
-    let(:filter_params) { Faker::Types.rb_hash(number: 4) }
-    let(:sort_param) { Faker::Lorem.word }
-    let(:user) { nil }
+    context 'when sort param is present' do
+      let!(:item_a) { create(:item, release_date: Time.zone.today) }
+      let!(:item_b) { create(:item, release_date: Time.zone.tomorrow) }
+      let!(:item_c) { create(:item, release_date: Time.zone.yesterday) }
 
-    before do
-      filtered_items = create_list(:item, 2, :with_price)
+      it 'sorts items' do
+        result = described_class.result(sort_param: 'release_date_asc')
 
-      allow(ItemsFilter).to receive(:apply)
-        .with(kind_of(ActiveRecord::Relation), filter_params)
-        .and_return(filtered_items)
-
-      allow(ItemsSorter).to receive(:apply)
-        .with(filtered_items, sort_param)
-        .and_return(ordered_items)
+        expect(result.items.to_a).to eq [item_c, item_a, item_b]
+      end
     end
 
-    it 'returns items with applied filters' do
-      expect(result.items.to_a).to include(*ordered_items)
+    context 'when user is present' do
+      it 'adds wishlisted column' do
+        create(:item)
+        result = described_class.result(user: User.new(id: Faker::Internet.uuid))
+
+        expect(result.items.first).to respond_to :wishlisted
+      end
+
+      it 'doesn`t returns hidden items' do
+        item = create(:item)
+        hidden_item = create(:hidden_item, item: item)
+        result = described_class.result(user: hidden_item.user)
+
+        expect(result.items).to be_empty
+      end
     end
 
-    context 'when current user is present' do
-      let(:user) { User.new(id: Faker::Internet.uuid) }
+    context 'when filter by user wishlist' do
+      let!(:wishlist_item) { create(:wishlist_item) }
 
       before do
-        allow(ItemsSorter).to receive(:apply).and_return(Item)
-
-        allow(Item).to receive(:with_wishlisted_column)
-          .with(user_id: user.id)
-          .and_return(Item)
+        create(:wishlist_item) # creates item wishlisted by other user
+        create(:item) # not wishlisted item
       end
 
-      it 'adds wishlisted column' do
-        expect(Item).to receive(:with_wishlisted_column).with(user_id: user.id)
+      it 'returns only games present in user wishlist' do
+        result = described_class.result(user: wishlist_item.user, filter_params: { wishlisted: true })
 
-        result
-      end
-
-      it 'removes hidden items' do
-        expect(Item).to receive(:without_hidden).with(user_id: user.id).and_call_original
-
-        result
+        expect(result.items.to_a).to eq [wishlist_item.item]
       end
     end
   end
