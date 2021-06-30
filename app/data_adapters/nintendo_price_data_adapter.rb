@@ -17,6 +17,7 @@ class NintendoPriceDataAdapter
       discount_started_at: discount_started_at,
       discount_ends_at: discount_ends_at,
       discount_percentage: discount_percentage,
+      discounted_amount: discounted_amount,
       state: state,
       gold_points: gold_points
     }
@@ -54,6 +55,12 @@ class NintendoPriceDataAdapter
     return if discount_amount_data.nil?
 
     ((1 - (discount_amount.cents.to_f / regular_amount.cents)) * 100).round
+  end
+
+  def discounted_amount
+    return if discount_amount_data.nil?
+
+    [regular_amount - discount_amount, 0].max
   end
 
   # rubocop:disable Metrics/MethodLength

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_28_000150) do
+ActiveRecord::Schema.define(version: 2021_06_30_195127) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -121,6 +121,8 @@ ActiveRecord::Schema.define(version: 2021_06_28_000150) do
     t.integer "gold_points"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "discounted_amount_cents"
+    t.string "discounted_amount_currency", default: "BRL", null: false
     t.index ["item_id"], name: "index_prices_on_item_id", unique: true
     t.index ["nsuid"], name: "index_prices_on_nsuid", unique: true
   end

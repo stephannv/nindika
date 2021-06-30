@@ -9,6 +9,7 @@ class Price < ApplicationRecord
 
   monetize :regular_amount_cents, numericality: { greater_than_or_equal_to: 0 }
   monetize :discount_amount_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }
+  monetize :discounted_amount_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }
 
   validates :item_id, presence: true
   validates :nsuid, presence: true

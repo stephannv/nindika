@@ -12,6 +12,7 @@ pt-BR:
       release_date_desc: Recentes
       price_asc: Mais baratos
       price_desc: Mais caros
-      discount_percentage_desc: Maiores descontos
+      discounted_amount_desc: Maiores descontos ($)
+      discount_percentage_desc: Maiores descontos (%)
       discount_start_date_desc: Promoções recentes
       discount_end_date_asc: Promoções encerrando
