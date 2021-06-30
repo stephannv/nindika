@@ -26,6 +26,10 @@ RSpec.describe ItemsSorter, type: :lib do
       expect(options[:price_desc]).to include(text: I18n.t('games.sort_options.price_desc'))
     end
 
+    it 'has discounted amount desc sort option' do
+      expect(options[:discounted_amount_desc]).to include(text: I18n.t('games.sort_options.discounted_amount_desc'))
+    end
+
     it 'has discount percentage desc sort option' do
       expect(options[:discount_percentage_desc]).to include(text: I18n.t('games.sort_options.discount_percentage_desc'))
     end
@@ -93,6 +97,17 @@ RSpec.describe ItemsSorter, type: :lib do
       let!(:item_b) { create(:price, regular_amount: 60).item }
 
       it 'sorts items by current price descending' do
+        expect(result.to_a).to eq [item_c, item_b, item_a]
+      end
+    end
+
+    context 'when sort options is discounted_amount_desc' do
+      let(:sort_option) { 'discounted_amount_desc' }
+      let!(:item_a) { create(:price, discounted_amount: 40).item }
+      let!(:item_c) { create(:price, discounted_amount: 100).item }
+      let!(:item_b) { create(:price, discounted_amount: 60).item }
+
+      it 'sorts items by discount percentage descending' do
         expect(result.to_a).to eq [item_c, item_b, item_a]
       end
     end

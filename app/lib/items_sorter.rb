@@ -24,6 +24,11 @@ class ItemsSorter
       query: 'coalesce(prices.discount_amount_cents, prices.regular_amount_cents) DESC NULLS LAST',
       left_joins: :price
     },
+    discounted_amount_desc: {
+      text: I18n.t('games.sort_options.discounted_amount_desc'),
+      query: 'prices.discounted_amount_cents DESC NULLS LAST',
+      left_joins: :price
+    },
     discount_percentage_desc: {
       text: I18n.t('games.sort_options.discount_percentage_desc'),
       query: 'prices.discount_percentage DESC NULLS LAST',
