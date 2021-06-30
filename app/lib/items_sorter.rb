@@ -6,13 +6,13 @@ class ItemsSorter
       text: I18n.t('games.sort_options.title_asc'),
       query: 'items.title ASC'
     },
-    release_date_asc: {
-      text: I18n.t('games.sort_options.release_date_asc'),
-      query: 'items.release_date ASC'
-    },
     release_date_desc: {
       text: I18n.t('games.sort_options.release_date_desc'),
       query: 'items.release_date DESC'
+    },
+    release_date_asc: {
+      text: I18n.t('games.sort_options.release_date_asc'),
+      query: 'items.release_date ASC'
     },
     price_asc: {
       text: I18n.t('games.sort_options.price_asc'),
