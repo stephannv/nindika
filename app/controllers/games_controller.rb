@@ -67,6 +67,6 @@ class GamesController < ApplicationController
   end
 
   def permitted_params
-    params.permit(:q, :sort)
+    params.permit(:sort, q: {})
   end
 end
