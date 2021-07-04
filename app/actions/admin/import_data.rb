@@ -10,10 +10,6 @@ module Admin
       Task.start 'Import prices' do
         Prices::Import.call
       end
-
-      Task.start 'Update Item Flags' do
-        Items::UpdateFlags.call
-      end
     end
   end
 end
