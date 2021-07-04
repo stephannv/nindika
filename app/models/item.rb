@@ -2,7 +2,6 @@
 
 class Item < ApplicationRecord
   include FriendlyId
-  include PgSearch::Model
 
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
@@ -41,6 +40,26 @@ class Item < ApplicationRecord
     I18n.l(release_date_display.to_date)
   rescue Date::Error
     release_date_display
+  end
+
+  def companies
+    (publishers + developers).uniq
+  end
+
+  def on_sale?
+    price.present? && price.discount?
+  end
+
+  def new_release?
+    (2.weeks.ago..Time.zone.today).cover?(release_date)
+  end
+
+  def coming_soon?
+    (Time.zone.tomorrow..2.weeks.from_now).cover?(release_date)
+  end
+
+  def pre_order?
+    price.present? && price.pre_order?
   end
 
   private

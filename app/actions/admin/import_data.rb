@@ -10,6 +10,10 @@ module Admin
       Task.start 'Import prices' do
         Prices::Import.call
       end
+
+      Task.start 'Update game documents' do
+        GameDocuments::Refresh.call
+      end
     end
   end
 end

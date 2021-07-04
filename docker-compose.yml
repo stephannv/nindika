@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  typesense:
+    image: typesense/typesense:0.20.0
+    volumes:
+      - ./search/data:/data
+    ports:
+      - 8108:8108
+    environment:
+      API_KEY: xyz
+
+    entrypoint: sh -c "/opt/typesense-server --data-dir /data --api-key=$${API_KEY}"

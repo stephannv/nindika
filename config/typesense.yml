@@ -1,0 +1,36 @@
+default: &default
+  num_retries: 10
+  healthcheck_interval_seconds: 1
+  retry_interval_seconds: 0.01
+  connection_timeout_seconds: 5
+
+development: &development
+  <<: *default
+  api_key: xyz
+  nodes:
+    - host: localhost
+      port: 8108
+      protocol: http
+    # - host: localhost
+    #   port: 7108
+    #   protocol: http
+    # - host: localhost
+    #   port: 9108
+    #   protocol: http
+
+test:
+  <<: *development
+
+production:
+  <<: *default
+  api_key: <%= Rails.application.credentials.typesense_api_key %>
+  nodes:
+    - host: <%= Rails.application.credentials.typesense_host %>
+      port: <%= Rails.application.credentials.typesense_port %>
+      protocol: <%= Rails.application.credentials.typesense_protocol %>
+    # - host: localhost
+    #   port: 7108
+    #   protocol: http
+    # - host: localhost
+    #   port: 9108
+    #   protocol: http

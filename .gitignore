@@ -42,3 +42,6 @@ yarn-debug.log*
 /coverage
 
 *.log
+
+# typesense data
+/search

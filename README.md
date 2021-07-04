@@ -1,7 +1,7 @@
 # nindika
-[![Releases](https://img.shields.io/github/v/release/stephannv/nindika)](https://github.com/stephannv/nindika/releases) 
+[![Releases](https://img.shields.io/github/v/release/stephannv/nindika)](https://github.com/stephannv/nindika/releases)
 [![CI](https://github.com/stephannv/nindika/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/stephannv/nindika/actions/workflows/ci.yml?query=branch%3Amain++)
-[![License](https://img.shields.io/github/license/stephannv/nindika)](https://github.com/stephannv/nindika/blob/main/LICENSE.txt) 
+[![License](https://img.shields.io/github/license/stephannv/nindika)](https://github.com/stephannv/nindika/blob/main/LICENSE.txt)
 
 
 
@@ -19,6 +19,7 @@
 
 **Node.js:** >15
 
+**Typesense** 0.20.0
 #### Run projects
 Clone project
 ```
@@ -35,6 +36,11 @@ yarn install
 Setup database:
 ```
 rails db:setup
+```
+
+Up Typesense
+```
+docker-compose up typesense
 ```
 
 Import data

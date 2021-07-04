@@ -5,6 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.1'
 
+gem 'alba', '1.4.0'
 gem 'algolia', '2.1.1'
 gem 'awesome_print', '1.9.2'
 gem 'bootsnap', '1.7.5', require: false
@@ -28,6 +29,7 @@ gem 'sentry-rails', '4.5.2'
 gem 'sentry-ruby', '4.5.2'
 gem 'service_actor', '3.1.1'
 gem 'slim-rails', '3.2.0'
+gem 'typesense', '0.12.0'
 gem 'tzinfo-data', '2.0.4', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'view_component', '2.34.0', require: 'view_component/engine'
 gem 'webpacker', '5.4.0'
