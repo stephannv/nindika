@@ -10,8 +10,12 @@ module Games
       @with_text = with_text
     end
 
+    def document
+      game.document
+    end
+
     def wishlisted?
-      game.try(:wishlisted)
+      document.wishlisted
     end
 
     def button_class

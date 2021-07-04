@@ -1,8 +1,8 @@
 .container-fluid
-  - if pagy.count > 0
+  - if games.size > 0
     .row.px-15.py-10.align-items-center
       .col-auto
-        .text-left.font-weight-bold.text-muted = t('.result_count', count: pagy.items, total: pagy.count)
+        .text-left.font-weight-bold.text-muted = t('.result_count', count: games.size, total: total)
 
       .col.text-right
         = render Games::SortButtonComponent.new
@@ -20,3 +20,4 @@
         .card.border-0.shadow-sm
           .content
             .text-center.font-weight-bold.text-muted = t('no_results')
+

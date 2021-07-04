@@ -3,4 +3,4 @@
 - content_for :title do
   .navbar-brand.font-weight-bold = t('.title')
 
-= render 'list', pagy: @pagy, games: @games
+= render 'list', games: @games.items, total: @games.total, pagy: @pagy

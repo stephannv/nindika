@@ -10,5 +10,9 @@ module Games
       @game = game
       @current_user = current_user
     end
+
+    def document
+      game.document
+    end
   end
 end

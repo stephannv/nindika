@@ -5,5 +5,5 @@
 
   .dropdown-menu.dropdown-menu-right(aria-labelledby="games-sort-button")
     - options.each do |option|
-      = link_to sort_path(option[:param]), class: dropdown_item_class(option[:param]) do
-        == option[:text]
+      = link_to sort_path(option), class: dropdown_item_class(option) do
+        == I18n.t("games.sort_options.#{option}")

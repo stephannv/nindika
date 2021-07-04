@@ -1,46 +1,44 @@
 # frozen_string_literal: true
 
 class GamesController < ApplicationController
-  include Pagy::Backend
-
   before_action :authenticate_user!, only: %i[wishlist]
 
   def index
-    list_games(filter: filter_params, sort: sort_param || 'release_date_desc')
+    list_games(filters: filters_params, sort_by: sort_param || 'popularity')
   end
 
   def on_sale
     list_games(
-      filter: filter_params.merge(on_sale: true),
-      sort: sort_param || 'discount_start_date_desc'
+      filters: filters_params.merge(on_sale: true),
+      sort_by: sort_param || 'hot'
     )
   end
 
   def new_releases
     list_games(
-      filter: filter_params.merge(new_release: true),
-      sort: sort_param || 'release_date_desc'
+      filters: filters_params.merge(new_release: true),
+      sort_by: sort_param || 'new'
     )
   end
 
   def coming_soon
     list_games(
-      filter: filter_params.merge(coming_soon: true),
-      sort: sort_param || 'release_date_asc'
+      filters: filters_params.merge(coming_soon: true),
+      sort_by: sort_param || 'old'
     )
   end
 
   def pre_order
     list_games(
-      filter: filter_params.merge(pre_order: true),
-      sort: sort_param || 'release_date_asc'
+      filters: filters_params.merge(pre_order: true),
+      sort_by: sort_param || 'old'
     )
   end
 
   def wishlist
     list_games(
-      filter: filter_params.merge(wishlisted: true),
-      sort: sort_param.presence
+      filters: filters_params.merge(wishlisted: true),
+      sort_by: sort_param.presence
     )
   end
 
@@ -52,21 +50,27 @@ class GamesController < ApplicationController
 
   private
 
-  def list_games(filter:, sort:)
-    result = Items::List.result(filter_params: filter, sort_param: sort, user: current_user)
+  def list_games(filters:, sort_by:)
+    result = Games::List.result(
+      current_user: current_user,
+      filters: filters,
+      sort_by: sort_by,
+      page: params[:page].to_i
+    )
 
-    @pagy, @games = pagy(result.items)
+    @games = result.games
+    @pagy = Pagy.new(count: @games.total, page: params[:page], items: @games.items.presence&.size)
   end
 
-  def filter_params
+  def filters_params
     permitted_params[:q].to_h
   end
 
   def sort_param
-    permitted_params[:sort].to_s.presence
+    permitted_params[:sort_by].to_s.presence
   end
 
   def permitted_params
-    params.permit(:sort, q: {})
+    params.permit(:sort_by, q: {})
   end
 end

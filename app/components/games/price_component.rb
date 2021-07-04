@@ -6,7 +6,18 @@ module Games
 
     def initialize(game:)
       @game = game
-      @price = game.price
+    end
+
+    def document
+      game.document
+    end
+
+    def price?
+      document.current_amount_display.present?
+    end
+
+    def on_sale?
+      document.on_sale
     end
   end
 end

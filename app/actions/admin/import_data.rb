@@ -11,8 +11,8 @@ module Admin
         Prices::Import.call
       end
 
-      Task.start 'Update Item Flags' do
-        Items::UpdateFlags.call
+      Task.start 'Refresh Games Index' do
+        GamesIndex::Refresh.call
       end
     end
   end

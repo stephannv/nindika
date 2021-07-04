@@ -53,11 +53,14 @@ class ItemsSorter
     @param = param.try(:to_sym)
   end
 
-  def self.apply(relation, params)
-    new(relation, params).apply
+  def self.apply(relation, param)
+    new(relation, param).apply
   end
 
   def apply
+    puts "TRYING TO APPLY #{param}"
+    puts "KEY???? #{OPTIONS.key?(param)}"
+    puts "SORT KEY #{OPTIONS[OPTIONS.key?(param) ? param : :title_asc]}"
     sort_key = OPTIONS.key?(param) ? param : :title_asc
     option = OPTIONS[sort_key]
 

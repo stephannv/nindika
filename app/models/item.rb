@@ -49,6 +49,26 @@ class Item < ApplicationRecord
     release_date_display
   end
 
+  def companies
+    (publishers + developers).uniq
+  end
+
+  def on_sale?
+    price.try :discount?
+  end
+
+  def new_release?
+    (2.weeks.ago..Time.zone.today).cover?(release_date)
+  end
+
+  def coming_soon?
+    (Time.zone.tomorrow..2.weeks.from_now).cover?(release_date)
+  end
+
+  def pre_order?
+    price.try :pre_order?
+  end
+
   private
 
   def should_generate_new_friendly_id?

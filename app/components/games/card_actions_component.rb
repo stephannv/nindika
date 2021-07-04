@@ -9,7 +9,11 @@ module Games
     end
 
     def dropdown_id
-      "dropdown-#{game.id}"
+      "dropdown-#{document.id}"
+    end
+
+    def document
+      game.document
     end
   end
 end
