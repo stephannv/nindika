@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_19_130032) do
+ActiveRecord::Schema.define(version: 2021_07_09_191526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -18,4 +18,53 @@ ActiveRecord::Schema.define(version: 2021_06_19_130032) do
   enable_extension "plpgsql"
   enable_extension "unaccent"
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "sluggable_type", null: false
+    t.uuid "sluggable_id", null: false
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title", limit: 1024, null: false
+    t.text "description"
+    t.citext "slug", null: false
+    t.string "website_url", limit: 1024
+    t.string "nsuid", limit: 32
+    t.string "external_id", limit: 256, null: false
+    t.string "boxart_url", limit: 2048
+    t.string "banner_url", limit: 2048
+    t.string "release_date_display", limit: 64
+    t.date "release_date"
+    t.jsonb "extra", default: {}, null: false
+    t.string "publishers", default: [], null: false, array: true
+    t.string "developers", default: [], null: false, array: true
+    t.string "genres", default: [], null: false, array: true
+    t.string "franchises", default: [], null: false, array: true
+    t.integer "all_time_visits", default: 0, null: false
+    t.integer "last_week_visits", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["external_id"], name: "index_items_on_external_id", unique: true
+  end
+
+  create_table "raw_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "item_id"
+    t.string "external_id", limit: 256, null: false
+    t.jsonb "data", default: {}, null: false
+    t.string "checksum", limit: 512, null: false
+    t.boolean "imported", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["external_id"], name: "index_raw_items_on_external_id", unique: true
+    t.index ["imported"], name: "index_raw_items_on_imported", where: "(imported = false)"
+    t.index ["item_id"], name: "index_raw_items_on_item_id", unique: true, where: "(item_id IS NOT NULL)"
+  end
+
+  add_foreign_key "raw_items", "items"
 end

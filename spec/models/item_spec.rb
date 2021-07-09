@@ -1,0 +1,48 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe Item, type: :model do
+  describe 'Relations' do
+    it { is_expected.to have_one(:raw_item).dependent(:nullify) }
+  end
+
+  describe 'Validations' do
+    subject(:item) { build(:item) }
+
+    it { is_expected.to validate_presence_of(:external_id) }
+    it { is_expected.to validate_presence_of(:title) }
+
+    it { is_expected.to validate_uniqueness_of(:external_id) }
+
+    it { is_expected.to validate_length_of(:external_id).is_at_most(256) }
+    it { is_expected.to validate_length_of(:title).is_at_most(1024) }
+    it { is_expected.to validate_length_of(:description).is_at_most(8192) }
+    it { is_expected.to validate_length_of(:website_url).is_at_most(1024) }
+    it { is_expected.to validate_length_of(:nsuid).is_at_most(32) }
+    it { is_expected.to validate_length_of(:boxart_url).is_at_most(2048) }
+    it { is_expected.to validate_length_of(:banner_url).is_at_most(2048) }
+    it { is_expected.to validate_length_of(:release_date_display).is_at_most(64) }
+  end
+
+  describe 'Slug' do
+    let!(:item_a) { create(:item, title: 'Some title', slug: nil) }
+    let!(:item_b) { create(:item, title: 'Other title', slug: nil) }
+
+    before do
+      item_a.update(title: 'New title')
+    end
+
+    it 'finds record with given slug' do
+      expect(described_class.friendly.find('other-title')).to eq item_b
+    end
+
+    it 'finds record using slug history' do
+      expect(described_class.friendly.find('some-title')).to eq item_a
+    end
+
+    it 'generates new slug when title changes' do
+      expect(described_class.friendly.find('new-title')).to eq item_a
+    end
+  end
+end
