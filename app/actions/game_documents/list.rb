@@ -1,0 +1,21 @@
+module GameDocuments
+  class List < Actor
+    input :client, type: Typesense::Client, default: -> { Typesense::Client.new(TypesenseConnection) }
+    input :collection_name, type: String
+
+    def call
+      documents.in_groups_of(100, false) do |group|
+        client.collections[collection_name].documents.import(group, action: 'create', batch_size: 100)
+      end
+    end
+
+    private
+
+    def documents
+      documents = Item.left_joins(:price).includes(:price).order(:title).map.with_index do |item, index|
+        serializable_hash = GameDocumentSerializer.new(item).serializable_hash
+        serializable_hash.compact.stringify_keys.merge('title_order' => index)
+      end
+    end
+  end
+end
