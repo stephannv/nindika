@@ -4,6 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Item, type: :model do
   describe 'Relations' do
+    it { is_expected.to have_one(:price).dependent(:destroy) }
     it { is_expected.to have_one(:raw_item).dependent(:nullify) }
   end
 
@@ -43,6 +44,18 @@ RSpec.describe Item, type: :model do
 
     it 'generates new slug when title changes' do
       expect(described_class.friendly.find('new-title')).to eq item_a
+    end
+  end
+
+  describe 'Scopes' do
+    describe '.with_nsuid' do
+      let!(:with_nsuid) { create(:item) }
+
+      before { create(:item, nsuid: nil) }
+
+      it 'returns items with nsuid' do
+        expect(described_class.with_nsuid.to_a).to eq [with_nsuid]
+      end
     end
   end
 end

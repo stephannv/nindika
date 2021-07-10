@@ -5,8 +5,8 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.text :description
       t.citext :slug, null: false
       t.string :website_url, limit: 1024
-      t.string :nsuid, limit: 32
-      t.string :external_id, null: false, limit: 256
+      t.string :nsuid, limit: 32, index: { unique: true, where: 'nsuid IS NOT NULL' }
+      t.string :external_id, null: false, limit: 256, index: { unique: true }
       t.string :boxart_url, limit: 2048
       t.string :banner_url, limit: 2048
       t.string :release_date_display, limit: 64
@@ -21,7 +21,5 @@ class CreateItems < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
-
-    add_index :items, :external_id, unique: true
   end
 end

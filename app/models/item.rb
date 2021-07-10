@@ -3,9 +3,12 @@
 class Item < ApplicationRecord
   include FriendlyId
 
+  friendly_id :title, use: :history
+
+  has_one :price, dependent: :destroy
   has_one :raw_item, dependent: :nullify
 
-  friendly_id :title, use: :history
+  scope :with_nsuid, -> { where.not(nsuid: nil) }
 
   validates :title, presence: true
   validates :external_id, presence: true

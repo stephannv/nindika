@@ -1,0 +1,34 @@
+# frozen_string_literal: true
+
+module Prices
+  class Create < Actor
+    input :prices_data, type: Array
+
+    def call
+      prices_data.each do |price_data|
+        import_price(price_data)
+      rescue StandardError => e
+        raise e if Rails.env.development?
+
+        Sentry.capture_exception(e, extra: price_data)
+      end
+    end
+
+    private
+
+    def import_price(price_data)
+      data = Nintendo::PriceDataAdapter.adapt(price_data)
+      return if data[:base_price].blank?
+
+      create_price(data)
+    end
+
+    def create_price(data)
+      price = Price.find_or_initialize_by(nsuid: data[:nsuid])
+      price.item ||= Item.find_by(nsuid: data[:nsuid])
+      price.assign_attributes(data)
+      price.save!
+      price
+    end
+  end
+end
