@@ -6,6 +6,14 @@ RSpec.describe ItemsSorter, type: :lib do
   describe '::OPTIONS' do
     subject(:options) { described_class::OPTIONS }
 
+    it 'has all time visits desc sort option' do
+      expect(options[:all_time_visits_desc]).to include(text: I18n.t('games.sort_options.all_time_visits_desc'))
+    end
+
+    it 'has last week visits desc sort option' do
+      expect(options[:last_week_visits_desc]).to include(text: I18n.t('games.sort_options.last_week_visits_desc'))
+    end
+
     it 'has title asc sort option' do
       expect(options[:title_asc]).to include(text: I18n.t('games.sort_options.title_asc'))
     end
