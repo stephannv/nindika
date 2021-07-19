@@ -2,6 +2,14 @@
 
 class ItemsSorter
   OPTIONS = {
+    all_time_visits_desc: {
+      text: I18n.t('games.sort_options.all_time_visits_desc'),
+      query: 'items.all_time_visits DESC NULLS LAST'
+    },
+    last_week_visits_desc: {
+      text: I18n.t('games.sort_options.last_week_visits_desc'),
+      query: 'items.last_week_visits DESC NULLS LAST'
+    },
     title_asc: {
       text: I18n.t('games.sort_options.title_asc'),
       query: 'items.title ASC'
@@ -22,6 +30,11 @@ class ItemsSorter
     price_desc: {
       text: I18n.t('games.sort_options.price_desc'),
       query: 'coalesce(prices.discount_amount_cents, prices.regular_amount_cents) DESC NULLS LAST',
+      left_joins: :price
+    },
+    discounted_amount_desc: {
+      text: I18n.t('games.sort_options.discounted_amount_desc'),
+      query: 'prices.discounted_amount_cents DESC NULLS LAST',
       left_joins: :price
     },
     discount_percentage_desc: {
@@ -53,7 +66,7 @@ class ItemsSorter
   end
 
   def apply
-    sort_key = OPTIONS.key?(param) ? param : :title_asc
+    sort_key = OPTIONS.key?(param) ? param : :all_time_visits_desc
     option = OPTIONS[sort_key]
 
     self.relation = relation

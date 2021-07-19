@@ -7,11 +7,14 @@ pt-BR:
 
   games:
     sort_options:
+      all_time_visits_desc: Populares
+      last_week_visits_desc: Tendências
       title_asc: Título (A-Z)
       release_date_asc: Antigos
       release_date_desc: Recentes
       price_asc: Mais baratos
       price_desc: Mais caros
-      discount_percentage_desc: Maiores descontos
+      discounted_amount_desc: Maiores descontos ($)
+      discount_percentage_desc: Maiores descontos (%)
       discount_start_date_desc: Promoções recentes
       discount_end_date_asc: Promoções encerrando

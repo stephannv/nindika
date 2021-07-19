@@ -12,6 +12,7 @@ RSpec.describe Price, type: :model do
   describe 'Configurations' do
     it { is_expected.to monetize(:regular_amount) }
     it { is_expected.to monetize(:discount_amount).allow_nil }
+    it { is_expected.to monetize(:discounted_amount).allow_nil }
 
     it 'has state enum' do
       expect(described_class.enumerations).to include(state: PriceStates)
