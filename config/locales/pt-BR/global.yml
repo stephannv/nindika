@@ -7,6 +7,8 @@ pt-BR:
 
   games:
     sort_options:
+      all_time_visits_desc: Populares
+      last_week_visits_desc: Tendências
       title_asc: Título (A-Z)
       release_date_asc: Antigos
       release_date_desc: Recentes

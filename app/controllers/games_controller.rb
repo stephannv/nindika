@@ -6,42 +6,27 @@ class GamesController < ApplicationController
   before_action :authenticate_user!, only: %i[wishlist]
 
   def index
-    list_games(filter: filter_params, sort: sort_param || 'release_date_desc')
+    list_games(filter: filter_params)
   end
 
   def on_sale
-    list_games(
-      filter: filter_params.merge(on_sale: true),
-      sort: sort_param || 'discount_start_date_desc'
-    )
+    list_games(filter: filter_params.merge(on_sale: true))
   end
 
   def new_releases
-    list_games(
-      filter: filter_params.merge(new_release: true),
-      sort: sort_param || 'release_date_desc'
-    )
+    list_games(filter: filter_params.merge(new_release: true))
   end
 
   def coming_soon
-    list_games(
-      filter: filter_params.merge(coming_soon: true),
-      sort: sort_param || 'release_date_asc'
-    )
+    list_games(filter: filter_params.merge(coming_soon: true))
   end
 
   def pre_order
-    list_games(
-      filter: filter_params.merge(pre_order: true),
-      sort: sort_param || 'release_date_asc'
-    )
+    list_games(filter: filter_params.merge(pre_order: true))
   end
 
   def wishlist
-    list_games(
-      filter: filter_params.merge(wishlisted: true),
-      sort: sort_param.presence
-    )
+    list_games(filter: filter_params.merge(wishlisted: true))
   end
 
   def show
@@ -52,8 +37,12 @@ class GamesController < ApplicationController
 
   private
 
-  def list_games(filter:, sort:)
-    result = Items::List.result(filter_params: filter, sort_param: sort, user: current_user)
+  def list_games(filter:)
+    result = Items::List.result(
+      filter_params: filter,
+      sort_param: sort_param || 'all_time_visits_desc',
+      user: current_user
+    )
 
     @pagy, @games = pagy(result.items)
   end
