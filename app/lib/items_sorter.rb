@@ -24,12 +24,12 @@ class ItemsSorter
     },
     price_asc: {
       text: I18n.t('games.sort_options.price_asc'),
-      query: 'coalesce(prices.discount_amount_cents, prices.regular_amount_cents) ASC NULLS LAST',
+      query: 'coalesce(prices.discount_price_cents, prices.base_price_cents) ASC NULLS LAST',
       left_joins: :price
     },
     price_desc: {
       text: I18n.t('games.sort_options.price_desc'),
-      query: 'coalesce(prices.discount_amount_cents, prices.regular_amount_cents) DESC NULLS LAST',
+      query: 'coalesce(prices.discount_price_cents, prices.base_price_cents) DESC NULLS LAST',
       left_joins: :price
     },
     discounted_amount_desc: {

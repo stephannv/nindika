@@ -46,7 +46,7 @@ class PriceNotificationDataBuilder
 
   def base_fields
     [
-      { name: :current_price, value: price.current_amount.format },
+      { name: :current_price, value: price.current_price.formatted },
       { name: :website_url, value: item.website_url }
     ]
   end
@@ -55,7 +55,7 @@ class PriceNotificationDataBuilder
     return [] unless discount?
 
     [
-      { name: :original_price, value: price.regular_amount.format },
+      { name: :original_price, value: price.base_price.formatted },
       { name: :discount_percentage, value: "#{price.discount_percentage}%" },
       { name: :started_at, value: price.discount_started_at },
       { name: :ends_at, value: price.discount_ends_at }
@@ -66,41 +66,41 @@ class PriceNotificationDataBuilder
     return [] unless price_readjustment?
 
     old_amount = Money.new(
-      price.saved_change_to_regular_amount_cents.first.to_i,
-      price.current_amount.currency.iso_code
+      price.saved_change_to_base_price_cents.first.to_i,
+      price.current_price.currency.iso_code
     )
-    [{ name: :old_price, value: old_amount.format }]
+    [{ name: :old_price, value: old_amount.formatted }]
   end
 
   def price_uncovered?
-    new_price? && !discount_amount_was_updated?
+    new_price? && !discount_price_was_updated?
   end
 
   def discounted_price?
-    !new_price? && discount? && discount_amount_was_updated?
+    !new_price? && discount? && discount_price_was_updated?
   end
 
   def price_readjustment?
-    !new_price? && !discount_amount_was_updated? && regular_amount_was_updated?
+    !new_price? && !discount_price_was_updated? && base_price_was_updated?
   end
 
   def pre_order_discount?
-    new_price? && discount? && discount_amount_was_updated?
+    new_price? && discount? && discount_price_was_updated?
   end
 
   def new_price?
     price.saved_change_to_id?
   end
 
-  def discount_amount_was_updated?
-    price.saved_change_to_discount_amount_cents?
+  def discount_price_was_updated?
+    price.saved_change_to_discount_price_cents?
   end
 
-  def regular_amount_was_updated?
-    price.saved_change_to_regular_amount_cents?
+  def base_price_was_updated?
+    price.saved_change_to_base_price_cents?
   end
 
   def discount?
-    price.discount_amount.present?
+    price.discount_price.present?
   end
 end

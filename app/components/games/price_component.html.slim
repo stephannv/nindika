@@ -2,10 +2,10 @@
   - if price.discount?
     = link_to game_path(game.slug), class: 'badge-group', role: 'group' do
       span.badge.bg-dark.text-white = "#{price.discount_percentage}% OFF"
-      span.badge.badge-primary.font-weight-bold = price.current_amount.formatted
+      span.badge.badge-primary.font-weight-bold = price.current_price.formatted
 
   - else
-    = link_to price.current_amount.formatted, game_path(game.slug), class: 'badge'
+    = link_to price.current_price.formatted, game_path(game.slug), class: 'badge'
 - else
   = link_to t('.blank'), game_path(game.slug), class: 'badge'
 

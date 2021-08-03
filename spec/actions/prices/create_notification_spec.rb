@@ -21,7 +21,7 @@ RSpec.describe Prices::CreateNotification, type: :actions do
     let(:price) { create(:price) }
 
     context 'when price didn`t change current amount' do
-      before { allow(price).to receive(:saved_change_to_current_amount?).and_return(false) }
+      before { allow(price).to receive(:saved_change_to_current_price?).and_return(false) }
 
       it { is_expected.to be_failure }
 
@@ -34,7 +34,7 @@ RSpec.describe Prices::CreateNotification, type: :actions do
       let(:notification_data) { attributes_for(:notification) }
 
       before do
-        allow(price).to receive(:saved_change_to_current_amount?).and_return(true)
+        allow(price).to receive(:saved_change_to_current_price?).and_return(true)
         allow(PriceNotificationDataBuilder).to receive(:build).with(price: price).and_return(notification_data)
       end
 
@@ -51,7 +51,7 @@ RSpec.describe Prices::CreateNotification, type: :actions do
 
     context 'when notification builder returns nil' do
       before do
-        allow(price).to receive(:saved_change_to_current_amount?).and_return(true)
+        allow(price).to receive(:saved_change_to_current_price?).and_return(true)
         allow(PriceNotificationDataBuilder).to receive(:build).with(price: price).and_return(nil)
       end
 

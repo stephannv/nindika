@@ -27,7 +27,7 @@ module Items
     end
 
     def mark_on_sale_items
-      Item.joins(:price).where.not(price: { discount_amount_cents: nil }).update_all(on_sale: true)
+      Item.joins(:price).where.not(price: { discount_price_cents: nil }).update_all(on_sale: true)
     end
 
     def mark_pre_order_items

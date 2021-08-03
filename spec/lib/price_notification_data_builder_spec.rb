@@ -18,7 +18,7 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
           url: Rails.application.routes.url_helpers.game_url(item.slug),
           image_url: item.boxart_url,
           fields: [
-            { name: :current_price, value: price.current_amount.format },
+            { name: :current_price, value: price.current_price.formatted },
             { name: :website_url, value: item.website_url }
           ]
         )
@@ -32,7 +32,7 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
       before do
         price.reload
         discount_attributes = attributes_for(:price, :with_discount)
-          .slice(:discount_amount, :discount_started_at, :discount_ends_at, :discount_percentage)
+          .slice(:discount_price, :discount_started_at, :discount_ends_at, :discount_percentage)
         price.update!(discount_attributes)
       end
 
@@ -44,9 +44,9 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
           url: Rails.application.routes.url_helpers.game_url(item.slug),
           image_url: item.boxart_url,
           fields: [
-            { name: :current_price, value: price.current_amount.format },
+            { name: :current_price, value: price.current_price.formatted },
             { name: :website_url, value: item.website_url },
-            { name: :original_price, value: price.regular_amount.format },
+            { name: :original_price, value: price.base_price.formatted },
             { name: :discount_percentage, value: "#{price.discount_percentage}%" },
             { name: :started_at, value: price.discount_started_at },
             { name: :ends_at, value: price.discount_ends_at }
@@ -58,10 +58,10 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
     context 'when price is persisted record and regular amount was updated' do
       let(:price) { create(:price) }
       let(:item) { price.item }
-      let!(:old_amount) { price.regular_amount }
+      let!(:old_amount) { price.base_price }
 
       before do
-        price.update(regular_amount: price.regular_amount + Money.new(1000))
+        price.update(base_price: price.base_price + Money.new(1000))
       end
 
       it 'builds price_readjustment notification data' do
@@ -72,9 +72,9 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
           url: Rails.application.routes.url_helpers.game_url(item.slug),
           image_url: item.boxart_url,
           fields: [
-            { name: :current_price, value: price.current_amount.format },
+            { name: :current_price, value: price.current_price.formatted },
             { name: :website_url, value: item.website_url },
-            { name: :old_price, value: old_amount.format }
+            { name: :old_price, value: old_amount.formatted }
           ]
         )
       end
@@ -92,9 +92,9 @@ RSpec.describe PriceNotificationDataBuilder, type: :lib do
           url: Rails.application.routes.url_helpers.game_url(item.slug),
           image_url: item.boxart_url,
           fields: [
-            { name: :current_price, value: price.current_amount.format },
+            { name: :current_price, value: price.current_price.formatted },
             { name: :website_url, value: item.website_url },
-            { name: :original_price, value: price.regular_amount.format },
+            { name: :original_price, value: price.base_price.formatted },
             { name: :discount_percentage, value: "#{price.discount_percentage}%" },
             { name: :started_at, value: price.discount_started_at },
             { name: :ends_at, value: price.discount_ends_at }

@@ -27,7 +27,7 @@ RSpec.describe Prices::Create, type: :actions do
     end
 
     context 'when regular amount is nil' do
-      before { adapted_data[:regular_amount] = nil }
+      before { adapted_data[:base_price] = nil }
 
       it 'doesn`t create price' do
         expect { result }.not_to change(Price, :count)
@@ -50,8 +50,8 @@ RSpec.describe Prices::Create, type: :actions do
 
         expect(Price.last.attributes).to include(
           'nsuid' => adapted_data[:nsuid],
-          'regular_amount_cents' => adapted_data[:regular_amount].cents,
-          'regular_amount_currency' => adapted_data[:regular_amount].currency.iso_code,
+          'base_price_cents' => adapted_data[:base_price].cents,
+          'base_price_currency' => adapted_data[:base_price].currency.iso_code,
           'state' => adapted_data[:state]
         )
       end
@@ -85,8 +85,8 @@ RSpec.describe Prices::Create, type: :actions do
 
         expect(price.reload.attributes).to include(
           'nsuid' => adapted_data[:nsuid],
-          'regular_amount_cents' => adapted_data[:regular_amount].cents,
-          'regular_amount_currency' => adapted_data[:regular_amount].currency.iso_code,
+          'base_price_cents' => adapted_data[:base_price].cents,
+          'base_price_currency' => adapted_data[:base_price].currency.iso_code,
           'state' => adapted_data[:state]
         )
       end

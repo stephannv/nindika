@@ -10,21 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_30_195127) do
+ActiveRecord::Schema.define(version: 2021_08_03_211329) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "unaccent"
-
-  create_table "admin_tasks", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "title"
-    t.string "status"
-    t.string "message"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -110,10 +102,10 @@ ActiveRecord::Schema.define(version: 2021_06_30_195127) do
   create_table "prices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "item_id", null: false
     t.string "nsuid", null: false
-    t.integer "regular_amount_cents", default: 0, null: false
-    t.string "regular_amount_currency", default: "BRL", null: false
-    t.integer "discount_amount_cents"
-    t.string "discount_amount_currency", default: "BRL", null: false
+    t.integer "base_price_cents", default: 0, null: false
+    t.string "base_price_currency", default: "BRL", null: false
+    t.integer "discount_price_cents"
+    t.string "discount_price_currency", default: "BRL", null: false
     t.datetime "discount_started_at"
     t.string "discount_ends_at"
     t.integer "discount_percentage"

@@ -89,9 +89,9 @@ RSpec.describe ItemsSorter, type: :lib do
 
     context 'when sort options is price_asc' do
       let(:sort_option) { 'price_asc' }
-      let!(:item_c) { create(:price, regular_amount: 100).item }
-      let!(:item_a) { create(:price, discount_amount: 40).item }
-      let!(:item_b) { create(:price, regular_amount: 60).item }
+      let!(:item_c) { create(:price, base_price: 100).item }
+      let!(:item_a) { create(:price, discount_price: 40).item }
+      let!(:item_b) { create(:price, base_price: 60).item }
 
       it 'sorts items by current price ascending' do
         expect(result.to_a).to eq [item_a, item_b, item_c]
@@ -100,9 +100,9 @@ RSpec.describe ItemsSorter, type: :lib do
 
     context 'when sort options is price_desc' do
       let(:sort_option) { 'price_desc' }
-      let!(:item_c) { create(:price, regular_amount: 100).item }
-      let!(:item_a) { create(:price, discount_amount: 40).item }
-      let!(:item_b) { create(:price, regular_amount: 60).item }
+      let!(:item_c) { create(:price, base_price: 100).item }
+      let!(:item_a) { create(:price, discount_price: 40).item }
+      let!(:item_b) { create(:price, base_price: 60).item }
 
       it 'sorts items by current price descending' do
         expect(result.to_a).to eq [item_c, item_b, item_a]

@@ -17,12 +17,12 @@
             .col-12
               - if @game.price.discount?
                 .text-center.mb-5
-                  strike.text-muted.font-weight-bold => @game.price.regular_amount.formatted
+                  strike.text-muted.font-weight-bold => @game.price.base_price.formatted
                   span.badge.bg-dark.text-white.font-weight-bold
                     = @game.price.discount_percentage
                     | % OFF
               .text-center.mb-10
-                = link_to  @game.price.current_amount.formatted,  @game.price.eshop_url,
+                = link_to  @game.price.current_price.formatted,  @game.price.eshop_url,
                   class: 'btn btn-primary btn-rounded font-weight-bold text-white shadow',
                   target: '_blank',
                   rel: "noopener noreferrer"

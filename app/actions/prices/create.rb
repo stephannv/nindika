@@ -18,7 +18,7 @@ module Prices
 
     def import_price(price_data)
       data = ::NintendoPriceDataAdapter.adapt(price_data)
-      return if data[:regular_amount].blank?
+      return if data[:base_price].blank?
 
       price = create_price(data)
       CreateHistoryItem.result(price: price)
