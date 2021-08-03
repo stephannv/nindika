@@ -3,13 +3,7 @@
 [![CI](https://github.com/stephannv/nindika/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/stephannv/nindika/actions/workflows/ci.yml?query=branch%3Amain++)
 [![License](https://img.shields.io/github/license/stephannv/nindika)](https://github.com/stephannv/nindika/blob/main/LICENSE.txt)
 
-
-
-
-
-
-
-[nindika](https://nindika.com) is a web application that helps users to discover their next Nintendo Switch game.
+[nindika](https://nindika.com) is a web application focused on Brazilian market that helps users to discover their next Nintendo Switch game.
 
 ## Development
 ### System dependencies
@@ -19,32 +13,62 @@
 
 **Node.js:** >15
 
-#### Run projects
-Clone project
-```
-git@github.com:stephannv/nindika.git
-cd nindika
-```
+## Getting Started
+1. Clone project
 
-Install project dependencies:
-```
-bundle install
-yarn install
-```
+        $ git@github.com:stephannv/nindika.git
 
-Setup database:
-```
-rails db:setup
-```
+2. Change directory to `nindika`
 
-Import data
-```
-rake admin:import_data
-```
+        $ cd nindika
 
-Run project
-```
-rails s -p 3000
-```
+3. Install project dependencies:
 
-Visit [http://localhost:3000](http://localhost:3000)
+        $ bundle install
+        $ yarn install
+
+4. Setup database:
+
+        $ rails db:setup
+
+
+5. Generate credentials with Nintendo API info:
+
+        $ rails credentials:edit
+
+    Fill app id and api key:
+      ```
+      nintendo_algolia_application_id: 'XXXXX'
+      nintendo_algolia_api_key: 'XXXXXX
+      ```
+
+
+6. Import data
+
+        $ rake admin:import_data
+
+
+7. Run project
+
+        $ rails s -p 3000
+
+8. Visit [http://localhost:3000](http://localhost:3000)
+
+## Run tests
+
+    $ bundle exec rspec spec
+
+## Run linter
+
+    $ bundle exec rubocop
+
+## Run vulnerability scanner
+
+    $ brakeman -A -z -q
+
+## License
+
+nindika is licensed under the [MIT](https://github.com/stephannv/nindika/blob/main/LICENSE.txt) license.
+
+## Copyright
+Copyright 2021, nindika.
