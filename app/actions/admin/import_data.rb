@@ -3,17 +3,19 @@
 module Admin
   class ImportData < Actor
     def call
-      Task.start 'Import items' do
-        RawItems::Import.call
-      end
+      wrap_task('Import items') { RawItems::Import.call }
+      wrap_task('Import prices') { Prices::Import.call }
+      wrap_task('Update flags') { Items::UpdateFlags.call }
+    end
 
-      Task.start 'Import prices' do
-        Prices::Import.call
-      end
+    private
 
-      Task.start 'Update Item Flags' do
-        Items::UpdateFlags.call
-      end
+    def wrap_task(task_name)
+      yield
+    rescue StandardError => e
+      raise e if Rails.env.development?
+
+      Sentry.capture_exception(e, extra: { task: task_name })
     end
   end
 end
