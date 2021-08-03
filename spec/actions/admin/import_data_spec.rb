@@ -28,8 +28,19 @@ RSpec.describe Admin::ImportData, type: :actions do
       result
     end
 
-    it 'creates a task for each action' do
-      expect { result }.to change(Admin::Task, :count).by(3)
+    context 'when some task raises error' do
+      let(:error) { StandardError.new('some error') }
+
+      before do
+        allow(Rails.env).to receive(:development?).and_return(false)
+        allow(Prices::Import).to receive(:call).and_raise(error)
+      end
+
+      it 'handles error with Sentry' do
+        expect(Sentry).to receive(:capture_exception).with(error, extra: { task: 'Import prices' })
+
+        result
+      end
     end
   end
 end
