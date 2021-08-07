@@ -3,5 +3,7 @@ pt-BR:
     sessions:
       new:
         sign_in: Entrar
+        sign_in_with: Entrar com %{provider}
+
       user:
         signed_out: Volte sempre

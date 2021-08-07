@@ -1,6 +1,6 @@
 .sidebar.shadow.border-0
   .sidebar-menu
-    = link_to root_path, class: 'sidebar-brand'
+    = link_to root_path, class: 'sidebar-brand justify-content-center'
       = image_tag 'nindika.svg'
 
     .sidebar-content
@@ -13,12 +13,16 @@
           placeholder: 'Metroid...',
           aria: { label: 'Search' }
 
+    - if current_user.nil?
+      = link_to new_user_session_path, class: 'sidebar-link sidebar-link-with-icon font-weight-semi-bold' do
+        .sidebar-icon
+          i.fas.fa-sign-in-alt
+        = t('.sign_in')
+
     = render App::UserSidebarMenuComponent.new(current_user: current_user)
 
-    .sidebar-content
-      = render App::SignInButtonsComponent.new(current_user: current_user)
+    h5.sidebar-title.font-weight-bolder.text-center = t('.games')
 
-    h5.sidebar-title.font-weight-bolder Jogos
     .sidebar-divider
 
     = link_to games_path,
@@ -26,21 +30,25 @@
       .sidebar-icon
         i.fas.fa-list
       = t('.all')
+
     = link_to on_sale_games_path,
       class: sidebar_link_class(on_sale_games_path) do
       .sidebar-icon
         i.fas.fa-percentage
       = t('.on_sale')
+
     = link_to new_releases_games_path,
       class: sidebar_link_class(new_releases_games_path) do
       .sidebar-icon
         i.fas.fa-fire
       = t('.new_releases')
+
     = link_to coming_soon_games_path,
       class: sidebar_link_class(coming_soon_games_path) do
       .sidebar-icon
         i.far.fa-calendar
       = t('.coming_soon')
+
     = link_to pre_order_games_path,
       class: sidebar_link_class(pre_order_games_path) do
       .sidebar-icon
@@ -55,4 +63,4 @@
         method: :delete do
         .sidebar-icon
           i.fas.fa-sign-out-alt
-        = t('.sair')
+        = t('.sign_out')
