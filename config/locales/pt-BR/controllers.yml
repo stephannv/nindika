@@ -21,5 +21,7 @@ pt-BR:
         << : *defaults
       discord:
         << : *defaults
+      developer:
+        << : *defaults
       failure:
         << : *defaults

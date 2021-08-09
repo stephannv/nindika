@@ -8,6 +8,10 @@ module App
       @current_user = current_user
     end
 
+    def user_profile_image_url
+      current_user.profile_image_url || image_url('avatar-placeholder.jpg')
+    end
+
     def render?
       current_user.present?
     end
