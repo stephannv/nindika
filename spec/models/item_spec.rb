@@ -14,6 +14,10 @@ RSpec.describe Item, type: :model do
     it { is_expected.to have_many(:price_history_items).through(:price).source(:history_items) }
   end
 
+  describe 'Configurations' do
+    it { is_expected.to monetize(:current_price).allow_nil }
+  end
+
   describe 'Validations' do
     subject(:item) { build(:item) }
 

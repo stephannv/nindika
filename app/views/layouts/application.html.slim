@@ -19,6 +19,8 @@ html
       script(async defer data-domain="nindika.com" src="https://analytics.nindika.com/js/plausible.js")
 
   body.with-custom-webkit-scrollbars.with-custom-css-scrollbars
+    = yield :modals
+
     .page-wrapper.with-navbar.with-sidebar(data-sidebar-type="full-height overlayed-sm-and-down")
       .sticky-alerts
         = render App::ToastComponent.new

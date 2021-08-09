@@ -1,0 +1,97 @@
+= link_to '#game-filters', class: 'btn mr-10'
+  i.fas.fa-filter
+  =< t('.filter')
+
+- content_for :modals
+  #game-filters.modal.modal-full.ie-scroll-fix(tabindex="-1" role="dialog")
+    .modal-dialog(role="document")
+      .modal-content.d-flex.align-items-center.h-full
+        a.close(href="#" role="button" aria-label="Close")
+          span(aria-hidden="true") &times;
+
+        .container
+          .row
+            .col-md-8.offset-md-2
+              .font-size-24.font-weight-bold = t('.filters')
+              hr
+              = form_with scope: :q, method: :get do |form|
+                .form-row.row-eq-spacing
+                  .col
+                    = form.label :title, t('.title')
+                    = form.text_field :title,
+                      value: filters_form.title,
+                      placeholder: 'Medroid',
+                      class: 'form-control'
+
+                .form-row.row-eq-spacing
+                  .col
+                    = form.label :release_date_gteq, t('.release_date_gteq')
+                    = form.date_field :release_date_gteq,
+                      value: filters_form.release_date_gteq,
+                      class: 'form-control',
+                      placeholder: 'DD/MM/YYYY'
+
+                  .col
+                    = form.label :release_date_lteq, t('.release_date_lteq')
+                    = form.date_field :release_date_lteq,
+                      value: filters_form.release_date_lteq,
+                      class: 'form-control',
+                      placeholder: 'DD/MM/YYYY'
+
+                .form-row.row-eq-spacing
+                  .col
+                    = form.label :price_gteq, t('.price_gteq')
+                    .input-group
+                      .input-group-prepend
+                        span.input-group-text R$
+                      = form.text_field :price_gteq,
+                        value: filters_form.price_gteq,
+                        class: 'form-control',
+                        data: { controller: 'money-input' },
+                        inputmode: 'numeric'
+
+                  .col
+                    = form.label :price_lteq, t('.price_lteq')
+                    .input-group
+                      .input-group-prepend
+                        span.input-group-text R$
+                      = form.text_field :price_lteq,
+                        value: filters_form.price_lteq,
+                        class: 'form-control',
+                        data: { controller: 'money-input' },
+                        inputmode: 'numeric'
+
+                .form-row
+                  .py-10.col.col-lg-3.col-6
+                    .custom-switch
+                      = form.check_box :on_sale,
+                        checked: filters_form.on_sale,
+                        disabled: readonly?(:on_sale)
+                      = form.label :on_sale, t('.on_sale')
+
+                  .py-10.col.col-lg-3.col-6
+                    .custom-switch
+                      = form.check_box :pre_order,
+                        checked: filters_form.pre_order,
+                        disabled: readonly?(:pre_order)
+                      = form.label :pre_order, t('.pre_order')
+
+                  .py-10.col.col-lg-3.col-6
+                    .custom-switch
+                      = form.check_box :coming_soon,
+                        checked: filters_form.coming_soon,
+                        disabled: readonly?(:coming_soon)
+                      = form.label :coming_soon, t('.coming_soon')
+
+                  .py-10.col.col-lg-3.col-6
+                    .custom-switch
+                      = form.check_box :new_release,
+                        checked: filters_form.new_release,
+                        disabled: readonly?(:new_release)
+                      = form.label :new_release, t('.new_release')
+
+                .form-row
+                  .col.text-right
+                    a.btn.btn-default.mr-5(href="#" role="button" aria-label="Close") = t('.close')
+                    = link_to t('.clear'), request.path, class: 'btn btn-default mr-5'
+                    = form.submit t('.apply'), class: 'btn btn-primary'

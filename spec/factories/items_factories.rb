@@ -25,6 +25,7 @@ FactoryBot.define do
 
     trait :with_price do
       association :price
+      current_price { price.current_price }
     end
   end
 end

@@ -1,10 +1,12 @@
 pt-BR:
   games:
-    price_component:
-      blank: Em breve
-    wishlist_button_component:
-      text: Adicionar à lista de desejos
-      tooltip: Lista de desejos
     card_actions_component:
       hide: Ocultar
       official_website: Site oficial
+    price_component:
+      blank: Em breve
+    sort_button_component:
+      sort: Ordenar
+    wishlist_button_component:
+      text: Adicionar à lista de desejos
+      tooltip: Lista de desejos

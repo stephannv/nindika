@@ -1,0 +1,17 @@
+pt-BR:
+  game_filters:
+    modal_component:
+      filters: Filtros
+      filter: Filtrar
+      title: Título
+      release_date_gteq: Lançado a partir de
+      release_date_lteq: Lançado até
+      price_gteq: Preço mínimo
+      price_lteq: Preço máximo
+      on_sale: Em promoção
+      pre_order: Pré-venda
+      coming_soon: Em breve
+      new_release: Recém-lançado
+      close: Fechar
+      clear: Limpar
+      apply: Aplicar

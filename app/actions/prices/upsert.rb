@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Prices
-  class Create < Actor
+  class Upsert < Actor
     input :prices_data, type: Array
 
     def call
@@ -20,16 +20,17 @@ module Prices
       data = ::NintendoPriceDataAdapter.adapt(price_data)
       return if data[:base_price].blank?
 
-      price = create_price(data)
+      price = upsert_price(data)
       CreateHistoryItem.result(price: price)
       CreateNotification.result(price: price) if price.saved_changes?
     end
 
-    def create_price(data)
+    def upsert_price(data)
       price = Price.find_or_initialize_by(nsuid: data[:nsuid])
       price.item ||= Item.find_by(nsuid: data[:nsuid])
       price.assign_attributes(data)
       price.save!
+      price.item.update!(current_price: price.current_price)
       price
     end
   end
