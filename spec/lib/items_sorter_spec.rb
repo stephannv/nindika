@@ -52,7 +52,7 @@ RSpec.describe ItemsSorter, type: :lib do
   end
 
   describe '#apply' do
-    subject(:result) { described_class.apply(Item, sort_option) }
+    subject(:result) { described_class.apply(relation: Item, param: sort_option) }
 
     context 'when sort options is title_asc' do
       let(:sort_option) { 'title_asc' }

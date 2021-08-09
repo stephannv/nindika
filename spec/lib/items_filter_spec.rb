@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe ItemsFilter, type: :lib do
   describe '#apply' do
-    let(:result) { described_class.apply(Item, params) }
+    let(:result) { described_class.apply(relation: Item, filters_form: filters_form) }
 
-    context 'when title param is present' do
-      subject(:params) { { title: 'leslie' } }
+    context 'when title is present' do
+      subject(:filters_form) { GameFiltersForm.build(title: 'leslie') }
 
       let!(:item) { create(:item, title: 'As confusões de Leslie') }
 
@@ -18,8 +18,36 @@ RSpec.describe ItemsFilter, type: :lib do
       end
     end
 
+    context 'when release_date range is present' do
+      subject(:filters_form) do
+        GameFiltersForm.build(release_date_gteq: 2.months.ago, release_date_lteq: Time.zone.tomorrow)
+      end
+
+      let!(:item_a) { create(:item, release_date: 1.month.ago) }
+      let!(:item_b) { create(:item, release_date: Time.zone.today) }
+
+      before { create(:item, release_date: 1.month.from_now) }
+
+      it 'returns items filtering by release date range' do
+        expect(result.to_a).to eq [item_a, item_b]
+      end
+    end
+
+    context 'when price range is present' do
+      subject(:filters_form) { GameFiltersForm.build(price_gteq: 9, price_lteq: 22) }
+
+      let!(:item_a) { create(:item, current_price: 10) }
+      let!(:item_b) { create(:item, current_price: 20) }
+
+      before { create(:item, current_price: 30) }
+
+      it 'returns items filtering by release date range' do
+        expect(result.to_a).to eq [item_a, item_b]
+      end
+    end
+
     context 'when on_sale param is true' do
-      subject(:params) { { on_sale: true } }
+      subject(:filters_form) { GameFiltersForm.build(on_sale: true) }
 
       let!(:item) { create(:item, on_sale: true) }
 
@@ -31,7 +59,7 @@ RSpec.describe ItemsFilter, type: :lib do
     end
 
     context 'when new_release param is true' do
-      subject(:params) { { new_release: true } }
+      subject(:filters_form) { GameFiltersForm.build(new_release: true) }
 
       let!(:item) { create(:item, new_release: true) }
 
@@ -43,7 +71,7 @@ RSpec.describe ItemsFilter, type: :lib do
     end
 
     context 'when coming_soon param is true' do
-      subject(:params) { { coming_soon: true } }
+      subject(:filters_form) { GameFiltersForm.build(coming_soon: true) }
 
       let!(:item) { create(:item, coming_soon: true) }
 
@@ -55,7 +83,7 @@ RSpec.describe ItemsFilter, type: :lib do
     end
 
     context 'when pre_order param is true' do
-      subject(:params) { { pre_order: true } }
+      subject(:filters_form) { GameFiltersForm.build(pre_order: true) }
 
       let!(:item) { create(:item, pre_order: true) }
 

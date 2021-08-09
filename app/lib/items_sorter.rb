@@ -56,13 +56,13 @@ class ItemsSorter
 
   attr_accessor :relation, :param
 
-  def initialize(relation = Item, param = nil)
+  def initialize(relation: Item, param: nil)
     @relation = relation
     @param = param.try(:to_sym)
   end
 
-  def self.apply(relation, params)
-    new(relation, params).apply
+  def self.apply(...)
+    new(...).apply
   end
 
   def apply

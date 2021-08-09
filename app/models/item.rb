@@ -15,6 +15,8 @@ class Item < ApplicationRecord
 
   friendly_id :title, use: :history
 
+  monetize :current_price_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }
+
   pg_search_scope :search_by_title, against: :title, using: { tsearch: { dictionary: 'english' } }, ignoring: :accents
 
   scope :with_nsuid, -> { where.not(nsuid: nil) }

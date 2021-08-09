@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Prices::Create, type: :actions do
+RSpec.describe Prices::Upsert, type: :actions do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 
@@ -43,6 +43,12 @@ RSpec.describe Prices::Create, type: :actions do
         result
 
         expect(Price.last.item).to eq item
+      end
+
+      it 'updates item current_price' do
+        result
+
+        expect(Price.last.item.current_price).to eq Price.last.current_price
       end
 
       it 'creates price with adapted data' do
@@ -89,6 +95,12 @@ RSpec.describe Prices::Create, type: :actions do
           'base_price_currency' => adapted_data[:base_price].currency.iso_code,
           'state' => adapted_data[:state]
         )
+      end
+
+      it 'updates item current_price' do
+        result
+
+        expect(Price.last.item.current_price).to eq Price.last.current_price
       end
 
       it 'creates price history item' do

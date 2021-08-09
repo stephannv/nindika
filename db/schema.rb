@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_03_211329) do
+ActiveRecord::Schema.define(version: 2021_08_08_201733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 2021_08_03_211329) do
     t.boolean "pre_order", default: false, null: false
     t.integer "all_time_visits", default: 0, null: false
     t.integer "last_week_visits", default: 0, null: false
+    t.integer "current_price_cents"
+    t.string "current_price_currency", default: "BRL", null: false
     t.index ["all_time_visits"], name: "index_items_on_all_time_visits"
     t.index ["coming_soon"], name: "index_items_on_coming_soon", where: "coming_soon"
     t.index ["external_id"], name: "index_items_on_external_id", unique: true

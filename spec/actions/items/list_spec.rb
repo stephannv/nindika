@@ -6,9 +6,13 @@ RSpec.describe Items::List, type: :actions do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 
-    it { is_expected.to include(filter_params: { type: Hash, default: {} }) }
     it { is_expected.to include(sort_param: { type: String, default: nil, allow_nil: true }) }
     it { is_expected.to include(user: { type: User, default: nil, allow_nil: true }) }
+
+    it do
+      filters_form = inputs.dig(:filters_form, :default).call
+      expect(filters_form).to be_a(GameFiltersForm)
+    end
   end
 
   describe 'Outputs' do
@@ -20,11 +24,12 @@ RSpec.describe Items::List, type: :actions do
   describe '#call' do
     context 'when filter params is present' do
       let!(:item_on_sale) { create(:item, on_sale: true) }
+      let(:filters_form) { GameFiltersForm.build(on_sale: true) }
 
       before { create(:item, on_sale: false) }
 
       it 'filters items' do
-        result = described_class.result(filter_params: { on_sale: true })
+        result = described_class.result(filters_form: filters_form)
 
         expect(result.items.to_a).to eq [item_on_sale]
       end
@@ -61,6 +66,7 @@ RSpec.describe Items::List, type: :actions do
 
     context 'when filter by user wishlist' do
       let!(:wishlist_item) { create(:wishlist_item) }
+      let(:filters_form) { GameFiltersForm.build(wishlisted: true) }
 
       before do
         create(:wishlist_item) # creates item wishlisted by other user
@@ -68,7 +74,7 @@ RSpec.describe Items::List, type: :actions do
       end
 
       it 'returns only games present in user wishlist' do
-        result = described_class.result(user: wishlist_item.user, filter_params: { wishlisted: true })
+        result = described_class.result(user: wishlist_item.user, filters_form: filters_form)
 
         expect(result.items.to_a).to eq [wishlist_item.item]
       end

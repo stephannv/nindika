@@ -2,6 +2,6 @@
 
 module Prices
   class Import < Actor
-    play Fetch, Create
+    play Fetch, Upsert
   end
 end

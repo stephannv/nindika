@@ -6,6 +6,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.0",
     "axios": "^0.21.1",
+    "cleave.js": "^1.6.0",
     "halfmoon": "^1.1.1",
     "stimulus": "^2.0.0",
     "webpack": "^4.46.0",
