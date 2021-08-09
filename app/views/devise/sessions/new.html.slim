@@ -19,6 +19,12 @@
             i.fab.fa-discord.text-discord.mr-5
             = t('.sign_in_with', provider: 'Discord')
 
+        - unless Rails.env.production?
+          .py-5
+            = button_to user_developer_omniauth_authorize_path, method: :post, class: 'btn btn-block' do
+              i.fas.fa-code.mr-5
+              = t('.sign_in_with', provider: 'dev')
+
         .text-center
           p = link_to t('privacy_policy'),
             'https://www.notion.so/nindika/c830ff3d5f714ee190e23c675be82e93',

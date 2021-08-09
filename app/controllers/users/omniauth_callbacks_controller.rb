@@ -2,7 +2,11 @@
 
 module Users
   class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-    %i[twitter discord].each do |provider|
+    skip_before_action :verify_authenticity_token, only: :developer unless Rails.env.production? # rubocop:disable Rails/LexicallyScopedActionFilter
+
+    %i[twitter discord developer].each do |provider|
+      next if provider == :developer && Rails.env.production?
+
       define_method provider do
         result = Users::GetFromOmniauth.result(auth: request.env['omniauth.auth'])
 
