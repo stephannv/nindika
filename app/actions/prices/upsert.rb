@@ -22,7 +22,6 @@ module Prices
 
       price = upsert_price(data)
       CreateHistoryItem.result(price: price)
-      CreateNotification.result(price: price) if price.saved_changes?
     end
 
     def upsert_price(data)

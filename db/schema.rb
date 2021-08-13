@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_08_201733) do
+ActiveRecord::Schema.define(version: 2021_08_10_221340) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -74,20 +74,6 @@ ActiveRecord::Schema.define(version: 2021_08_08_201733) do
     t.index ["on_sale"], name: "index_items_on_on_sale", where: "on_sale"
     t.index ["pre_order"], name: "index_items_on_pre_order", where: "pre_order"
     t.index ["release_date"], name: "index_items_on_release_date"
-  end
-
-  create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.string "subject_type", null: false
-    t.uuid "subject_id", null: false
-    t.string "notification_type", null: false
-    t.string "title", null: false
-    t.string "body"
-    t.string "url"
-    t.string "image_url"
-    t.jsonb "fields", default: {}, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
   end
 
   create_table "price_history_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
