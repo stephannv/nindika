@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_10_221340) do
+ActiveRecord::Schema.define(version: 2021_08_11_003148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2021_08_10_221340) do
     t.integer "discount_price_cents"
     t.string "discount_price_currency", default: "BRL", null: false
     t.datetime "discount_started_at"
-    t.string "discount_ends_at"
+    t.datetime "discount_ends_at"
     t.integer "discount_percentage"
     t.string "state", null: false
     t.integer "gold_points"
