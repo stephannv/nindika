@@ -67,12 +67,6 @@ RSpec.describe Prices::Upsert, type: :actions do
 
         result
       end
-
-      it 'creates notification' do
-        expect(Prices::CreateNotification).to receive(:result).with(price: an_instance_of(Price))
-
-        result
-      end
     end
 
     context 'when nsuid is taken' do
@@ -105,12 +99,6 @@ RSpec.describe Prices::Upsert, type: :actions do
 
       it 'creates price history item' do
         expect(Prices::CreateHistoryItem).to receive(:result).with(price: an_instance_of(Price))
-
-        result
-      end
-
-      it 'creates notification' do
-        expect(Prices::CreateNotification).to receive(:result).with(price: an_instance_of(Price))
 
         result
       end

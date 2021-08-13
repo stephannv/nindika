@@ -7,7 +7,6 @@ RSpec.describe Item, type: :model do
     it { is_expected.to have_one(:raw_item).dependent(:destroy) }
     it { is_expected.to have_one(:price).dependent(:destroy) }
 
-    it { is_expected.to have_many(:notifications).dependent(:destroy) }
     it { is_expected.to have_many(:wishlist_items).dependent(:destroy) }
     it { is_expected.to have_many(:hidden_items).dependent(:destroy) }
 

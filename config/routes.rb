@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   end
 
   get 'game/:slug', to: 'games#show', as: :game
-  get 'notifications', to: 'notifications#index', as: :notifications
 
   scope :wishlist do
     post 'add/:item_id', to: 'wishlist_items#create', as: :add_wishlist_item
