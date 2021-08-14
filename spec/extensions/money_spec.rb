@@ -19,5 +19,13 @@ RSpec.describe Extensions::Money, type: :extension do
         expect(money.formatted).to eq 'R$ 10,00'
       end
     end
+
+    context 'when integer is true' do
+      it 'returns symbol + amount as integer' do
+        money = Money.new(1296, 'BRL')
+
+        expect(money.formatted(integer: true)).to eq 'R$ 12'
+      end
+    end
   end
 end
