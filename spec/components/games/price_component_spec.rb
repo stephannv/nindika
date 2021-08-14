@@ -28,7 +28,7 @@ RSpec.describe Games::PriceComponent, type: :component do
     it 'renders discount amount inside primary colored badge' do
       content = rendered.css('span.badge.badge-primary.font-weight-bold').to_html
 
-      expect(content).to include(price.discount_price.formatted)
+      expect(content).to include(price.discount_price.formatted(integer: true))
     end
   end
 
@@ -38,7 +38,7 @@ RSpec.describe Games::PriceComponent, type: :component do
     it 'renders regular amount inside dark colored badge' do
       content = rendered.css('a.badge').to_html
 
-      expect(content).to include(price.base_price.formatted)
+      expect(content).to include(price.base_price.formatted(integer: true))
     end
   end
 end
