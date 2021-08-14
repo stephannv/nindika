@@ -21,7 +21,8 @@ module Prices
       return if data[:base_price].blank?
 
       price = upsert_price(data)
-      CreateHistoryItem.result(price: price)
+      CreateHistoryItem.call(price: price)
+      CreateItemEvent.call(price: price)
     end
 
     def upsert_price(data)

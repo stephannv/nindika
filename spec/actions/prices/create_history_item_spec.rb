@@ -23,7 +23,7 @@ RSpec.describe Prices::CreateHistoryItem, type: :actions do
     context 'when price didn`t change current amount' do
       before { allow(price).to receive(:saved_change_to_current_price?).and_return(false) }
 
-      it { is_expected.to be_failure }
+      it { is_expected.to be_success }
 
       it 'doesn`t create a new price history item' do
         expect { result }.not_to change(PriceHistoryItem, :count)

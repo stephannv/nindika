@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
 
+  has_many :events, class_name: 'ItemEvent', dependent: :destroy
   has_many :wishlist_items, dependent: :destroy
   has_many :hidden_items, dependent: :destroy
 
