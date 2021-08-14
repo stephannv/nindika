@@ -15,6 +15,7 @@ module RawItems
       item = raw_item.item || Item.new
       item.assign_attributes(data)
       item.save!
+      ItemEvents::Create.call(event_type: ItemEventTypes::GAME_ADDED, item: item) if item.saved_change_to_id?
       raw_item.update!(item_id: item.id, imported: true)
     rescue StandardError => e
       raise e if Rails.env.development?

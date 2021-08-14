@@ -63,7 +63,13 @@ RSpec.describe Prices::Upsert, type: :actions do
       end
 
       it 'creates price history item' do
-        expect(Prices::CreateHistoryItem).to receive(:result).with(price: an_instance_of(Price))
+        expect(Prices::CreateHistoryItem).to receive(:call).with(price: an_instance_of(Price))
+
+        result
+      end
+
+      it 'creates item event' do
+        expect(Prices::CreateItemEvent).to receive(:call).with(price: an_instance_of(Price))
 
         result
       end
@@ -98,7 +104,13 @@ RSpec.describe Prices::Upsert, type: :actions do
       end
 
       it 'creates price history item' do
-        expect(Prices::CreateHistoryItem).to receive(:result).with(price: an_instance_of(Price))
+        expect(Prices::CreateHistoryItem).to receive(:call).with(price: an_instance_of(Price))
+
+        result
+      end
+
+      it 'creates item event' do
+        expect(Prices::CreateItemEvent).to receive(:call).with(price: an_instance_of(Price))
 
         result
       end

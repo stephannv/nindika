@@ -32,6 +32,12 @@ RSpec.describe RawItems::Process, type: :action do
       it 'doesn`t create items' do
         expect { result }.not_to change(Item, :count)
       end
+
+      it 'doesn`t create game_added item event' do
+        expect(ItemEvents::Create).not_to receive(:call)
+
+        result
+      end
     end
 
     context 'when raw item isn`t linked with item' do
@@ -39,6 +45,13 @@ RSpec.describe RawItems::Process, type: :action do
 
       it 'creates a new item' do
         expect { result }.to change(Item, :count).by(1)
+      end
+
+      it 'creates game_added item event' do
+        expect(ItemEvents::Create).to receive(:call)
+          .with(event_type: ItemEventTypes::GAME_ADDED, item: an_instance_of(Item))
+
+        result
       end
     end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_003148) do
+ActiveRecord::Schema.define(version: 2021_08_13_223351) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -37,6 +37,18 @@ ActiveRecord::Schema.define(version: 2021_08_11_003148) do
     t.index ["item_id"], name: "index_hidden_items_on_item_id"
     t.index ["user_id", "item_id"], name: "index_hidden_items_on_user_id_and_item_id", unique: true
     t.index ["user_id"], name: "index_hidden_items_on_user_id"
+  end
+
+  create_table "item_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "item_id", null: false
+    t.string "event_type", null: false
+    t.string "title", null: false
+    t.string "url", null: false
+    t.jsonb "data", default: {}, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["created_at", "event_type"], name: "index_item_events_on_created_at_and_event_type", order: { created_at: :desc }
+    t.index ["item_id"], name: "index_item_events_on_item_id"
   end
 
   create_table "items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|

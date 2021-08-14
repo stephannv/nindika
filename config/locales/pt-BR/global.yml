@@ -1,4 +1,8 @@
 pt-BR:
+  time:
+    formats:
+      shorter: "%d/%m/%Y %H:%M"
+
   website_description: Descubra o próximo jogo do seu Nintendo Switch.
   free: Grátis
   no_results: Sem resultados
