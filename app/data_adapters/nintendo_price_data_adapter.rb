@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class NintendoPriceDataAdapter
+  ATTRIBUTES = %i[
+    nsuid base_price discount_price discount_started_at discount_ends_at
+    discount_percentage discounted_amount state gold_points
+  ].freeze
+
   def initialize(data)
     @data = data
   end
@@ -10,17 +15,7 @@ class NintendoPriceDataAdapter
   end
 
   def adapt
-    {
-      nsuid: nsuid,
-      base_price: base_price,
-      discount_price: discount_price,
-      discount_started_at: discount_started_at,
-      discount_ends_at: discount_ends_at,
-      discount_percentage: discount_percentage,
-      discounted_amount: discounted_amount,
-      state: state,
-      gold_points: gold_points
-    }
+    ATTRIBUTES.index_with { |attribute| send(attribute) }
   end
 
   def nsuid
