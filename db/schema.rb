@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_223351) do
+ActiveRecord::Schema.define(version: 2021_08_15_001231) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "unaccent"
+
+  create_table "event_dispatches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "item_event_id", null: false
+    t.string "provider", null: false
+    t.string "sent_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_event_id", "provider", "sent_at"], name: "idx_event_provider_sent_at", where: "(sent_at IS NULL)"
+    t.index ["item_event_id", "provider"], name: "index_event_dispatches_on_item_event_id_and_provider", unique: true
+    t.index ["item_event_id"], name: "index_event_dispatches_on_item_event_id"
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -153,6 +164,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_223351) do
     t.index ["user_id"], name: "index_wishlist_items_on_user_id"
   end
 
+  add_foreign_key "event_dispatches", "item_events"
   add_foreign_key "hidden_items", "items"
   add_foreign_key "hidden_items", "users"
   add_foreign_key "price_history_items", "prices"

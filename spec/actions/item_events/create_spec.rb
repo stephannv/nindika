@@ -36,5 +36,9 @@ RSpec.describe ItemEvents::Create, type: :actions do
     it 'creates item event with builded data and given event type' do
       expect(result.item_event.attributes).to include('event_type' => event_type, 'data' => data)
     end
+
+    it 'creates telegram event dispatch' do
+      expect(result.item_event.dispatches.telegram.pending.count).to eq 1
+    end
   end
 end

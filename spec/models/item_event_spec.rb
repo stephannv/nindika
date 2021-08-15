@@ -5,6 +5,8 @@ require 'rails_helper'
 RSpec.describe ItemEvent, type: :model do
   describe 'Relations' do
     it { is_expected.to belong_to(:item) }
+
+    it { is_expected.to have_many(:dispatches).class_name('EventDispatch').dependent(:destroy) }
   end
 
   describe 'Configurations' do

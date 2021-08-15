@@ -8,4 +8,34 @@ class ItemEventTypes < EnumerateIt::Base
     :permanent_price_change,
     :price_state_change
   )
+
+  class GameAdded
+    def emoji
+      @emoji ||= '✨'
+    end
+  end
+
+  class PriceAdded
+    def emoji
+      @emoji ||= '💰'
+    end
+  end
+
+  class Discount
+    def emoji
+      @emoji ||= '🤑'
+    end
+  end
+
+  class PermanentPriceChange
+    def emoji
+      @emoji ||= '🔧'
+    end
+  end
+
+  class PriceStateChange
+    def emoji
+      @emoji ||= '❌'
+    end
+  end
 end
