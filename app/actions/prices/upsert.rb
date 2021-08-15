@@ -20,9 +20,11 @@ module Prices
       data = ::NintendoPriceDataAdapter.adapt(price_data)
       return if data[:base_price].blank?
 
-      price = upsert_price(data)
-      CreateHistoryItem.call(price: price)
-      CreateItemEvent.call(price: price)
+      ActiveRecord::Base.transaction do
+        price = upsert_price(data)
+        CreateHistoryItem.call(price: price)
+        CreateItemEvent.call(price: price)
+      end
     end
 
     def upsert_price(data)

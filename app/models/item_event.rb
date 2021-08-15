@@ -3,9 +3,11 @@
 class ItemEvent < ApplicationRecord
   belongs_to :item
 
+  has_many :dispatches, class_name: 'EventDispatch', dependent: :destroy
+
   has_enumeration_for :event_type,
     with: ItemEventTypes,
-    create_helpers: true,
+    create_helpers: { polymorphic: true },
     required: true,
     create_scopes: true
 

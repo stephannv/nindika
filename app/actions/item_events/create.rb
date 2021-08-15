@@ -13,8 +13,19 @@ module ItemEvents
         event_type: event_type,
         title: item.title,
         url: Rails.application.routes.url_helpers.game_url(item),
-        data: ItemEventDataBuilder.build(event_type: event_type, item: item, price: price)
+        data: data
       )
+      create_telegram_dispatch
+    end
+
+    private
+
+    def data
+      ItemEventDataBuilder.build(event_type: event_type, item: item, price: price)
+    end
+
+    def create_telegram_dispatch
+      item_event.dispatches.create!(provider: EventDispatchProviders::TELEGRAM)
     end
   end
 end
