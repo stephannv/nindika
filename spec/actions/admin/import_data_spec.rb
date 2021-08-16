@@ -18,7 +18,7 @@ RSpec.describe Admin::ImportData, type: :actions do
   describe '#call' do
     subject(:result) { described_class.result }
 
-    let(:actions) { [RawItems::Import, Prices::Import, Items::UpdateFlags] }
+    let(:actions) { [RawItems::Import, Prices::Import, Items::UpdateFlags, EventDispatches::SendToTelegram] }
 
     before { actions.each { |a| allow(a).to receive(:call) } }
 
