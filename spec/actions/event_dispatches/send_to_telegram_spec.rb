@@ -127,5 +127,20 @@ RSpec.describe EventDispatches::SendToTelegram, type: :actions do
         expect { result }.not_to change(EventDispatch.telegram.pending, :count)
       end
     end
+
+    context 'when unexpected error happens' do
+      let(:error) { StandardError.new('some error') }
+
+      before do
+        create(:event_dispatch, :telegram)
+        allow(client).to receive(:send_message).and_raise(error)
+      end
+
+      it 'handles error with Sentry' do
+        expect(Sentry).to receive(:capture_exception).with(error, extra: { dispatches: instance_of(Array) })
+
+        result
+      end
+    end
   end
 end

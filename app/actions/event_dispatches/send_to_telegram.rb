@@ -8,6 +8,10 @@ module EventDispatches
       pending_dispatches_grouped_by_item_id.each_with_index do |(_item_id, dispatches), index|
         send_message(dispatches, index)
         sleep 1
+      rescue StandardError => e
+        raise e if Rails.env.development?
+
+        Sentry.capture_exception(e, extra: { dispatches: dispatches })
       end
     end
 
