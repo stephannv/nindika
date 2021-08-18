@@ -33,7 +33,7 @@ module Items
     end
 
     def apply_hidden_scope(scope)
-      return scope if user.blank?
+      return scope if user.blank? || filters_form.include_hidden
 
       Items::WithoutHiddenQuery.call(relation: scope, user_id: user.id)
     end

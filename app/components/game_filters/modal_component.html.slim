@@ -90,6 +90,14 @@
                         disabled: readonly?(:new_release)
                       = form.label :new_release, t('.new_release')
 
+                - if current_user.present?
+                  .form-row
+                    .py-10.col.col-lg-3.col-6
+                      .custom-switch
+                        = form.check_box :include_hidden,
+                          checked: filters_form.include_hidden
+                        = form.label :include_hidden, t('.include_hidden')
+
                 .form-row
                   .col.text-right
                     a.btn.btn-default.mr-5(href="#" role="button" aria-label="Close") = t('.close')
