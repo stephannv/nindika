@@ -2,10 +2,11 @@
 
 module GameFilters
   class ModalComponent < ViewComponent::Base
-    attr_reader :filters_form
+    attr_reader :filters_form, :current_user
 
-    def initialize(filters_form:)
+    def initialize(filters_form:, current_user:)
       @filters_form = filters_form
+      @current_user = current_user
     end
 
     def readonly?(checkbox_id)

@@ -18,6 +18,7 @@ class GameFiltersForm
   attribute :pre_order, :boolean
 
   attribute :wishlisted, :boolean
+  attribute :include_hidden, :boolean
 
   def self.build(attributes = {})
     form = new

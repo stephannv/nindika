@@ -64,6 +64,18 @@ RSpec.describe Items::List, type: :actions do
       end
     end
 
+    context 'when include_hidden filter is filled' do
+      let(:filters_form) { GameFiltersForm.build(include_hidden: true) }
+
+      it 'returns hidden items' do
+        item = create(:item)
+        hidden_item = create(:hidden_item, item: item)
+        result = described_class.result(user: hidden_item.user, filters_form: filters_form)
+
+        expect(result.items).to eq [item]
+      end
+    end
+
     context 'when filter by user wishlist' do
       let!(:wishlist_item) { create(:wishlist_item) }
       let(:filters_form) { GameFiltersForm.build(wishlisted: true) }
