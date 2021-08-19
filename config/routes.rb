@@ -28,4 +28,6 @@ Rails.application.routes.draw do
     post 'add/:item_id', to: 'hidden_items#create', as: :add_hidden_item
     delete 'remove/:item_id', to: 'hidden_items#destroy', as: :remove_hidden_item
   end
+
+  get 'notifications/all', as: :all_notifications
 end

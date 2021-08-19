@@ -20,12 +20,25 @@ RSpec.describe Admin::ImportData, type: :actions do
 
     let(:actions) { [RawItems::Import, Prices::Import, Items::UpdateFlags, EventDispatches::SendToTelegram] }
 
-    before { actions.each { |a| allow(a).to receive(:call) } }
+    before do
+      allow(Rails.env).to receive(:production?).and_return(true)
+      actions.each { |a| allow(a).to receive(:call) }
+    end
 
     it 'executes data import tasks' do
       expect(actions).to all(receive(:call).ordered)
 
       result
+    end
+
+    context 'when isn`t production environment' do
+      before { allow(Rails.env).to receive(:production?).and_return(false) }
+
+      it 'doesn`t dispatch events to telegram' do
+        expect(EventDispatches::SendToTelegram).not_to receive(:call)
+
+        result
+      end
     end
 
     context 'when some task raises error' do

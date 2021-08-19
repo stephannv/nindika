@@ -4,3 +4,7 @@ nav.navbar.justify-content-between.border-0
       i.fas.fa-bars
       span.sr-only Toggle sidebar
     = content
+
+  .navbar-content
+    = link_to all_notifications_path, class: 'btn btn-action', role: 'button', title: t('.notifications') do
+      i.far.fa-bell

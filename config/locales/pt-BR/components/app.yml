@@ -1,5 +1,8 @@
 pt-BR:
   app:
+    navbar_component:
+      notifications: Notificações
+
     sidebar_component:
       games: Jogos
       all: Todos
