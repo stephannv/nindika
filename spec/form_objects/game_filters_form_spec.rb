@@ -18,7 +18,8 @@ RSpec.describe GameFiltersForm, type: :lib do
         coming_soon: an_instance_of(ActiveModel::Type::Boolean),
         pre_order: an_instance_of(ActiveModel::Type::Boolean),
         wishlisted: an_instance_of(ActiveModel::Type::Boolean),
-        include_hidden: an_instance_of(ActiveModel::Type::Boolean)
+        include_hidden: an_instance_of(ActiveModel::Type::Boolean),
+        only_hidden: an_instance_of(ActiveModel::Type::Boolean)
       }.stringify_keys
     end
 

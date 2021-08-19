@@ -33,9 +33,14 @@ module Items
     end
 
     def apply_hidden_scope(scope)
-      return scope if user.blank? || filters_form.include_hidden
+      return scope if user.blank?
 
-      Items::WithoutHiddenQuery.call(relation: scope, user_id: user.id)
+      Items::WithHiddenColumnQuery.call(
+        relation: scope,
+        user_id: user.id,
+        include_hidden: filters_form.include_hidden,
+        only_hidden: filters_form.only_hidden
+      )
     end
   end
 end
