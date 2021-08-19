@@ -90,13 +90,18 @@
                         disabled: readonly?(:new_release)
                       = form.label :new_release, t('.new_release')
 
-                - if current_user.present?
-                  .form-row
+                  - if current_user.present?
                     .py-10.col.col-lg-3.col-6
                       .custom-switch
                         = form.check_box :include_hidden,
                           checked: filters_form.include_hidden
                         = form.label :include_hidden, t('.include_hidden')
+
+                    .py-10.col.col-lg-3.col-6
+                      .custom-switch
+                        = form.check_box :only_hidden,
+                          checked: filters_form.only_hidden
+                        = form.label :only_hidden, t('.only_hidden')
 
                 .form-row
                   .col.text-right

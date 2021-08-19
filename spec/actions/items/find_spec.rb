@@ -46,6 +46,10 @@ RSpec.describe Items::Find, type: :actions do
       it 'adds wishlisted column' do
         expect(result.item).to respond_to(:wishlisted)
       end
+
+      it 'adds hidden column' do
+        expect(result.item).to respond_to(:hidden)
+      end
     end
   end
 end

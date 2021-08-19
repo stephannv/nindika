@@ -54,25 +54,31 @@ RSpec.describe Items::List, type: :actions do
 
         expect(result.items.first).to respond_to :wishlisted
       end
-
-      it 'doesn`t returns hidden items' do
-        item = create(:item)
-        hidden_item = create(:hidden_item, item: item)
-        result = described_class.result(user: hidden_item.user)
-
-        expect(result.items).to be_empty
-      end
     end
 
     context 'when include_hidden filter is filled' do
+      let!(:hidden_item) { create(:hidden_item) }
+      let!(:not_hidden_item) { create(:item) }
+
       let(:filters_form) { GameFiltersForm.build(include_hidden: true) }
 
-      it 'returns hidden items' do
-        item = create(:item)
-        hidden_item = create(:hidden_item, item: item)
+      it 'returns items including hidden items' do
         result = described_class.result(user: hidden_item.user, filters_form: filters_form)
 
-        expect(result.items).to eq [item]
+        expect(result.items).to include(hidden_item.item, not_hidden_item)
+      end
+    end
+
+    context 'when only_hidden filter is filled' do
+      let!(:hidden_item) { create(:hidden_item) }
+      let(:filters_form) { GameFiltersForm.build(only_hidden: true) }
+
+      before { create(:item) }
+
+      it 'returns only hidden items' do
+        result = described_class.result(user: hidden_item.user, filters_form: filters_form)
+
+        expect(result.items).to eq [hidden_item.item]
       end
     end
 
