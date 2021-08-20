@@ -3,6 +3,7 @@
 class ItemsFilter
   FILTERS = %i[
     filter_title
+    filter_genre
     filter_release_date
     filter_price
     filter_on_sale
@@ -40,6 +41,10 @@ class ItemsFilter
 
   def filter_price
     self.relation = relation.where(current_price_cents: filters_form.price_cents_range) if filters_form.price_range?
+  end
+
+  def filter_genre
+    self.relation = relation.where('genres @> ARRAY[?]::varchar[]', filters_form.genre) if filters_form.genre.present?
   end
 
   %i[on_sale new_release coming_soon pre_order].each do |scope|

@@ -41,8 +41,21 @@ RSpec.describe ItemsFilter, type: :lib do
 
       before { create(:item, current_price: 30) }
 
-      it 'returns items filtering by release date range' do
+      it 'returns items filtering by price range' do
         expect(result.to_a).to eq [item_a, item_b]
+      end
+    end
+
+    context 'when genre is present' do
+      subject(:filters_form) { GameFiltersForm.build(genre: 'action') }
+
+      let!(:item_a) { create(:item, genres: %w[action racing]) }
+      let!(:item_c) { create(:item, genres: %w[action]) }
+
+      before { create(:item, genres: %w[role_playing]) }
+
+      it 'returns items filtering by genre' do
+        expect(result.to_a).to eq [item_a, item_c]
       end
     end
 

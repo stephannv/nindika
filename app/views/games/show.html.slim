@@ -52,7 +52,7 @@
             .col-12
               .text-center
                 - @game.genres.each do |genre|
-                  span.badge.bg-dark.text-white.m-5 = genre
+                  span.badge.bg-dark.text-white.m-5 = t(genre, scope: 'genres')
 
           .row
             .col-12

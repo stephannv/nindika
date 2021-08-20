@@ -7,26 +7,32 @@ class GamesController < ApplicationController
 
   def index
     list_games
+    load_filter_options
   end
 
   def on_sale
     list_games(on_sale: true)
+    load_filter_options
   end
 
   def new_releases
     list_games(new_release: true)
+    load_filter_options
   end
 
   def coming_soon
     list_games(coming_soon: true)
+    load_filter_options
   end
 
   def pre_order
     list_games(pre_order: true)
+    load_filter_options
   end
 
   def wishlist
     list_games(wishlisted: true)
+    load_filter_options
   end
 
   def show
@@ -49,6 +55,10 @@ class GamesController < ApplicationController
 
   def filters_form(overrides)
     @filters_form ||= GameFiltersForm.build(permitted_params[:q].to_h.merge(overrides))
+  end
+
+  def load_filter_options
+    @genres = Items::ListGenres.result.genres
   end
 
   def sort_param
