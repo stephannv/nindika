@@ -4,6 +4,7 @@ pt-BR:
       filters: Filtros
       filter: Filtrar
       title: Título
+      genre: Gênero
       release_date_gteq: Lançado a partir de
       release_date_lteq: Lançado até
       price_gteq: Preço mínimo
@@ -14,6 +15,7 @@ pt-BR:
       new_release: Recém-lançado
       include_hidden: Incluir ocultos
       only_hidden: Somente ocultos
+      all: Tudo
       close: Fechar
       clear: Limpar
       apply: Aplicar

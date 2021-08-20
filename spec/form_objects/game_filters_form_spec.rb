@@ -9,6 +9,7 @@ RSpec.describe GameFiltersForm, type: :lib do
     let(:expected_attributes) do
       {
         title: an_instance_of(ActiveModel::Type::String),
+        genre: an_instance_of(ActiveModel::Type::String),
         release_date_gteq: an_instance_of(ActiveModel::Type::Date),
         release_date_lteq: an_instance_of(ActiveModel::Type::Date),
         price_gteq: an_instance_of(ActiveModel::Type::Integer),

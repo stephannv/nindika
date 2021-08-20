@@ -22,6 +22,11 @@
                       value: filters_form.title,
                       placeholder: 'Medroid',
                       class: 'form-control'
+                  .col
+                    = form.label :genre, t('.genre')
+                    = form.select :genre, genres_options,
+                      { include_blank: t('.all'), selected: filters_form.genre },
+                      { class: 'form-control' }
 
                 .form-row.row-eq-spacing
                   .col

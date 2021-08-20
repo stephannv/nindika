@@ -5,6 +5,7 @@ class GameFiltersForm
   include ActiveModel::AttributeAssignment
 
   attribute :title, :string
+  attribute :genre, :string
 
   attribute :release_date_gteq, :date
   attribute :release_date_lteq, :date

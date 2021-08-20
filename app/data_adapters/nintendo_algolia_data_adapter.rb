@@ -69,7 +69,7 @@ class NintendoAlgoliaDataAdapter
   end
 
   def genres
-    data['genres'].to_a.compact
+    data['genres'].to_a.compact.map(&:parameterize).map(&:underscore)
   end
 
   def developers

@@ -157,10 +157,10 @@ RSpec.describe NintendoAlgoliaDataAdapter, type: :data_adapters do
   end
 
   describe '#genres' do
-    let(:data) { { 'genres' => [Faker::Lorem.word] } }
+    let(:data) { { 'genres' => ['Role-Playing', 'Action', 'First Person'] } }
 
-    it 'returns genres' do
-      expect(adapted_data[:genres]).to eq data['genres']
+    it 'returns genres names with undescores' do
+      expect(adapted_data[:genres]).to eq %w[role_playing action first_person]
     end
   end
 

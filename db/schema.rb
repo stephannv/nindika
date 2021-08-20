@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_001231) do
+ActiveRecord::Schema.define(version: 2021_08_19_214300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -92,6 +92,7 @@ ActiveRecord::Schema.define(version: 2021_08_15_001231) do
     t.index ["all_time_visits"], name: "index_items_on_all_time_visits"
     t.index ["coming_soon"], name: "index_items_on_coming_soon", where: "coming_soon"
     t.index ["external_id"], name: "index_items_on_external_id", unique: true
+    t.index ["genres"], name: "index_items_on_genres", using: :gin
     t.index ["last_week_visits"], name: "index_items_on_last_week_visits"
     t.index ["new_release"], name: "index_items_on_new_release", where: "new_release"
     t.index ["on_sale"], name: "index_items_on_on_sale", where: "on_sale"

@@ -3,7 +3,7 @@
     .col-auto
       .text-left.font-weight-bold.text-muted = t('.result_count', count: pagy.count)
     .col.text-right
-      = render GameFilters::ModalComponent.new(filters_form: filters_form, current_user: current_user)
+      = render GameFilters::ModalComponent.new(filters_form: filters_form, current_user: current_user, genres: genres)
       = render Games::SortButtonComponent.new
 
   - if pagy.count > 0
