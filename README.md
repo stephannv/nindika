@@ -32,8 +32,9 @@
         $ rails db:setup
 
 
-5. Generate credentials with Nintendo API info:
+5. Generate new credentials with Nintendo API info:
 
+        $ rm config/credentials.yml.enc
         $ rails credentials:edit
 
     Fill app id and api key:
