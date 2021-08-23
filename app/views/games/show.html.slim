@@ -6,7 +6,7 @@
 .container-fluid
   .row.justify-content-center
     .col-xl-8.col-lg-10.col-md-12.col-12
-      .card.shadow.p-0.border-0
+      .card.shadow.mb-15.p-0.border-0
         = image_tag @game.banner_url, loading: 'lazy', class: 'img-fluid w-full rounded-top'
         .text-center
           img.img-fluid.shadow-lg.p-5.bg-light src=@game.boxart_url style="height: 200px; margin-top: -100px;"
@@ -34,7 +34,7 @@
             = render Games::WishlistButtonComponent.new(game: @game, current_user: current_user, with_text: true)
           .col-auto
             = render Games::HideButtonComponent.new(game: @game)
-        .content
+        .px-20.py-10
           .row.align-items-center
             .col-4
               .text-center
@@ -57,3 +57,11 @@
           .row
             .col-12
               p = @game.description
+
+      .card.shadow.mt-0.p-0.border-0
+        .px-20.py-10
+          .content-title.font-size-16.font-weight-bold.text-dark Histórico de preços
+          div(
+            data-controller="price-history-chart"
+            data-price-history-chart-data-value=@game.price_history_items.to_chart_data.to_json
+          )
