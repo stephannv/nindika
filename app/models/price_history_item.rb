@@ -9,4 +9,8 @@ class PriceHistoryItem < ApplicationRecord
   validates :reference_date, presence: true
 
   validates :reference_date, uniqueness: { scope: :price_id }
+
+  def self.to_chart_data
+    PriceHistoryChartDataBuilder.build(relation: self)
+  end
 end

@@ -22,4 +22,12 @@ RSpec.describe PriceHistoryItem, type: :model do
 
     it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(0) }
   end
+
+  describe '.to_chart_data' do
+    it 'builds chart data using PriceHistoryChartDataBuilder' do
+      expect(PriceHistoryChartDataBuilder).to receive(:build).with(relation: described_class)
+
+      described_class.to_chart_data
+    end
+  end
 end
