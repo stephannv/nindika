@@ -24,6 +24,7 @@ class Item < ApplicationRecord
   scope :new_release, -> { where(new_release: true) }
   scope :coming_soon, -> { where(coming_soon: true) }
   scope :pre_order, -> { where(pre_order: true) }
+  scope :pending_scrap, -> { where(last_scraped_at: (..24.hours.ago)).or(where(last_scraped_at: nil)) }
 
   validates :title, presence: true
   validates :external_id, presence: true
