@@ -23,11 +23,12 @@ RSpec.describe Items::ScrapData, type: :actions do
     let(:item) { create(:item) }
     let(:languages) { %w[Inglês Português Japonês] }
     let(:size) { '2.12 GB' }
+    let(:screenshot_urls) { Faker::Lorem.words }
 
     before do
       allow(NintendoGamePageScraper).to receive(:scrap)
         .with(item.website_url)
-        .and_return(languages: languages, size: size)
+        .and_return(languages: languages, size: size, screenshot_urls: screenshot_urls)
     end
 
     it 'updates language codes with scraped languages' do
@@ -40,6 +41,12 @@ RSpec.describe Items::ScrapData, type: :actions do
       result
 
       expect(item.reload.bytesize).to eq 2_120_000_000
+    end
+
+    it 'updates screenshot_urls with scraped screenshot urls' do
+      result
+
+      expect(item.reload.screenshot_urls).to eq screenshot_urls
     end
 
     it 'updates last scraped at with current time' do

@@ -20,6 +20,17 @@ RSpec.describe NintendoGamePageScraper, type: :scraper do
       it 'scraps game size' do
         expect(scraped_data[:size]).to eq '1.3 GB'
       end
+
+      it 'scraps game screenshot urls' do
+        expect(scraped_data[:screenshot_urls]).to eq [
+          'https://assets.nintendo.com/image/upload/c_limit,f_auto,q_auto,w_1920/ncom/pt_BR/games/switch/e/eastward-switch/screenshot-gallery/screenshot01?v=2021082316',
+          'https://assets.nintendo.com/image/upload/c_limit,f_auto,q_auto,w_1920/ncom/pt_BR/games/switch/e/eastward-switch/screenshot-gallery/screenshot02?v=2021082316',
+          'https://assets.nintendo.com/image/upload/c_limit,f_auto,q_auto,w_1920/ncom/pt_BR/games/switch/e/eastward-switch/screenshot-gallery/screenshot03?v=2021082316',
+          'https://assets.nintendo.com/image/upload/c_limit,f_auto,q_auto,w_1920/ncom/pt_BR/games/switch/e/eastward-switch/screenshot-gallery/screenshot04?v=2021082316',
+          'https://assets.nintendo.com/image/upload/c_limit,f_auto,q_auto,w_1920/ncom/pt_BR/games/switch/e/eastward-switch/screenshot-gallery/screenshot05?v=2021082316',
+          'https://assets.nintendo.com/image/upload/c_limit,f_auto,q_auto,w_1920/ncom/pt_BR/games/switch/e/eastward-switch/screenshot-gallery/screenshot06?v=2021082316'
+        ]
+      end
     end
 
     context 'when page doesn`t exist' do

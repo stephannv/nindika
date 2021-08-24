@@ -38,3 +38,16 @@ body { font-family: 'Inter', sans-serif !important; }
   --lm-alert-success-text-color: var(--lm-alert-text-color);
   --lm-alert-success-bg-color: var(--white-bg-color);
 }
+
+.splide__arrow {
+  background-color: $light;
+  opacity: 1;
+  svg {
+    fill: $dark;
+  }
+  -moz-box-shadow: var(--lm-large-shadow) !important;
+  -webkit-box-shadow: var(--lm-large-shadow) !important;
+  box-shadow: var(--lm-large-shadow) !important;
+  border: var(--base-border-width) solid var(--lm-border-color) !important;
+  border-radius: var(--base-border-radius) !important;
+}
