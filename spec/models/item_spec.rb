@@ -87,6 +87,17 @@ RSpec.describe Item, type: :model do
         expect(described_class.pre_order.to_a).to eq [pre_order]
       end
     end
+
+    describe '.pending_scrap' do
+      let!(:not_scraped) { create(:item, last_scraped_at: nil) }
+      let!(:scraped_long_ago) { create(:item, last_scraped_at: 25.hours.ago) }
+
+      before { create(:item, last_scraped_at: 23.hours.ago) } # scraped recently
+
+      it 'returns not scraped items or scraped more than 24 hours ago' do
+        expect(described_class.pending_scrap.to_a).to match_array [not_scraped, scraped_long_ago]
+      end
+    end
   end
 
   describe 'Friendly ID' do

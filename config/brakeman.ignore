@@ -1,68 +1,6 @@
 {
   "ignored_warnings": [
     {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "0017c79a5518fb80ff0c7e54cc81f8e01eb470f81adb5bc118c15010f68a9358",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/games/show.html.slim",
-      "line": 44,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => Games::HideButtonComponent.new(:game => Items::Find.result(:slug => params[:slug], :user => current_user).item, :current_user => current_user), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "GamesController",
-          "method": "show",
-          "line": 51,
-          "file": "app/controllers/games_controller.rb",
-          "rendered": {
-            "name": "games/show",
-            "file": "app/views/games/show.html.slim"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "games/show"
-      },
-      "user_input": "params[:slug]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
-      "warning_type": "Dynamic Render Path",
-      "warning_code": 15,
-      "fingerprint": "2616869f5206b833b416a4a0d867b4e9fb21e12d917a4256a86d66b9b4346533",
-      "check_name": "Render",
-      "message": "Render path contains parameter value",
-      "file": "app/views/games/show.html.slim",
-      "line": 42,
-      "link": "https://brakemanscanner.org/docs/warning_types/dynamic_render_path/",
-      "code": "render(action => Games::WishlistButtonComponent.new(:game => Items::Find.result(:slug => params[:slug], :user => current_user).item, :current_user => current_user, :with_text => true), {})",
-      "render_path": [
-        {
-          "type": "controller",
-          "class": "GamesController",
-          "method": "show",
-          "line": 51,
-          "file": "app/controllers/games_controller.rb",
-          "rendered": {
-            "name": "games/show",
-            "file": "app/views/games/show.html.slim"
-          }
-        }
-      ],
-      "location": {
-        "type": "template",
-        "template": "games/show"
-      },
-      "user_input": "params[:slug]",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "SQL Injection",
       "warning_code": 0,
       "fingerprint": "96624bb0ed58fd8cba2d1c70a344234787a4fc09f29b79a2fdec19a4e64f4f8a",
@@ -103,6 +41,6 @@
       "note": ""
     }
   ],
-  "updated": "2021-06-29 11:10:30 -0300",
-  "brakeman_version": "5.0.4"
+  "updated": "2021-08-23 21:04:49 -0300",
+  "brakeman_version": "5.1.1"
 }
