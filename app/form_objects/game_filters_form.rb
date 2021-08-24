@@ -6,6 +6,7 @@ class GameFiltersForm
 
   attribute :title, :string
   attribute :genre, :string
+  attribute :language, :string
 
   attribute :release_date_gteq, :date
   attribute :release_date_lteq, :date
