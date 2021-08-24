@@ -5,6 +5,7 @@ pt-BR:
       filter: Filtrar
       title: Título
       genre: Gênero
+      language: Idioma
       release_date_gteq: Lançado a partir de
       release_date_lteq: Lançado até
       price_gteq: Preço mínimo

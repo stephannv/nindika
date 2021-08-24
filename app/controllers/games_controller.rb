@@ -59,6 +59,7 @@ class GamesController < ApplicationController
 
   def load_filter_options
     @genres = Items::ListGenres.result.genres
+    @languages = Items::ListLanguages.result.languages
   end
 
   def sort_param

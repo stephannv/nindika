@@ -2,12 +2,13 @@
 
 module GameFilters
   class ModalComponent < ViewComponent::Base
-    attr_reader :filters_form, :current_user, :genres
+    attr_reader :filters_form, :current_user, :genres, :languages
 
-    def initialize(filters_form:, current_user:, genres:)
+    def initialize(filters_form:, current_user:, genres:, languages:)
       @filters_form = filters_form
       @current_user = current_user
       @genres = genres
+      @languages = languages
     end
 
     def readonly?(checkbox_id)
@@ -29,6 +30,10 @@ module GameFilters
 
     def genres_options
       genres.map { |g| [I18n.t(g, scope: 'genres'), g] }
+    end
+
+    def languages_options
+      languages.map { |l| [I18nData.languages('PT-BR')[l], l] }
     end
   end
 end

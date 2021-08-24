@@ -4,6 +4,7 @@ class ItemsFilter
   FILTERS = %i[
     filter_title
     filter_genre
+    filter_language
     filter_release_date
     filter_price
     filter_on_sale
@@ -45,6 +46,12 @@ class ItemsFilter
 
   def filter_genre
     self.relation = relation.where('genres @> ARRAY[?]::varchar[]', filters_form.genre) if filters_form.genre.present?
+  end
+
+  def filter_language
+    return if filters_form.language.blank?
+
+    self.relation = relation.where('languages @> ARRAY[?]::varchar[]', filters_form.language)
   end
 
   %i[on_sale new_release coming_soon pre_order].each do |scope|
