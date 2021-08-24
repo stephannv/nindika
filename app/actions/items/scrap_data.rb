@@ -8,7 +8,12 @@ module Items
       data = NintendoGamePageScraper.scrap(item.website_url)
       parsed_languages = parse_languages(data[:languages])
       parsed_bytesize = parse_bytesize(data[:size])
-      item.update!(languages: parsed_languages, bytesize: parsed_bytesize, last_scraped_at: Time.zone.now)
+      item.update!(
+        languages: parsed_languages,
+        bytesize: parsed_bytesize,
+        screenshot_urls: data[:screenshot_urls].to_a,
+        last_scraped_at: Time.zone.now
+      )
     end
 
     private

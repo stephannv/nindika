@@ -13,7 +13,7 @@ class NintendoGamePageScraper
 
   def scrap
     fetch_page
-    { languages: languages, size: size }
+    { languages: languages, size: size, screenshot_urls: screenshot_urls }
   rescue Down::NotFound
     {}
   end
@@ -24,6 +24,10 @@ class NintendoGamePageScraper
 
   def languages
     page.css('dd.languages').first&.content&.split(', ')
+  end
+
+  def screenshot_urls
+    page.css('product-gallery-item[type="image"]').pluck(:src)
   end
 
   def size

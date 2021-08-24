@@ -5,6 +5,7 @@
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.0",
+    "@splidejs/splide": "^2.4.21",
     "apexcharts": "^3.27.3",
     "axios": "^0.21.1",
     "cleave.js": "^1.6.0",
