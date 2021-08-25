@@ -1,0 +1,17 @@
+pt-BR:
+  enumerations:
+    event_dispatch_providers:
+      telegram: Telegram
+
+    item_event_types:
+      game_added: Jogo adicionado
+      price_added: Preço revelado
+      discount: Promoção
+      permanent_price_change: Reajuste de preço
+      price_state_change: Remoção da eShop
+
+    price_states:
+      pre_order: Pré-venda
+      on_sale: Disponível
+      unavailable: Indisponível
+      unreleased: Em breve

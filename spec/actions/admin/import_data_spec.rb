@@ -18,9 +18,20 @@ RSpec.describe Admin::ImportData, type: :actions do
   describe '#call' do
     subject(:result) { described_class.result }
 
-    let(:actions) { [RawItems::Import, Prices::Import, Items::UpdateFlags] }
+    let(:actions) do
+      [
+        RawItems::Import,
+        Prices::Import,
+        Items::UpdateFlags,
+        Items::ScrapPendingItemsData,
+        EventDispatches::SendToTelegram
+      ]
+    end
 
-    before { actions.each { |a| allow(a).to receive(:call) } }
+    before do
+      allow(Rails.env).to receive(:production?).and_return(true)
+      actions.each { |a| allow(a).to receive(:call) }
+    end
 
     it 'executes data import tasks' do
       expect(actions).to all(receive(:call).ordered)
@@ -28,8 +39,29 @@ RSpec.describe Admin::ImportData, type: :actions do
       result
     end
 
-    it 'creates a task for each action' do
-      expect { result }.to change(Admin::Task, :count).by(3)
+    context 'when isn`t production environment' do
+      before { allow(Rails.env).to receive(:production?).and_return(false) }
+
+      it 'doesn`t dispatch events to telegram' do
+        expect(EventDispatches::SendToTelegram).not_to receive(:call)
+
+        result
+      end
+    end
+
+    context 'when some task raises error' do
+      let(:error) { StandardError.new('some error') }
+
+      before do
+        allow(Rails.env).to receive(:development?).and_return(false)
+        allow(Prices::Import).to receive(:call).and_raise(error)
+      end
+
+      it 'handles error with Sentry' do
+        expect(Sentry).to receive(:capture_exception).with(error, extra: { task: 'Import prices' })
+
+        result
+      end
     end
   end
 end

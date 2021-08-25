@@ -2,11 +2,12 @@
 
 module Extensions
   module Money
-    def formatted
+    def formatted(integer: false)
       if cents.zero?
         I18n.t('free')
       else
-        "#{symbol} #{format(symbol: false)}"
+        number_display = integer ? to_i : format(symbol: false)
+        "#{symbol} #{number_display}"
       end
     end
   end

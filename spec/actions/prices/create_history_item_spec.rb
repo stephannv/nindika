@@ -21,9 +21,9 @@ RSpec.describe Prices::CreateHistoryItem, type: :actions do
     let(:price) { create(:price) }
 
     context 'when price didn`t change current amount' do
-      before { allow(price).to receive(:saved_change_to_current_amount?).and_return(false) }
+      before { allow(price).to receive(:saved_change_to_current_price?).and_return(false) }
 
-      it { is_expected.to be_failure }
+      it { is_expected.to be_success }
 
       it 'doesn`t create a new price history item' do
         expect { result }.not_to change(PriceHistoryItem, :count)
@@ -36,7 +36,7 @@ RSpec.describe Prices::CreateHistoryItem, type: :actions do
       end
 
       before do
-        allow(price).to receive(:saved_change_to_current_amount?).and_return(true)
+        allow(price).to receive(:saved_change_to_current_price?).and_return(true)
       end
 
       it 'doesn`t create a new price history item' do
@@ -46,7 +46,7 @@ RSpec.describe Prices::CreateHistoryItem, type: :actions do
       it 'updates existing price history item' do
         result
 
-        expect(price_history_item.reload.amount).to eq price.current_amount
+        expect(price_history_item.reload.amount).to eq price.current_price
       end
     end
 
@@ -58,7 +58,7 @@ RSpec.describe Prices::CreateHistoryItem, type: :actions do
       it 'updates existing price history item' do
         result
 
-        expect(price.history_items.last.amount).to eq price.current_amount
+        expect(price.history_items.last.amount).to eq price.current_price
       end
     end
   end

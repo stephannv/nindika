@@ -6,5 +6,5 @@ nav.navbar.justify-content-between.border-0
     = content
 
   .navbar-content
-    = link_to notifications_path, class: 'btn btn-action', role: 'button' do
+    = link_to all_notifications_path, class: 'btn btn-action', role: 'button', title: t('.notifications') do
       i.far.fa-bell

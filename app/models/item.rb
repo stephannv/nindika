@@ -7,13 +7,15 @@ class Item < ApplicationRecord
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
 
-  has_many :notifications, as: :subject, dependent: :destroy
+  has_many :events, class_name: 'ItemEvent', dependent: :destroy
   has_many :wishlist_items, dependent: :destroy
   has_many :hidden_items, dependent: :destroy
 
   has_many :price_history_items, through: :price, source: :history_items
 
   friendly_id :title, use: :history
+
+  monetize :current_price_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }
 
   pg_search_scope :search_by_title, against: :title, using: { tsearch: { dictionary: 'english' } }, ignoring: :accents
 
@@ -22,6 +24,7 @@ class Item < ApplicationRecord
   scope :new_release, -> { where(new_release: true) }
   scope :coming_soon, -> { where(coming_soon: true) }
   scope :pre_order, -> { where(pre_order: true) }
+  scope :pending_scrap, -> { where(last_scraped_at: (..24.hours.ago)).or(where(last_scraped_at: nil)) }
 
   validates :title, presence: true
   validates :external_id, presence: true

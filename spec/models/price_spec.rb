@@ -10,8 +10,8 @@ RSpec.describe Price, type: :model do
   end
 
   describe 'Configurations' do
-    it { is_expected.to monetize(:regular_amount) }
-    it { is_expected.to monetize(:discount_amount).allow_nil }
+    it { is_expected.to monetize(:base_price) }
+    it { is_expected.to monetize(:discount_price).allow_nil }
     it { is_expected.to monetize(:discounted_amount).allow_nil }
 
     it 'has state enum' do
@@ -29,8 +29,8 @@ RSpec.describe Price, type: :model do
     it { is_expected.to validate_uniqueness_of(:item_id).case_insensitive }
     it { is_expected.to validate_uniqueness_of(:nsuid).case_insensitive }
 
-    it { is_expected.to validate_numericality_of(:regular_amount).is_greater_than_or_equal_to(0) }
-    it { is_expected.to validate_numericality_of(:discount_amount).is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:base_price).is_greater_than_or_equal_to(0) }
+    it { is_expected.to validate_numericality_of(:discount_price).is_greater_than_or_equal_to(0) }
   end
 
   describe '#eshop_url' do
@@ -41,49 +41,49 @@ RSpec.describe Price, type: :model do
     end
   end
 
-  describe '#current_amount' do
+  describe '#current_price' do
     context 'when discount amount is present' do
       it 'returns discount amount' do
-        price = described_class.new(regular_amount: Money.new(100), discount_amount: Money.new(50))
-        expect(price.current_amount).to eq Money.new(50)
+        price = described_class.new(base_price: Money.new(100), discount_price: Money.new(50))
+        expect(price.current_price).to eq Money.new(50)
       end
     end
 
     context 'when discount amount is nil' do
-      it 'returns regular_amount' do
-        price = described_class.new(regular_amount: Money.new(100), discount_amount: nil)
-        expect(price.current_amount).to eq Money.new(100)
+      it 'returns base_price' do
+        price = described_class.new(base_price: Money.new(100), discount_price: nil)
+        expect(price.current_price).to eq Money.new(100)
       end
     end
   end
 
-  describe 'saved_change_to_current_amount?' do
+  describe 'saved_change_to_current_price?' do
     let(:price) { described_class.new }
 
     before do
-      allow(price).to receive(:saved_change_to_regular_amount_cents?).and_return(false)
-      allow(price).to receive(:saved_change_to_discount_amount_cents?).and_return(false)
+      allow(price).to receive(:saved_change_to_base_price_cents?).and_return(false)
+      allow(price).to receive(:saved_change_to_discount_price_cents?).and_return(false)
     end
 
-    context 'when changes for regular_amount_cents was saved' do
-      before { allow(price).to receive(:saved_change_to_regular_amount_cents?).and_return(true) }
+    context 'when changes for base_price_cents was saved' do
+      before { allow(price).to receive(:saved_change_to_base_price_cents?).and_return(true) }
 
       it 'returns true' do
-        expect(price.saved_change_to_current_amount?).to be(true)
+        expect(price.saved_change_to_current_price?).to be(true)
       end
     end
 
-    context 'when changes for discount_amount_cents was saved' do
-      before { allow(price).to receive(:saved_change_to_discount_amount_cents?).and_return(true) }
+    context 'when changes for discount_price_cents was saved' do
+      before { allow(price).to receive(:saved_change_to_discount_price_cents?).and_return(true) }
 
       it 'returns true' do
-        expect(price.saved_change_to_current_amount?).to be(true)
+        expect(price.saved_change_to_current_price?).to be(true)
       end
     end
 
-    context 'when changes for regular_amount_cents and discount_amount_cents wasn`t saved' do
+    context 'when changes for base_price_cents and discount_price_cents wasn`t saved' do
       it 'returns false' do
-        expect(price.saved_change_to_current_amount?).to be(false)
+        expect(price.saved_change_to_current_price?).to be(false)
       end
     end
   end
@@ -91,7 +91,7 @@ RSpec.describe Price, type: :model do
   describe '#discount?' do
     context 'when discount amount is present' do
       it 'returns true' do
-        price = described_class.new(discount_amount: 10)
+        price = described_class.new(discount_price: 10)
 
         expect(price.discount?).to eq true
       end
@@ -99,7 +99,7 @@ RSpec.describe Price, type: :model do
 
     context 'when discount amount is blank' do
       it 'returns false' do
-        price = described_class.new(discount_amount: nil)
+        price = described_class.new(discount_price: nil)
 
         expect(price.discount?).to eq false
       end

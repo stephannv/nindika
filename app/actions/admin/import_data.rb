@@ -3,16 +3,32 @@
 module Admin
   class ImportData < Actor
     def call
-      Task.start 'Import items' do
-        RawItems::Import.call
-      end
+      wrap_task('Import items') { RawItems::Import.call }
+      wrap_task('Import prices') { Prices::Import.call }
+      wrap_task('Update flags') { Items::UpdateFlags.call }
 
-      Task.start 'Import prices' do
-        Prices::Import.call
-      end
+      [scrap_thread, telegram_thread].map(&:join)
+    end
 
-      Task.start 'Update Item Flags' do
-        Items::UpdateFlags.call
+    private
+
+    def wrap_task(task_name)
+      yield
+    rescue StandardError => e
+      raise e if Rails.env.development?
+
+      Sentry.capture_exception(e, extra: { task: task_name })
+    end
+
+    def telegram_thread
+      Thread.new do
+        wrap_task('Send Telegram notifications') { EventDispatches::SendToTelegram.call } if Rails.env.production?
+      end
+    end
+
+    def scrap_thread
+      Thread.new do
+        wrap_task('Scrap games website data') { Items::ScrapPendingItemsData.call }
       end
     end
   end

@@ -1,0 +1,46 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "96624bb0ed58fd8cba2d1c70a344234787a4fc09f29b79a2fdec19a4e64f4f8a",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/queries/items/with_wishlisted_column_query.rb",
+      "line": 25,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "relation.select(\"items.*\", \"wishlist_items.id IS NOT NULL AS wishlisted\").joins(\"        #{join_clause} JOIN wishlist_items\\n        ON wishlist_items.item_id = items.id and wishlist_items.user_id = '#{user_id}'\\n\".squish)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Items::WithWishlistedColumnQuery",
+        "method": "call"
+      },
+      "user_input": "join_clause",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Weak Hash",
+      "warning_code": 90,
+      "fingerprint": "e8dd3afabd822a6ff7529843073dac20f2ea32c4c72506edac8937c6f134a202",
+      "check_name": "WeakHash",
+      "message": "Weak hashing algorithm used: MD5",
+      "file": "app/actions/raw_items/create.rb",
+      "line": 22,
+      "link": "https://brakemanscanner.org/docs/warning_types/weak_hash/",
+      "code": "Digest::MD5.hexdigest(raw_item_data.to_s)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "RawItems::Create",
+        "method": "create_raw_item"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "note": ""
+    }
+  ],
+  "updated": "2021-08-23 21:04:49 -0300",
+  "brakeman_version": "5.1.1"
+}

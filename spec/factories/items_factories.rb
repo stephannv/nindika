@@ -22,9 +22,13 @@ FactoryBot.define do
     pre_order { Faker::Boolean.boolean }
     all_time_visits { Faker::Number.number(digits: 3) }
     last_week_visits { Faker::Number.number(digits: 2) }
+    languages { I18nData.languages.keys.sample(3) }
+    bytesize { Faker::Number.number(digits: 10) }
+    last_scraped_at { Faker::Date.between(from: 3.days.ago, to: Time.zone.today).to_time }
 
     trait :with_price do
       association :price
+      current_price { price.current_price }
     end
   end
 end

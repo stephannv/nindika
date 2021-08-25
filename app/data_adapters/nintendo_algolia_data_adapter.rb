@@ -3,6 +3,11 @@
 class NintendoAlgoliaDataAdapter
   attr_reader :data
 
+  ATTRIBUTES = %i[
+    title description external_id release_date release_date_display website_url
+    boxart_url banner_url nsuid genres franchises developers publishers extra
+  ].freeze
+
   def initialize(data)
     @data = data
   end
@@ -12,22 +17,7 @@ class NintendoAlgoliaDataAdapter
   end
 
   def adapt
-    {
-      title: title,
-      description: description,
-      external_id: external_id,
-      release_date: release_date,
-      release_date_display: release_date_display,
-      website_url: website_url,
-      boxart_url: boxart_url,
-      banner_url: banner_url,
-      nsuid: nsuid,
-      genres: genres,
-      franchises: franchises,
-      developers: developers,
-      publishers: publishers,
-      extra: extra
-    }
+    ATTRIBUTES.index_with { |attribute| send(attribute) }
   end
 
   private
@@ -79,7 +69,7 @@ class NintendoAlgoliaDataAdapter
   end
 
   def genres
-    data['genres'].to_a.compact
+    data['genres'].to_a.compact.map(&:parameterize).map(&:underscore)
   end
 
   def developers

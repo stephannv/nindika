@@ -1,10 +1,15 @@
 pt-BR:
   games:
+    card_actions_component:
+      hide: Ocultar
+      unhide: Desocultar
+      official_website: Site oficial
     price_component:
       blank: Em breve
+    sort_button_component:
+      sort: Ordenar
+    hide_button_component:
+      hide: Ocultar
     wishlist_button_component:
       text: Adicionar à lista de desejos
       tooltip: Lista de desejos
-    card_actions_component:
-      hide: Ocultar
-      official_website: Site oficial

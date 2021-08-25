@@ -9,8 +9,13 @@
     i.fas.fa-ellipsis-v
 
   .dropdown-menu.dropdown-menu-right(aria-labelledby=dropdown_id)
-    = link_to add_hidden_item_path(item_id: game.id), class: 'dropdown-item', method: :post do
-      = t('.hide')
+    - if game.try(:hidden)
+      = link_to remove_hidden_item_path(item_id: game.id), class: 'dropdown-item', method: :delete do
+        = t('.unhide')
+    - else
+      = link_to add_hidden_item_path(item_id: game.id), class: 'dropdown-item', method: :post do
+        = t('.hide')
+
     - if game.website_url.present?
       = link_to game.website_url, class: 'dropdown-item', target: '_blank', rel: 'noopener noreferrer' do
         = t('.official_website')

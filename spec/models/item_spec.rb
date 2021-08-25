@@ -7,11 +7,15 @@ RSpec.describe Item, type: :model do
     it { is_expected.to have_one(:raw_item).dependent(:destroy) }
     it { is_expected.to have_one(:price).dependent(:destroy) }
 
-    it { is_expected.to have_many(:notifications).dependent(:destroy) }
+    it { is_expected.to have_many(:events).class_name('ItemEvent').dependent(:destroy) }
     it { is_expected.to have_many(:wishlist_items).dependent(:destroy) }
     it { is_expected.to have_many(:hidden_items).dependent(:destroy) }
 
     it { is_expected.to have_many(:price_history_items).through(:price).source(:history_items) }
+  end
+
+  describe 'Configurations' do
+    it { is_expected.to monetize(:current_price).allow_nil }
   end
 
   describe 'Validations' do
@@ -81,6 +85,17 @@ RSpec.describe Item, type: :model do
 
       it 'returns pre order items' do
         expect(described_class.pre_order.to_a).to eq [pre_order]
+      end
+    end
+
+    describe '.pending_scrap' do
+      let!(:not_scraped) { create(:item, last_scraped_at: nil) }
+      let!(:scraped_long_ago) { create(:item, last_scraped_at: 25.hours.ago) }
+
+      before { create(:item, last_scraped_at: 23.hours.ago) } # scraped recently
+
+      it 'returns not scraped items or scraped more than 24 hours ago' do
+        expect(described_class.pending_scrap.to_a).to match_array [not_scraped, scraped_long_ago]
       end
     end
   end

@@ -20,9 +20,13 @@ pt-BR:
 
     show:
       ends_in: Encerra em %{time}
-      visit_offical_webiste: Visitar site oficial
+      offical_webiste: Site oficial
+      genres: Gêneros
+      languages: Idiomas disponíveis
+      price_history: Histórico de Preços
 
     list:
       result_count:
-        one: 1 jogo encontrado
-        other: Mostrando %{count} de %{total} jogos encontrados
+        zero: Nenhum jogo
+        one: 1 jogo
+        other: "%{count} jogos"

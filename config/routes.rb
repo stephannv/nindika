@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   end
 
   get 'game/:slug', to: 'games#show', as: :game
-  get 'notifications', to: 'notifications#index', as: :notifications
 
   scope :wishlist do
     post 'add/:item_id', to: 'wishlist_items#create', as: :add_wishlist_item
@@ -29,4 +28,6 @@ Rails.application.routes.draw do
     post 'add/:item_id', to: 'hidden_items#create', as: :add_hidden_item
     delete 'remove/:item_id', to: 'hidden_items#destroy', as: :remove_hidden_item
   end
+
+  get 'notifications/all', as: :all_notifications
 end

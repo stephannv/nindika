@@ -1,4 +1,4 @@
-.col-12.col-md-6.col-lg-4.col-xl-3
+.col-12.col-md-6.col-lg-4.col-xl-3(class=('hidden-card' if game.try(:hidden)))
   .card.shadow-sm.p-0.m-10.border-0
     .image-with-actions
       = image_tag game.medium_banner_url, loading: 'lazy', class: 'img-fluid w-full rounded-top'

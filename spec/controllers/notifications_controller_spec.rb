@@ -3,9 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe NotificationsController, type: :controller do
-  describe 'GET /notifications' do
+  describe 'GET /notifications/all' do
     it 'has ok status' do
-      get :index
+      get :all
 
       expect(response).to have_http_status(:ok)
     end

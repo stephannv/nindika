@@ -9,7 +9,10 @@ module Items
 
     def call
       scope = Item.friendly
-      scope = Items::WithWishlistedColumnQuery.call(relation: scope, user_id: user.id) if user.present?
+      if user.present?
+        scope = Items::WithWishlistedColumnQuery.call(relation: scope, user_id: user.id)
+        scope = Items::WithHiddenColumnQuery.call(relation: scope, user_id: user.id, include_hidden: true)
+      end
       self.item = scope.find(slug)
     end
   end

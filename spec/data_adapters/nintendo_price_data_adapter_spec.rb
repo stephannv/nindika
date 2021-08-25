@@ -32,12 +32,12 @@ RSpec.describe NintendoPriceDataAdapter, type: :data_adapters do
     end
   end
 
-  describe '#regular_amount' do
+  describe '#base_price' do
     context 'when regular price is present' do
       let(:data) { { 'price' => { 'regular_price' => { 'raw_value' => 50, 'currency' => 'BRL' } } } }
 
       it 'returns regular price as money object' do
-        expect(adapted_data[:regular_amount]).to eq Money.new(5000, 'BRL')
+        expect(adapted_data[:base_price]).to eq Money.new(5000, 'BRL')
       end
     end
 
@@ -45,17 +45,17 @@ RSpec.describe NintendoPriceDataAdapter, type: :data_adapters do
       let(:data) { { 'price' => { 'regular_price' => nil } } }
 
       it 'returns nil' do
-        expect(adapted_data[:regular_amount]).to be_nil
+        expect(adapted_data[:base_price]).to be_nil
       end
     end
   end
 
-  describe '#discount_amount' do
+  describe '#discount_price' do
     context 'when discount price is present' do
       let(:data) { discount_data }
 
       it 'returns discount price as money object' do
-        expect(adapted_data[:discount_amount]).to eq Money.new(2000, 'BRL')
+        expect(adapted_data[:discount_price]).to eq Money.new(2000, 'BRL')
       end
     end
 
@@ -63,7 +63,7 @@ RSpec.describe NintendoPriceDataAdapter, type: :data_adapters do
       let(:data) { { 'price' => { 'discount_price' => nil } } }
 
       it 'returns nil' do
-        expect(adapted_data[:discount_amount]).to be_nil
+        expect(adapted_data[:discount_price]).to be_nil
       end
     end
   end

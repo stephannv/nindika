@@ -6,27 +6,33 @@ class GamesController < ApplicationController
   before_action :authenticate_user!, only: %i[wishlist]
 
   def index
-    list_games(filter: filter_params)
+    list_games
+    load_filter_options
   end
 
   def on_sale
-    list_games(filter: filter_params.merge(on_sale: true))
+    list_games(on_sale: true)
+    load_filter_options
   end
 
   def new_releases
-    list_games(filter: filter_params.merge(new_release: true))
+    list_games(new_release: true)
+    load_filter_options
   end
 
   def coming_soon
-    list_games(filter: filter_params.merge(coming_soon: true))
+    list_games(coming_soon: true)
+    load_filter_options
   end
 
   def pre_order
-    list_games(filter: filter_params.merge(pre_order: true))
+    list_games(pre_order: true)
+    load_filter_options
   end
 
   def wishlist
-    list_games(filter: filter_params.merge(wishlisted: true))
+    list_games(wishlisted: true)
+    load_filter_options
   end
 
   def show
@@ -37,9 +43,9 @@ class GamesController < ApplicationController
 
   private
 
-  def list_games(filter:)
+  def list_games(filter_overrides = {})
     result = Items::List.result(
-      filter_params: filter,
+      filters_form: filters_form(filter_overrides),
       sort_param: sort_param || 'all_time_visits_desc',
       user: current_user
     )
@@ -47,8 +53,13 @@ class GamesController < ApplicationController
     @pagy, @games = pagy(result.items)
   end
 
-  def filter_params
-    permitted_params[:q].to_h
+  def filters_form(overrides)
+    @filters_form ||= GameFiltersForm.build(permitted_params[:q].to_h.merge(overrides))
+  end
+
+  def load_filter_options
+    @genres = Items::ListGenres.result.genres
+    @languages = Items::ListLanguages.result.languages
   end
 
   def sort_param
@@ -56,6 +67,6 @@ class GamesController < ApplicationController
   end
 
   def permitted_params
-    params.permit(:sort, q: {})
+    params.permit(:sort, q: GameFiltersForm.attribute_names)
   end
 end

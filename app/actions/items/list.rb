@@ -2,7 +2,7 @@
 
 module Items
   class List < Actor
-    input :filter_params, type: Hash, default: {}
+    input :filters_form, type: GameFiltersForm, default: -> { GameFiltersForm.new }
     input :sort_param, type: String, default: nil, allow_nil: true
     input :user, type: User, allow_nil: true, default: nil
 
@@ -16,8 +16,8 @@ module Items
 
     def build_scope
       scope = Item.left_joins(:price).includes(:price)
-      scope = ItemsFilter.apply(scope, filter_params)
-      scope = ItemsSorter.apply(scope, sort_param)
+      scope = ItemsFilter.apply(relation: scope, filters_form: filters_form)
+      scope = ItemsSorter.apply(relation: scope, param: sort_param)
       scope = apply_wishlist_scope(scope)
       apply_hidden_scope(scope)
     end
@@ -28,14 +28,19 @@ module Items
       Items::WithWishlistedColumnQuery.call(
         relation: scope,
         user_id: user.id,
-        only_wishlisted: filter_params[:wishlisted]
+        only_wishlisted: filters_form.wishlisted
       )
     end
 
     def apply_hidden_scope(scope)
       return scope if user.blank?
 
-      Items::WithoutHiddenQuery.call(relation: scope, user_id: user.id)
+      Items::WithHiddenColumnQuery.call(
+        relation: scope,
+        user_id: user.id,
+        include_hidden: filters_form.include_hidden,
+        only_hidden: filters_form.only_hidden
+      )
     end
   end
 end

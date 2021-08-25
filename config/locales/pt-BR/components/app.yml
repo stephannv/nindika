@@ -1,5 +1,8 @@
 pt-BR:
   app:
+    navbar_component:
+      notifications: Notificações
+
     sidebar_component:
       games: Jogos
       all: Todos
@@ -7,9 +10,8 @@ pt-BR:
       new_releases: Recém-lançados
       coming_soon: Em Breve
       pre_order: Pré-venda
-
-    sign_in_buttons_component:
-      sign_in_with: Entrar com %{provider}
+      sign_in: Entrar
+      sign_out: Sair
 
     user_sidebar_menu_component:
       wishlist: Lista de desejos

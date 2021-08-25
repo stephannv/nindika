@@ -1,0 +1,32 @@
+pt-BR:
+  genres:
+    action: Ação
+    adventure: Aventura
+    simulation: Simulação
+    first_person: Primeira pessoa
+    platformer: Plataforma
+    puzzle: Quebra-cabeça
+    arcade: Arcade
+    study: Estudo
+    other: Outro
+    fighting: Luta
+    multiplayer: Multijogador
+    party: Farra
+    sports: Esportes
+    role_playing: RPG
+    indie: Independente
+    communication: Comunicação
+    lifestyle: Estilo de vida
+    board_game: Tabuleiro
+    strategy: Estratégia
+    racing: Corrida
+    education: Educativo
+    utility: Utilidade
+    music: Música
+    training: Treino
+    practical: Prático
+    video: Vídeo
+    updates: Atualização
+    fitness: Exercício físico
+    indie_world: Indie World
+    atualizacoes: Atualização

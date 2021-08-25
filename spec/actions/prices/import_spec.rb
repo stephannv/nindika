@@ -18,6 +18,6 @@ RSpec.describe Prices::Import, type: :actions do
   describe 'Play actors' do
     subject { described_class.play_actors.map(&:values).flatten }
 
-    it { is_expected.to contain_exactly(Prices::Fetch, Prices::Create) }
+    it { is_expected.to contain_exactly(Prices::Fetch, Prices::Upsert) }
   end
 end
