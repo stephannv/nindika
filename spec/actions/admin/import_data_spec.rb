@@ -18,7 +18,15 @@ RSpec.describe Admin::ImportData, type: :actions do
   describe '#call' do
     subject(:result) { described_class.result }
 
-    let(:actions) { [RawItems::Import, Prices::Import, Items::UpdateFlags, EventDispatches::SendToTelegram] }
+    let(:actions) do
+      [
+        RawItems::Import,
+        Prices::Import,
+        Items::UpdateFlags,
+        Items::ScrapPendingItemsData,
+        EventDispatches::SendToTelegram
+      ]
+    end
 
     before do
       allow(Rails.env).to receive(:production?).and_return(true)
