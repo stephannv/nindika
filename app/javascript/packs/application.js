@@ -8,6 +8,7 @@ import 'controllers'
 import useAppToast from '@/app/use_app_toast'
 
 import '@fortawesome/fontawesome-free/css/all.min.css'
+import "@splidejs/splide/dist/css/splide.min.css"
 
 Rails.start()
 
