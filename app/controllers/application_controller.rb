@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   rescue_from Pagy::OverflowError, with: :redirect_to_404
 
   def redirect_to_404
-    raise ActionController::RoutingError.new('Not Found')
+    raise ActionController::RoutingError, 'Not Found'
   end
 end
