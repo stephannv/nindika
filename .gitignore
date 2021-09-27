@@ -18,22 +18,8 @@
 !/tmp/pids/
 !/tmp/pids/.keep
 
-# Ignore uploaded files in development.
-/storage/*
-!/storage/.keep
-
-/public/assets
-.byebug_history
-
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-
-/public/packs
-/public/packs-test
-/node_modules
-/yarn-error.log
-yarn-debug.log*
-.yarn-integrity
 
 # Mac OS files
 .DS_Store

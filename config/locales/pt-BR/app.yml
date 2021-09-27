@@ -1,0 +1,4 @@
+pt-BR:
+  time:
+    formats:
+      shorter: "%d/%m/%Y %H:%M"

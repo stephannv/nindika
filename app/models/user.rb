@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  devise :omniauthable, omniauth_providers: Devise.omniauth_providers
-
   has_many :wishlist_items, dependent: :destroy
   has_many :hidden_items, dependent: :destroy
 
