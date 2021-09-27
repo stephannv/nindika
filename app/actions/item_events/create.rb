@@ -12,7 +12,7 @@ module ItemEvents
       self.item_event = item.events.create!(
         event_type: event_type,
         title: item.title,
-        url: Rails.application.routes.url_helpers.game_url(item),
+        url: "#{App.config.app_domain}/game/#{item.slug}",
         data: data
       )
       create_telegram_dispatch

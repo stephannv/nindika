@@ -7,7 +7,8 @@ module Admin
       wrap_task('Import prices') { Prices::Import.call }
       wrap_task('Update flags') { Items::UpdateFlags.call }
 
-      [scrap_thread, telegram_thread].map(&:join)
+      scrap_thread.join
+      telegram_thread.join
     end
 
     private

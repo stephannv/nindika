@@ -62,20 +62,6 @@ jobs:
       - name: Install postgres client
         run: sudo apt-get install libpq-dev
 
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: 15.5.0
-
-      - name: Yarn package cache
-        uses: actions/cache@v2
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-yarn-v1-${{ hashFiles('./yarn.lock') }}
-
-      - name: Install Yarn packages
-        run: yarn install --pure-lockfile
-
       - name: Create database structure
         run: RAILS_ENV=test bundle exec rails db:schema:load
 
