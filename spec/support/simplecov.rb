@@ -4,9 +4,8 @@ require 'simplecov'
 
 SimpleCov.start do
   add_group 'Actions', 'app/actions'
+  add_group 'API', 'app/api'
   add_group 'Clients', 'app/clients'
-  add_group 'Components', 'app/components'
-  add_group 'Controllers', 'app/controllers'
   add_group 'Data Adapters', 'app/data_adapters'
   add_group 'Enumerations', 'app/enumerations'
   add_group 'Form Objects', 'app/form_objects'
