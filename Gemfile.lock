@@ -1,3 +1,16 @@
+GIT
+  remote: https://github.com/ruby-grape/grape.git
+  revision: f5d9831bac2e2dd439d0f3901797995a91139690
+  branch: master
+  specs:
+    grape (1.6.0)
+      activesupport
+      builder
+      dry-types (>= 1.1)
+      mustermann-grape (~> 1.0.0)
+      rack (>= 1.3.0)
+      rack-accept
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -86,8 +99,21 @@ GEM
     dry-configurable (0.13.0)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.6)
+    dry-container (0.9.0)
+      concurrent-ruby (~> 1.0)
+      dry-configurable (~> 0.13, >= 0.13.0)
     dry-core (0.7.1)
       concurrent-ruby (~> 1.0)
+    dry-inflector (0.2.1)
+    dry-logic (1.2.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.5, >= 0.5)
+    dry-types (1.5.1)
+      concurrent-ruby (~> 1.0)
+      dry-container (~> 0.3)
+      dry-core (~> 0.5, >= 0.5)
+      dry-inflector (~> 0.1, >= 0.1.2)
+      dry-logic (~> 1.0, >= 1.0.2)
     enumerate_it (3.2.1)
       activesupport (>= 5.0.7.2)
     erubi (1.10.0)
@@ -121,6 +147,9 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.5.2)
       activesupport (>= 5.0)
+    grape-entity (0.10.0)
+      activesupport (>= 3.0.0)
+      multi_json (>= 1.3.2)
     hashdiff (1.0.1)
     hashie (4.1.0)
     httparty (0.19.0)
@@ -159,6 +188,10 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
+    mustermann (1.1.1)
+      ruby2_keywords (~> 0.0.1)
+    mustermann-grape (1.0.1)
+      mustermann (>= 1.0.0)
     net-http-persistent (4.0.1)
       connection_pool (~> 2.2)
     nio4r (2.5.8)
@@ -203,6 +236,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
+    rack-accept (0.4.5)
+      rack (>= 0.4)
     rack-cors (1.1.1)
       rack (>= 2.0.0)
     rack-protection (2.1.0)
@@ -338,6 +373,8 @@ DEPENDENCIES
   factory_bot_rails (= 6.2.0)
   faker (= 2.19.0)
   friendly_id (= 5.4.2)
+  grape!
+  grape-entity (= 0.10.0)
   httparty (= 0.19.0)
   i18n_data (= 0.13.0)
   money-rails (= 1.14.0)
