@@ -12,12 +12,12 @@ module RawItems
 
     def process_raw_item(raw_item)
       data = ::NintendoAlgoliaDataAdapter.adapt(raw_item.data)
-      item = raw_item.item || Item.new
-      item.assign_attributes(data)
+      game = raw_item.game || Game.new
+      game.assign_attributes(data)
       ActiveRecord::Base.transaction do
-        item.save!
-        ItemEvents::Create.call(event_type: ItemEventTypes::GAME_ADDED, item: item) if item.saved_change_to_id?
-        raw_item.update!(item_id: item.id, imported: true)
+        game.save!
+        GameEvents::Create.call(event_type: GameEventTypes::GAME_ADDED, game: game) if game.saved_change_to_id?
+        raw_item.update!(game_id: game.id, imported: true)
       end
     rescue StandardError => e
       raise e if Rails.env.development?

@@ -33,13 +33,13 @@ RSpec.describe RawItems::Create, type: :action do
           'data' => data.stringify_keys,
           'imported' => false,
           'checksum' => Digest::MD5.hexdigest(data.to_s),
-          'item_id' => nil
+          'game_id' => nil
         )
       end
     end
 
     context 'with modified raw item data' do
-      let!(:raw_item) { create(:raw_item, :with_item, imported: true) }
+      let!(:raw_item) { create(:raw_item, :with_game, imported: true) }
       let(:data) { Faker::Types.rb_hash(number: 4).merge(objectID: raw_item.external_id) }
 
       it 'doesn`t create a raw item' do
@@ -54,13 +54,13 @@ RSpec.describe RawItems::Create, type: :action do
           'data' => data.stringify_keys,
           'imported' => false,
           'checksum' => Digest::MD5.hexdigest(data.to_s),
-          'item_id' => raw_item.item_id
+          'game_id' => raw_item.game_id
         )
       end
     end
 
     context 'with not modified raw item data' do
-      let!(:raw_item) { create(:raw_item, :with_item, imported: true) }
+      let!(:raw_item) { create(:raw_item, :with_game, imported: true) }
       let(:data) { raw_item.data.symbolize_keys }
 
       it 'doesn`t create a raw item' do
@@ -75,7 +75,7 @@ RSpec.describe RawItems::Create, type: :action do
           'data' => raw_item.data,
           'imported' => true,
           'checksum' => raw_item.checksum,
-          'item_id' => raw_item.item_id
+          'game_id' => raw_item.game_id
         )
       end
     end

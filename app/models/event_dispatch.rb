@@ -7,11 +7,11 @@ class EventDispatch < ApplicationRecord
     required: true,
     create_scopes: true
 
-  belongs_to :item_event
+  belongs_to :game_event
 
   scope :pending, -> { where(sent_at: nil) }
 
-  validates :item_event_id, presence: true
+  validates :game_event_id, presence: true
 
-  validates :provider, uniqueness: { scope: :item_event_id }
+  validates :provider, uniqueness: { scope: :game_event_id }
 end

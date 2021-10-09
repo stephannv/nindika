@@ -4,9 +4,9 @@ module Nindika
   module V1
     class GamesAPI < Grape::API
       get '/games' do
-        result = Items::List.result
+        result = Games::List.result
 
-        present :games, result.items, with: ::GameEntity
+        present :games, result.games, with: ::GameEntity
       end
     end
   end

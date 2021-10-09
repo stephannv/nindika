@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class TelegramEventTextBuilder
-  attr_reader :item_event, :data
+  attr_reader :game_event, :data
 
-  def initialize(item_event:)
-    @item_event = item_event
-    @data = item_event.data
+  def initialize(game_event:)
+    @game_event = game_event
+    @data = game_event.data
   end
 
   def self.build(...)
@@ -15,7 +15,7 @@ class TelegramEventTextBuilder
   def build
     [
       intro,
-      item_title,
+      game_title,
       release_date,
       price,
       price_state,
@@ -26,12 +26,12 @@ class TelegramEventTextBuilder
   end
 
   def intro
-    emoji = item_event.event_type_object.emoji
-    "#{emoji} <b>#{item_event.event_type_humanize}</b> #{emoji}"
+    emoji = game_event.event_type_object.emoji
+    "#{emoji} <b>#{game_event.event_type_humanize}</b> #{emoji}"
   end
 
-  def item_title
-    "🕹 <b>#{item_event.title}</b>"
+  def game_title
+    "🕹 <b>#{game_event.title}</b>"
   end
 
   def release_date
@@ -61,6 +61,6 @@ class TelegramEventTextBuilder
   end
 
   def url
-    "🔗 #{item_event.url}"
+    "🔗 #{game_event.url}"
   end
 end

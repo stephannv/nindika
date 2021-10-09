@@ -3,9 +3,9 @@
 module Admin
   class ImportData < Actor
     def call
-      wrap_task('Import items') { RawItems::Import.call }
+      wrap_task('Import games') { RawItems::Import.call }
       wrap_task('Import prices') { Prices::Import.call }
-      wrap_task('Update flags') { Items::UpdateFlags.call }
+      wrap_task('Update flags') { Games::UpdateFlags.call }
 
       scrap_thread.join
       telegram_thread.join
@@ -29,7 +29,7 @@ module Admin
 
     def scrap_thread
       Thread.new do
-        wrap_task('Scrap games website data') { Items::ScrapPendingItemsData.call }
+        wrap_task('Scrap games website data') { Games::ScrapPendingGamesData.call }
       end
     end
   end

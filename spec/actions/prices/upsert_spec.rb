@@ -18,8 +18,8 @@ RSpec.describe Prices::Upsert, type: :actions do
   describe '#call' do
     subject(:result) { described_class.result(prices_data: [data]) }
 
-    let(:item) { create(:item) }
-    let(:adapted_data) { attributes_for(:price, nsuid: item.nsuid) }
+    let(:game) { create(:game) }
+    let(:adapted_data) { attributes_for(:price, nsuid: game.nsuid) }
     let(:data) { Faker::Types.rb_hash(number: 4) }
 
     before do
@@ -39,16 +39,16 @@ RSpec.describe Prices::Upsert, type: :actions do
         expect { result }.to change(Price, :count).by(1)
       end
 
-      it 'associates price with item with same nsuid' do
+      it 'associates price with game with same nsuid' do
         result
 
-        expect(Price.last.item).to eq item
+        expect(Price.last.game).to eq game
       end
 
-      it 'updates item current_price' do
+      it 'updates game current_price' do
         result
 
-        expect(Price.last.item.current_price).to eq Price.last.current_price
+        expect(Price.last.game.current_price).to eq Price.last.current_price
       end
 
       it 'creates price with adapted data' do
@@ -68,22 +68,22 @@ RSpec.describe Prices::Upsert, type: :actions do
         result
       end
 
-      it 'creates item event' do
-        expect(Prices::CreateItemEvent).to receive(:call).with(price: an_instance_of(Price))
+      it 'creates game event' do
+        expect(Prices::CreateGameEvent).to receive(:call).with(price: an_instance_of(Price))
 
         result
       end
     end
 
     context 'when nsuid is taken' do
-      let!(:price) { create(:price, nsuid: item.nsuid) }
+      let!(:price) { create(:price, nsuid: game.nsuid) }
 
       it 'doesn`t create price' do
         expect { result }.not_to change(Price, :count)
       end
 
-      it 'doesn`t change associated price item' do
-        expect { result }.not_to change(price, :item_id)
+      it 'doesn`t change associated price game' do
+        expect { result }.not_to change(price, :game_id)
       end
 
       it 'updates price with adapted data' do
@@ -97,10 +97,10 @@ RSpec.describe Prices::Upsert, type: :actions do
         )
       end
 
-      it 'updates item current_price' do
+      it 'updates game current_price' do
         result
 
-        expect(Price.last.item.current_price).to eq Price.last.current_price
+        expect(Price.last.game.current_price).to eq Price.last.current_price
       end
 
       it 'creates price history item' do
@@ -109,8 +109,8 @@ RSpec.describe Prices::Upsert, type: :actions do
         result
       end
 
-      it 'creates item event' do
-        expect(Prices::CreateItemEvent).to receive(:call).with(price: an_instance_of(Price))
+      it 'creates game event' do
+        expect(Prices::CreateGameEvent).to receive(:call).with(price: an_instance_of(Price))
 
         result
       end

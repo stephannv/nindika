@@ -23,16 +23,16 @@ module Prices
       ActiveRecord::Base.transaction do
         price = upsert_price(data)
         CreateHistoryItem.call(price: price)
-        CreateItemEvent.call(price: price)
+        CreateGameEvent.call(price: price)
       end
     end
 
     def upsert_price(data)
       price = Price.find_or_initialize_by(nsuid: data[:nsuid])
-      price.item ||= Item.find_by(nsuid: data[:nsuid])
+      price.game ||= Game.find_by(nsuid: data[:nsuid])
       price.assign_attributes(data)
       price.save!
-      price.item.update!(current_price: price.current_price)
+      price.game.update!(current_price: price.current_price)
       price
     end
   end

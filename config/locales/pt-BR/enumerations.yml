@@ -3,7 +3,7 @@ pt-BR:
     event_dispatch_providers:
       telegram: Telegram
 
-    item_event_types:
+    game_event_types:
       game_added: Jogo adicionado
       price_added: Preço revelado
       discount: Promoção

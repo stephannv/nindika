@@ -7,8 +7,8 @@ FactoryBot.define do
     checksum { Digest::MD5.hexdigest(data.to_s) }
     imported { Faker::Boolean.boolean }
 
-    trait :with_item do
-      association :item
+    trait :with_game do
+      association :game
     end
   end
 end

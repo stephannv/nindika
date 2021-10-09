@@ -21,18 +21,18 @@ RSpec.describe Prices::Fetch, type: :actions do
     subject(:result) { described_class.result(client: client) }
 
     let(:client) { NintendoPricesClient.new }
-    let(:items) { create_list(:item, 2) }
-    let(:nsuids) { items.map(&:nsuid) }
+    let(:games) { create_list(:game, 2) }
+    let(:nsuids) { games.map(&:nsuid) }
     let(:prices_data) { [double] }
 
     before do
-      create_list(:item, 2, nsuid: nil)
+      create_list(:game, 2, nsuid: nil)
       allow(client).to receive(:fetch)
         .with(country: 'BR', lang: 'pt', nsuids: a_collection_containing_exactly(*nsuids))
         .and_return(prices_data)
     end
 
-    it 'fetch prices from items with nsuid' do
+    it 'fetch prices from games with nsuid' do
       expect(result.prices_data).to eq prices_data
     end
   end
