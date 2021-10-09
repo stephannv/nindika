@@ -3,17 +3,17 @@
     {
       "warning_type": "SQL Injection",
       "warning_code": 0,
-      "fingerprint": "96624bb0ed58fd8cba2d1c70a344234787a4fc09f29b79a2fdec19a4e64f4f8a",
+      "fingerprint": "7dc9016970302143dbb3ed2b2ba734b7215678c1d80517ff389b16d192767496",
       "check_name": "SQL",
       "message": "Possible SQL injection",
-      "file": "app/queries/items/with_wishlisted_column_query.rb",
+      "file": "app/queries/games/with_wishlisted_column_query.rb",
       "line": 25,
       "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "relation.select(\"items.*\", \"wishlist_items.id IS NOT NULL AS wishlisted\").joins(\"        #{join_clause} JOIN wishlist_items\\n        ON wishlist_items.item_id = items.id and wishlist_items.user_id = '#{user_id}'\\n\".squish)",
+      "code": "relation.select(\"games.*\", \"wishlist_games.id IS NOT NULL AS wishlisted\").joins(\"        #{join_clause} JOIN wishlist_games\\n        ON wishlist_games.game_id = games.id and wishlist_games.user_id = '#{user_id}'\\n\".squish)",
       "render_path": null,
       "location": {
         "type": "method",
-        "class": "Items::WithWishlistedColumnQuery",
+        "class": "Games::WithWishlistedColumnQuery",
         "method": "call"
       },
       "user_input": "join_clause",
@@ -41,6 +41,6 @@
       "note": ""
     }
   ],
-  "updated": "2021-08-23 21:04:49 -0300",
+  "updated": "2021-10-08 21:32:27 -0300",
   "brakeman_version": "5.1.1"
 }

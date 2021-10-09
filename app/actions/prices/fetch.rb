@@ -9,7 +9,7 @@ module Prices
     def call
       prices_data = []
 
-      Item.with_nsuid.find_in_batches(batch_size: 99) do |batch|
+      Game.with_nsuid.find_in_batches(batch_size: 99) do |batch|
         prices_data += client.fetch(country: 'BR', lang: 'pt', nsuids: batch.pluck(:nsuid))
       end
 

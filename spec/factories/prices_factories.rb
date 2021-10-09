@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :price do
     traits_for_enum :state, PriceStates.list
 
-    association :item
+    association :game
 
     nsuid { Faker::Number.number(digits: 16).to_s }
     base_price { Money.new(Faker::Number.number(digits: 5)) }

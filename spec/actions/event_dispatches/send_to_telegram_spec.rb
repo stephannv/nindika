@@ -48,7 +48,7 @@ RSpec.describe EventDispatches::SendToTelegram, type: :actions do
 
     context 'when event dispatch is pending' do
       let!(:event_dispatch) { create(:event_dispatch, :telegram) }
-      let(:text) { TelegramEventTextBuilder.build(item_event: event_dispatch.item_event) }
+      let(:text) { TelegramEventTextBuilder.build(game_event: event_dispatch.game_event) }
 
       it 'sends message' do
         expect(client).to receive(:send_message).with(chat_id: '@nindika_com', bot_token: 'botA', text: text)
@@ -80,18 +80,18 @@ RSpec.describe EventDispatches::SendToTelegram, type: :actions do
       end
     end
 
-    context 'when there are multiple pending dispatches for same item' do
-      let(:item) { create(:item) }
+    context 'when there are multiple pending dispatches for same game' do
+      let(:game) { create(:game) }
       let(:event_dispatch_a) do
-        create(:event_dispatch, :telegram, item_event: create(:item_event, :price_added, item: item))
+        create(:event_dispatch, :telegram, game_event: create(:game_event, :price_added, game: game))
       end
       let(:event_dispatch_b) do
-        create(:event_dispatch, :telegram, item_event: create(:item_event, :game_added, item: item))
+        create(:event_dispatch, :telegram, game_event: create(:game_event, :game_added, game: game))
       end
 
       it 'groups dispatches into single text message' do
-        text_a = TelegramEventTextBuilder.build(item_event: event_dispatch_a.item_event)
-        text_b = TelegramEventTextBuilder.build(item_event: event_dispatch_b.item_event)
+        text_a = TelegramEventTextBuilder.build(game_event: event_dispatch_a.game_event)
+        text_b = TelegramEventTextBuilder.build(game_event: event_dispatch_b.game_event)
 
         expect(client).to receive(:send_message)
           .with(chat_id: '@nindika_com', bot_token: 'botA', text: "#{text_b}\n\n#{text_a}")

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe RawItem, type: :model do
   describe 'Relations' do
-    it { is_expected.to belong_to(:item).optional }
+    it { is_expected.to belong_to(:game).optional }
   end
 
   describe 'Validations' do
@@ -16,8 +16,8 @@ RSpec.describe RawItem, type: :model do
     it { is_expected.to validate_uniqueness_of(:external_id) }
 
     it do
-      create(:raw_item, :with_item)
-      expect(raw_item).to validate_uniqueness_of(:item_id).allow_nil.case_insensitive
+      create(:raw_item, :with_game)
+      expect(raw_item).to validate_uniqueness_of(:game_id).allow_nil.case_insensitive
     end
 
     it { is_expected.to validate_length_of(:external_id).is_at_most(256) }

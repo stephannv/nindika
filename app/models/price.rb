@@ -3,7 +3,7 @@
 class Price < ApplicationRecord
   has_enumeration_for :state, with: PriceStates, create_helpers: true, required: true, create_scopes: true
 
-  belongs_to :item
+  belongs_to :game
 
   has_many :history_items, class_name: 'PriceHistoryItem', dependent: :destroy
 
@@ -11,10 +11,10 @@ class Price < ApplicationRecord
   monetize :discount_price_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }
   monetize :discounted_amount_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }
 
-  validates :item_id, presence: true
+  validates :game_id, presence: true
   validates :nsuid, presence: true
 
-  validates :item_id, uniqueness: true
+  validates :game_id, uniqueness: true
   validates :nsuid, uniqueness: true
 
   validates :gold_points, numericality: { greater_than_or_equal_to: 0, only_integer: true }, allow_nil: true

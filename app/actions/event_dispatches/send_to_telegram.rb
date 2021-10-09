@@ -5,7 +5,7 @@ module EventDispatches
     input :client, type: TelegramClient, default: -> { TelegramClient.new }
 
     def call
-      pending_dispatches_grouped_by_item_id.each_with_index do |(_item_id, dispatches), index|
+      pending_dispatches_grouped_by_game_id.each_with_index do |(_game_id, dispatches), index|
         send_message(dispatches, index)
         sleep 1
       rescue StandardError => e
@@ -17,14 +17,14 @@ module EventDispatches
 
     private
 
-    def pending_dispatches_grouped_by_item_id
+    def pending_dispatches_grouped_by_game_id
       EventDispatch
         .pending
         .telegram
-        .joins(:item_event)
-        .includes(:item_event)
-        .order('item_events.event_type')
-        .group_by { |d| d.item_event.item_id }
+        .joins(:game_event)
+        .includes(:game_event)
+        .order('game_events.event_type')
+        .group_by { |d| d.game_event.game_id }
     end
 
     def send_message(dispatches, index)
@@ -39,7 +39,7 @@ module EventDispatches
     end
 
     def build_text(dispatches)
-      dispatches.map { |d| TelegramEventTextBuilder.build(item_event: d.item_event) }.join("\n\n")
+      dispatches.map { |d| TelegramEventTextBuilder.build(game_event: d.game_event) }.join("\n\n")
     end
 
     def bot_token(index)

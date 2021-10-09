@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe EventDispatch, type: :model do
   describe 'Relations' do
-    it { is_expected.to belong_to :item_event }
+    it { is_expected.to belong_to :game_event }
   end
 
   describe 'Configurations' do
@@ -14,7 +14,7 @@ RSpec.describe EventDispatch, type: :model do
   end
 
   describe 'Validations' do
-    it { is_expected.to validate_presence_of(:item_event_id) }
+    it { is_expected.to validate_presence_of(:game_event_id) }
     it { is_expected.to validate_presence_of(:provider) }
   end
 

@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :event_dispatch do
-    association :item_event
+    association :game_event
 
     traits_for_enum :provider, EventDispatchProviders.list
     provider { EventDispatchProviders.list.sample }

@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe Price, type: :model do
   describe 'Relations' do
-    it { is_expected.to belong_to(:item) }
+    it { is_expected.to belong_to(:game) }
 
     it { is_expected.to have_many(:history_items).class_name('PriceHistoryItem').dependent(:destroy) }
   end
@@ -22,11 +22,11 @@ RSpec.describe Price, type: :model do
   describe 'Validations' do
     subject(:price) { build(:price) }
 
-    it { is_expected.to validate_presence_of(:item_id) }
+    it { is_expected.to validate_presence_of(:game_id) }
     it { is_expected.to validate_presence_of(:nsuid) }
     it { is_expected.to validate_presence_of(:state) }
 
-    it { is_expected.to validate_uniqueness_of(:item_id).case_insensitive }
+    it { is_expected.to validate_uniqueness_of(:game_id).case_insensitive }
     it { is_expected.to validate_uniqueness_of(:nsuid).case_insensitive }
 
     it { is_expected.to validate_numericality_of(:base_price).is_greater_than_or_equal_to(0) }
