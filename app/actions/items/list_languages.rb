@@ -5,7 +5,7 @@ module Items
     output :languages, type: Array
 
     def call
-      self.languages = Item.pluck(:languages).flatten.uniq.sort
+      self.languages = Item.pluck(:languages).flatten.uniq.compact.sort
     end
   end
 end

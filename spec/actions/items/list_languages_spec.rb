@@ -21,7 +21,7 @@ RSpec.describe Items::ListLanguages, type: :actions do
     before do
       create(:item, languages: %w[b])
       create(:item, languages: %w[c a d])
-      create(:item, languages: %w[b d])
+      create(:item, languages: ['b', 'd', nil])
     end
 
     it 'returns languages ordered by name' do
