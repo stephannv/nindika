@@ -6,6 +6,7 @@ RSpec.describe Games::List, type: :actions do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 
+    it { is_expected.to include(filter: { type: Hash, default: nil, allow_nil: true }) }
     it { is_expected.to include(sort_by: { type: String, default: nil, allow_nil: true }) }
     it { is_expected.to include(after: { type: String, default: nil, allow_nil: true }) }
     it { is_expected.to include(per_page: { type: Integer, default: 20 }) }
@@ -21,12 +22,11 @@ RSpec.describe Games::List, type: :actions do
   describe '#call' do
     context 'when filter params is present' do
       let!(:game_on_sale) { create(:game, on_sale: true) }
-      let(:filters_form) { GameFiltersForm.build(on_sale: true) }
 
       before { create(:game, on_sale: false) }
 
-      xit 'filters games' do
-        result = described_class.result(filters_form: filters_form)
+      it 'filters games' do
+        result = described_class.result(filter: { on_sale: true })
 
         expect(result.games.to_a).to eq [game_on_sale]
       end

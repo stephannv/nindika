@@ -48,46 +48,6 @@ RSpec.describe Game, type: :model do
       end
     end
 
-    describe '.on_sale' do
-      let!(:on_sale) { create(:game, on_sale: true) }
-
-      before { create(:game, on_sale: false) }
-
-      it 'returns games on sale' do
-        expect(described_class.on_sale.to_a).to eq [on_sale]
-      end
-    end
-
-    describe '.new_release' do
-      let!(:new_release) { create(:game, new_release: true) }
-
-      before { create(:game, new_release: false) }
-
-      it 'returns newly released games' do
-        expect(described_class.new_release.to_a).to eq [new_release]
-      end
-    end
-
-    describe '.coming_soon' do
-      let!(:coming_soon) { create(:game, coming_soon: true) }
-
-      before { create(:game, coming_soon: false) }
-
-      it 'returns coming soon games' do
-        expect(described_class.coming_soon.to_a).to eq [coming_soon]
-      end
-    end
-
-    describe '.pre_order' do
-      let!(:pre_order) { create(:game, pre_order: true) }
-
-      before { create(:game, pre_order: false) }
-
-      it 'returns pre order games' do
-        expect(described_class.pre_order.to_a).to eq [pre_order]
-      end
-    end
-
     describe '.pending_scrap' do
       let!(:not_scraped) { create(:game, last_scraped_at: nil) }
       let!(:scraped_long_ago) { create(:game, last_scraped_at: 25.hours.ago) }

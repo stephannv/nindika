@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-RSpec.describe GamesFilter, type: :lib do
+RSpec.describe Games::Filter, type: :lib do
   describe '#apply' do
-    subject(:result) { described_class.apply(relation: Game, filters_form: filters_form) }
+    subject(:result) { described_class.apply(relation: Game, filter_form_object: filter_form_object) }
 
     context 'when title is present' do
-      let(:filters_form) { GameFiltersForm.build(title: 'leslie') }
+      let(:filter_form_object) { Games::FilterFormObject.build(title: 'leslie') }
       let!(:game) { create(:game, title: 'As confusões de Leslie') }
 
       before { create_list(:game, 3, :with_price) }
@@ -18,8 +18,8 @@ RSpec.describe GamesFilter, type: :lib do
     end
 
     context 'when release_date range is present' do
-      let(:filters_form) do
-        GameFiltersForm.build(release_date_gteq: 2.months.ago, release_date_lteq: Time.zone.tomorrow)
+      let(:filter_form_object) do
+        Games::FilterFormObject.build(release_date_gteq: 2.months.ago, release_date_lteq: Time.zone.tomorrow)
       end
       let!(:game_a) { create(:game, release_date: 1.month.ago) }
       let!(:game_b) { create(:game, release_date: Time.zone.today) }
@@ -32,7 +32,7 @@ RSpec.describe GamesFilter, type: :lib do
     end
 
     context 'when price range is present' do
-      let(:filters_form) { GameFiltersForm.build(price_gteq: 9, price_lteq: 22) }
+      let(:filter_form_object) { Games::FilterFormObject.build(price_gteq: 9, price_lteq: 22) }
       let!(:game_a) { create(:game, current_price: 10) }
       let!(:game_b) { create(:game, current_price: 20) }
 
@@ -44,7 +44,7 @@ RSpec.describe GamesFilter, type: :lib do
     end
 
     context 'when genre is present' do
-      let(:filters_form) { GameFiltersForm.build(genre: 'action') }
+      let(:filter_form_object) { Games::FilterFormObject.build(genre: 'action') }
       let!(:game_a) { create(:game, genres: %w[action racing]) }
       let!(:game_c) { create(:game, genres: %w[action]) }
 
@@ -56,7 +56,7 @@ RSpec.describe GamesFilter, type: :lib do
     end
 
     context 'when language is present' do
-      let(:filters_form) { GameFiltersForm.build(language: 'PT') }
+      let(:filter_form_object) { Games::FilterFormObject.build(language: 'PT') }
 
       let!(:game_a) { create(:game, languages: %w[PT]) }
       let!(:game_c) { create(:game, languages: %w[PT EN JP]) }
@@ -69,7 +69,7 @@ RSpec.describe GamesFilter, type: :lib do
     end
 
     context 'when on_sale param is true' do
-      let(:filters_form) { GameFiltersForm.build(on_sale: true) }
+      let(:filter_form_object) { Games::FilterFormObject.build(on_sale: true) }
       let!(:game) { create(:game, on_sale: true) }
 
       before { create_list(:game, 3, on_sale: false) }
@@ -80,7 +80,7 @@ RSpec.describe GamesFilter, type: :lib do
     end
 
     context 'when new_release param is true' do
-      let(:filters_form) { GameFiltersForm.build(new_release: true) }
+      let(:filter_form_object) { Games::FilterFormObject.build(new_release: true) }
       let!(:game) { create(:game, new_release: true) }
 
       before { create_list(:game, 3, new_release: false) }
@@ -91,7 +91,7 @@ RSpec.describe GamesFilter, type: :lib do
     end
 
     context 'when coming_soon param is true' do
-      let(:filters_form) { GameFiltersForm.build(coming_soon: true) }
+      let(:filter_form_object) { Games::FilterFormObject.build(coming_soon: true) }
       let!(:game) { create(:game, coming_soon: true) }
 
       before { create_list(:game, 3, coming_soon: false) }
@@ -102,7 +102,7 @@ RSpec.describe GamesFilter, type: :lib do
     end
 
     context 'when pre_order param is true' do
-      let(:filters_form) { GameFiltersForm.build(pre_order: true) }
+      let(:filter_form_object) { Games::FilterFormObject.build(pre_order: true) }
       let!(:game) { create(:game, pre_order: true) }
 
       before { create_list(:game, 3, pre_order: false) }

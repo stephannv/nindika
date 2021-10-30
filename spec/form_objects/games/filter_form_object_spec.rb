@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe GameFiltersForm, type: :lib do
+RSpec.describe Games::FilterFormObject, type: :form_object do
   describe 'Attributes' do
     subject(:attributes) { described_class.attribute_types }
 
