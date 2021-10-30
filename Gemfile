@@ -23,6 +23,7 @@ gem 'omniauth', '2.0.4'
 gem 'omniauth-discord', '1.0.2'
 gem 'omniauth-rails_csrf_protection', '1.0.0'
 gem 'omniauth-twitter', '1.4.0'
+gem 'order_query', github: 'stephannv/order_query', branch: 'master'
 gem 'pg', '1.2.3'
 gem 'pg_search', '2.3.5'
 gem 'puma', '5.5.0'
@@ -35,7 +36,8 @@ gem 'service_actor', '3.1.1'
 gem 'tzinfo-data', '2.0.4', platforms: %i[mingw mswin x64_mingw jruby]
 
 group :development, :test do
-  gem 'debug', '1.1.0', platforms: %i[mri mingw x64_mingw]
+  gem 'byebug', '11.1.3', platforms: %i[mri mingw x64_mingw]
+  # gem 'debug', '1.1.0', platforms: %i[mri mingw x64_mingw] # problem with iTerm 2 + zsh
   gem 'factory_bot_rails', '6.2.0'
   gem 'faker', '2.19.0'
 end

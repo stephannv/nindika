@@ -35,21 +35,5 @@ RSpec.describe Games::Find, type: :actions do
         expect { result }.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
-
-    context 'when current user is present' do
-      subject(:result) { described_class.result(slug: slug, user: user) }
-
-      let(:user) { User.new(id: Faker::Internet.uuid) }
-      let(:game) { create(:game) }
-      let(:slug) { game.slug }
-
-      it 'adds wishlisted column' do
-        expect(result.game).to respond_to(:wishlisted)
-      end
-
-      it 'adds hidden column' do
-        expect(result.game).to respond_to(:hidden)
-      end
-    end
   end
 end

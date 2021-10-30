@@ -8,12 +8,7 @@ module Games
     output :game, type: Game
 
     def call
-      scope = Game.friendly
-      if user.present?
-        scope = Games::WithWishlistedColumnQuery.call(relation: scope, user_id: user.id)
-        scope = Games::WithHiddenColumnQuery.call(relation: scope, user_id: user.id, include_hidden: true)
-      end
-      self.game = scope.find(slug)
+      self.game = Game.friendly.find(slug)
     end
   end
 end

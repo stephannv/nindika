@@ -27,4 +27,7 @@
 # Simplecov
 /coverage
 
+# byebug
+/.byebug_history
+
 *.log

@@ -2,44 +2,31 @@
 
 module Games
   class List < Actor
-    input :filters_form, type: GameFiltersForm, default: -> { GameFiltersForm.new }
-    input :sort_param, type: String, default: nil, allow_nil: true
-    input :user, type: User, allow_nil: true, default: nil
+    input :sort_by, type: String, default: nil, allow_nil: true
+    input :after, type: String, default: nil, allow_nil: true
+    input :per_page, type: Integer, default: 20
 
     output :games, type: Enumerable
+    output :total, type: Integer
 
     def call
-      self.games = build_scope
+      scope = build_scope
+      self.total = scope.count
+      self.games = sort_and_paginate(scope)
     end
 
     private
 
     def build_scope
-      scope = Game.left_joins(:price).includes(:price)
-      scope = GamesFilter.apply(relation: scope, filters_form: filters_form)
-      scope = GamesSorter.apply(relation: scope, param: sort_param)
-      scope = apply_wishlist_scope(scope)
-      apply_hidden_scope(scope)
+      Game.left_joins(:price).includes(:price)
     end
 
-    def apply_wishlist_scope(scope)
-      return scope if user.blank?
-
-      Games::WithWishlistedColumnQuery.call(
+    def sort_and_paginate(scope)
+      Games::KeysetPaginator.sort_and_paginate(
         relation: scope,
-        user_id: user.id,
-        only_wishlisted: filters_form.wishlisted
-      )
-    end
-
-    def apply_hidden_scope(scope)
-      return scope if user.blank?
-
-      Games::WithHiddenColumnQuery.call(
-        relation: scope,
-        user_id: user.id,
-        include_hidden: filters_form.include_hidden,
-        only_hidden: filters_form.only_hidden
+        sort_by: sort_by,
+        after: after,
+        per_page: per_page
       )
     end
   end
