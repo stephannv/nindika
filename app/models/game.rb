@@ -3,6 +3,7 @@
 class Game < ApplicationRecord
   include FriendlyId
   include PgSearch::Model
+  include Games::KeysetPagination
 
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
