@@ -1,26 +1,6 @@
 {
   "ignored_warnings": [
     {
-      "warning_type": "SQL Injection",
-      "warning_code": 0,
-      "fingerprint": "7dc9016970302143dbb3ed2b2ba734b7215678c1d80517ff389b16d192767496",
-      "check_name": "SQL",
-      "message": "Possible SQL injection",
-      "file": "app/queries/games/with_wishlisted_column_query.rb",
-      "line": 25,
-      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
-      "code": "relation.select(\"games.*\", \"wishlist_games.id IS NOT NULL AS wishlisted\").joins(\"        #{join_clause} JOIN wishlist_games\\n        ON wishlist_games.game_id = games.id and wishlist_games.user_id = '#{user_id}'\\n\".squish)",
-      "render_path": null,
-      "location": {
-        "type": "method",
-        "class": "Games::WithWishlistedColumnQuery",
-        "method": "call"
-      },
-      "user_input": "join_clause",
-      "confidence": "Weak",
-      "note": ""
-    },
-    {
       "warning_type": "Weak Hash",
       "warning_code": 90,
       "fingerprint": "e8dd3afabd822a6ff7529843073dac20f2ea32c4c72506edac8937c6f134a202",

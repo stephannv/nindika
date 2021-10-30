@@ -8,6 +8,7 @@ RSpec.describe Nindika::V1::GamesAPI, type: :api do
     let(:total) { 3 }
     let(:params) do
       {
+        q: { title: 'Metroid' },
         sort_by: Faker::Lorem.word,
         after: Faker::Internet.uuid
       }
@@ -15,7 +16,7 @@ RSpec.describe Nindika::V1::GamesAPI, type: :api do
 
     before do
       allow(Games::List).to receive(:result)
-        .with(sort_by: params[:sort_by], after: params[:after])
+        .with(filter: params[:q], sort_by: params[:sort_by], after: params[:after])
         .and_return(ServiceActor::Result.new(games: games, total: total))
     end
 

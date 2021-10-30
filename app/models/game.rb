@@ -21,10 +21,6 @@ class Game < ApplicationRecord
   pg_search_scope :search_by_title, against: :title, using: { tsearch: { dictionary: 'english' } }, ignoring: :accents
 
   scope :with_nsuid, -> { where.not(nsuid: nil) }
-  scope :on_sale, -> { where(on_sale: true) }
-  scope :new_release, -> { where(new_release: true) }
-  scope :coming_soon, -> { where(coming_soon: true) }
-  scope :pre_order, -> { where(pre_order: true) }
   scope :pending_scrap, -> { where(last_scraped_at: (..24.hours.ago)).or(where(last_scraped_at: nil)) }
 
   validates :title, presence: true
