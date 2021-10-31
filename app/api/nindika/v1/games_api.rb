@@ -41,6 +41,16 @@ module Nindika
         present :games, result.games, with: ::GameEntity
         present :total, result.total
       end
+
+      params do
+        requires :slug, type: String
+      end
+
+      get '/games/:slug' do
+        result = Games::Find.result(slug: params[:slug])
+
+        present :game, result.game, with: ::GameEntity, type: :full
+      end
     end
   end
 end

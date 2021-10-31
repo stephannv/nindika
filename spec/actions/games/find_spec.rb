@@ -7,7 +7,6 @@ RSpec.describe Games::Find, type: :actions do
     subject(:inputs) { described_class.inputs }
 
     it { is_expected.to include(slug: { type: String }) }
-    it { is_expected.to include(user: { type: User, allow_nil: true, default: nil }) }
   end
 
   describe 'Outputs' do

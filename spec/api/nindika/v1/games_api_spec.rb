@@ -26,5 +26,34 @@ RSpec.describe Nindika::V1::GamesAPI, type: :api do
 
       expect(response.body).to eq expected_response
     end
+
+    it 'returns status 200 - ok' do
+      get '/v1/games', params: params
+
+      expect(response).to have_http_status(:ok)
+    end
+  end
+
+  describe 'GET /v1/games/:slug' do
+    let(:game) { build(:game, :with_fake_id, slug: 'metroid') }
+
+    before do
+      allow(Games::Find).to receive(:result)
+        .with(slug: game.slug)
+        .and_return(ServiceActor::Result.new(game: game))
+    end
+
+    it 'returns game details' do
+      get "/v1/games/#{game.slug}"
+      expected_response = { game: GameEntity.represent(game, type: :full) }.to_json
+
+      expect(response.body).to eq expected_response
+    end
+
+    it 'returns status 200 - ok' do
+      get "/v1/games/#{game.slug}"
+
+      expect(response).to have_http_status(:ok)
+    end
   end
 end

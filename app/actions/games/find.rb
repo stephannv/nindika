@@ -3,7 +3,6 @@
 module Games
   class Find < Actor
     input :slug, type: String
-    input :user, type: User, allow_nil: true, default: nil
 
     output :game, type: Game
 
