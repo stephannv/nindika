@@ -57,6 +57,9 @@ Metrics/MethodLength:
 Naming/VariableNumber:
   Enabled: false
 
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Enabled: false
+
 Rails/SkipsModelValidations:
   Enabled: false
 
