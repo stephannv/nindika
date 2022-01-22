@@ -13,7 +13,7 @@ RSpec.describe HiddenItemsController, type: :controller do
         allow(HiddenItems::Create).to receive(:result)
           .with(user: current_user, item_id: item_id)
           .and_return(ServiceActor::Result.new(failure?: false))
-        request.env['HTTP_REFERER'] = on_sale_games_path
+        request.headers['HTTP_REFERER'] = on_sale_games_url
         post :create, params: { item_id: item_id }
       end
 
@@ -28,7 +28,7 @@ RSpec.describe HiddenItemsController, type: :controller do
         allow(HiddenItems::Create).to receive(:result)
           .with(user: current_user, item_id: item_id)
           .and_return(ServiceActor::Result.new(failure?: true))
-        request.env['HTTP_REFERER'] = on_sale_games_path
+        request.headers['HTTP_REFERER'] = on_sale_games_url
         post :create, params: { item_id: item_id }
       end
 
@@ -53,7 +53,7 @@ RSpec.describe HiddenItemsController, type: :controller do
         allow(HiddenItems::Destroy).to receive(:result)
           .with(user: current_user, item_id: item_id)
           .and_return(ServiceActor::Result.new(failure?: false))
-        request.env['HTTP_REFERER'] = on_sale_games_path
+        request.headers['HTTP_REFERER'] = on_sale_games_url
         post :destroy, params: { item_id: item_id }
       end
 
@@ -68,7 +68,7 @@ RSpec.describe HiddenItemsController, type: :controller do
         allow(HiddenItems::Destroy).to receive(:result)
           .with(user: current_user, item_id: item_id)
           .and_return(ServiceActor::Result.new(failure?: true))
-        request.env['HTTP_REFERER'] = on_sale_games_path
+        request.headers['HTTP_REFERER'] = on_sale_games_url
         post :destroy, params: { item_id: item_id }
       end
 

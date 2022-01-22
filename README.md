@@ -7,7 +7,7 @@
 
 ## Development
 ### System dependencies
-**Ruby:** 3.0.2
+**Ruby:** 3.1.0
 
 **PostgreSQL:** 13
 
@@ -51,7 +51,7 @@
 
 7. Run project
 
-        $ rails s -p 3000
+        $ bin/dev
 
 8. Visit [http://localhost:3000](http://localhost:3000)
 
