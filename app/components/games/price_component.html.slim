@@ -1,11 +1,11 @@
 - if price.present?
-  - if price.discount?
-    = link_to game_path(game.slug), class: 'badge-group', role: 'group' do
-      span.badge.bg-dark.text-white = "#{price.discount_percentage}% OFF"
-      span.badge.badge-primary.font-weight-bold = price.current_price.formatted(integer: true)
-
-  - else
-    = link_to price.current_price.formatted(integer: true), game_path(game.slug), class: 'badge font-weight-bold'
+  .font-size-12
+    - if price.discount?
+        code.code.bg-primary.text-white = "#{price.discount_percentage}%"
+        span.font-weight-bold =< render Prices::LabelComponent.new(money: price.current_price)
+        span =< render Prices::LabelComponent.new(money: price.base_price, line_through: true)
+    - else
+      .font-weight-bold = render Prices::LabelComponent.new(money: price.current_price)
 - else
-  = link_to t('.blank'), game_path(game.slug), class: 'badge'
+  .font-size-12.font-weight-medium = t('.blank')
 
