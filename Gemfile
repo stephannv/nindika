@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '3.0.2'
+ruby '3.1.0'
 
 gem 'algolia', '2.2.2'
 gem 'awesome_print', '1.9.2'
@@ -26,30 +26,29 @@ gem 'pagy', '5.9.1'
 gem 'pg', '1.2.3'
 gem 'pg_search', '2.3.6'
 gem 'puma', '5.5.2'
-gem 'rails', '6.1.4'
+gem 'rails', '7.0.1'
 gem 'rails-i18n', '7.0.1'
-gem 'sass-rails', '6.0.0'
+gem 'sassc-rails', '2.1.2'
 gem 'sentry-rails', '5.0.0'
 gem 'service_actor', '3.1.3'
 gem 'slim-rails', '3.3.0'
+gem 'sprockets-rails', '3.4.2'
 gem 'tzinfo-data', '2.0.4', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'view_component', '2.48.0'
 gem 'webpacker', '5.4.3'
 
 group :development, :test do
-  gem 'byebug', '11.1.3', platforms: %i[mri mingw x64_mingw]
+  gem 'debug', '1.4.0', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails', '6.2.0'
   gem 'faker', '2.19.0'
 end
 
 group :development do
-  gem 'listen', '3.7.1'
   gem 'rack-mini-profiler', '2.3.3'
   gem 'rubocop', '1.25.0'
   gem 'rubocop-performance', '1.13.2'
   gem 'rubocop-rails', '2.13.2'
   gem 'rubocop-rspec', '2.7.0'
-  gem 'spring', '4.0.0'
   gem 'web-console', '4.2.0'
 end
 

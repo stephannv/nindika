@@ -75,6 +75,9 @@ Style/Documentation:
 Style/FrozenStringLiteralComment:
   Enabled: true
 
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
+
 Style/StringLiterals:
   AutoCorrect: true
 

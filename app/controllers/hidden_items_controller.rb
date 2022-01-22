@@ -7,9 +7,9 @@ class HiddenItemsController < ApplicationController
     result = HiddenItems::Create.result(user: current_user, item_id: params[:item_id])
 
     if result.success?
-      redirect_back fallback_location: root_path, success: t('.success')
+      redirect_back_or_to root_path, allow_other_host: false, success: t('.success')
     else
-      redirect_back fallback_location: root_path, danger: t('.error')
+      redirect_back_or_to root_path, allow_other_host: false, danger: t('.error')
     end
   end
 
@@ -17,9 +17,9 @@ class HiddenItemsController < ApplicationController
     result = HiddenItems::Destroy.result(user: current_user, item_id: params[:item_id])
 
     if result.success?
-      redirect_back fallback_location: root_path, success: t('.success')
+      redirect_back_or_to root_path, allow_other_host: false, success: t('.success')
     else
-      redirect_back fallback_location: root_path, danger: t('.error')
+      redirect_back_or_to root_path, allow_other_host: false, danger: t('.error')
     end
   end
 end
