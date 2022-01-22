@@ -30,7 +30,7 @@ RSpec.describe NintendoAlgoliaClient, type: :client do
 
     context 'when @index_asc is nil' do
       before do
-        client.instance_variable_set('@index_asc', nil)
+        client.instance_variable_set(:@index_asc, nil)
         allow(algolia_client).to receive(:init_index).with('ncom_game_pt_br_title_asc').and_return(index)
       end
 
@@ -41,7 +41,7 @@ RSpec.describe NintendoAlgoliaClient, type: :client do
 
     context 'when @index_asc isn`t nil' do
       before do
-        client.instance_variable_set('@index_asc', index)
+        client.instance_variable_set(:@index_asc, index)
       end
 
       it 'doesn`t call :init_index' do
@@ -62,7 +62,7 @@ RSpec.describe NintendoAlgoliaClient, type: :client do
 
     context 'when @index_desc is nil' do
       before do
-        client.instance_variable_set('@index_desc', nil)
+        client.instance_variable_set(:@index_desc, nil)
         allow(algolia_client).to receive(:init_index).with('ncom_game_pt_br_title_des').and_return(index)
       end
 
@@ -73,7 +73,7 @@ RSpec.describe NintendoAlgoliaClient, type: :client do
 
     context 'when @index_desc isn`t nil' do
       before do
-        client.instance_variable_set('@index_desc', index)
+        client.instance_variable_set(:@index_desc, index)
       end
 
       it 'doesn`t call :init_index' do
