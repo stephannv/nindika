@@ -11,7 +11,7 @@ RSpec.describe Games::PriceComponent, type: :component do
     let(:price) { nil }
 
     it 'renders blank message' do
-      content = rendered.css('a.badge').to_html
+      content = rendered.css('.font-size-12.font-weight-medium').to_html
       expect(content).to include(I18n.t('games.price_component.blank'))
     end
   end
@@ -19,26 +19,35 @@ RSpec.describe Games::PriceComponent, type: :component do
   context 'when price has discount' do
     let(:price) { build(:price, :with_discount) }
 
-    it 'renders percentage discount' do
-      content = rendered.css('span.badge.bg-dark.text-white').to_html
+    it 'renders discount percentage' do
+      content = rendered.css('code.code').to_html
 
       expect(content).to include(price.discount_percentage.to_s)
     end
 
-    it 'renders discount amount inside primary colored badge' do
-      content = rendered.css('span.badge.badge-primary.font-weight-bold').to_html
+    it 'renders discount price using Prices::LabelComponent' do
+      content = rendered.to_html
+      discount_price = render_inline(Prices::LabelComponent.new(money: price.discount_price)).to_html
 
-      expect(content).to include(price.discount_price.formatted(integer: true))
+      expect(content).to include(discount_price)
+    end
+
+    it 'renders base price using Prices::LabelComponent with line_through option' do
+      content = rendered.to_html
+      base_price = render_inline(Prices::LabelComponent.new(money: price.base_price, line_through: true)).to_html
+
+      expect(content).to include(base_price)
     end
   end
 
   context 'when price doesn`t have discount' do
     let(:price) { build(:price) }
 
-    it 'renders regular amount inside dark colored badge' do
-      content = rendered.css('a.badge').to_html
+    it 'renders base price inside dark colored badge' do
+      content = rendered.to_html
+      base_price = render_inline(Prices::LabelComponent.new(money: price.base_price)).to_html
 
-      expect(content).to include(price.base_price.formatted(integer: true))
+      expect(content).to include(base_price)
     end
   end
 end
