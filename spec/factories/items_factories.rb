@@ -25,10 +25,15 @@ FactoryBot.define do
     languages { I18nData.languages.keys.sample(3) }
     bytesize { Faker::Number.number(digits: 10) }
     last_scraped_at { Faker::Date.between(from: 3.days.ago, to: Time.zone.today).to_time }
+    featured { false }
 
     trait :with_price do
       association :price
       current_price { price.current_price }
+    end
+
+    trait :featured do
+      featured { true }
     end
   end
 end

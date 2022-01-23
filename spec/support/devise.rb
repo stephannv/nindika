@@ -12,6 +12,16 @@ module AuthControllerMacros
       sign_in user
     end
   end
+
+  def login_admin
+    let(:current_user) { FactoryBot.create(:user, :admin) }
+
+    before do
+      request.env['devise.mapping'] = Devise.mappings[:user]
+      user = current_user
+      sign_in user
+    end
+  end
 end
 
 RSpec.configure do |config|

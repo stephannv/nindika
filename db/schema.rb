@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_161406) do
+ActiveRecord::Schema.define(version: 2022_01_23_185001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2022_01_23_161406) do
     t.bigint "bytesize"
     t.datetime "last_scraped_at"
     t.string "screenshot_urls", default: [], null: false, array: true
+    t.boolean "featured", default: false, null: false
     t.index ["all_time_visits"], name: "index_items_on_all_time_visits"
     t.index ["coming_soon"], name: "index_items_on_coming_soon", where: "coming_soon"
     t.index ["external_id"], name: "index_items_on_external_id", unique: true

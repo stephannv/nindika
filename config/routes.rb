@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
   get 'game/:slug', to: 'games#show', as: :game
 
+  post 'game/:id/feature', to: 'featured_games#create', as: :feature_game
+  delete 'game/:id/feature', to: 'featured_games#destroy'
+
   scope :wishlist do
     post 'add/:item_id', to: 'wishlist_items#create', as: :add_wishlist_item
     delete 'remove/:item_id', to: 'wishlist_items#destroy', as: :remove_wishlist_item
