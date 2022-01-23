@@ -1,5 +1,5 @@
 .container-fluid
-  .row.align-items-center.px-15.py-10
+  .row.align-items-center.px-10.py-10
     .col-auto
       .text-left.font-weight-bold.text-muted = t('.result_count', count: pagy.count)
     .col.text-right
@@ -12,7 +12,7 @@
       = render Games::SortButtonComponent.new
 
   - if pagy.count > 0
-    .row
+    .row.mx-5
       = render Games::CardComponent.with_collection(games, current_user: current_user)
 
     - if pagy.pages > 1

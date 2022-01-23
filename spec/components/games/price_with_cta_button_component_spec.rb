@@ -14,6 +14,15 @@ RSpec.describe Games::PriceWithCTAButtonComponent, type: :component do
     end
   end
 
+  context 'when price is zero' do
+    let(:price) { build(:price, :with_discount, discount_price: Money.new(0, 'BRL')) }
+
+    it 'renders without problem' do
+      content = rendered.to_html
+      expect(content).to be_present
+    end
+  end
+
   context 'when price has discount' do
     let(:price) { build(:price, :with_discount) }
 

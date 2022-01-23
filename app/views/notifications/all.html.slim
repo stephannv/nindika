@@ -6,7 +6,7 @@
   .row.justify-content-center
     - @grouped_events.each do |datetime, groups|
       .col-xl-8.col-lg-10.col-md-12.col-12
-        .card.mt-5.m-10
+        .card.mt-5.m-10.mx-0.mx-md-20
           .content-title.font-size-16.font-weight-bold
             = t('time_distance_from_now', distance: time_ago_in_words(datetime))
           .font-size-12.text-muted

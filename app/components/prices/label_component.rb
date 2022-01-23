@@ -9,10 +9,6 @@ module Prices
       @line_through = line_through
     end
 
-    def free?
-      money.zero?
-    end
-
     def value
       if money.cents < 100
         money.format(symbol: false)
