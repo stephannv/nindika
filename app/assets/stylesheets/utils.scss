@@ -1,3 +1,22 @@
+.dark-mode {
+  #nindika-logo {
+    content: url(asset-path('nindika-dark.svg'));
+  }
+
+  footer.footer {
+    background-color: var(--dark-color);
+    border: none !important;
+  }
+}
+
+#nindika-logo {
+  content: url(asset-path('nindika-light.svg'));
+}
+
+footer.footer {
+  background-color: var(--white-bg-color);
+}
+
 .text-discord {
   color: #7289d9;
 }

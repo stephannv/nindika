@@ -1,4 +1,4 @@
-footer.bg-white.border.font-size-12
+footer.footer.border.py-15.font-size-12
   .content
     .row.justify-content-center
       .col-12.col-md-6.col-lg-4.col-xl-3.mb-20.mb-lg-0.text-center
@@ -21,7 +21,7 @@ footer.bg-white.border.font-size-12
           target: '_blank'
 
       .col-12.col-md-6.col-lg-4.col-xl-3.mb-20.mb-lg-0.text-center
-        .my-0 = image_tag('nindika.svg', class: 'w-quarter img-fluid')
+        .my-0 = image_tag('nindika-light.svg', id: 'nindika-logo', class: 'w-quarter img-fluid')
         .my-0 © 2021, nindika
         => t('.built_by')
         = link_to '@stephann_v', 'https://twitter.com/stephann_v', target: '_blank'

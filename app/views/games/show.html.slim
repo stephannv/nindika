@@ -80,7 +80,7 @@
 
       .card.shadow.mt-0.p-0.border-0
         .px-20.py-10
-          .content-title.font-size-16.font-weight-bold.text-dark = t('.price_history')
+          .content-title.font-size-16.font-weight-bold = t('.price_history')
           div(
             data-controller="price-history-chart"
             data-price-history-chart-data-value=@game.price_history_items.to_chart_data.to_json

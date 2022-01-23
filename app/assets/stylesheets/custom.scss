@@ -51,3 +51,15 @@ body { font-family: 'Inter', sans-serif !important; }
   border: var(--base-border-width) solid var(--lm-border-color) !important;
   border-radius: var(--base-border-radius) !important;
 }
+
+svg.apexcharts-svg {
+  background: transparent !important;
+}
+.dark-mode {
+  .apexcharts-text {
+    tspan { fill: white; }
+  }
+}
+.apexcharts-text {
+  tspan { fill: black; }
+}
