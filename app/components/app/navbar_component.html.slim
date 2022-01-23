@@ -6,5 +6,12 @@ nav.navbar.justify-content-between.border-0
     = content
 
   .navbar-content
+    button.btn.btn-action.mr-5(
+      role="button"
+      title=t('.toggle_dark_mode')
+      data-controller="toggle-dark-mode"
+      data-action="click->toggle-dark-mode#toggle"
+    )
+      i.fas.fa-lightbulb
     = link_to all_notifications_path, class: 'btn btn-action', role: 'button', title: t('.notifications') do
       i.far.fa-bell

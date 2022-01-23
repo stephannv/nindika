@@ -41,8 +41,6 @@ RSpec.describe EventDispatches::SendToTelegram, type: :actions do
         travel_to now
       end
 
-      after { travel_back }
-
       it 'marks event dispatch as sent' do
         expect { result }.to change(EventDispatch.telegram.pending, :count).by(-5)
       end

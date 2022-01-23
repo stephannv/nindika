@@ -57,6 +57,9 @@ Metrics/MethodLength:
 Naming/VariableNumber:
   Enabled: false
 
+Rails/RedundantPresenceValidationOnBelongsTo:
+  Enabled: false
+
 Rails/SkipsModelValidations:
   Enabled: false
 
@@ -71,6 +74,9 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: true
+
+Style/HashSyntax:
+  EnforcedShorthandSyntax: either
 
 Style/StringLiterals:
   AutoCorrect: true

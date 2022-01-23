@@ -14,11 +14,10 @@
       class=button_class
       data-wishlist-button-target="button"
       data-action="click->wishlist-button#toggle"
-      *button_html_attributes
     )
       i(data-wishlist-button-target="icon" class=icon_class)
       = button_text
 - else
-  a(href=new_user_session_path class=inactive_button_class *button_html_attributes)
+  a(href=new_user_session_path class=inactive_button_class)
     i(class=inactive_icon_class)
     = button_text

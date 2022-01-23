@@ -17,23 +17,7 @@
                   img.w-full(data-splide-lazy=img_url)
         .pb-20
         h3.card-title.font-weight-bold.text-center = @game.title
-        - if @game.price.present?
-          .row
-            .col-12
-              - if @game.price.discount?
-                .text-center.mb-5
-                  strike.text-muted.font-weight-bold => @game.price.base_price.formatted
-                  span.badge.bg-dark.text-white.font-weight-bold
-                    = @game.price.discount_percentage
-                    | % OFF
-              .text-center.mb-10
-                = link_to  @game.price.current_price.formatted,  @game.price.eshop_url,
-                  class: 'btn btn-primary btn-rounded font-weight-bold text-white shadow',
-                  target: '_blank',
-                  rel: "noopener noreferrer"
-              - if @game.price.discount?
-                .text-center.text-muted.font-size-12.font-weight-bold.mb-5
-                  = t('.ends_in', time: time_ago_in_words(@game.price.discount_ends_at))
+        = render Games::PriceWithCTAButtonComponent.new(price: @game.price)
         .row.justify-content-center.py-10
           .col-auto.mr-5
             = render Games::WishlistButtonComponent.new(game: @game, current_user: current_user, with_text: true)
@@ -68,7 +52,8 @@
                   .font-weight-bold = t('.languages')
                   p.mt-5
                     - @game.languages.each do |lang|
-                      span.badge.bg-dark.text-white.font-weight-bold.m-5 = I18nData.languages('PT-BR')[lang]
+                      span.badge.bg-dark.text-white.font-weight-bold.m-5
+                        = I18nData.languages('PT-BR')[lang]&.split(';')&.first
 
 
             .col-12
@@ -80,7 +65,7 @@
 
       .card.shadow.mt-0.p-0.border-0
         .px-20.py-10
-          .content-title.font-size-16.font-weight-bold.text-dark = t('.price_history')
+          .content-title.font-size-16.font-weight-bold = t('.price_history')
           div(
             data-controller="price-history-chart"
             data-price-history-chart-data-value=@game.price_history_items.to_chart_data.to_json

@@ -19,7 +19,6 @@ pt-BR:
       title: Lista de desejos
 
     show:
-      ends_in: Encerra em %{time}
       offical_webiste: Site oficial
       genres: Gêneros
       languages: Idiomas disponíveis
