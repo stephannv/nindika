@@ -1,4 +1,9 @@
 pt-BR:
+  featured_games:
+    create:
+      error: Houve um erro
+    destroy:
+      error: Houve um erro
   wishlist_items:
     create:
       error: Houve um erro

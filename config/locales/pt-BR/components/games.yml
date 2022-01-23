@@ -1,9 +1,7 @@
 pt-BR:
   games:
     card_actions_component:
-      hide: Ocultar
-      unhide: Desocultar
-      official_website: Site oficial
+      feature: Destacar
     price_component:
       blank: Em breve
     price_with_cta_button_component:
