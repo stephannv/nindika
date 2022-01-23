@@ -11,6 +11,7 @@ module Prices
 
       Item.with_nsuid.find_in_batches(batch_size: 99) do |batch|
         prices_data += client.fetch(country: 'BR', lang: 'pt', nsuids: batch.pluck(:nsuid))
+        sleep 1
       end
 
       self.prices_data = prices_data

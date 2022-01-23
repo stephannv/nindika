@@ -17,23 +17,7 @@
                   img.w-full(data-splide-lazy=img_url)
         .pb-20
         h3.card-title.font-weight-bold.text-center = @game.title
-        - if @game.price.present?
-          .row
-            .col-12
-              - if @game.price.discount?
-                .text-center.mb-5
-                  strike.text-muted.font-weight-bold => @game.price.base_price.formatted
-                  span.badge.bg-dark.text-white.font-weight-bold
-                    = @game.price.discount_percentage
-                    | % OFF
-              .text-center.mb-10
-                = link_to  @game.price.current_price.formatted,  @game.price.eshop_url,
-                  class: 'btn btn-primary btn-rounded font-weight-bold text-white shadow',
-                  target: '_blank',
-                  rel: "noopener noreferrer"
-              - if @game.price.discount?
-                .text-center.text-muted.font-size-12.font-weight-bold.mb-5
-                  = t('.ends_in', time: time_ago_in_words(@game.price.discount_ends_at))
+        = render Games::PriceWithCTAButtonComponent.new(price: @game.price)
         .row.justify-content-center.py-10
           .col-auto.mr-5
             = render Games::WishlistButtonComponent.new(game: @game, current_user: current_user, with_text: true)
