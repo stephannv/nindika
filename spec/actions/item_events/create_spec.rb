@@ -37,8 +37,36 @@ RSpec.describe ItemEvents::Create, type: :actions do
       expect(result.item_event.attributes).to include('event_type' => event_type, 'data' => data)
     end
 
-    it 'creates telegram event dispatch' do
-      expect(result.item_event.dispatches.telegram.pending.count).to eq 1
+    context 'when item is featured' do
+      let(:item) { create(:item, :featured) }
+
+      it 'creates telegram event dispatch' do
+        expect(result.item_event.dispatches.telegram.pending.count).to eq 1
+      end
+    end
+
+    context 'when event_type is game_added' do
+      let(:event_type) { ItemEventTypes::GAME_ADDED }
+
+      it 'creates telegram event dispatch' do
+        expect(result.item_event.dispatches.telegram.pending.count).to eq 1
+      end
+    end
+
+    context 'when event_type is price_added' do
+      let(:event_type) { ItemEventTypes::PRICE_ADDED }
+
+      it 'creates telegram event dispatch' do
+        expect(result.item_event.dispatches.telegram.pending.count).to eq 1
+      end
+    end
+
+    context 'when game isn`t featured and event type isn`t game_added or price_added' do
+      let(:event_type) { (ItemEventTypes.list - [ItemEventTypes::GAME_ADDED, ItemEventTypes::PRICE_ADDED]).sample }
+
+      it 'doesn`t telegram event dispatch' do
+        expect(result.item_event.dispatches.telegram.pending.count).to eq 0
+      end
     end
   end
 end
