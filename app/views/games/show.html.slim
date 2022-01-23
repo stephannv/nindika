@@ -52,7 +52,8 @@
                   .font-weight-bold = t('.languages')
                   p.mt-5
                     - @game.languages.each do |lang|
-                      span.badge.bg-dark.text-white.font-weight-bold.m-5 = I18nData.languages('PT-BR')[lang]
+                      span.badge.bg-dark.text-white.font-weight-bold.m-5
+                        = I18nData.languages('PT-BR')[lang]&.split(';')&.first
 
 
             .col-12
