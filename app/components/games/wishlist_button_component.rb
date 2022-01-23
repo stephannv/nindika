@@ -38,12 +38,6 @@ module Games
       'btn btn-action btn-default btn-sm'
     end
 
-    def button_html_attributes
-      return {} if with_text
-
-      { 'data-toggle' => 'tooltip', 'data-title' => t('.tooltip'), 'data-placement' => 'bottom' }
-    end
-
     def button_text
       with_text ? " #{t('.text')}" : ''
     end

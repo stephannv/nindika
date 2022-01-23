@@ -2,7 +2,7 @@ pt-BR:
   app:
     navbar_component:
       notifications: Notificações
-
+      toggle_dark_mode: Alternar modo escuro
     sidebar_component:
       games: Jogos
       all: Todos

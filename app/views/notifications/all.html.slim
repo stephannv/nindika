@@ -7,18 +7,18 @@
     - @grouped_events.each do |datetime, groups|
       .col-xl-8.col-lg-10.col-md-12.col-12
         .card.mt-5.m-10
-          .content-title.font-size-16.font-weight-bold.text-dark
+          .content-title.font-size-16.font-weight-bold
             = t('time_distance_from_now', distance: time_ago_in_words(datetime))
           .font-size-12.text-muted
             i.fas.fa-clock
             =< l(datetime, format: :shorter)
           hr
           - groups.each do |event_type, events|
-            h5.font-size-16.font-weight-bold.my-0.text-primary = event_type
+            h5.font-size-16.font-weight-bold.my-0 = event_type
             ul
               - events.each do |event|
                 li.font-weight-bold.text-wrap
-                  = link_to event.title, event.url, class: 'hyperlink text-dark'
+                  = link_to event.title, event.url
 
   .row.justify-content-center
     .col-xl-8.col-lg-10.col-md-12.col-12

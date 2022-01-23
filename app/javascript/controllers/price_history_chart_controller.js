@@ -9,6 +9,9 @@ export default class extends Controller {
   connect () {
     const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
     const chart = new ApexCharts(this.element, {
+      theme: {
+        mode: 'dark'
+      },
       chart: {
         type: 'line',
         fontFamily: 'Inter, sans-serif',

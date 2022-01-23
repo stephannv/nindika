@@ -1,6 +1,6 @@
 .col-12.col-md-6.col-lg-4.col-xl-3(class=('hidden-card' if game.try(:hidden)))
   .card.shadow-sm.p-0.m-10.border-0
-    = link_to game_path(game)
+    = link_to game_path(game) do
       = image_tag game.medium_banner_url, loading: 'lazy', class: 'img-fluid w-full rounded-top'
     .p-10
       .row.justify-content-between.align-items-center

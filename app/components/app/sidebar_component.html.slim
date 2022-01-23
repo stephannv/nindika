@@ -1,7 +1,7 @@
 .sidebar.shadow.border-0
   .sidebar-menu
     = link_to root_path, class: 'sidebar-brand justify-content-center'
-      = image_tag 'nindika.svg'
+      = image_tag 'nindika-light.svg', id: 'nindika-logo'
 
     .sidebar-content
       = form_with(scope: :q, url: games_path, method: :get) do |form|
