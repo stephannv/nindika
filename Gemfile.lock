@@ -1,8 +1,6 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    action_policy (0.6.0)
-      ruby-next-core (>= 0.11.0)
     actioncable (7.0.1)
       actionpack (= 7.0.1)
       activesupport (= 7.0.1)
@@ -326,7 +324,6 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
     rubocop-rspec (2.7.0)
       rubocop (~> 1.19)
-    ruby-next-core (0.14.1)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.5)
     sassc (2.4.0)
@@ -403,7 +400,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  action_policy (= 0.6.0)
   algolia (= 2.2.2)
   awesome_print (= 1.9.2)
   bootsnap (= 1.10.2)

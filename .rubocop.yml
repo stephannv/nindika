@@ -50,7 +50,6 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'config/environments/*'
-    - 'config/routes.rb'
 
 Metrics/MethodLength:
   CountAsOne: ['array', 'hash', 'heredoc']
