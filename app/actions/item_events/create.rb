@@ -25,8 +25,6 @@ module ItemEvents
     end
 
     def create_telegram_dispatch
-      return unless item.featured? || item_event.game_added? || item_event.price_added?
-
       item_event.dispatches.create!(provider: EventDispatchProviders::TELEGRAM)
     end
   end
