@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.0'
 
-gem 'action_policy', '0.6.0'
 gem 'algolia', '2.2.2'
 gem 'awesome_print', '1.9.2'
 gem 'bootsnap', '1.10.2', require: false
