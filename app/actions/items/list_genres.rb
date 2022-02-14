@@ -5,7 +5,9 @@ module Items
     output :genres, type: Array
 
     def call
-      self.genres = Item.pluck(:genres).flatten.uniq.sort
+      self.genres = Rails.cache.fetch('cache-genres', expires_in: 8.hours) do
+        Item.pluck(:genres).flatten.uniq.sort
+      end
     end
   end
 end

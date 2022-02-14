@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_161406) do
+ActiveRecord::Schema.define(version: 2022_02_14_140037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -104,6 +104,7 @@ ActiveRecord::Schema.define(version: 2022_01_23_161406) do
     t.index ["on_sale"], name: "index_items_on_on_sale", where: "on_sale"
     t.index ["pre_order"], name: "index_items_on_pre_order", where: "pre_order"
     t.index ["release_date"], name: "index_items_on_release_date"
+    t.index ["slug"], name: "index_items_on_slug"
   end
 
   create_table "price_history_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
