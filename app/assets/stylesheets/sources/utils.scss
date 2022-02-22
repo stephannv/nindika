@@ -1,6 +1,6 @@
 .dark-mode {
   #nindika-logo {
-    content: url(asset-path('nindika-dark.svg'));
+    content: url('nindika-dark.svg');
   }
 
   footer.footer {
@@ -10,7 +10,7 @@
 }
 
 #nindika-logo {
-  content: url(asset-path('nindika-light.svg'));
+  content: url('nindika-light.svg');
 }
 
 footer.footer {

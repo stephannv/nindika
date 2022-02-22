@@ -1,8 +1,9 @@
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 
 import ApexCharts from 'apexcharts'
 import ptBr from 'apexcharts/dist/locales/pt-br.json'
 
+// Connects to data-controller="price-history-chart"
 export default class extends Controller {
   static values = { data: Array }
 
@@ -28,7 +29,7 @@ export default class extends Controller {
       stroke: {
         curve: 'stepline'
       },
-      colors:['#00c4ff'],
+      colors: ['#00c4ff'],
       tooltip: {
         enabled: true,
         x: {
