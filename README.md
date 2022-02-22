@@ -9,7 +9,7 @@
 ### System dependencies
 **Ruby:** 3.1.0
 
-**PostgreSQL:** 13
+**PostgreSQL:** 14
 
 **Node.js:** >15
 

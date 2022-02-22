@@ -1,3 +1,5 @@
+import halfmoon from 'halfmoon'
+
 export default () => {
   const toastComponent = document.getElementById('app-toast')
 

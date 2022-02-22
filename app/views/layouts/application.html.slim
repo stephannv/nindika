@@ -12,8 +12,7 @@ html
     = csp_meta_tag
 
     = stylesheet_link_tag 'application', media: 'all'
-    = stylesheet_pack_tag 'application'
-    = javascript_pack_tag 'application'
+    = javascript_include_tag 'application', defer: true
 
     - if Rails.env.production?
       script(async defer data-domain="nindika.com" src="https://analytics.nindika.com/js/plausible.js")
