@@ -1,0 +1,11 @@
+// Entry point for your Sass build
+@use 'halfmoon/css/halfmoon-variables.min';
+@use '@splidejs/splide/dist/css/splide.min';
+@use 'sources/theme-override';
+@use 'sources/utils';
+
+$fa-font-path: "";
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/solid';

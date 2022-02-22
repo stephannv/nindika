@@ -1,7 +1,10 @@
-import { Controller } from 'stimulus'
+import { Controller } from '@hotwired/stimulus'
 
-import useCSRFToken from '@/app/use_csrf_token'
+import axios from 'axios'
+import halfmoon from 'halfmoon'
+import useCSRFToken from 'app/use_csrf_token'
 
+// Connects to data-controller="wishlist-button"
 export default class extends Controller {
   static targets = ['button', 'icon']
   static classes = ['activeButton', 'activeIcon', 'inactiveButton', 'inactiveIcon', 'loadingIcon']
@@ -32,13 +35,13 @@ export default class extends Controller {
 
   setActive () {
     this.isActiveValue = true
-    this.buttonTarget.className = this.activeButtonClass
-    this.iconTarget.className = this.activeIconClass
+    this.buttonTarget.className = this.activeButtonClasses.join(' ')
+    this.iconTarget.className = this.activeIconClasses.join(' ')
   }
 
   setInactive () {
     this.isActiveValue = false
-    this.buttonTarget.className = this.inactiveButtonClass
-    this.iconTarget.className = this.inactiveIconClass
+    this.buttonTarget.className = this.inactiveButtonClasses.join(' ')
+    this.iconTarget.className = this.inactiveIconClasses.join(' ')
   }
 }
