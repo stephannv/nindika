@@ -1,17 +1,24 @@
-nav.navbar.justify-content-between.border-0
-  .navbar-content
-    button#sidebar-toggle.btn.btn-action(type="button")
-      i.fas.fa-bars
-      span.sr-only Toggle sidebar
-    = content
+div(uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky")
+  nav.uk-navbar.uk-navbar-container(uk-navbar)
+    .uk-navbar-left
+      = render App::SidebarComponent.new
 
-  .navbar-content
-    button.btn.btn-action.mr-5(
-      role="button"
-      title=t('.toggle_dark_mode')
-      data-controller="toggle-dark-mode"
-      data-action="click->toggle-dark-mode#toggle"
-    )
-      i.fas.fa-lightbulb
-    = link_to all_notifications_path, class: 'btn btn-action', role: 'button', title: t('.notifications') do
-      i.far.fa-bell
+      = link_to root_path, class: 'uk-navbar-item uk-logo uk-text-bolder' do
+        img(uk-img width="130px" src=image_path("nindika-light.svg") id="nindika-logo" alt="nindika logo")
+      ul.uk-navbar-nav(class="uk-visible@m")
+        = render App::Navbar::GameMenuComponent.new
+
+    .uk-navbar-center(class="uk-visible@m")
+      .uk-navbar-item
+        = render App::SearchFormComponent.new
+
+    .uk-navbar-right
+      - if current_user.present?
+        ul.uk-navbar-nav
+          li.uk-text-bold
+            = link_to t('.log_out'), destroy_user_session_path, data: { method: :delete }
+      - else
+        .uk-navbar-item.uk-text-bold
+          = link_to t('.log_in'), new_user_session_path, class: 'uk-button uk-button-primary'
+
+

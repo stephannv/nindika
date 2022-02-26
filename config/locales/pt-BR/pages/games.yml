@@ -7,25 +7,10 @@ pt-BR:
       title: Em promoção
 
     new_releases:
-      title: Recém-lançados
+      title: Lançamentos
 
     coming_soon:
       title: Em Breve
 
     pre_order:
       title: Pré-venda
-
-    wishlist:
-      title: Lista de desejos
-
-    show:
-      offical_webiste: Site oficial
-      genres: Gêneros
-      languages: Idiomas disponíveis
-      price_history: Histórico de Preços
-
-    list:
-      result_count:
-        zero: Nenhum jogo
-        one: 1 jogo
-        other: "%{count} jogos"
