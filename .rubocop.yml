@@ -69,6 +69,10 @@ RSpec/ExampleLength:
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
+Style/ClassAndModuleChildren:
+  Exclude:
+    - app/components/**/*
+
 Style/Documentation:
   Enabled: false
 

@@ -1,11 +1,13 @@
-= render 'metatags_list', title: t('.title')
+= render 'metatags_items_list', title: t('.title')
 
-- content_for :title do
-  .navbar-brand.font-weight-bold = t('.title')
+.uk-container.uk-container-xlarge
+  = render App::PageTitleComponent.new do
+    = t('.title')
 
-= render 'list',
-  pagy: @pagy,
-  games: @games,
-  filters_form: @filters_form,
-  genres: @genres,
-  languages: @languages
+  = render Items::ListComponent.new( \
+    items: @games,
+    pagy: @pagy,
+    filters_form_object: @filters_form,
+    genres: @genres,
+    languages: @languages \
+  )

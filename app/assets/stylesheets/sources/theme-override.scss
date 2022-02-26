@@ -1,65 +1,69 @@
-$primary: #ff007d;
-$secondary: #00c4ff;
-$light: #f0eee2;
-$dark: #000000;
-
-$success: #21BA45;
-$info: #31CCEC;
-$warning: #FFB300;
-$danger: #FF2300;
-
-$body-bg: $light;
+$main-color: #ff007d;
+$secondary-color: #000000;
+$page-background-color: #f0eee2;
+$white: #ffffff;
+$black: #000000;
+$link-color: #007dff;
+$hover-link-color: #0058b3;
 
 @import url('https://rsms.me/inter/inter.css');
-body { font-family: 'Inter', sans-serif !important; }
-@supports (font-variation-settings: normal) {
-  body { font-family: 'Inter var', sans-serif !important; }
+
+// GLOBAL
+$global-font-family: 'Inter', sans-serif;
+$global-color: $black;
+$base-body-background: $page-background-color;
+$global-primary-background: $main-color;
+$global-secondary-background: $secondary-color;
+$global-link-color: $link-color;
+$base-link-hover-color: $hover-link-color;
+
+// MIXIS
+@mixin nav-link-bottom-border($height: 6px, $color) {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border-bottom: $height $color solid;
+  padding-top: $height;
 }
 
-:root {
-  --light-color: #f0eee2;
-  --primary-color: #ff007d;
-  --primary-color-light: #ff66b1;
-  --secondary-color: #00c4ff;
-  --secondary-color-light: #66dbff;
-  --secondary-box-shadow-color: RGBA(0,196,255,0.3);
-  --danger-color: #FF2300;
+// BUTTONS
+$button-disabled-background: $white;
 
-  --lm-base-body-bg-color: var(--light-color);
-  --lm-navbar-bg-color: var(--lm-base-body-bg-color);
+// NAVBAR OVERRIDE
+$navbar-background: $white;
+$navbar-nav-item-color: $black;
+$navbar-nav-item-hover-color: $black;
 
-  --navbar-brand-image-height: 3.2rem;
-
-  --lm-alert-primary-text-color: var(--lm-alert-text-color);
-
-  --lm-alert-danger-text-color: var(--lm-alert-text-color);
-  --lm-alert-danger-bg-color: var(--white-bg-color);
-
-  --lm-alert-success-text-color: var(--lm-alert-text-color);
-  --lm-alert-success-bg-color: var(--white-bg-color);
-}
-
-.splide__arrow {
-  background-color: $light;
-  opacity: 1;
-  svg {
-    fill: $dark;
+ul.uk-navbar-nav {
+  li > a:hover {
+    @include nav-link-bottom-border(6px, $secondary-color);
   }
-  -moz-box-shadow: var(--lm-large-shadow) !important;
-  -webkit-box-shadow: var(--lm-large-shadow) !important;
-  box-shadow: var(--lm-large-shadow) !important;
-  border: var(--base-border-width) solid var(--lm-border-color) !important;
-  border-radius: var(--base-border-radius) !important;
-}
 
-svg.apexcharts-svg {
-  background: transparent !important;
-}
-.dark-mode {
-  .apexcharts-text {
-    tspan { fill: white; }
+  li.uk-active > a {
+    @include nav-link-bottom-border(6px, $main-color);
   }
 }
-.apexcharts-text {
-  tspan { fill: black; }
+
+// SIDEBAR
+$nav-default-font-size: 1rem;
+.uk-offcanvas {
+  ul.uk-nav {
+    li > a:hover {
+      @include nav-link-bottom-border(3px, $white);
+    }
+
+    li.uk-active > a {
+      @include nav-link-bottom-border(3px, $main-color);
+    }
+  }
 }
+
+
+// PLACEHOLDER
+$placeholder-border: $black;
+
+// 2. Import default variables and available mixins.
+@import "uikit/src/scss/variables-theme.scss";
+@import "uikit/src/scss/mixins-theme.scss";
+// 4. Import UIkit.
+@import "uikit/src/scss/uikit-theme.scss";

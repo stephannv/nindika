@@ -3,8 +3,6 @@
 class GamesController < ApplicationController
   include Pagy::Backend
 
-  before_action :authenticate_user!, only: %i[wishlist]
-
   def index
     list_games
     load_filter_options
@@ -27,11 +25,6 @@ class GamesController < ApplicationController
 
   def pre_order
     list_games(pre_order: true)
-    load_filter_options
-  end
-
-  def wishlist
-    list_games(wishlisted: true)
     load_filter_options
   end
 

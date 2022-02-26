@@ -1,72 +1,19 @@
-= render 'metatags_show'
+= render 'metatags_show', game: @game
 
-- content_for :title do
-  .navbar-brand.font-weight-bold.text-truncate = @game.title
+= render Items::Details::HeaderComponent.new(item: @game)
 
-.container-fluid
-  .row.justify-content-center
-    .col-xl-8.col-lg-10.col-md-12.col-12
-      .card.shadow.mb-15.p-0.border-0.mt-0.mx-0.mx-md-20
-        .splide(data-controller="game-screenshots")
-          .splide__track
-            ul.splide__list
-              li.splide__slide
-                img.w-full(src=@game.banner_url)
-              - @game.screenshot_urls.each do |img_url|
-                li.splide__slide
-                  img.w-full(data-splide-lazy=img_url)
-        .pb-20
-        h3.card-title.font-weight-bold.text-center = @game.title
-        = render Games::PriceWithCTAButtonComponent.new(price: @game.price)
-        .row.justify-content-center.py-10
-          .col-auto.mr-5
-            = render Games::WishlistButtonComponent.new(game: @game, current_user: current_user, with_text: true)
-          .col-auto
-            = render Games::HideButtonComponent.new(game: @game)
-        .px-20.py-10
-          .row.align-items-center
-            .col-4
-              .text-center
-                i.fas.fa-calendar-day.font-size-18
-                .font-weight-bold = @game.release_date_text
-            .col-4
-              .text-center
-                i.fas.fa-building.font-size-18
-                .font-weight-bold = @game.publishers.join
-            .col-4
-              .text-center
-                i.fas.fa-database.font-size-18
-                .font-weight-bold = @game.bytesize ? ByteSize.new(@game.bytesize).to_s : 'N/A'
+h3.uk-text-bold.uk-padding-small.uk-text-center
+  = @game.title
 
-          .row.py-20
-            .col-12
-              .text-center
-                .font-weight-bold = t('.genres')
-                p.mt-5
-                  - @game.genres.each do |genre|
-                    span.badge.badge-info.font-weight-bold.m-5 = t(genre, scope: 'genres')
+.uk-grid.uk-flex.uk-flex-center(uk-grid)
+  div(class="uk-width-1-4@xl uk-width-1-3@l uk-width-1-3@m uk-width-1-1@s uk-flex-last@m")
+    .uk-grid.uk-child-width-1-1.uk-grid-small(uk-grid)
+      = render Items::Details::PriceCardComponent.new(item: @game)
+      = render Items::Details::PriceHistoryChartCardComponent.new(item: @game)
 
-            - if @game.languages.any?
-              .col-12
-                .text-center
-                  .font-weight-bold = t('.languages')
-                  p.mt-5
-                    - @game.languages.each do |lang|
-                      span.badge.bg-dark.text-white.font-weight-bold.m-5
-                        = I18nData.languages('PT-BR')[lang]&.split(';')&.first
+  div(class="uk-width-1-3@xl uk-width-1-2@l uk-width-1-2@m uk-width-1-1@s")
+    .uk-grid.uk-child-width-1-1.uk-grid-small.uk-flex(uk-grid)
+      = render Items::Details::AboutCardComponent.new(item: @game)
+      = render Items::Details::InfoCardComponent.new(item: @game)
 
-
-            .col-12
-              p.mt-5.text-justify = @game.description
-
-            .col-12
-              .text-center
-                = link_to t('.offical_webiste'), @game.website_url, target: '_blank', rel: 'noopener noreferrer'
-
-      .card.shadow.mt-0.p-0.border-0.mx-0.mx-md-20
-        .px-20.py-10
-          .content-title.font-size-16.font-weight-bold = t('.price_history')
-          div(
-            data-controller="price-history-chart"
-            data-price-history-chart-data-value=@game.price_history_items.to_chart_data.to_json
-          )
+.uk-margin-bottom

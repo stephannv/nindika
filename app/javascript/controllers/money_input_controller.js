@@ -4,7 +4,7 @@ import Cleave from 'cleave.js'
 
 // Connects to data-controller="money-input"
 export default class extends Controller {
-  connect() {
+  connect () {
     new Cleave(this.element, {
       numeral: true,
       numeralIntegerScale: 3,

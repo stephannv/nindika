@@ -6,18 +6,13 @@
 
 - link = pagy_link_proc(pagy)
 
-nav.m-10 role="navigation" aria-label="pager"
-  ul.row.pagination.justify-content-between
-    - if pagy.prev
-      li.page-item.prev == link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous"')
-    - else
-      li.page-item.prev
-        a.btn.disabled.font-weight-bold href="#" == pagy_t('pagy.nav.prev')
+.uk-flex.uk-flex-middle.uk-flex-between.uk-margin-medium-top.uk-margin-medium-bottom.uk-text-bold
+  - if pagy.prev
+    == link.call(pagy.prev, pagy_t('pagy.nav.prev'), 'aria-label="previous" class="uk-button uk-button-secondary"')
+  - else
+    a.uk-button.uk-button-disabled.uk-text-muted(disabled) == pagy_t('pagy.nav.prev')
 
-    .text-center.font-weight-bold.text-muted.align-self-center = "#{pagy.page}/#{pagy.pages}"
-
-    - if pagy.next
-      li.page-item.next == link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next"')
-    - else
-      li.page-item.next
-        a.btn.disabled.font-weight-bold href="#" == pagy_t('pagy.nav.next')
+  - if pagy.next
+    == link.call(pagy.next, pagy_t('pagy.nav.next'), 'aria-label="next" class="uk-button uk-button-secondary"')
+  - else
+    a.uk-button.uk-button-disabled.uk-text-muted(disabled) == pagy_t('pagy.nav.next')

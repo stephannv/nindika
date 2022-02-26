@@ -1,0 +1,56 @@
+pt-BR:
+  items:
+    list_component:
+      no_results: Nenhum jogo encontrado.
+      see_all: Liste todos os jogos %{link}.
+      here: aqui
+      result_count:
+        zero: Nenhum jogo
+        one: 1 jogo
+        other: "%{count} jogos"
+
+    list:
+      filter_component:
+        filters: Filtros
+        filter: Filtrar
+        title: Título
+        genre: Gênero
+        language: Idioma
+        release_date_gteq: Lançado a partir de
+        release_date_lteq: Lançado até
+        price_gteq: Preço mínimo
+        price_lteq: Preço máximo
+        on_sale: Em promoção
+        pre_order: Pré-venda
+        coming_soon: Em breve
+        new_release: Recém-lançado
+        all: Tudo
+        close: Fechar
+        clear: Limpar
+        apply: Aplicar
+    card:
+      price_component:
+        blank: Em breve
+
+    details:
+      about_card_component:
+        about: Sobre
+        read_more: Ler mais
+
+      info_card_component:
+        info: Informações
+        release_date: Lançamento em
+        publisher: Publicado por
+        developer: Desenvolvido por
+        file_size: Tamanho em disco
+        num_of_players: Nº de jogadores
+        languages: Idiomas disponíveis
+        genres: Gêneros
+        official_website: Site oficial
+
+      price_card_component:
+        save: Economize %{value}%
+        ends_in: Promoção encerra em %{time}
+        buy_now: Comprar
+        free_download: Download gratuito
+        blank: Não é possível adquirir esse jogo ainda

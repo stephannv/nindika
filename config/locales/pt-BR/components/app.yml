@@ -1,17 +1,28 @@
 pt-BR:
   app:
     navbar_component:
-      notifications: Notificações
-      toggle_dark_mode: Alternar modo escuro
+      log_in: Entrar
+      log_out: Sair
+
     sidebar_component:
       games: Jogos
-      all: Todos
-      on_sale: Em Promoção
-      new_releases: Recém-lançados
-      coming_soon: Em Breve
+      on_sale: Em promoção
+      new_releases: Lançamentos
+      coming_soon: Em breve
       pre_order: Pré-venda
-      sign_in: Entrar
-      sign_out: Sair
+      all: Todos
 
-    user_sidebar_menu_component:
-      wishlist: Lista de desejos
+    footer_component:
+      home: Início
+      changelog: Atualizações
+      built_by: Desenvolvido por
+
+    navbar:
+      game_menu_component:
+        games: Jogos
+        on_sale: Em promoção
+        new_releases: Lançamentos
+        coming_soon: Em breve
+        pre_order: Pré-venda
+        all: Todos
+
