@@ -4,6 +4,7 @@ FactoryBot.define do
   factory :item do
     external_id { Faker::Internet.unique.uuid }
     title { Faker::Game.title }
+    slug { title.parameterize }
     description { Faker::Lorem.paragraph }
     website_url { Faker::Internet.url }
     nsuid { Faker::Number.number(digits: 16).to_s }

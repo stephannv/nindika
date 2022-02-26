@@ -1,0 +1,28 @@
+.uk-tile.uk-tile-default
+  .uk-grid.uk-flex.uk-flex-center.uk-text-center(uk-grid)
+    div(class="uk-width-1-4@l uk-width-1-2@m uk-width-1-1@s")
+      .uk-text-bold.uk-margin nindika
+      .uk-text-bold = link_to t('.home'), root_path
+      .uk-text-bold = link_to t('.changelog'),
+        'https://www.notion.so/nindika/1b43698955804bd8887b7e6164c9da62',
+        target: '_blank'
+      .uk-text-bold = link_to 'Twitter', 'https://twitter.com/nindika_com', target: '_blank'
+      .uk-text-bold = link_to 'Github', 'https://github.com/stephannv/nindika', target: '_blank'
+      .uk-text-bold = link_to 'Telegram', 'https://t.me/nindika_com', target: '_blank'
+
+    div(class="uk-width-1-4@l uk-width-1-2@m uk-width-1-1@s")
+      .uk-text-bold.uk-margin Legal
+      .uk-text-bold = link_to t('privacy_policy'),
+        'https://www.notion.so/nindika/c830ff3d5f714ee190e23c675be82e93',
+        target: '_blank'
+      .uk-text-bold = link_to t('terms_of_service'),
+          'https://www.notion.so/nindika/e03af9afc8114cc89f79170e5534d458',
+          target: '_blank'
+
+    .uk-text-bold(class="uk-width-1-4@l uk-width-1-2@m uk-width-1-1@s")
+      img(uk-img width="120px" src=image_path("nindika-light.svg") id="nindika-logo" alt="nindika logo")
+
+      p = "© #{Time.zone.now.year}, nindika"
+      p
+        => t('.built_by')
+        = link_to '@stephann_v', 'https://twitter.com/stephann_v', target: '_blank'

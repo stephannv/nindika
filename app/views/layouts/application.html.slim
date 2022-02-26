@@ -17,24 +17,12 @@ html
     - if Rails.env.production?
       script(async defer data-domain="nindika.com" src="https://analytics.nindika.com/js/plausible.js")
 
-  body.with-custom-webkit-scrollbars.with-custom-css-scrollbars(data-set-preferred-mode-onload="true")
-    = yield :modals
+  body
+    = render App::NavbarComponent.new(current_user: current_user)
+    div(uk-height-viewport="expand: true")
+      = yield
+    = render App::FooterComponent.new
 
-    .page-wrapper.with-navbar.with-sidebar(data-sidebar-type="full-height overlayed-sm-and-down")
-      .sticky-alerts
-        = render App::ToastComponent.new
 
-      = render App::NavbarComponent.new
-        = yield :title
 
-      #sidebar-overlay.sidebar-overlay
-
-      = render App::SidebarComponent.new(current_user: current_user)
-
-      .content-wrapper
-        .row.h-full
-          .col-12
-            = yield
-
-          .col-12.align-self-end
-            = render 'layouts/footer'
+    = yield :modal

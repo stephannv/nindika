@@ -21,26 +21,6 @@ RSpec.describe GamesController, type: :controller do
     end
   end
 
-  describe 'GET /games/wishlist' do
-    context 'when user is logged in' do
-      login_user
-
-      it 'has ok status' do
-        get :wishlist
-
-        expect(response).to have_http_status(:ok)
-      end
-    end
-
-    context 'when user isn`t logged in' do
-      it 'redirects to login page' do
-        get :wishlist
-
-        expect(response).to redirect_to(new_user_session_path)
-      end
-    end
-  end
-
   describe 'GET /game/:slug' do
     let(:item) { create(:item) }
 

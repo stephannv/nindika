@@ -1,51 +1,53 @@
 import { Controller } from '@hotwired/stimulus'
 
-import ApexCharts from 'apexcharts'
-import ptBr from 'apexcharts/dist/locales/pt-br.json'
+import { Chart, PointElement, LineElement, LineController, LinearScale, TimeScale, Tooltip } from 'chart.js';
+import 'chartjs-adapter-luxon'
 
 // Connects to data-controller="price-history-chart"
 export default class extends Controller {
   static values = { data: Array }
 
   connect () {
-    const formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
-    const chart = new ApexCharts(this.element, {
-      theme: {
-        mode: 'dark'
+    Chart.register(PointElement, LineElement, LineController, LinearScale, TimeScale, Tooltip)
+
+    const formatter =  new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+
+    const context = this.element.getContext('2d')
+    new Chart(context, {
+      type: 'line',
+      data: {
+        datasets: [{
+          label: 'R$',
+          data: this.dataValue,
+          stepped: true,
+          borderColor: '#ff007d',
+          backgroundColor: '#ff007d',
+          tension: 1,
+          spanGaps: true
+        }]
       },
-      chart: {
-        type: 'line',
-        fontFamily: 'Inter, sans-serif',
-        locales: [ptBr],
-        defaultLocale: 'pt-br',
-        toolbar: { show: false },
-        zoom: { enabled: false },
-        height: '100%'
-      },
-      series: [{
-        name: 'Preço',
-        data: this.dataValue
-      }],
-      stroke: {
-        curve: 'stepline'
-      },
-      colors: ['#00c4ff'],
-      tooltip: {
-        enabled: true,
-        x: {
-          show: true,
-          formatter: (value) => new Date(value).toLocaleDateString('pt-BR')
+      options: {
+        locale: 'pt-BR',
+        plugins: {
+          legend: {
+            display: false
+          }
         },
-      },
-      xaxis: {
-        type: 'datetime'
-      },
-      yaxis: {
-        labels: {
-          formatter: (value) => formatter.format(value)
+        scales: {
+          x: {
+            type: 'time',
+            time: {
+              tooltipFormat: 'dd/MM/yyyy',
+              unit: 'day'
+            }
+          },
+          y: {
+            ticks: {
+              callback: value => formatter.format(value)
+            }
+          }
         }
-      },
+      }
     })
-    chart.render()
   }
 }

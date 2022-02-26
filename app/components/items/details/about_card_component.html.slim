@@ -1,0 +1,8 @@
+.uk-tile.uk-tile-default.uk-box-shadow-small.uk-padding
+  h4.uk-text-bold = t('.about')
+  p.uk-text-justify
+    span.item-desc = truncate(item.description, length: 300)
+    span.item-desc(hidden) = item.description
+    - if item.description.size > 300
+      span = ' '
+      a(uk-toggle='.item-desc') = t('.read_more')

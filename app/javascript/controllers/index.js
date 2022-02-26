@@ -4,17 +4,11 @@
 
 import { application } from "./application"
 
-import GameScreenshotsController from "./game_screenshots_controller.js"
-application.register("game-screenshots", GameScreenshotsController)
-
 import MoneyInputController from "./money_input_controller.js"
 application.register("money-input", MoneyInputController)
 
 import PriceHistoryChartController from "./price_history_chart_controller.js"
 application.register("price-history-chart", PriceHistoryChartController)
 
-import ToggleDarkModeController from "./toggle_dark_mode_controller.js"
-application.register("toggle-dark-mode", ToggleDarkModeController)
-
-import WishlistButtonController from "./wishlist_button_controller.js"
-application.register("wishlist-button", WishlistButtonController)
+import SortSelectController from "./sort_select_controller.js"
+application.register("sort-select", SortSelectController)
