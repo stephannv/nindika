@@ -7,7 +7,7 @@
 
 ## Development
 ### System dependencies
-**Ruby:** 3.1.0
+**Ruby:** 3.1.1
 
 **PostgreSQL:** 14
 
