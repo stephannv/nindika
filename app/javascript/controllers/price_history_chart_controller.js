@@ -5,6 +5,7 @@ import 'chartjs-adapter-luxon'
 
 // Connects to data-controller="price-history-chart"
 export default class extends Controller {
+  static targets =['canvas']
   static values = { data: Array }
 
   connect () {
@@ -12,7 +13,7 @@ export default class extends Controller {
 
     const formatter =  new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
 
-    const context = this.element.getContext('2d')
+    const context = this.canvasTarget.getContext('2d')
     new Chart(context, {
       type: 'line',
       data: {

@@ -28,7 +28,7 @@ RSpec.describe WishlistItems::Create, type: :actions do
       it 'adds item to user wishlist' do
         result
 
-        expect(user.wishlist.exists?(id: item.id)).to eq true
+        expect(user.wishlist.exists?(id: item.id)).to be true
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe WishlistItems::Create, type: :actions do
       it 'doesn`t add item to user wishlist' do
         result
 
-        expect(user.wishlist.exists?(id: item.id)).to eq false
+        expect(user.wishlist.exists?(id: item.id)).to be false
       end
     end
   end

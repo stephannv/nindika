@@ -93,7 +93,7 @@ RSpec.describe Price, type: :model do
       it 'returns true' do
         price = described_class.new(discount_price: 10)
 
-        expect(price.discount?).to eq true
+        expect(price.discount?).to be true
       end
     end
 
@@ -101,7 +101,7 @@ RSpec.describe Price, type: :model do
       it 'returns false' do
         price = described_class.new(discount_price: nil)
 
-        expect(price.discount?).to eq false
+        expect(price.discount?).to be false
       end
     end
   end
