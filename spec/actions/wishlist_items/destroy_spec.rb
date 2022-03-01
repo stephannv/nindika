@@ -28,7 +28,7 @@ RSpec.describe WishlistItems::Destroy, type: :actor do
     it 'removes item from user wishlist' do
       result
 
-      expect(user.wishlist.exists?(id: item.id)).to eq false
+      expect(user.wishlist.exists?(id: item.id)).to be false
     end
 
     context 'when item cannot be removed from wishlist' do
