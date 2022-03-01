@@ -1,6 +1,6 @@
 li.uk-text-bold(class=active_class_for_parent_link)
   a = t('.games')
-  .uk-navbar-dropdown
+  .uk-navbar-dropdown(uk-dropdown)
     ul.uk-nav.uk-navbar-dropdown-nav
       li(class=active_class_for_link(on_sale_games_path))
         = link_to on_sale_games_path do

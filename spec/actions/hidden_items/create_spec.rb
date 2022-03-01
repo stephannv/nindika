@@ -28,7 +28,7 @@ RSpec.describe HiddenItems::Create, type: :actions do
       it 'adds item to user hidden list' do
         result
 
-        expect(user.hidden_list.exists?(id: item.id)).to eq true
+        expect(user.hidden_list.exists?(id: item.id)).to be true
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe HiddenItems::Create, type: :actions do
       it 'doesn`t add item to user hidden list' do
         result
 
-        expect(user.hidden_list.exists?(id: item.id)).to eq false
+        expect(user.hidden_list.exists?(id: item.id)).to be false
       end
     end
   end

@@ -28,7 +28,7 @@ RSpec.describe HiddenItems::Destroy, type: :actor do
     it 'removes item from user hidden list' do
       result
 
-      expect(user.hidden_list.exists?(id: item.id)).to eq false
+      expect(user.hidden_list.exists?(id: item.id)).to be false
     end
 
     context 'when item cannot be removed from hidden list' do
