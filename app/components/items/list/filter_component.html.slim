@@ -8,7 +8,7 @@ a.uk-button.uk-button-secondary.uk-button-small.uk-text-bold(uk-toggle href="#fi
       button.uk-modal-close-default(uk-close type="button")
       .uk-modal-header
         h3.uk-text-bold.uk-margin-small-top.uk-margin-small-bottom = t('.filters')
-        = form_with scope: :q, method: :get do |form|
+        = form_with scope: :q, method: :get, html: { data: { turbo: false } } do |form|
           .uk-modal-body.uk-padding-remove-horizontal
             .uk-grid-small(uk-grid)
               .uk-width-1-1
@@ -99,7 +99,8 @@ a.uk-button.uk-button-secondary.uk-button-small.uk-text-bold(uk-toggle href="#fi
 
               = link_to t('.clear'),
                 request.path,
-                class: 'uk-button uk-button-default uk-text-bold uk-width-1-1@s uk-width-auto@m uk-margin-small-right'
+                class: 'uk-button uk-button-default uk-text-bold uk-width-1-1@s uk-width-auto@m uk-margin-small-right',
+                data: { turbo: false }
 
               = form.submit t('.apply'),
                 class: 'uk-button uk-button-secondary uk-text-bold uk-width-auto@m uk-width-1-1@s'
