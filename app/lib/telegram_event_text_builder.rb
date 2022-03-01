@@ -31,7 +31,7 @@ class TelegramEventTextBuilder
   end
 
   def item_title
-    "🕹 <b>#{item_event.title}</b>"
+    "🕹 <b>#{sanitize_string(item_event.title)}</b>"
   end
 
   def release_date
@@ -62,5 +62,12 @@ class TelegramEventTextBuilder
 
   def url
     "🔗 #{item_event.url}"
+  end
+
+  def sanitize_string(string)
+    string
+      .gsub('&', '&amp;')
+      .gsub('<', '&lt;')
+      .gsub('>', '&gt;')
   end
 end
