@@ -49,6 +49,10 @@ RSpec.describe ItemsSorter, type: :lib do
     it 'has discount end date asc sort option' do
       expect(options[:discount_end_date_asc]).to include(text: I18n.t('games.sort_options.discount_end_date_asc'))
     end
+
+    it 'has created at desc sort option' do
+      expect(options[:created_at_desc]).to include(text: I18n.t('games.sort_options.created_at_desc'))
+    end
   end
 
   describe '#apply' do
@@ -149,6 +153,17 @@ RSpec.describe ItemsSorter, type: :lib do
       let!(:item_b) { create(:price, discount_ends_at: Time.zone.today).item }
 
       it 'sorts items by price discount end date ascending' do
+        expect(result.to_a).to eq [item_a, item_b, item_c]
+      end
+    end
+
+    context 'when sort options is created_at_desc' do
+      let(:sort_option) { 'created_at_desc' }
+      let!(:item_c) { create(:item, created_at: 1.month.ago) }
+      let!(:item_a) { create(:item, created_at: Time.zone.today) }
+      let!(:item_b) { create(:item, created_at: 1.week.ago) }
+
+      it 'sorts items by created at date descending' do
         expect(result.to_a).to eq [item_a, item_b, item_c]
       end
     end

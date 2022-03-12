@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_14_140037) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_03_12_204810) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
@@ -22,8 +21,8 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
     t.uuid "item_event_id", null: false
     t.string "provider", null: false
     t.string "sent_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["item_event_id", "provider", "sent_at"], name: "idx_event_provider_sent_at", where: "(sent_at IS NULL)"
     t.index ["item_event_id", "provider"], name: "index_event_dispatches_on_item_event_id_and_provider", unique: true
     t.index ["item_event_id"], name: "index_event_dispatches_on_item_event_id"
@@ -34,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
     t.uuid "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
@@ -43,8 +42,8 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
   create_table "hidden_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "item_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_hidden_items_on_item_id"
     t.index ["user_id", "item_id"], name: "index_hidden_items_on_user_id_and_item_id", unique: true
     t.index ["user_id"], name: "index_hidden_items_on_user_id"
@@ -56,8 +55,8 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
     t.string "title", null: false
     t.string "url", null: false
     t.jsonb "data", default: {}, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["created_at", "event_type"], name: "index_item_events_on_created_at_and_event_type", order: { created_at: :desc }
     t.index ["item_id"], name: "index_item_events_on_item_id"
   end
@@ -79,8 +78,8 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
     t.string "developers", default: [], null: false, array: true
     t.string "genres", default: [], null: false, array: true
     t.string "franchises", default: [], null: false, array: true
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "on_sale", default: false, null: false
     t.boolean "new_release", default: false, null: false
     t.boolean "coming_soon", default: false, null: false
@@ -91,10 +90,11 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
     t.string "current_price_currency", default: "BRL", null: false
     t.string "languages", default: [], null: false, array: true
     t.bigint "bytesize"
-    t.datetime "last_scraped_at"
+    t.datetime "last_scraped_at", precision: nil
     t.string "screenshot_urls", default: [], null: false, array: true
     t.index ["all_time_visits"], name: "index_items_on_all_time_visits"
     t.index ["coming_soon"], name: "index_items_on_coming_soon", where: "coming_soon"
+    t.index ["created_at"], name: "index_items_on_created_at", order: :desc
     t.index ["external_id"], name: "index_items_on_external_id", unique: true
     t.index ["genres"], name: "index_items_on_genres", using: :gin
     t.index ["languages"], name: "index_items_on_languages", using: :gin
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
     t.date "reference_date", null: false
     t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "BRL", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["price_id", "reference_date"], name: "index_price_history_items_on_price_id_and_reference_date", unique: true
     t.index ["price_id"], name: "index_price_history_items_on_price_id"
   end
@@ -125,13 +125,13 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
     t.string "base_price_currency", default: "BRL", null: false
     t.integer "discount_price_cents"
     t.string "discount_price_currency", default: "BRL", null: false
-    t.datetime "discount_started_at"
-    t.datetime "discount_ends_at"
+    t.datetime "discount_started_at", precision: nil
+    t.datetime "discount_ends_at", precision: nil
     t.integer "discount_percentage"
     t.string "state", null: false
     t.integer "gold_points"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "discounted_amount_cents"
     t.string "discounted_amount_currency", default: "BRL", null: false
     t.index ["item_id"], name: "index_prices_on_item_id", unique: true
@@ -144,8 +144,8 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
     t.jsonb "data", default: {}, null: false
     t.string "checksum", limit: 512, null: false
     t.boolean "imported", default: false, null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["external_id"], name: "index_raw_items_on_external_id", unique: true
     t.index ["imported"], name: "index_raw_items_on_imported", where: "(imported = false)"
     t.index ["item_id"], name: "index_raw_items_on_item_id", unique: true, where: "(item_id IS NOT NULL)"
@@ -157,8 +157,8 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
     t.string "provider", null: false
     t.string "uid", null: false
     t.string "profile_image_url"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean "admin", default: false, null: false
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
@@ -166,8 +166,8 @@ ActiveRecord::Schema.define(version: 2022_02_14_140037) do
   create_table "wishlist_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "item_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_wishlist_items_on_item_id"
     t.index ["user_id", "item_id"], name: "index_wishlist_items_on_user_id_and_item_id", unique: true
     t.index ["user_id"], name: "index_wishlist_items_on_user_id"
