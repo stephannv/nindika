@@ -51,6 +51,10 @@ class ItemsSorter
       text: I18n.t('games.sort_options.discount_end_date_asc'),
       query: 'prices.discount_ends_at ASC NULLS LAST',
       left_joins: :price
+    },
+    created_at_desc: {
+      text: I18n.t('games.sort_options.created_at_desc'),
+      query: 'items.created_at DESC'
     }
   }.freeze
 
