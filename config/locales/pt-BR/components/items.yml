@@ -26,7 +26,7 @@ pt-BR:
         on_sale: Em promoção
         pre_order: Pré-venda
         coming_soon: Em breve
-        new_release: Recém-lançado
+        new_release: Lançamento
         all: Tudo
         close: Fechar
         clear: Limpar
@@ -57,3 +57,6 @@ pt-BR:
         buy_now: Comprar
         free_download: Download gratuito
         blank: Não é possível adquirir esse jogo ainda
+
+      price_history_chart_card_component:
+        price_history: Histórico de preços
