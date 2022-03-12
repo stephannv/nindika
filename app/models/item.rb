@@ -3,6 +3,7 @@
 class Item < ApplicationRecord
   include FriendlyId
   include PgSearch::Model
+  include Items::Scopes
 
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
@@ -18,13 +19,6 @@ class Item < ApplicationRecord
   monetize :current_price_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }
 
   pg_search_scope :search_by_title, against: :title, using: { tsearch: { dictionary: 'english' } }, ignoring: :accents
-
-  scope :with_nsuid, -> { where.not(nsuid: nil) }
-  scope :on_sale, -> { where(on_sale: true) }
-  scope :new_release, -> { where(new_release: true) }
-  scope :coming_soon, -> { where(coming_soon: true) }
-  scope :pre_order, -> { where(pre_order: true) }
-  scope :pending_scrap, -> { where(last_scraped_at: (..24.hours.ago)).or(where(last_scraped_at: nil)) }
 
   validates :title, presence: true
   validates :external_id, presence: true

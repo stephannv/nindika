@@ -15,7 +15,7 @@ module Items
     private
 
     def build_scope
-      scope = Item.left_joins(:price).includes(:price)
+      scope = Item.including_prices
       scope = ItemsFilter.apply(relation: scope, filters_form: filters_form)
       scope = ItemsSorter.apply(relation: scope, param: sort_param)
       scope = apply_wishlist_scope(scope)
