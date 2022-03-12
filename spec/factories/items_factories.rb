@@ -28,8 +28,10 @@ FactoryBot.define do
     last_scraped_at { Faker::Date.between(from: 3.days.ago, to: Time.zone.today).to_time }
 
     trait :with_price do
-      association :price
-      current_price { price.current_price }
+      after :create do |item|
+        price = create(:price, item: item)
+        item.update(current_price: price.current_price)
+      end
     end
   end
 end
