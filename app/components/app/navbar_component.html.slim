@@ -6,6 +6,8 @@ div(uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky")
       = link_to root_path, class: 'uk-navbar-item uk-logo uk-text-bolder' do
         img(uk-img width="130px" src=image_path("nindika-light.svg") id="nindika-logo" alt="nindika logo")
       ul.uk-navbar-nav(class="uk-visible@m")
+        li.uk-text-bold(class=active_class_for_link(root_path))
+          = link_to t('.home'), root_path
         = render App::Navbar::GameMenuComponent.new
 
     .uk-navbar-center(class="uk-visible@m")

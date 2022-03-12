@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   scope :games do
     get '/', to: 'games#index', as: :games
+    get :all, to: 'games#all', as: :all_games
     get :on_sale, to: 'games#on_sale', as: :on_sale_games
     get :new_releases, to: 'games#new_releases', as: :new_releases_games
     get :coming_soon, to: 'games#coming_soon', as: :coming_soon_games

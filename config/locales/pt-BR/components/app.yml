@@ -3,8 +3,11 @@ pt-BR:
     navbar_component:
       log_in: Entrar
       log_out: Sair
+      home: Início
 
     sidebar_component:
+      home: Início
+
       games: Jogos
       on_sale: Em promoção
       new_releases: Lançamentos

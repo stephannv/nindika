@@ -11,6 +11,12 @@ a.uk-navbar-toggle(uk-navbar-toggle-icon class="uk-hidden@m" uk-toggle="target: 
       = render App::SearchFormComponent.new(dark: true)
 
     ul.uk-nav.uk-nav-default.uk-text-bold
+      li(class=active_class_for_link(root_path))
+        = link_to root_path do
+          .uk-margin-small-right
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M20 20a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-9H1l10.327-9.388a1 1 0 0 1 1.346 0L23 11h-3v9z" fill="rgba(255,255,255,1)"/></svg>
+          =< t('.home')
+
       li.uk-nav-header = t('.games')
       li(class=active_class_for_link(on_sale_games_path))
         = link_to on_sale_games_path do
@@ -36,8 +42,8 @@ a.uk-navbar-toggle(uk-navbar-toggle-icon class="uk-hidden@m" uk-toggle="target: 
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M17 3h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4V1h2v2h6V1h2v2zM4 9v10h16V9H4zm2 4h5v4H6v-4z" fill="rgba(255,255,255,1)"/></svg>
           =< t('.coming_soon')
 
-      li(class=active_class_for_link(games_path))
-        = link_to games_path do
+      li(class=active_class_for_link(all_games_path))
+        = link_to all_games_path do
           .uk-margin-small-right
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M22 12.999V20a1 1 0 0 1-1 1h-8v-8.001h9zm-11 0V21H3a1 1 0 0 1-1-1v-7.001h9zM11 3v7.999H2V4a1 1 0 0 1 1-1h8zm10 0a1 1 0 0 1 1 1v6.999h-9V3h8z" fill="rgba(255,255,255,1)"/></svg>
           =< t('.all')

@@ -11,7 +11,7 @@ RSpec.describe GamesController, type: :controller do
     end
   end
 
-  %i[on_sale new_releases coming_soon pre_order].each do |action|
+  %i[on_sale new_releases coming_soon pre_order all].each do |action|
     describe "GET /games/#{action}" do
       it 'has ok status' do
         get action

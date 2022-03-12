@@ -9,6 +9,9 @@ pt-BR:
         one: 1 jogo
         other: "%{count} jogos"
 
+    horizontal_list_component:
+      see_all: Ver tudo
+
     list:
       filter_component:
         filters: Filtros
