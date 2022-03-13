@@ -29,7 +29,7 @@
 = render Items::HorizontalListComponent.new( \
   title: t('.new_games'),
   items: @new_games,
-  see_all_href: all_games_path(sort: :to_do),
+  see_all_href: all_games_path(sort: :created_at_desc),
   cards_size: 'uk-width-5-6 uk-width-2-3@m uk-width-1-4@l uk-width-1-6@xl' \
 )
 
