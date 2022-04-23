@@ -17,5 +17,21 @@ module Games
     def i18n_scope
       'pages.games.index_page'
     end
+
+    def metatags
+      helpers.set_meta_tags(
+        description: t('website_description'),
+        reverse: true,
+        keywords: 'Nintendo Switch, Games, Jogos, Nintendo, eShop',
+        twitter: { card: 'summary_large_image', site: '@nindika_com' },
+        og: {
+          title: 'nindika',
+          description: t('website_description'),
+          type: 'website',
+          url: root_url,
+          image: image_url('nindika.png')
+        }
+      )
+    end
   end
 end
