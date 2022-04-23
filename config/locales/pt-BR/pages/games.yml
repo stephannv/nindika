@@ -1,12 +1,14 @@
 pt-BR:
-  games:
-    index:
-      trending_games: Tendências
-      coming_soon_games: Em breve
-      new_releases_games: Lançamentos
-      on_sale_games: Novas promoções
-      new_games: Novas adições
+  pages:
+    games:
+      index_page:
+        trending_games: Tendências
+        coming_soon_games: Em breve
+        new_releases_games: Lançamentos
+        on_sale_games: Novas promoções
+        new_games: Novas adições
 
+  games:
     all:
       title: Todos os jogos
 
