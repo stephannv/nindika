@@ -3,7 +3,6 @@
 require 'simplecov'
 
 SimpleCov.start do
-  add_group 'Actions', 'app/actions'
   add_group 'Clients', 'app/clients'
   add_group 'Components', 'app/components'
   add_group 'Controllers', 'app/controllers'
@@ -14,6 +13,7 @@ SimpleCov.start do
   add_group 'Lib', 'app/lib'
   add_group 'Models', 'app/models'
   add_group 'Mailers', 'app/mailers'
+  add_group 'Operations', 'app/operations'
   add_group 'Queries', 'app/queries'
 
   add_filter 'config'

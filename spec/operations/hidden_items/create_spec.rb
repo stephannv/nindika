@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe HiddenItems::Create, type: :actions do
+RSpec.describe HiddenItems::Create, type: :operations do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 

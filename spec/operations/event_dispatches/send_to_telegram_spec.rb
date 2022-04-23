@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe EventDispatches::SendToTelegram, type: :actions do
+RSpec.describe EventDispatches::SendToTelegram, type: :operations do
   include ActiveSupport::Testing::TimeHelpers
 
   describe 'Inputs' do

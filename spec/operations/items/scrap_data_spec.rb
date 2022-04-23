@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Items::ScrapData, type: :actions do
+RSpec.describe Items::ScrapData, type: :operations do
   include ActiveSupport::Testing::TimeHelpers
 
   describe 'Inputs' do

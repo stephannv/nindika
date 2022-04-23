@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Prices::Upsert, type: :actions do
+RSpec.describe Prices::Upsert, type: :operations do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 

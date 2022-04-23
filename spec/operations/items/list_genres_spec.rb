@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Items::ListGenres, type: :actions do
+RSpec.describe Items::ListGenres, type: :operations do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 
