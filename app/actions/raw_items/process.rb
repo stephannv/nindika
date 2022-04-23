@@ -11,9 +11,8 @@ module RawItems
     private
 
     def process_raw_item(raw_item)
-      data = ::NintendoAlgoliaDataAdapter.adapt(raw_item.data)
-      item = raw_item.item || Item.new
-      item.assign_attributes(data)
+      item = build_item(raw_item)
+
       ActiveRecord::Base.transaction do
         item.save!
         ItemEvents::Create.call(event_type: ItemEventTypes::GAME_ADDED, item: item) if item.saved_change_to_id?
@@ -23,6 +22,13 @@ module RawItems
       raise e if Rails.env.development?
 
       Sentry.capture_exception(e, extra: { raw_item: raw_item.data })
+    end
+
+    def build_item(raw_item)
+      data = ::NintendoAlgoliaDataAdapter.adapt(raw_item.data)
+      item = raw_item.item || Item.new
+      item.assign_attributes(data)
+      item
     end
   end
 end
