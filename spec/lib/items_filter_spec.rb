@@ -39,7 +39,7 @@ RSpec.describe ItemsFilter, type: :lib do
       before { create(:item, current_price: 30) }
 
       it 'returns items filtering by price range' do
-        expect(result.to_a).to eq [item_a, item_b]
+        expect(result.to_a).to match_array([item_a, item_b])
       end
     end
 
