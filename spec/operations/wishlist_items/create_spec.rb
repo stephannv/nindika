@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe WishlistItems::Create, type: :actions do
+RSpec.describe WishlistItems::Create, type: :operations do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Admin::ImportData, type: :actions do
+RSpec.describe Admin::ImportData, type: :operations do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 
@@ -18,7 +18,7 @@ RSpec.describe Admin::ImportData, type: :actions do
   describe '#call' do
     subject(:result) { described_class.result }
 
-    let(:actions) do
+    let(:operations) do
       [
         RawItems::Import,
         Prices::Import,
@@ -30,11 +30,11 @@ RSpec.describe Admin::ImportData, type: :actions do
 
     before do
       allow(Rails.env).to receive(:production?).and_return(true)
-      actions.each { |a| allow(a).to receive(:call) }
+      operations.each { |a| allow(a).to receive(:call) }
     end
 
     it 'executes data import tasks' do
-      expect(actions).to all(receive(:call).ordered)
+      expect(operations).to all(receive(:call).ordered)
 
       result
     end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Prices::Fetch, type: :actions do
+RSpec.describe Prices::Fetch, type: :operations do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 

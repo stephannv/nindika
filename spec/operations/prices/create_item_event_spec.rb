@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Prices::CreateItemEvent, type: :actions do
+RSpec.describe Prices::CreateItemEvent, type: :operations do
   describe 'Inputs' do
     subject(:inputs) { described_class.inputs }
 

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Items::ScrapPendingItemsData, type: :actions do
+RSpec.describe Items::ScrapPendingItemsData, type: :operations do
   describe 'Inputs' do
     subject { described_class.inputs }
 
