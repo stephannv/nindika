@@ -42,7 +42,7 @@ class GamesController < ApplicationController
   def show
     result = Items::Find.result(slug: params[:slug], user: current_user)
 
-    @game = result.item
+    render Games::ShowPage.new(game: result.item)
   end
 
   private

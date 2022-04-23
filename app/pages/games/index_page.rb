@@ -18,7 +18,7 @@ module Games
       'pages.games.index_page'
     end
 
-    def metatags
+    def meta_tags
       helpers.set_meta_tags(
         description: t('website_description'),
         reverse: true,
