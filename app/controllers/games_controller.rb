@@ -5,11 +5,13 @@ class GamesController < ApplicationController
 
   def index
     result = Items::LoadHomeData.result
-    @on_sale_games = result.on_sale_games
-    @new_games = result.new_games
-    @coming_soon_games = result.coming_soon_games
-    @new_releases_games = result.new_releases_games
-    @trending_games = result.trending_games
+    on_sale_games = result.on_sale_games
+    new_games = result.new_games
+    coming_soon_games = result.coming_soon_games
+    new_releases_games = result.new_releases_games
+    trending_games = result.trending_games
+
+    render Games::IndexPage.new(on_sale_games:, new_games:, coming_soon_games:, new_releases_games:, trending_games:)
   end
 
   def on_sale
