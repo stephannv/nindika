@@ -7,7 +7,6 @@ RSpec.describe Items::List, type: :operations do
     subject(:inputs) { described_class.inputs }
 
     it { is_expected.to include(sort_param: { type: String, default: nil, allow_nil: true }) }
-    it { is_expected.to include(user: { type: User, default: nil, allow_nil: true }) }
 
     it do
       filters_form = inputs.dig(:filters_form, :default).call
@@ -44,57 +43,6 @@ RSpec.describe Items::List, type: :operations do
         result = described_class.result(sort_param: 'release_date_asc')
 
         expect(result.items.to_a).to eq [item_c, item_a, item_b]
-      end
-    end
-
-    context 'when user is present' do
-      it 'adds wishlisted column' do
-        create(:item)
-        result = described_class.result(user: User.new(id: Faker::Internet.uuid))
-
-        expect(result.items.first).to respond_to :wishlisted
-      end
-    end
-
-    context 'when include_hidden filter is filled' do
-      let!(:hidden_item) { create(:hidden_item) }
-      let!(:not_hidden_item) { create(:item) }
-
-      let(:filters_form) { GameFiltersForm.build(include_hidden: true) }
-
-      it 'returns items including hidden items' do
-        result = described_class.result(user: hidden_item.user, filters_form: filters_form)
-
-        expect(result.items).to include(hidden_item.item, not_hidden_item)
-      end
-    end
-
-    context 'when only_hidden filter is filled' do
-      let!(:hidden_item) { create(:hidden_item) }
-      let(:filters_form) { GameFiltersForm.build(only_hidden: true) }
-
-      before { create(:item) }
-
-      it 'returns only hidden items' do
-        result = described_class.result(user: hidden_item.user, filters_form: filters_form)
-
-        expect(result.items).to eq [hidden_item.item]
-      end
-    end
-
-    context 'when filter by user wishlist' do
-      let!(:wishlist_item) { create(:wishlist_item) }
-      let(:filters_form) { GameFiltersForm.build(wishlisted: true) }
-
-      before do
-        create(:wishlist_item) # creates item wishlisted by other user
-        create(:item) # not wishlisted item
-      end
-
-      it 'returns only games present in user wishlist' do
-        result = described_class.result(user: wishlist_item.user, filters_form: filters_form)
-
-        expect(result.items.to_a).to eq [wishlist_item.item]
       end
     end
   end
