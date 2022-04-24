@@ -19,10 +19,6 @@ class GameFiltersForm
   attribute :coming_soon, :boolean
   attribute :pre_order, :boolean
 
-  attribute :wishlisted, :boolean
-  attribute :include_hidden, :boolean
-  attribute :only_hidden, :boolean
-
   def self.build(attributes = {})
     form = new
     form.assign_attributes(attributes)

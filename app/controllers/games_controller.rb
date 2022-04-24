@@ -13,7 +13,7 @@ class GamesController < ApplicationController
   end
 
   def show
-    result = Items::Find.result(slug: params[:slug], user: current_user)
+    result = Items::Find.result(slug: params[:slug])
 
     render Games::ShowPage.new(game: result.item)
   end

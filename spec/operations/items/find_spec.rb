@@ -7,7 +7,6 @@ RSpec.describe Items::Find, type: :operations do
     subject(:inputs) { described_class.inputs }
 
     it { is_expected.to include(slug: { type: String }) }
-    it { is_expected.to include(user: { type: User, allow_nil: true, default: nil }) }
   end
 
   describe 'Outputs' do
@@ -33,22 +32,6 @@ RSpec.describe Items::Find, type: :operations do
 
       it 'raises not found error' do
         expect { result }.to raise_error(ActiveRecord::RecordNotFound)
-      end
-    end
-
-    context 'when current user is present' do
-      subject(:result) { described_class.result(slug: slug, user: user) }
-
-      let(:user) { User.new(id: Faker::Internet.uuid) }
-      let(:item) { create(:item) }
-      let(:slug) { item.slug }
-
-      it 'adds wishlisted column' do
-        expect(result.item).to respond_to(:wishlisted)
-      end
-
-      it 'adds hidden column' do
-        expect(result.item).to respond_to(:hidden)
       end
     end
   end
