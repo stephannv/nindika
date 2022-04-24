@@ -1,0 +1,51 @@
+<div class="uk-tile uk-tile-default">
+  <div uk-grid class="uk-grid uk-flex uk-flex-center uk-text-center">
+    <div class="uk-width-1-4@l uk-width-1-2@m uk-width-1-1@s">
+      <div class="uk-text-bold uk-margin">nindika</div>
+
+      <div class="uk-text-bold">
+        <%= link_to t('.home'), root_path %>
+      </div>
+
+      <div class="uk-text-bold">
+        <%= link_to t('.changelog'), 'https://www.notion.so/nindika/1b43698955804bd8887b7e6164c9da62', target: '_blank' %>
+      </div>
+
+      <div class="uk-text-bold">
+        <%= link_to 'Twitter', 'https://twitter.com/nindika_com', target: '_blank' %>
+      </div>
+
+      <div class="uk-text-bold">
+        <%= link_to 'Github', 'https://github.com/stephannv/nindika', target: '_blank' %>
+      </div>
+
+      <div class="uk-text-bold">
+        <%= link_to 'Telegram', 'https://t.me/nindika_com', target: '_blank' %>
+      </div>
+    </div>
+
+    <div class="uk-width-1-4@l uk-width-1-2@m uk-width-1-1@s">
+      <div class="uk-text-bold uk-margin">Legal</div>
+
+      <div class="uk-text-bold">
+        <%= link_to t('privacy_policy'), 'https://www.notion.so/nindika/c830ff3d5f714ee190e23c675be82e93', target: '_blank' %>
+      </div>
+
+      <div class="uk-text-bold">
+        <%= link_to t('terms_of_service'), 'https://www.notion.so/nindika/e03af9afc8114cc89f79170e5534d458', target: '_blank' %>
+      </div>
+    </div>
+
+    <div class="uk-text-bold uk-width-1-4@l uk-width-1-2@m uk-width-1-1@s">
+      <%= image_tag 'nindika-light.svg', id: 'nindika-logo', alt: 'nindika logo', width: '120px', 'uk-img' => true %>
+
+      <p>
+        <%= "© #{Time.zone.now.year}, nindika" %>
+      </p>
+
+      <p>
+        <%= t('.built_by') %> <%= link_to '@stephann_v', 'https://twitter.com/stephann_v', target: '_blank' %>
+      </p>
+    </div>
+  </div>
+</div>
