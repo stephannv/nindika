@@ -9,17 +9,25 @@ Rails.application.routes.draw do
     delete :sign_out, to: 'devise/sessions#destroy', as: :destroy_user_session
   end
 
-  scope :games do
-    get '/', to: 'games#index', as: :games
-    get :all, to: 'games#all', as: :all_games
-    get :on_sale, to: 'games#on_sale', as: :on_sale_games
-    get :new_releases, to: 'games#new_releases', as: :new_releases_games
-    get :coming_soon, to: 'games#coming_soon', as: :coming_soon_games
-    get :pre_order, to: 'games#pre_order', as: :pre_order_games
-    get :wishlist, to: 'games#wishlist', as: :wishlist_games
-  end
+  #######################################
+  ##           LEGACY URL's            ##
+  ## To make compatible with old URL's ##
+  #######################################
+  get 'games/all', to: redirect('/all_games')
+  get 'games/on_sale', to: redirect('/on_sale_games')
+  get 'games/new_releases', to: redirect('/new_releases')
+  get 'games/coming_soon', to: redirect('/upcoming_games')
+  get 'games/pre_order', to: redirect('/pre_orders')
+  get 'game/:slug', to: redirect('/games/%{slug}')
+  #######################################
+  #######################################
 
-  get 'game/:slug', to: 'games#show', as: :game
+  resources :all_games, only: :index
+  resources :on_sale_games, only: :index
+  resources :new_releases, only: :index
+  resources :pre_orders, only: :index
+  resources :upcoming_games, only: :index
+  resources :games, only: %i[index show], param: :slug
 
   scope :wishlist do
     post 'add/:item_id', to: 'wishlist_items#create', as: :add_wishlist_item

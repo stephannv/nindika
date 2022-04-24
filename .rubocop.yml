@@ -50,6 +50,7 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'config/environments/*'
+    - 'config/routes.rb'
 
 Metrics/MethodLength:
   CountAsOne: ['array', 'hash', 'heredoc']
@@ -75,6 +76,10 @@ Style/ClassAndModuleChildren:
 
 Style/Documentation:
   Enabled: false
+
+Style/FormatStringToken:
+  Exclude:
+    - config/routes.rb
 
 Style/FrozenStringLiteralComment:
   Enabled: true

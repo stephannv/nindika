@@ -28,9 +28,9 @@ class Items::List::FilterComponent < ViewComponent::Base
   def mapped_paths_for_readonly_checkbox
     {
       on_sale_games_path => :on_sale,
-      pre_order_games_path => :pre_order,
-      coming_soon_games_path => :coming_soon,
-      new_releases_games_path => :new_release
+      pre_orders_path => :pre_order,
+      upcoming_games_path => :coming_soon,
+      new_releases_path => :new_release
     }
   end
 end

@@ -121,6 +121,13 @@ RSpec.describe Item, type: :model do
     end
   end
 
+  describe '#to_param' do
+    it 'uses slug' do
+      item = described_class.new(id: Faker::Internet.uuid, slug: 'some-slug')
+      expect(item.to_param).to eq 'some-slug'
+    end
+  end
+
   describe '#medium_banner_url' do
     let(:item) { described_class.new(banner_url: banner_url) }
 

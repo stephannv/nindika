@@ -7,18 +7,18 @@ li.uk-text-bold(class=active_class_for_parent_link)
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10.9 2.1l9.899 1.415 1.414 9.9-9.192 9.192a1 1 0 0 1-1.414 0l-9.9-9.9a1 1 0 0 1 0-1.414L10.9 2.1zm2.828 8.486a2 2 0 1 0 2.828-2.829 2 2 0 0 0-2.828 2.829z"/></svg>
           =< t('.on_sale')
 
-      li(class=active_class_for_link(new_releases_games_path))
-        = link_to new_releases_games_path do
+      li(class=active_class_for_link(new_releases_path))
+        = link_to new_releases_path do
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 23a7.5 7.5 0 0 1-5.138-12.963C8.204 8.774 11.5 6.5 11 1.5c6 4 9 8 3 14 1 0 2.5 0 5-2.47.27.773.5 1.604.5 2.47A7.5 7.5 0 0 1 12 23z"/></svg>
           =< t('.new_releases')
 
-      li(class=active_class_for_link(pre_order_games_path))
-        = link_to pre_order_games_path do
+      li(class=active_class_for_link(pre_orders_path))
+        = link_to pre_orders_path do
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M6.5 2h11a1 1 0 0 1 .8.4L21 6v15a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6l2.7-3.6a1 1 0 0 1 .8-.4zm12 4L17 4H7L5.5 6h13zM9 10H7v2a5 5 0 0 0 10 0v-2h-2v2a3 3 0 0 1-6 0v-2z"/></svg>
           =< t('.pre_order')
 
-      li(class=active_class_for_link(coming_soon_games_path))
-        = link_to coming_soon_games_path do
+      li(class=active_class_for_link(upcoming_games_path))
+        = link_to upcoming_games_path do
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M17 3h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4V1h2v2h6V1h2v2zM4 9v10h16V9H4zm2 4h5v4H6v-4z"/></svg>
           =< t('.coming_soon')
 
