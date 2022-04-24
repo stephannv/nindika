@@ -1,4 +1,20 @@
 pt-BR:
+  all_games:
+    index:
+      title: Todos os jogos
+  on_sale_games:
+    index:
+      title: Em promoção
+  new_releases:
+    index:
+      title: Lançamentos
+  pre_orders:
+    index:
+      title: Em pré-venda
+  upcoming_games:
+    index:
+      title: Em breve
+
   users:
     omniauth_callbacks:
       defaults: &defaults

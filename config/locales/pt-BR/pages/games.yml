@@ -7,19 +7,3 @@ pt-BR:
         new_releases_games: Lançamentos
         on_sale_games: Novas promoções
         new_games: Novas adições
-
-  games:
-    all:
-      title: Todos os jogos
-
-    on_sale:
-      title: Em promoção
-
-    new_releases:
-      title: Lançamentos
-
-    coming_soon:
-      title: Em Breve
-
-    pre_order:
-      title: Pré-venda

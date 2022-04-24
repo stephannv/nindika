@@ -36,6 +36,10 @@ class Item < ApplicationRecord
   validates :release_date_display, length: { maximum: 64 }
   validates :content_rating, length: { maximum: 64 }
 
+  def to_param
+    slug
+  end
+
   def medium_banner_url
     NintendoImageTransformer.medium(banner_url)
   end
