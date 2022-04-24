@@ -13,6 +13,8 @@
 
 **Node.js:** >15
 
+**Yarn:** >1
+
 ## Getting Started
 1. Clone project
 
@@ -22,17 +24,12 @@
 
         $ cd nindika
 
-3. Install project dependencies:
+3. Setup project (Install Ruby and JS dependencies, recreate databases and etc.):
 
-        $ bundle install
-        $ yarn install
-
-4. Setup database:
-
-        $ rails db:setup
+        $ bin/setup
 
 
-5. Generate new credentials with Nintendo API info:
+4. Generate new credentials with Nintendo API info:
 
         $ rm config/credentials.yml.enc
         $ rails credentials:edit
@@ -44,20 +41,20 @@
       ```
 
 
-6. Import data
+5. Import data
 
-        $ rake admin:import_data
+        $ bundle exec rake admin:import_data
 
 
-7. Run project
+6. Run project
 
         $ bin/dev
 
-8. Visit [http://localhost:3000](http://localhost:3000)
+7. Visit [http://localhost:3000](http://localhost:3000)
 
 ## Run tests
 
-    $ bundle exec rspec spec
+    $ bundle exec rspec
 
 ## Run linter
 
@@ -65,6 +62,7 @@
 
 ## Run vulnerability scanner
 
+    $ gem install brakeman
     $ brakeman -A -z -q
 
 ## License
