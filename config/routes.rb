@@ -23,9 +23,11 @@ Rails.application.routes.draw do
   #######################################
 
   resources :all_games, only: :index
-  resources :on_sale_games, only: :index
   resources :new_releases, only: :index
+  resources :on_sale_games, only: :index
   resources :pre_orders, only: :index
   resources :upcoming_games, only: :index
+
+  resources :analytics, only: :index
   resources :games, only: %i[index show], param: :slug
 end
