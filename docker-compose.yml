@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:15beta1
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: nindika_development
+
+volumes:
+  db-data:
