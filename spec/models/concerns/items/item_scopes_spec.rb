@@ -77,7 +77,7 @@ RSpec.describe Item, type: :model do
       it 'preloads prices' do
         items = described_class.with_prices.to_a
 
-        expect { items.each { |i| i.price } }.to not_talk_to_db
+        expect { items.each(&:price) }.to not_talk_to_db
       end
     end
 
@@ -92,7 +92,7 @@ RSpec.describe Item, type: :model do
       it 'preloads prices' do
         items = described_class.including_prices.to_a
 
-        expect { items.each { |i| i.price } }.to not_talk_to_db
+        expect { items.each(&:price) }.to not_talk_to_db
       end
     end
   end

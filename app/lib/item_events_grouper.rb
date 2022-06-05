@@ -15,7 +15,7 @@ class ItemEventsGrouper
     item_events
       .group_by { |event| event.created_at.beginning_of_hour }
       .transform_values do |events|
-        events.group_by { |event| event.event_type_humanize }
+        events.group_by(&:event_type_humanize)
       end
   end
 end
