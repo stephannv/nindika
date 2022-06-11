@@ -22,7 +22,7 @@ module Nintendo
       JSON.parse(response.body)
     end
 
-    def list_items_in_batches(requests:, batch_size: 20)
+    def list_items_in_batches(requests: Nintendo::RequestsBuilder.build, batch_size: 20)
       requests.each_slice(batch_size) do |requests_batch|
         yield list_items(requests: requests_batch)
       end
