@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_12_204810) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_11_215927) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
@@ -65,17 +65,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_204810) do
     t.string "title", limit: 1024, null: false
     t.text "description"
     t.citext "slug"
-    t.string "website_url", limit: 1024
+    t.string "website_url"
     t.string "nsuid", limit: 32
     t.string "external_id", limit: 256, null: false
-    t.string "boxart_url", limit: 1024
-    t.string "banner_url", limit: 1024
+    t.string "banner_url"
     t.string "release_date_display", limit: 64
     t.date "release_date"
-    t.string "content_rating", limit: 64
-    t.jsonb "extra", default: {}, null: false
-    t.string "publishers", default: [], null: false, array: true
-    t.string "developers", default: [], null: false, array: true
     t.string "genres", default: [], null: false, array: true
     t.string "franchises", default: [], null: false, array: true
     t.datetime "created_at", null: false
@@ -92,11 +87,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_12_204810) do
     t.bigint "bytesize"
     t.datetime "last_scraped_at", precision: nil
     t.string "screenshot_urls", default: [], null: false, array: true
+    t.string "developer"
+    t.string "publisher"
+    t.string "demo_nsuid"
+    t.string "num_of_players"
+    t.integer "item_type", null: false
     t.index ["all_time_visits"], name: "index_items_on_all_time_visits"
     t.index ["coming_soon"], name: "index_items_on_coming_soon", where: "coming_soon"
     t.index ["created_at"], name: "index_items_on_created_at", order: :desc
     t.index ["external_id"], name: "index_items_on_external_id", unique: true
     t.index ["genres"], name: "index_items_on_genres", using: :gin
+    t.index ["item_type"], name: "index_items_on_item_type"
     t.index ["languages"], name: "index_items_on_languages", using: :gin
     t.index ["last_scraped_at"], name: "index_items_on_last_scraped_at"
     t.index ["last_week_visits"], name: "index_items_on_last_week_visits"

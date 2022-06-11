@@ -27,12 +27,7 @@ RSpec.describe Item, type: :model do
     it { is_expected.to validate_length_of(:external_id).is_at_most(256) }
     it { is_expected.to validate_length_of(:title).is_at_most(1024) }
     it { is_expected.to validate_length_of(:description).is_at_most(8192) }
-    it { is_expected.to validate_length_of(:website_url).is_at_most(1024) }
     it { is_expected.to validate_length_of(:nsuid).is_at_most(32) }
-    it { is_expected.to validate_length_of(:boxart_url).is_at_most(1024) }
-    it { is_expected.to validate_length_of(:banner_url).is_at_most(1024) }
-    it { is_expected.to validate_length_of(:release_date_display).is_at_most(64) }
-    it { is_expected.to validate_length_of(:content_rating).is_at_most(64) }
   end
 
   describe "Scopes" do
@@ -123,34 +118,6 @@ RSpec.describe Item, type: :model do
     it "uses slug" do
       item = described_class.new(id: Faker::Internet.uuid, slug: "some-slug")
       expect(item.to_param).to eq "some-slug"
-    end
-  end
-
-  describe "#medium_banner_url" do
-    let(:item) { described_class.new(banner_url: banner_url) }
-
-    context "when banner_url includes `upload/ncom`" do
-      let(:banner_url) { "http://example.com/upload/ncom/image.png" }
-
-      it "inserts resize path into banner_url" do
-        expect(item.medium_banner_url).to eq "http://example.com/upload/c_fill,f_auto,q_auto,w_560/ncom/image.png"
-      end
-    end
-
-    context "when banner_url doesn`t include `upload/ncom`" do
-      let(:banner_url) { "http://example.com/ncom/image.png" }
-
-      it "returns banner url" do
-        expect(item.medium_banner_url).to eq "http://example.com/ncom/image.png"
-      end
-    end
-
-    context "when banner_url is nil" do
-      let(:banner_url) { nil }
-
-      it "returns blank string" do
-        expect(item.medium_banner_url).to eq ""
-      end
     end
   end
 

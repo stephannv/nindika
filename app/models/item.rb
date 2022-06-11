@@ -12,12 +12,15 @@ class Item < ApplicationRecord
 
   has_many :price_history_items, through: :price, source: :history_items
 
+  enum :item_type, game: 0, game_bundle: 1, dlc: 2, dlc_bundle: 3
+
   friendly_id :title, use: :history
 
   monetize :current_price_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }
 
   pg_search_scope :search_by_title, against: :title, using: { tsearch: { dictionary: "english" } }, ignoring: :accents
 
+  validates :item_type, presence: true
   validates :title, presence: true
   validates :external_id, presence: true
 
@@ -25,21 +28,12 @@ class Item < ApplicationRecord
 
   validates :title, length: { maximum: 1024 }
   validates :description, length: { maximum: 8192 }
-  validates :slug, length: { maximum: 1024 }
-  validates :website_url, length: { maximum: 1024 }
   validates :nsuid, length: { maximum: 32 }
   validates :external_id, length: { maximum: 256 }
-  validates :boxart_url, length: { maximum: 1024 }
-  validates :banner_url, length: { maximum: 1024 }
   validates :release_date_display, length: { maximum: 64 }
-  validates :content_rating, length: { maximum: 64 }
 
   def to_param
     slug
-  end
-
-  def medium_banner_url
-    NintendoImageTransformer.medium(banner_url)
   end
 
   def release_date_text
