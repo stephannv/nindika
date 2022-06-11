@@ -18,7 +18,7 @@ module RawItems
     private
 
     def create_raw_item(raw_item_data)
-      raw_item = RawItem.find_or_initialize_by(external_id: raw_item_data[:objectID])
+      raw_item = RawItem.find_or_initialize_by(external_id: raw_item_data["objectID"])
       data_checksum = Digest::MD5.hexdigest(raw_item_data.to_s)
 
       return if raw_item.present? && raw_item.checksum == data_checksum

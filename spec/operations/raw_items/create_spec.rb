@@ -19,7 +19,7 @@ RSpec.describe RawItems::Create, type: :action do
     subject(:result) { described_class.result(raw_items_data: [data]) }
 
     context "with new raw item data" do
-      let(:data) { Faker::Types.rb_hash(number: 4).merge(objectID: Faker::Internet.uuid) }
+      let(:data) { Faker::Types.rb_hash(number: 4).merge("objectID" => Faker::Internet.uuid) }
 
       it "creates new raw item" do
         expect { result }.to change(RawItem, :count).by(1)
@@ -29,7 +29,7 @@ RSpec.describe RawItems::Create, type: :action do
         result
 
         expect(RawItem.last.attributes).to include(
-          "external_id" => data[:objectID],
+          "external_id" => data["objectID"],
           "data" => data.stringify_keys,
           "imported" => false,
           "checksum" => Digest::MD5.hexdigest(data.to_s),
@@ -40,7 +40,7 @@ RSpec.describe RawItems::Create, type: :action do
 
     context "with modified raw item data" do
       let!(:raw_item) { create(:raw_item, :with_item, imported: true) }
-      let(:data) { Faker::Types.rb_hash(number: 4).merge(objectID: raw_item.external_id) }
+      let(:data) { Faker::Types.rb_hash(number: 4).merge("objectID" => raw_item.external_id) }
 
       it "doesn`t create a raw item" do
         expect { result }.not_to change(RawItem, :count)
@@ -50,7 +50,7 @@ RSpec.describe RawItems::Create, type: :action do
         result
 
         expect(raw_item.reload.attributes).to include(
-          "external_id" => data[:objectID],
+          "external_id" => data["objectID"],
           "data" => data.stringify_keys,
           "imported" => false,
           "checksum" => Digest::MD5.hexdigest(data.to_s),
@@ -81,7 +81,7 @@ RSpec.describe RawItems::Create, type: :action do
     end
 
     context "when some error happens on development environment" do
-      let(:data) { Faker::Types.rb_hash(number: 4).merge(objectID: Faker::Internet.uuid) }
+      let(:data) { Faker::Types.rb_hash(number: 4).merge("objectID" => Faker::Internet.uuid) }
       let(:error) { StandardError.new("some error") }
 
       before do
@@ -95,7 +95,7 @@ RSpec.describe RawItems::Create, type: :action do
     end
 
     context "when some error happens on not development environment" do
-      let(:data) { Faker::Types.rb_hash(number: 4).merge(objectID: Faker::Internet.uuid) }
+      let(:data) { Faker::Types.rb_hash(number: 4).merge("objectID" => Faker::Internet.uuid) }
       let(:error) { StandardError.new("some error") }
 
       before do
