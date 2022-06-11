@@ -25,7 +25,7 @@ module RawItems
     end
 
     def build_item(raw_item)
-      data = ::NintendoAlgoliaDataAdapter.adapt(raw_item.data)
+      data = ::Nintendo::ItemDataAdapter.adapt(raw_item.data)
       item = raw_item.item || Item.new
       item.assign_attributes(data)
       item

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Users::GetFromOmniauth, type: :action do
+RSpec.describe Users::GetFromOmniauth, type: :operation do
   describe "Inputs" do
     subject(:inputs) { described_class.inputs }
 

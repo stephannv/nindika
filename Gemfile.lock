@@ -68,10 +68,6 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
-    algolia (2.2.5)
-      faraday (>= 0.15, < 2.0)
-      multi_json (~> 1.0)
-      net-http-persistent
     ast (2.4.2)
     awesome_print (1.9.2)
     bcrypt (3.1.17)
@@ -81,7 +77,6 @@ GEM
     builder (3.2.4)
     bytesize (0.1.2)
     concurrent-ruby (1.1.10)
-    connection_pool (2.2.5)
     crack (0.4.5)
       rexml
     crass (1.0.6)
@@ -181,8 +176,6 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.1.1)
-    net-http-persistent (4.0.1)
-      connection_pool (~> 2.2)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -390,7 +383,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  algolia (= 2.2.5)
   awesome_print (= 1.9.2)
   bootsnap (= 1.12.0)
   bytesize (= 0.1.2)

@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe RawItems::Create, type: :action do
+RSpec.describe RawItems::Create, type: :operation do
   describe "Inputs" do
     subject(:inputs) { described_class.inputs }
 

@@ -5,7 +5,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "3.1.2"
 
-gem "algolia", "2.2.5"
 gem "awesome_print", "1.9.2"
 gem "bootsnap", "1.12.0", require: false
 gem "bytesize", "0.1.2"
