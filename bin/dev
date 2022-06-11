@@ -6,4 +6,7 @@ then
   gem install foreman
 fi
 
+echo "Starting services..."
+docker compose up -d
+
 foreman start -f Procfile.dev "$@"
