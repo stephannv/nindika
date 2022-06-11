@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe RawItems::Process, type: :action do
+RSpec.describe RawItems::Process, type: :operation do
   describe "Inputs" do
     subject(:inputs) { described_class.inputs }
 
@@ -23,7 +23,7 @@ RSpec.describe RawItems::Process, type: :action do
 
     before do
       create(:raw_item, imported: true)
-      allow(NintendoAlgoliaDataAdapter).to receive(:adapt).with(raw_item.data).and_return(adapted_data)
+      allow(Nintendo::ItemDataAdapter).to receive(:adapt).with(raw_item.data).and_return(adapted_data)
     end
 
     context "when raw item is linked with item" do
@@ -66,7 +66,7 @@ RSpec.describe RawItems::Process, type: :action do
 
       before do
         allow(Rails.env).to receive(:development?).and_return(true)
-        allow(NintendoAlgoliaDataAdapter).to receive(:adapt).and_raise(error)
+        allow(Nintendo::ItemDataAdapter).to receive(:adapt).and_raise(error)
       end
 
       it "raises error" do
@@ -79,7 +79,7 @@ RSpec.describe RawItems::Process, type: :action do
 
       before do
         allow(Rails.env).to receive(:development?).and_return(false)
-        allow(NintendoAlgoliaDataAdapter).to receive(:adapt).and_raise(error)
+        allow(Nintendo::ItemDataAdapter).to receive(:adapt).and_raise(error)
       end
 
       it "handles error with Sentry" do

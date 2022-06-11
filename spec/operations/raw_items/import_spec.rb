@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe RawItems::Import, type: :action do
+RSpec.describe RawItems::Import, type: :operation do
   describe "Inputs" do
     subject(:inputs) { described_class.inputs }
 
