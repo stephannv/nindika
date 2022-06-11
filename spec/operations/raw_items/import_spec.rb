@@ -18,6 +18,6 @@ RSpec.describe RawItems::Import, type: :operation do
   describe "Play actors" do
     subject { described_class.play_actors.map(&:values).flatten }
 
-    pending { is_expected.to contain_exactly(RawItems::Fetch, RawItems::Create, RawItems::Process) }
+    it { is_expected.to contain_exactly(RawItems::Fetch, RawItems::Create, RawItems::Process) }
   end
 end
