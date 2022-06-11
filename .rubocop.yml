@@ -65,6 +65,7 @@ Rails/SkipsModelValidations:
   Enabled: false
 
 RSpec/ExampleLength:
+  Max: 20
   CountAsOne: ["array", "hash", "heredoc"]
 
 RSpec/MessageSpies:
