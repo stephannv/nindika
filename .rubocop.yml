@@ -6,12 +6,12 @@ require:
 AllCops:
   NewCops: enable
   Exclude:
-    - 'bin/*'
-    - 'vendor/**/*'
-    - 'db/schema.rb'
-    - 'db/migrate/*'
-    - 'node_modules/**/*'
-    - 'public/**/*'
+    - "bin/*"
+    - "vendor/**/*"
+    - "db/schema.rb"
+    - "db/migrate/*"
+    - "node_modules/**/*"
+    - "public/**/*"
 
 Layout/ArgumentAlignment:
   EnforcedStyle: with_fixed_indentation
@@ -48,12 +48,12 @@ Lint/UnusedMethodArgument:
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*'
-    - 'config/environments/*'
-    - 'config/routes.rb'
+    - "spec/**/*"
+    - "config/environments/*"
+    - "config/routes.rb"
 
 Metrics/MethodLength:
-  CountAsOne: ['array', 'hash', 'heredoc']
+  CountAsOne: ["array", "hash", "heredoc"]
 
 Naming/VariableNumber:
   Enabled: false
@@ -65,7 +65,7 @@ Rails/SkipsModelValidations:
   Enabled: false
 
 RSpec/ExampleLength:
-  CountAsOne: ['array', 'hash', 'heredoc']
+  CountAsOne: ["array", "hash", "heredoc"]
 
 RSpec/MessageSpies:
   EnforcedStyle: receive
@@ -88,7 +88,7 @@ Style/HashSyntax:
   EnforcedShorthandSyntax: either
 
 Style/StringLiterals:
-  AutoCorrect: true
+  EnforcedStyle: double_quotes
 
 Style/SymbolProc:
   AllowMethodsWithArguments: true

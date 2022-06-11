@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe RawItem, type: :model do
-  describe 'Relations' do
+  describe "Relations" do
     it { is_expected.to belong_to(:item).optional }
   end
 
-  describe 'Validations' do
+  describe "Validations" do
     subject(:raw_item) { build(:raw_item) }
 
     it { is_expected.to validate_presence_of(:external_id) }
@@ -24,9 +24,9 @@ RSpec.describe RawItem, type: :model do
     it { is_expected.to validate_length_of(:checksum).is_at_most(512) }
   end
 
-  describe 'Scopes' do
-    describe '.pending' do
-      it 'returns not imported raw items' do
+  describe "Scopes" do
+    describe ".pending" do
+      it "returns not imported raw items" do
         not_imported_raw_item = create(:raw_item, imported: false)
         create(:raw_item, imported: true)
         expect(described_class.pending).to match_array [not_imported_raw_item]

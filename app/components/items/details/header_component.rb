@@ -9,6 +9,6 @@ class Items::Details::HeaderComponent < ViewComponent::Base
 
   def center_images_class
     # Headers images should be centered on larger screens when there are less than 3 images (cover + 2 screenshots)
-    item.screenshot_urls.size <= 1 ? 'uk-flex-center@m' : ''
+    item.screenshot_urls.size <= 1 ? "uk-flex-center@m" : ""
   end
 end

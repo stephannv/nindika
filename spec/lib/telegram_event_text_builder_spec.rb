@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe TelegramEventTextBuilder, type: :lib do
-  describe '.build' do
+  describe ".build" do
     let(:item_event) do
       event_data = {
         release_date: Faker::Lorem.word,
@@ -19,7 +19,7 @@ RSpec.describe TelegramEventTextBuilder, type: :lib do
     let(:item_event_title) { "Game's Name & #123 <SERVER ERROR>" }
     let(:data) { item_event.data }
 
-    it 'builds telegram text using item event data' do
+    it "builds telegram text using item event data" do
       emoji = item_event.event_type_object.emoji
       expected_response = <<~HEREDOC
         #{emoji} <b>#{item_event.event_type_humanize}</b> #{emoji}
@@ -35,10 +35,10 @@ RSpec.describe TelegramEventTextBuilder, type: :lib do
       expect(described_class.build(item_event: item_event)).to eq expected_response.chop
     end
 
-    context 'when non-required data is blank' do
+    context "when non-required data is blank" do
       let(:item_event) { create(:item_event, title: item_event_title) }
 
-      it 'builds telegram text with required data only' do
+      it "builds telegram text with required data only" do
         emoji = item_event.event_type_object.emoji
         expected_response = <<~HEREDOC
           #{emoji} <b>#{item_event.event_type_humanize}</b> #{emoji}

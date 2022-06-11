@@ -6,14 +6,14 @@
   title: t(:trending_games, scope: i18n_scope),
   items: trending_games,
   see_all_href: all_games_path(sort: :last_week_visits_desc),
-  cards_size: 'uk-width-5-6 uk-width-2-3@m uk-width-1-2@l uk-width-1-3@xl'
+  cards_size: "uk-width-5-6 uk-width-2-3@m uk-width-1-2@l uk-width-1-3@xl"
 ) %>
 
 <%= render Items::HorizontalListComponent.new(
   title: t(:coming_soon_games, scope: i18n_scope),
   items: coming_soon_games,
   see_all_href: all_games_path(q: { coming_soon: true }, sort: :all_time_visits_desc),
-  cards_size: 'uk-width-5-6 uk-width-2-3@m uk-width-1-3@l uk-width-1-4@xl'
+  cards_size: "uk-width-5-6 uk-width-2-3@m uk-width-1-3@l uk-width-1-4@xl"
 ) %>
 
 <%= render Items::HorizontalListComponent.new(
@@ -32,7 +32,7 @@
   title: t(:new_games, scope: i18n_scope),
   see_all_href: all_games_path(sort: :created_at_desc),
   items: new_games,
-  cards_size: 'uk-width-5-6 uk-width-2-3@m uk-width-1-4@l uk-width-1-6@xl'
+  cards_size: "uk-width-5-6 uk-width-2-3@m uk-width-1-4@l uk-width-1-6@xl"
 ) %>
 
 <div class="uk-margin-bottom"></div>

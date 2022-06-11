@@ -16,7 +16,7 @@ class VisitsCollector
   end
 
   def all_time_game_pages_stats
-    stats = fetch_all(period: Date.parse('2021-06-01')..Time.zone.today)
+    stats = fetch_all(period: Date.parse("2021-06-01")..Time.zone.today)
     filter_game_stats(stats)
   end
 
@@ -42,7 +42,7 @@ class VisitsCollector
 
   def filter_game_stats(stats)
     stats
-      .select { |s| s['page'].start_with?('/game/') }
-      .each { |s| s['slug'] = s['page'].gsub('/game/', '') }
+      .select { |s| s["page"].start_with?("/game/") }
+      .each { |s| s["slug"] = s["page"].gsub("/game/", "") }
   end
 end

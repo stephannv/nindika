@@ -12,8 +12,8 @@ module Items
 
     def update_all_time_visits
       VisitsCollector.all_time_game_pages_stats.each do |stats|
-        item = Item.friendly.find(stats['slug'])
-        item.all_time_visits += stats['visitors']
+        item = Item.friendly.find(stats["slug"])
+        item.all_time_visits += stats["visitors"]
         item.save!
       rescue ActiveRecord::RecordNotFound
         next
@@ -22,8 +22,8 @@ module Items
 
     def update_last_week_visits
       VisitsCollector.last_week_game_pages_stats.each do |stats|
-        item = Item.friendly.find(stats['slug'])
-        item.last_week_visits += stats['visitors']
+        item = Item.friendly.find(stats["slug"])
+        item.last_week_visits += stats["visitors"]
         item.save!
       rescue ActiveRecord::RecordNotFound
         next

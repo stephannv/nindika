@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ItemEvents::Create, type: :operations do
-  describe 'Inputs' do
+  describe "Inputs" do
     subject(:inputs) { described_class.inputs }
 
     it { is_expected.to include(item: { type: Item }) }
@@ -11,13 +11,13 @@ RSpec.describe ItemEvents::Create, type: :operations do
     it { is_expected.to include(event_type: { type: String, in: ItemEventTypes.list }) }
   end
 
-  describe 'Outputs' do
+  describe "Outputs" do
     subject { described_class.outputs }
 
     it { is_expected.to include(item_event: { type: ItemEvent }) }
   end
 
-  describe '#call' do
+  describe "#call" do
     subject(:result) { described_class.result(item: item, price: price, event_type: event_type) }
 
     let(:event_type) { ItemEventTypes.list.sample }
@@ -29,15 +29,15 @@ RSpec.describe ItemEvents::Create, type: :operations do
 
     it { is_expected.to be_success }
 
-    it 'creates a new event for given item' do
+    it "creates a new event for given item" do
       expect { result }.to change(item.events, :count).by(1)
     end
 
-    it 'creates item event with builded data and given event type' do
-      expect(result.item_event.attributes).to include('event_type' => event_type, 'data' => data)
+    it "creates item event with builded data and given event type" do
+      expect(result.item_event.attributes).to include("event_type" => event_type, "data" => data)
     end
 
-    it 'creates telegram event dispatch' do
+    it "creates telegram event dispatch" do
       expect(result.item_event.dispatches.telegram.pending.count).to eq 1
     end
   end

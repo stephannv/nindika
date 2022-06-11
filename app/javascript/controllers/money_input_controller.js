@@ -1,6 +1,6 @@
-import { Controller } from '@hotwired/stimulus'
+import { Controller } from "@hotwired/stimulus"
 
-import Cleave from 'cleave.js'
+import Cleave from "cleave.js"
 
 // Connects to data-controller="money-input"
 export default class extends Controller {

@@ -31,7 +31,7 @@ module Items
     end
 
     def load_on_sale_games
-      self.on_sale_games = Item.with_prices.on_sale.order('prices.discount_started_at DESC').limit(6)
+      self.on_sale_games = Item.with_prices.on_sale.order("prices.discount_started_at DESC").limit(6)
     end
 
     def load_new_games

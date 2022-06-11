@@ -23,18 +23,18 @@ module EventDispatches
         .telegram
         .joins(:item_event)
         .includes(:item_event)
-        .order('item_events.event_type')
+        .order("item_events.event_type")
         .group_by { |d| d.item_event.item_id }
     end
 
     def send_message(dispatches, index)
       text = build_text(dispatches)
-      response = client.send_message(chat_id: '@nindika_com', bot_token: bot_token(index), text: text)
+      response = client.send_message(chat_id: "@nindika_com", bot_token: bot_token(index), text: text)
 
-      if response['ok']
+      if response["ok"]
         EventDispatch.where(id: dispatches.pluck(:id)).update_all(sent_at: Time.zone.now)
       else
-        Sentry.capture_message('Cannot send telegram notifications', extra: response)
+        Sentry.capture_message("Cannot send telegram notifications", extra: response)
       end
     end
 

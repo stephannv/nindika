@@ -8,6 +8,6 @@ class App::NavbarComponent < ViewComponent::Base
   end
 
   def active_class_for_link(path)
-    current_page?(path) ? 'uk-active' : nil
+    current_page?(path) ? "uk-active" : nil
   end
 end

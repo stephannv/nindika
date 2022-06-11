@@ -4,6 +4,6 @@ class AllGamesController < ApplicationController
   include HasGamesListPage
 
   def index
-    render_games_list_page(title: t('.title'))
+    render_games_list_page(title: t(".title"))
   end
 end

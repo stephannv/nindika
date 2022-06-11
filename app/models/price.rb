@@ -5,7 +5,7 @@ class Price < ApplicationRecord
 
   belongs_to :item
 
-  has_many :history_items, class_name: 'PriceHistoryItem', dependent: :destroy
+  has_many :history_items, class_name: "PriceHistoryItem", dependent: :destroy
 
   monetize :base_price_cents, numericality: { greater_than_or_equal_to: 0 }
   monetize :discount_price_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }

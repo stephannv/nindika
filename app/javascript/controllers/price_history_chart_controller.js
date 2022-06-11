@@ -1,34 +1,34 @@
-import { Controller } from '@hotwired/stimulus'
+import { Controller } from "@hotwired/stimulus"
 
-import { Chart, PointElement, LineElement, LineController, LinearScale, TimeScale, Tooltip } from 'chart.js';
-import 'chartjs-adapter-luxon'
+import { Chart, PointElement, LineElement, LineController, LinearScale, TimeScale, Tooltip } from "chart.js";
+import "chartjs-adapter-luxon"
 
 // Connects to data-controller="price-history-chart"
 export default class extends Controller {
-  static targets =['canvas']
+  static targets =["canvas"]
   static values = { data: Array }
 
   connect () {
     Chart.register(PointElement, LineElement, LineController, LinearScale, TimeScale, Tooltip)
 
-    const formatter =  new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
+    const formatter =  new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" })
 
-    const context = this.canvasTarget.getContext('2d')
+    const context = this.canvasTarget.getContext("2d")
     new Chart(context, {
-      type: 'line',
+      type: "line",
       data: {
         datasets: [{
-          label: 'R$',
+          label: "R$",
           data: this.dataValue,
           stepped: true,
-          borderColor: '#ff007d',
-          backgroundColor: '#ff007d',
+          borderColor: "#ff007d",
+          backgroundColor: "#ff007d",
           tension: 1,
           spanGaps: true
         }]
       },
       options: {
-        locale: 'pt-BR',
+        locale: "pt-BR",
         plugins: {
           legend: {
             display: false
@@ -36,10 +36,10 @@ export default class extends Controller {
         },
         scales: {
           x: {
-            type: 'time',
+            type: "time",
             time: {
-              tooltipFormat: 'dd/MM/yyyy',
-              unit: 'day'
+              tooltipFormat: "dd/MM/yyyy",
+              unit: "day"
             }
           },
           y: {

@@ -14,9 +14,9 @@ class Items::Details::PriceCardComponent < ViewComponent::Base
 
   def button_text
     if price&.current_price&.zero?
-      t('.free_download')
+      t(".free_download")
     else
-      t('.buy_now')
+      t(".buy_now")
     end
   end
 end

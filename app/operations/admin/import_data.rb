@@ -3,9 +3,9 @@
 module Admin
   class ImportData < Actor
     def call
-      wrap_task('Import items') { RawItems::Import.call }
-      wrap_task('Import prices') { Prices::Import.call }
-      wrap_task('Update flags') { Items::UpdateFlags.call }
+      wrap_task("Import items") { RawItems::Import.call }
+      wrap_task("Import prices") { Prices::Import.call }
+      wrap_task("Update flags") { Items::UpdateFlags.call }
 
       [scrap_thread, telegram_thread].map(&:join)
     end
@@ -22,13 +22,13 @@ module Admin
 
     def telegram_thread
       Thread.new do
-        wrap_task('Send Telegram notifications') { EventDispatches::SendToTelegram.call } if Rails.env.production?
+        wrap_task("Send Telegram notifications") { EventDispatches::SendToTelegram.call } if Rails.env.production?
       end
     end
 
     def scrap_thread
       Thread.new do
-        wrap_task('Scrap games website data') { Items::ScrapPendingItemsData.call }
+        wrap_task("Scrap games website data") { Items::ScrapPendingItemsData.call }
       end
     end
   end

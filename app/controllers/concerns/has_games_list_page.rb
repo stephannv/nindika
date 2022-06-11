@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_support/concern'
+require "active_support/concern"
 
 module HasGamesListPage
   extend ActiveSupport::Concern
@@ -37,7 +37,7 @@ module HasGamesListPage
   end
 
   def sort_param
-    permitted_params[:sort].to_s.presence || 'all_time_visits_desc'
+    permitted_params[:sort].to_s.presence || "all_time_visits_desc"
   end
 
   def permitted_params

@@ -5,21 +5,21 @@
           span.uk-text-bold.uk-text-large
             =< render Items::PriceLabelComponent.new(money: price.current_price, force_float: true)
           span =< render Items::PriceLabelComponent.new(money: price.base_price, line_through: true, force_float: true)
-          .uk-text-meta = t('.save', value: price.discount_percentage)
+          .uk-text-meta = t(".save", value: price.discount_percentage)
 
       - else
         span.uk-text-bold.uk-text-large
           = render Items::PriceLabelComponent.new(money: price.current_price, force_float: true)
 
     - else
-      .uk-text-bold = t('.blank')
+      .uk-text-bold = t(".blank")
 
   - if price?
     = link_to button_text, price.eshop_url,
-      class: 'uk-button uk-button-large uk-button-secondary uk-width-1-1 uk-margin uk-text-bold uk-box-shadow-large',
-      target: '_blank',
+      class: "uk-button uk-button-large uk-button-secondary uk-width-1-1 uk-margin uk-text-bold uk-box-shadow-large",
+      target: "_blank",
       rel: "noopener noreferrer"
 
   - if price&.discount?
     .uk-text-center(title=l(price.discount_ends_at))
-      .uk-text-meta = t('.ends_in', time: time_ago_in_words(price.discount_ends_at))
+      .uk-text-meta = t(".ends_in", time: time_ago_in_words(price.discount_ends_at))

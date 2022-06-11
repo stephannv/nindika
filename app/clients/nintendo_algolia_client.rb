@@ -11,15 +11,15 @@ class NintendoAlgoliaClient
   end
 
   def fetch(index:, query:)
-    response = index.search(query, queryType: 'prefixAll', hitsPerPage: 500, filters: 'platform:"Nintendo Switch"')
+    response = index.search(query, queryType: "prefixAll", hitsPerPage: 500, filters: 'platform:"Nintendo Switch"')
     response[:hits].to_a
   end
 
   def index_asc
-    @index_asc ||= client.init_index('ncom_game_pt_br_title_asc')
+    @index_asc ||= client.init_index("ncom_game_pt_br_title_asc")
   end
 
   def index_desc
-    @index_desc ||= client.init_index('ncom_game_pt_br_title_des')
+    @index_desc ||= client.init_index("ncom_game_pt_br_title_des")
   end
 end

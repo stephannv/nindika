@@ -10,11 +10,11 @@ class Items::List::FilterComponent < ViewComponent::Base
   end
 
   def genres_options
-    genres.map { |g| [I18n.t(g, scope: 'genres'), g] }
+    genres.map { |g| [I18n.t(g, scope: "genres"), g] }
   end
 
   def languages_options
-    languages.map { |l| [I18nData.languages('PT-BR')[l], l] }
+    languages.map { |l| [I18nData.languages("PT-BR")[l], l] }
   end
 
   def readonly_checkbox?(checkbox_id)

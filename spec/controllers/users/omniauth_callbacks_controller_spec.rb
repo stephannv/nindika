@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
   %i[twitter discord].each do |provider|
@@ -8,11 +8,11 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
       let(:auth) { OmniAuth::AuthHash.new(Faker::Omniauth.twitter) }
 
       before do
-        request.env['devise.mapping'] = Devise.mappings[:user]
-        request.env['omniauth.auth'] = auth
+        request.env["devise.mapping"] = Devise.mappings[:user]
+        request.env["omniauth.auth"] = auth
       end
 
-      context 'when omniauth sign in is succesful' do
+      context "when omniauth sign in is succesful" do
         let(:message) { I18n.t("users.omniauth_callbacks.#{provider}.success", user: user.name) }
         let(:user) { create(:user) }
 
@@ -28,7 +28,7 @@ RSpec.describe Users::OmniauthCallbacksController, type: :controller do
         it { is_expected.to set_flash[:success].to(message) }
       end
 
-      context 'when omniauth sign in is a failure' do
+      context "when omniauth sign in is a failure" do
         let(:message) { I18n.t("users.omniauth_callbacks.#{provider}.error") }
 
         before do

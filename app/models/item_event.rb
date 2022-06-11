@@ -3,7 +3,7 @@
 class ItemEvent < ApplicationRecord
   belongs_to :item
 
-  has_many :dispatches, class_name: 'EventDispatch', dependent: :destroy
+  has_many :dispatches, class_name: "EventDispatch", dependent: :destroy
 
   has_enumeration_for :event_type,
     with: ItemEventTypes,

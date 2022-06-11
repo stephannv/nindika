@@ -1,120 +1,120 @@
 a.uk-button.uk-button-secondary.uk-button-small.uk-text-bold(uk-toggle href="#filter-modal")
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 14L4 5V3h16v2l-6 9v6l-4 2z" fill="rgba(255,255,255,1)"/></svg>
-  span =< t('.filter')
+  span =< t(".filter")
 
 - content_for :modal do
   #filter-modal.uk-modal-container.uk-flex-top(uk-modal)
     .uk-modal-dialog.uk-margin-auto-vertical
       button.uk-modal-close-default(uk-close type="button")
       .uk-modal-header
-        h3.uk-text-bold.uk-margin-small-top.uk-margin-small-bottom = t('.filters')
+        h3.uk-text-bold.uk-margin-small-top.uk-margin-small-bottom = t(".filters")
         = form_with scope: :q, method: :get, html: { data: { turbo: false } } do |form|
           .uk-modal-body.uk-padding-remove-horizontal
             .uk-grid-small(uk-grid)
               .uk-width-1-1
-                = form.label :title, t('.title'), class: 'uk-form-label uk-text-bold'
+                = form.label :title, t(".title"), class: "uk-form-label uk-text-bold"
                 .uk-form-controls
                   = form.text_field :title,
                     value: filters_form_object.title,
-                    placeholder: 'Xenoblade',
-                    class: 'uk-input'
+                    placeholder: "Xenoblade",
+                    class: "uk-input"
 
               .uk-width-1-2
-                = form.label :genre, t('.genre'), class: 'uk-form-label uk-text-bold'
+                = form.label :genre, t(".genre"), class: "uk-form-label uk-text-bold"
                 .uk-form-controls
                   = form.select :genre, genres_options,
-                      { include_blank: t('.all'), selected: filters_form_object.genre },
-                      { class: 'uk-select' }
+                      { include_blank: t(".all"), selected: filters_form_object.genre },
+                      { class: "uk-select" }
 
               .uk-width-1-2
-                = form.label :language, t('.language'), class: 'uk-form-label uk-text-bold'
+                = form.label :language, t(".language"), class: "uk-form-label uk-text-bold"
                 .uk-form-controls
                   = form.select :language, languages_options,
-                      { include_blank: t('.all'), selected: filters_form_object.language },
-                      { class: 'uk-select' }
+                      { include_blank: t(".all"), selected: filters_form_object.language },
+                      { class: "uk-select" }
 
               .uk-width-1-2
-                = form.label :release_date_gteq, t('.release_date_gteq'), class: 'uk-form-label uk-text-bold'
+                = form.label :release_date_gteq, t(".release_date_gteq"), class: "uk-form-label uk-text-bold"
                 .uk-form-controls
                   = form.date_field :release_date_gteq,
                     value: filters_form_object.release_date_gteq,
-                    placeholder: 'DD/MM/YYYY',
-                    class: 'uk-input'
+                    placeholder: "DD/MM/YYYY",
+                    class: "uk-input"
 
               .uk-width-1-2
-                = form.label :release_date_lteq, t('.release_date_lteq'), class: 'uk-form-label uk-text-bold'
+                = form.label :release_date_lteq, t(".release_date_lteq"), class: "uk-form-label uk-text-bold"
                 .uk-form-controls
                   = form.date_field :release_date_lteq,
                     value: filters_form_object.release_date_lteq,
-                    placeholder: 'DD/MM/YYYY',
-                    class: 'uk-input'
+                    placeholder: "DD/MM/YYYY",
+                    class: "uk-input"
 
               .uk-width-1-2
-                = form.label :price_gteq, t('.price_gteq'), class: 'uk-form-label uk-text-bold'
+                = form.label :price_gteq, t(".price_gteq"), class: "uk-form-label uk-text-bold"
                 .uk-form-controls
                   .uk-inline.uk-width-1-1
                     span.uk-form-icon.uk-text-secondary R$
                     = form.text_field :price_gteq,
                       value: filters_form_object.price_gteq,
-                      placeholder: '10',
-                      data: { controller: 'money-input' },
-                      class: 'uk-input',
-                      inputmode: 'numeric'
+                      placeholder: "10",
+                      data: { controller: "money-input" },
+                      class: "uk-input",
+                      inputmode: "numeric"
 
               .uk-width-1-2
-                = form.label :price_lteq, t('.price_lteq'), class: 'uk-form-label uk-text-bold'
+                = form.label :price_lteq, t(".price_lteq"), class: "uk-form-label uk-text-bold"
                 .uk-form-controls
                   .uk-inline.uk-width-1-1
                     span.uk-form-icon.uk-text-secondary R$
                     = form.text_field :price_lteq,
                       value: filters_form_object.price_lteq,
-                      placeholder: '50',
-                      data: { controller: 'money-input' },
-                      class: 'uk-input',
-                      inputmode: 'numeric'
+                      placeholder: "50",
+                      data: { controller: "money-input" },
+                      class: "uk-input",
+                      inputmode: "numeric"
 
               div(class="uk-width-1-4@m uk-width-1-2")
                 = form.label :on_sale do
                   = form.check_box :on_sale,
                     checked: filters_form_object.on_sale,
-                    class: 'uk-checkbox',
+                    class: "uk-checkbox",
                     disabled: readonly_checkbox?(:on_sale)
-                  =< t('.on_sale')
+                  =< t(".on_sale")
 
               div(class="uk-width-1-4@m uk-width-1-2")
                 = form.label :new_release do
                   = form.check_box :new_release,
                     checked: filters_form_object.new_release,
-                    class: 'uk-checkbox',
+                    class: "uk-checkbox",
                     disabled: readonly_checkbox?(:new_release)
-                  =< t('.new_release')
+                  =< t(".new_release")
 
               div(class="uk-width-1-4@m uk-width-1-2")
                 = form.label :pre_order do
                   = form.check_box :pre_order,
                     checked: filters_form_object.pre_order,
-                    class: 'uk-checkbox',
+                    class: "uk-checkbox",
                     disabled: readonly_checkbox?(:pre_order)
-                  =< t('.pre_order')
+                  =< t(".pre_order")
 
               div(class="uk-width-1-4@m uk-width-1-2")
                 = form.label :coming_soon do
                   = form.check_box :coming_soon,
                     checked: filters_form_object.coming_soon,
-                    class: 'uk-checkbox',
+                    class: "uk-checkbox",
                     disabled: readonly_checkbox?(:coming_soon)
-                  =< t('.coming_soon')
+                  =< t(".coming_soon")
 
           .uk-modal-footer.uk-text-right.uk-padding-remove-horizontal(uk-margin)
               button.uk-button.uk-button-default.uk-text-bold.uk-modal-close(
                 type="button"
                 class="uk-width-auto@m uk-width-1-1@s uk-margin-small-right"
-              ) = t('.close')
+              ) = t(".close")
 
-              = link_to t('.clear'),
+              = link_to t(".clear"),
                 request.path,
-                class: 'uk-button uk-button-default uk-text-bold uk-width-1-1@s uk-width-auto@m uk-margin-small-right',
+                class: "uk-button uk-button-default uk-text-bold uk-width-1-1@s uk-width-auto@m uk-margin-small-right",
                 data: { turbo: false }
 
-              = form.submit t('.apply'),
-                class: 'uk-button uk-button-secondary uk-text-bold uk-width-auto@m uk-width-1-1@s'
+              = form.submit t(".apply"),
+                class: "uk-button uk-button-secondary uk-text-bold uk-width-auto@m uk-width-1-1@s"

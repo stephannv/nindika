@@ -18,7 +18,7 @@ module RawItems
     private
 
     def query_terms
-      ('a'..'z').to_a + ('0'..'9').to_a
+      ("a".."z").to_a + ("0".."9").to_a
     end
   end
 end

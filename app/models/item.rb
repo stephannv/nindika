@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
 
-  has_many :events, class_name: 'ItemEvent', dependent: :destroy
+  has_many :events, class_name: "ItemEvent", dependent: :destroy
 
   has_many :price_history_items, through: :price, source: :history_items
 
@@ -16,7 +16,7 @@ class Item < ApplicationRecord
 
   monetize :current_price_cents, allow_nil: true, numericality: { greater_than_or_equal_to: 0 }
 
-  pg_search_scope :search_by_title, against: :title, using: { tsearch: { dictionary: 'english' } }, ignoring: :accents
+  pg_search_scope :search_by_title, against: :title, using: { tsearch: { dictionary: "english" } }, ignoring: :accents
 
   validates :title, presence: true
   validates :external_id, presence: true

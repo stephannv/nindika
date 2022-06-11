@@ -3,13 +3,13 @@
     <div class="uk-navbar-left">
       <%= render App::SidebarComponent.new %>
 
-      <%= link_to root_path, class: 'uk-navbar-item uk-logo uk-text-bolder' do %>
-        <%= image_tag "nindika-light.svg", id: "nindika-logo", alt: "nindika logo", width: "130px", 'uk-img' => true %>
+      <%= link_to root_path, class: "uk-navbar-item uk-logo uk-text-bolder" do %>
+        <%= image_tag "nindika-light.svg", id: "nindika-logo", alt: "nindika logo", width: "130px", "uk-img" => true %>
       <% end %>
 
       <ul class="uk-navbar-nav uk-visible@m">
         <li class="uk-text-bold <%= active_class_for_link(root_path) %>">
-          <%= link_to t('.home'), root_path %>
+          <%= link_to t(".home"), root_path %>
         </li>
         <%= render App::Navbar::GameMenuComponent.new %>
       </ul>
@@ -25,12 +25,12 @@
       <% if current_user.present? %>
         <ul class="uk-navbar-nav">
           <li class="uk-text-bold">
-            <%= button_to t('.log_out'), destroy_user_session_path, class: 'uk-button uk-button-link uk-margin-right', method: :delete, data: { turbo: false } %>
+            <%= button_to t(".log_out"), destroy_user_session_path, class: "uk-button uk-button-link uk-margin-right", method: :delete, data: { turbo: false } %>
           </li>
         </ul>
       <% else %>
         <div class="uk-navbar-item uk-text-bold">
-          <%= link_to t('.log_in'), new_user_session_path, class: 'uk-button uk-button-primary' %>
+          <%= link_to t(".log_in"), new_user_session_path, class: "uk-button uk-button-primary" %>
         </div>
       <% end %>
     </div>

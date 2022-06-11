@@ -23,7 +23,7 @@ class NintendoGamePageScraper
   end
 
   def languages
-    page.css('dd.languages').first&.content&.split(', ')
+    page.css("dd.languages").first&.content&.split(", ")
   end
 
   def screenshot_urls

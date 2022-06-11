@@ -33,7 +33,7 @@ class ItemsFilter
   attr_accessor :relation, :filters_form
 
   def filter_title
-    self.relation = relation.search_by_title(filters_form.title).reorder('') if filters_form.title.present?
+    self.relation = relation.search_by_title(filters_form.title).reorder("") if filters_form.title.present?
   end
 
   def filter_release_date
@@ -45,13 +45,13 @@ class ItemsFilter
   end
 
   def filter_genre
-    self.relation = relation.where('genres @> ARRAY[?]::varchar[]', filters_form.genre) if filters_form.genre.present?
+    self.relation = relation.where("genres @> ARRAY[?]::varchar[]", filters_form.genre) if filters_form.genre.present?
   end
 
   def filter_language
     return if filters_form.language.blank?
 
-    self.relation = relation.where('languages @> ARRAY[?]::varchar[]', filters_form.language)
+    self.relation = relation.where("languages @> ARRAY[?]::varchar[]", filters_form.language)
   end
 
   %i[on_sale new_release coming_soon pre_order].each do |scope|

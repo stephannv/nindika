@@ -4,14 +4,14 @@ html
     meta content="text/html; charset=UTF-8" http-equiv="Content-Type"
     meta name="viewport" content="width=device-width,initial-scale=1.0"
     meta http-equiv="X-UA-Compatible" content="IE=edge"
-    = display_meta_tags site: 'nindika'
+    = display_meta_tags site: "nindika"
 
     = favicon_link_tag
     = csrf_meta_tags
     = csp_meta_tag
 
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbo-track': 'reload'
-    = javascript_include_tag 'application', defer: true, 'data-turbo-track': 'reload'
+    = stylesheet_link_tag "application", media: "all", "data-turbo-track": "reload"
+    = javascript_include_tag "application", defer: true, "data-turbo-track": "reload"
 
     - if Rails.env.production?
       script(async defer data-domain="nindika.com" src="https://analytics.nindika.com/js/plausible.js")

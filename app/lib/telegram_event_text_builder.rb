@@ -20,7 +20,7 @@ class TelegramEventTextBuilder
       price,
       price_state,
       old_price,
-      '',
+      "",
       url
     ].compact.join("\n")
   end
@@ -35,29 +35,29 @@ class TelegramEventTextBuilder
   end
 
   def release_date
-    "📆 #{data['release_date']}" if data['release_date'].present?
+    "📆 #{data['release_date']}" if data["release_date"].present?
   end
 
   def price
-    return if data['current_price'].blank?
+    return if data["current_price"].blank?
 
-    ['💵', data['current_price'], base_price, discount_percentage].compact.join(' ')
+    ["💵", data["current_price"], base_price, discount_percentage].compact.join(" ")
   end
 
   def discount_percentage
-    "(#{data['discount_percentage']})" if data['discount_percentage'].present?
+    "(#{data['discount_percentage']})" if data["discount_percentage"].present?
   end
 
   def base_price
-    "<s>#{data['base_price']}</s>" if data['base_price'].present?
+    "<s>#{data['base_price']}</s>" if data["base_price"].present?
   end
 
   def price_state
-    "📢 #{data['state']}" if data['state'].present?
+    "📢 #{data['state']}" if data["state"].present?
   end
 
   def old_price
-    "❌ #{data['old_price']}" if data['old_price'].present?
+    "❌ #{data['old_price']}" if data["old_price"].present?
   end
 
   def url
@@ -66,8 +66,8 @@ class TelegramEventTextBuilder
 
   def sanitize_string(string)
     string
-      .gsub('&', '&amp;')
-      .gsub('<', '&lt;')
-      .gsub('>', '&gt;')
+      .gsub("&", "&amp;")
+      .gsub("<", "&lt;")
+      .gsub(">", "&gt;")
   end
 end

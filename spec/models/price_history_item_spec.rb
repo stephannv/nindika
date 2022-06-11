@@ -1,21 +1,21 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe PriceHistoryItem, type: :model do
-  describe 'Relations' do
+  describe "Relations" do
     it { is_expected.to belong_to(:price) }
   end
 
-  describe 'Configurations' do
+  describe "Configurations" do
     it { is_expected.to monetize(:amount) }
   end
 
-  describe 'Validations' do
+  describe "Validations" do
     it { is_expected.to validate_presence_of(:price_id) }
     it { is_expected.to validate_presence_of(:reference_date) }
 
-    it 'validates uniqueness of reference date scoped to price_id' do
+    it "validates uniqueness of reference date scoped to price_id" do
       price_change_record = create(:price_history_item)
       expect(price_change_record).to validate_uniqueness_of(:reference_date).scoped_to(:price_id)
     end
@@ -23,8 +23,8 @@ RSpec.describe PriceHistoryItem, type: :model do
     it { is_expected.to validate_numericality_of(:amount).is_greater_than_or_equal_to(0) }
   end
 
-  describe '.to_chart_data' do
-    it 'builds chart data using PriceHistoryChartDataBuilder' do
+  describe ".to_chart_data" do
+    it "builds chart data using PriceHistoryChartDataBuilder" do
       expect(PriceHistoryChartDataBuilder).to receive(:build).with(relation: described_class)
 
       described_class.to_chart_data

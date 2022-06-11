@@ -3,58 +3,58 @@
 class ItemsSorter
   OPTIONS = {
     all_time_visits_desc: {
-      text: I18n.t('games.sort_options.all_time_visits_desc'),
-      query: 'items.all_time_visits DESC NULLS LAST'
+      text: I18n.t("games.sort_options.all_time_visits_desc"),
+      query: "items.all_time_visits DESC NULLS LAST"
     },
     last_week_visits_desc: {
-      text: I18n.t('games.sort_options.last_week_visits_desc'),
-      query: 'items.last_week_visits DESC NULLS LAST'
+      text: I18n.t("games.sort_options.last_week_visits_desc"),
+      query: "items.last_week_visits DESC NULLS LAST"
     },
     title_asc: {
-      text: I18n.t('games.sort_options.title_asc'),
-      query: 'items.title ASC'
+      text: I18n.t("games.sort_options.title_asc"),
+      query: "items.title ASC"
     },
     release_date_desc: {
-      text: I18n.t('games.sort_options.release_date_desc'),
-      query: 'items.release_date DESC'
+      text: I18n.t("games.sort_options.release_date_desc"),
+      query: "items.release_date DESC"
     },
     release_date_asc: {
-      text: I18n.t('games.sort_options.release_date_asc'),
-      query: 'items.release_date ASC'
+      text: I18n.t("games.sort_options.release_date_asc"),
+      query: "items.release_date ASC"
     },
     price_asc: {
-      text: I18n.t('games.sort_options.price_asc'),
-      query: 'coalesce(prices.discount_price_cents, prices.base_price_cents) ASC NULLS LAST',
+      text: I18n.t("games.sort_options.price_asc"),
+      query: "coalesce(prices.discount_price_cents, prices.base_price_cents) ASC NULLS LAST",
       left_joins: :price
     },
     price_desc: {
-      text: I18n.t('games.sort_options.price_desc'),
-      query: 'coalesce(prices.discount_price_cents, prices.base_price_cents) DESC NULLS LAST',
+      text: I18n.t("games.sort_options.price_desc"),
+      query: "coalesce(prices.discount_price_cents, prices.base_price_cents) DESC NULLS LAST",
       left_joins: :price
     },
     discounted_amount_desc: {
-      text: I18n.t('games.sort_options.discounted_amount_desc'),
-      query: 'prices.discounted_amount_cents DESC NULLS LAST',
+      text: I18n.t("games.sort_options.discounted_amount_desc"),
+      query: "prices.discounted_amount_cents DESC NULLS LAST",
       left_joins: :price
     },
     discount_percentage_desc: {
-      text: I18n.t('games.sort_options.discount_percentage_desc'),
-      query: 'prices.discount_percentage DESC NULLS LAST',
+      text: I18n.t("games.sort_options.discount_percentage_desc"),
+      query: "prices.discount_percentage DESC NULLS LAST",
       left_joins: :price
     },
     discount_start_date_desc: {
-      text: I18n.t('games.sort_options.discount_start_date_desc'),
-      query: 'prices.discount_started_at DESC NULLS LAST',
+      text: I18n.t("games.sort_options.discount_start_date_desc"),
+      query: "prices.discount_started_at DESC NULLS LAST",
       left_joins: :price
     },
     discount_end_date_asc: {
-      text: I18n.t('games.sort_options.discount_end_date_asc'),
-      query: 'prices.discount_ends_at ASC NULLS LAST',
+      text: I18n.t("games.sort_options.discount_end_date_asc"),
+      query: "prices.discount_ends_at ASC NULLS LAST",
       left_joins: :price
     },
     created_at_desc: {
-      text: I18n.t('games.sort_options.created_at_desc'),
-      query: 'items.created_at DESC'
+      text: I18n.t("games.sort_options.created_at_desc"),
+      query: "items.created_at DESC"
     }
   }.freeze
 
@@ -77,6 +77,6 @@ class ItemsSorter
       .left_joins(option[:left_joins])
       .order(Arel.sql(option[:query]))
 
-    relation.order('items.id ASC')
+    relation.order("items.id ASC")
   end
 end

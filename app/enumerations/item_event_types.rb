@@ -11,31 +11,31 @@ class ItemEventTypes < EnumerateIt::Base
 
   class GameAdded
     def emoji
-      @emoji ||= '✨'
+      @emoji ||= "✨"
     end
   end
 
   class PriceAdded
     def emoji
-      @emoji ||= '💰'
+      @emoji ||= "💰"
     end
   end
 
   class Discount
     def emoji
-      @emoji ||= '🤑'
+      @emoji ||= "🤑"
     end
   end
 
   class PermanentPriceChange
     def emoji
-      @emoji ||= '🔧'
+      @emoji ||= "🔧"
     end
   end
 
   class PriceStateChange
     def emoji
-      @emoji ||= '❌'
+      @emoji ||= "❌"
     end
   end
 end
