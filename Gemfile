@@ -33,7 +33,6 @@ gem "rails-i18n", "7.0.3"
 gem "redis", "4.6.0"
 gem "sentry-rails", "5.3.1"
 gem "service_actor", "3.1.3"
-gem "slim-rails", "3.5.1"
 gem "stimulus-rails", "1.0.4"
 gem "turbo-rails", "1.1.1"
 gem "tzinfo-data", "2.0.4", platforms: %i[mingw mswin x64_mingw jruby]

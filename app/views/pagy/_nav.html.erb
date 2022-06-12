@@ -1,0 +1,15 @@
+<% link = pagy_link_proc(pagy) %>
+
+<div>
+  <% if pagy.prev %>
+    <%= link.call(pagy.prev, pagy_t("pagy.nav.prev"), 'aria-label="previous" class=""') %>
+  <% else %>
+    <a disabled><%= pagy_t("pagy.nav.prev") %></a>
+  <% end %>
+
+  <% if pagy.next %>
+    <%= link.call(pagy.next, pagy_t("pagy.nav.next"), 'aria-label="next" class=""') %>
+  <% else %>
+    <a disabled><%= pagy_t("pagy.nav.next") %></a>
+  <% end %>
+</div>
