@@ -1,15 +1,1 @@
 <% meta_tags %>
-
-<div class="uk-container uk-container-xlarge">
-  <%= render App::PageTitleComponent.new do %>
-    <%= title %>
-  <% end %>
-
-  <%= render Items::ListComponent.new(
-    items: games,
-    pagy: pagy,
-    filters_form_object: filters_form_object,
-    genres: genres,
-    languages: languages
-  ) %>
-</div>

@@ -17,9 +17,4 @@ html
       script(async defer data-domain="nindika.com" src="https://analytics.nindika.com/js/plausible.js")
 
   body
-    = render App::NavbarComponent.new(current_user: current_user)
-    div(uk-height-viewport="expand: true")
-      = yield
-    = render App::FooterComponent.new
-
-    = yield :modal
+    = yield
