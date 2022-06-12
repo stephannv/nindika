@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_11_215927) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_12_150858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
@@ -61,6 +61,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_11_215927) do
     t.index ["item_id"], name: "index_item_events_on_item_id"
   end
 
+  create_table "item_relationships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "parent_id", null: false
+    t.uuid "child_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["child_id"], name: "index_item_relationships_on_child_id"
+    t.index ["parent_id", "child_id"], name: "index_item_relationships_on_parent_id_and_child_id", unique: true
+    t.index ["parent_id"], name: "index_item_relationships_on_parent_id"
+  end
+
   create_table "items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title", limit: 1024, null: false
     t.text "description"
@@ -84,7 +94,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_11_215927) do
     t.integer "current_price_cents"
     t.string "current_price_currency", default: "BRL", null: false
     t.string "languages", default: [], null: false, array: true
-    t.bigint "bytesize"
+    t.bigint "rom_size"
     t.datetime "last_scraped_at", precision: nil
     t.string "screenshot_urls", default: [], null: false, array: true
     t.string "developer"
@@ -92,6 +102,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_11_215927) do
     t.string "demo_nsuid"
     t.string "num_of_players"
     t.integer "item_type", null: false
+    t.string "bg_color"
+    t.string "headline"
+    t.string "video_urls", default: [], null: false, array: true
     t.index ["all_time_visits"], name: "index_items_on_all_time_visits"
     t.index ["coming_soon"], name: "index_items_on_coming_soon", where: "coming_soon"
     t.index ["created_at"], name: "index_items_on_created_at", order: :desc
@@ -177,6 +190,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_11_215927) do
   add_foreign_key "event_dispatches", "item_events"
   add_foreign_key "hidden_items", "items"
   add_foreign_key "hidden_items", "users"
+  add_foreign_key "item_relationships", "items", column: "child_id"
+  add_foreign_key "item_relationships", "items", column: "parent_id"
   add_foreign_key "price_history_items", "prices"
   add_foreign_key "prices", "items"
   add_foreign_key "raw_items", "items"

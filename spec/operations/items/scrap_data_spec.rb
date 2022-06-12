@@ -18,42 +18,50 @@ RSpec.describe Items::ScrapData, type: :operations do
   end
 
   describe "#call" do
-    subject(:result) { described_class.result(item: item) }
-
-    let(:item) { create(:item) }
-    let(:languages) { %w[Inglês Português Japonês] }
-    let(:size) { "2.12 GB" }
-    let(:screenshot_urls) { Faker::Lorem.words }
-
-    before do
-      allow(NintendoGamePageScraper).to receive(:scrap)
-        .with(item.website_url)
-        .and_return(languages: languages, size: size, screenshot_urls: screenshot_urls)
-    end
-
-    it "updates language codes with scraped languages" do
-      result
-
-      expect(item.reload.languages).to eq %w[EN PT JA]
-    end
-
-    it "updates bytesize with scraped size" do
-      result
-
-      expect(item.reload.bytesize).to eq 2_120_000_000
-    end
-
-    it "updates screenshot_urls with scraped screenshot urls" do
-      result
-
-      expect(item.reload.screenshot_urls).to eq screenshot_urls
-    end
+    before { travel_to Time.zone.now }
 
     it "updates last scraped at with current time" do
-      travel_to 1.day.ago
-      result
-      expect(item.reload.last_scraped_at).to eq Time.zone.now
-      travel_back
+      item = create(:item)
+      scraped_data = {
+        release_date: "2022-01-01T00:00:00.000Z",
+        languages: [
+          "American English", "Brazilian Portuguese", "British English", "Canadian French", "Dutch", "French",
+          "German", "Italian", "Japanese", "Korean", "Latin American Spanish", "Portuguese", "Russian",
+          "Simplified Chinese", "Spanish", "Traditional Chinese"
+        ],
+        bg_color: "000000",
+        headline: "Some text",
+        screenshot_urls: %w[url_a url_b],
+        video_urls: ["url_c"],
+        rom_size: "205912059",
+        release_date_display: "2022"
+      }
+      allow(Nintendo::ItemPageScraper).to receive(:scrap).with(item.website_url).and_return(scraped_data)
+      described_class.call(item: item)
+
+      expect(item.reload.attributes).to include(
+        "release_date" => Date.parse("2022-01-01"),
+        "languages" => [
+          "Inglês Americano", "Português Brasileiro", "Inglês Britânico", "Francês Canadense", "Holandês", "Francês",
+          "Alemão", "Italiano", "Japonês", "Coreano", "Espanhol Latino", "Português", "Russo", "Chinês Simplificado",
+          "Espanhol", "Chinês Tradicional"
+        ],
+        "bg_color" => "000000",
+        "headline" => "Some text",
+        "screenshot_urls" => %w[url_a url_b],
+        "video_urls" => ["url_c"],
+        "rom_size" => 205_912_059,
+        "release_date_display" => "2022"
+      )
+    end
+
+    it "creates item relationships" do
+      item = create(:item)
+      parents = create_list(:item, 2)
+      scraped_data = { parent_nsuids: parents.map(&:nsuid) }
+      allow(Nintendo::ItemPageScraper).to receive(:scrap).with(item.website_url).and_return(scraped_data)
+      described_class.call(item: item)
+      expect(item.parents).to match(parents)
     end
   end
 end

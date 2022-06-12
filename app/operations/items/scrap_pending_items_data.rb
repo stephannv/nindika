@@ -8,6 +8,7 @@ module Items
       rescue StandardError => e
         raise e if Rails.env.development?
 
+        item.update(last_scraped_at: Time.zone.now)
         Sentry.capture_exception(e, extra: { item_id: item.id })
       end
     end
