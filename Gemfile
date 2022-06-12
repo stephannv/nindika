@@ -46,6 +46,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "erb_lint", "0.1.1"
   gem "rack-mini-profiler", "3.0.0"
   gem "rubocop", "1.30.0"
   gem "rubocop-performance", "1.14.1"

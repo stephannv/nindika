@@ -1,8 +1,8 @@
-name: Rspec, Rubocop & Brakeman
+name: CI
 on: [push]
 jobs:
-  rubocop:
-    name: Rubocop
+  linters:
+    name: Linters
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
@@ -13,9 +13,11 @@ jobs:
         with:
           bundler-cache: true
 
-      - name: Lint code
+      - name: Lint ruby files
         run: bundle exec rubocop
 
+      - name: Lint html.erb files
+        run: bundle exec erblint --lint-all
   brakeman:
     name: Brakeman
     runs-on: ubuntu-20.04
@@ -33,10 +35,10 @@ jobs:
       - name: Scan code
         run: brakeman -A -z -q
 
-  rspec:
-    name: RSpec
+  test:
+    name: Test
     needs:
-      - rubocop
+      - linters
       - brakeman
     runs-on: ubuntu-20.04
     env:
