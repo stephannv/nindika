@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+puts "== Looking for code offenses with Rubocop =="
+system "bundle exec rubocop"
+
+puts "== Looking for code offenses with erb_lint =="
+system "bundle exec erblint --lint-all"
