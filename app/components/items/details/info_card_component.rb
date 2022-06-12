@@ -7,8 +7,8 @@ class Items::Details::InfoCardComponent < ViewComponent::Base
     @item = item
   end
 
-  def bytesize
-    item.bytesize.present? ? ByteSize.new(item.bytesize).to_s : "N/A"
+  def rom_size
+    item.rom_size.present? ? ByteSize.new(item.rom_size).to_s : "N/A"
   end
 
   def languages

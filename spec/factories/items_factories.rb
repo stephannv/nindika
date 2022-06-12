@@ -25,7 +25,12 @@ FactoryBot.define do
     all_time_visits { Faker::Number.number(digits: 3) }
     last_week_visits { Faker::Number.number(digits: 2) }
     languages { I18nData.languages.keys.sample(3) }
-    bytesize { Faker::Number.number(digits: 10) }
+    rom_size { Faker::Number.number(digits: 10) }
+    bg_color { Faker::Color.hex_color }
+    headline { Faker::Lorem.paragraph }
+    screenshot_urls { Faker::Lorem.words }
+    video_urls { Faker::Lorem.words }
+
     last_scraped_at { Faker::Date.between(from: 3.days.ago, to: Time.zone.today).to_time }
 
     trait :with_price do

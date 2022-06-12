@@ -3,6 +3,8 @@
 require "rails_helper"
 
 RSpec.describe Items::ScrapPendingItemsData, type: :operations do
+  include ActiveSupport::Testing::TimeHelpers
+
   describe "Inputs" do
     subject { described_class.inputs }
 
@@ -58,6 +60,13 @@ RSpec.describe Items::ScrapPendingItemsData, type: :operations do
         expect(Sentry).to receive(:capture_exception).with(error, extra: { item_id: item_a.id }).twice
 
         result
+      end
+
+      it "updates item last scraped at with current time" do
+        travel_to 1.day.ago
+        result
+        expect(item_b.last_scraped_at).to eq Time.zone.now
+        travel_back
       end
     end
   end
