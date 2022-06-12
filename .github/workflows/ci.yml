@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -52,7 +52,7 @@ jobs:
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - name: Checkout code
-        uses: actions/checkout@v1
+        uses: actions/checkout@v3
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -63,21 +63,16 @@ jobs:
         run: sudo apt-get install libpq-dev
 
       - name: Setup Node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: 15.5.0
-
-      - name: Yarn package cache
-        uses: actions/cache@v2
-        with:
-          path: ./node_modules
-          key: ${{ runner.os }}-yarn-v1-${{ hashFiles('./yarn.lock') }}
+          cache: 'yarn'
+          node-version-file: '.node-version'
 
       - name: Install Yarn packages
-        run: yarn install --pure-lockfile
+        run: yarn install --check-files --pure-lockfile
 
       - name: Create database structure
-        run: RAILS_ENV=test bundle exec rails db:schema:load
+        run: RAILS_ENV=test bundle exec rails db:reset
 
       - name: Run tests
         run: bundle exec rspec spec --format progress

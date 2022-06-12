@@ -5,17 +5,19 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
     "@rails/ujs": "^7.0.2-2",
+    "autoprefixer": "^10.4.7",
     "axios": "^0.26.0",
     "chart.js": "^3.7.1",
     "chartjs-adapter-luxon": "^1.1.0",
     "cleave.js": "^1.6.0",
+    "daisyui": "^2.15.3",
     "esbuild": "^0.14.23",
     "luxon": "^2.3.1",
-    "sass": "^1.49.8",
-    "uikit": "^3.11.1"
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.2"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "sass ./app/assets/stylesheets/application.sass.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules"
+    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
   }
 }
