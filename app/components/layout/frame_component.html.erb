@@ -1,0 +1,23 @@
+<div class="drawer drawer-mobile">
+  <input type="checkbox" id="app-drawer" class="drawer-toggle">
+
+  <div class="drawer-content">
+    <div class="flex flex-col h-screen">
+      <div class="flex-none">
+        <%= render Layout::NavbarComponent.new(title: title) %>
+      </div>
+
+      <div class="flex grow">
+        <%= content %>
+      </div>
+
+      <div class="flex-none">
+        <%= render Layout::FooterComponent.new %>
+      </div>
+    </div>
+  </div>
+
+  <div class="drawer-side">
+    <%= render Layout::SidebarComponent.new %>
+  </div>
+</div>

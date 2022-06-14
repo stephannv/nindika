@@ -71,11 +71,10 @@ RSpec/ExampleLength:
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
-Style/ClassAndModuleChildren:
-  Exclude:
-    - app/components/**/*
-
 Style/Documentation:
+  Enabled: false
+
+Style/ExplicitBlockArgument:
   Enabled: false
 
 Style/FormatStringToken:

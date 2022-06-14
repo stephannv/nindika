@@ -17,6 +17,8 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render Layout::FrameComponent.new(title: yield(:page_title)) do %>
+      <%= yield %>
+    <% end %>
   </body>
 </html>

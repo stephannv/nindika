@@ -1,0 +1,20 @@
+pt-BR:
+  layout:
+    sidebar_component:
+      home: Início
+
+      games: Jogos
+      on_sale: Em promoção
+      new_releases: Lançamentos
+      pre_orders: Pré-venda
+      upcoming: Em breve
+      all_games: Todos
+
+    navbar_component:
+      sign_in: Entrar
+
+    footer_component:
+      changelog: Novidades
+      analytics: Analytics
+      privacy_policy: Política de Privacidade
+      terms_of_service: Termos de Uso
