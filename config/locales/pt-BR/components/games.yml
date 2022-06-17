@@ -1,0 +1,10 @@
+pt-BR:
+  games:
+    card:
+      banner_component:
+        pre_order: RESERVE JÁ!
+        on_sale: OFERTA!
+        new_release: NOVIDADE!
+
+      price_component:
+        coming_soon: Em breve

@@ -14,7 +14,7 @@ module Items
     private
 
     def build_scope
-      scope = Item.including_prices
+      scope = Item.where(item_type: %i[game game_bundle]).including_prices
       scope = ItemsFilter.apply(relation: scope, filters_form: filters_form)
       ItemsSorter.apply(relation: scope, param: sort_param)
     end

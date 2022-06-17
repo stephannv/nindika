@@ -1,0 +1,5 @@
+<% if money.zero? %>
+  <%= t("free") %>
+<% else %>
+  <%= money.currency.symbol %> <%= amount %>
+<% end %>

@@ -16,14 +16,17 @@ module.exports = {
         dark: {
           ...require("daisyui/src/colors/themes")["[data-theme=dark]"],
           "primary": "#ff5a93",
+          "primary-focus": "#ff7aa8",
           "primary-content": "#030303",
-          "secondary": "#5a93ff",
+          "secondary": "#ff745a",
+          "secondary-focus": "#ff8f7a",
           "secondary-content": "#030303",
           "accent": "#5affc6",
           "accent-content": "#030303",
-          "base-100": "#121212",
-          "base-200": "#222222",
-          "base-300": "#2c2c2c",
+          "neutral": "#383E47",
+          "neutral-content": "#f7f8f8",
+          "base-100": "#1C2127",
+          "base-200": "#22272E",
           "base-content": "#f7f8f8"
         }
       }

@@ -7,3 +7,6 @@ pt-BR:
         new_releases_games: Lançamentos
         on_sale_games: Novas promoções
         new_games: Novas adições
+
+      list_page:
+        games_count: "%{count} jogos"

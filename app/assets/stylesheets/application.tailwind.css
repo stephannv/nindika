@@ -7,3 +7,15 @@ html { font-family: 'Inter', sans-serif; }
 @supports (font-variation-settings: normal) {
   html { font-family: 'Inter var', sans-serif; }
 }
+
+.gradient-purple {
+  @apply bg-gradient-to-r from-[#d17aff] via-[#ff7aeb] to-[#8f7aff];
+}
+
+.gradient-teal {
+  @apply bg-gradient-to-r from-[#5affc6] via-[#5ae6ff] to-[#5aff74];
+}
+
+.gradient-pink {
+  @apply bg-gradient-to-r from-[#ff5a93] via-[#ff745a] to-[#ff5ae6];
+}
