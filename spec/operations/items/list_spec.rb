@@ -22,22 +22,28 @@ RSpec.describe Items::List, type: :operations do
 
   describe "#call" do
     context "when filter params is present" do
-      let!(:item_on_sale) { create(:item, on_sale: true) }
+      let!(:game_on_sale) { create(:item, :game, on_sale: true) }
+      let!(:game_bundle_on_sale) { create(:item, :game_bundle, on_sale: true) }
       let(:filters_form) { GameFiltersForm.build(on_sale: true) }
 
-      before { create(:item, on_sale: false) }
+      before do
+        create(:item, :game_bundle, on_sale: false)
+        create(:item, :game, on_sale: false)
+        create(:item, :dlc, on_sale: true)
+        create(:item, :dlc_bundle, on_sale: true)
+      end
 
-      it "filters items" do
+      it "filters games & game_bundles" do
         result = described_class.result(filters_form: filters_form)
 
-        expect(result.items.to_a).to eq [item_on_sale]
+        expect(result.items.to_a).to match [game_bundle_on_sale, game_on_sale]
       end
     end
 
     context "when sort param is present" do
-      let!(:item_a) { create(:item, release_date: Time.zone.today) }
-      let!(:item_b) { create(:item, release_date: Time.zone.tomorrow) }
-      let!(:item_c) { create(:item, release_date: Time.zone.yesterday) }
+      let!(:item_a) { create(:item, :game, release_date: Time.zone.today) }
+      let!(:item_b) { create(:item, :game_bundle, release_date: Time.zone.tomorrow) }
+      let!(:item_c) { create(:item, :game, release_date: Time.zone.yesterday) }
 
       it "sorts items" do
         result = described_class.result(sort_param: "release_date_asc")

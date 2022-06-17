@@ -1,1 +1,23 @@
 <% meta_tags %>
+
+<% content_for :page_title, title %>
+
+<div class="flex flex-col gap-4 justify-center p-4">
+  <div class="flex flex-row justify-between items-center">
+    <div>
+      <span class="font-bold">
+        <%= t("games_count", scope: i18n_scope, count: pagy.count) %>
+      </span>
+    </div>
+
+    <div>
+      <%= render Games::SortSelectComponent.new(selected: params[:sort]) %>
+    </div>
+  </div>
+
+  <%= render Games::GridComponent.new(games: games) %>
+
+  <div class="flex justify-center">
+    <%== render partial: "pagy/nav", locals: { pagy: pagy } %>
+  </div>
+</div>

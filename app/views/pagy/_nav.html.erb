@@ -1,15 +1,25 @@
 <% link = pagy_link_proc(pagy) %>
 
-<div>
+<nav aria-label="pager" class="btn-group" role="navigation">
   <% if pagy.prev %>
-    <%= link.call(pagy.prev, pagy_t("pagy.nav.prev"), 'aria-label="previous" class=""') %>
+    <%== link.call(pagy.prev, pagy_t("pagy.nav.prev"), 'aria-label="previous" class="btn btn-md"') %>
   <% else %>
-    <a disabled><%= pagy_t("pagy.nav.prev") %></a>
+    <a class="btn btn-md prev disabled" disabled><%== pagy_t("pagy.nav.prev") %></a>
+  <% end %>
+
+  <% pagy.series.each do |item| %>
+    <% if item.is_a?(Integer) %>
+      <%== link.call(item, item, 'class="btn btn-md"') %>
+    <% elsif item.is_a?(String) %>
+      <a class="btn btn-md btn-active" disabled><%= item %></a>
+    <% elsif item == :gap %>
+      <a class="btn btn-md btn-disabled" disabled><%== pagy_t("pagy.nav.gap") %></a>
+    <% end %>
   <% end %>
 
   <% if pagy.next %>
-    <%= link.call(pagy.next, pagy_t("pagy.nav.next"), 'aria-label="next" class=""') %>
+    <%== link.call(pagy.next, pagy_t("pagy.nav.next"), 'aria-label="next"  class="btn btn-md"') %>
   <% else %>
-    <a disabled><%= pagy_t("pagy.nav.next") %></a>
+    <a class="btn btn-md next disabled" disabled><%== pagy_t("pagy.nav.next") %></a>
   <% end %>
-</div>
+</nav>

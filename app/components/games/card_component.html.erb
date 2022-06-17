@@ -1,0 +1,20 @@
+<div class="card bg-base-200 border border-gray-700">
+  <%= render Games::Card::BannerComponent.new(game: game) %>
+  <%= link_to game_path(game.slug) do %>
+    <figure class="w-full aspect-video">
+      <%= image_tag game.banner_url, alt: game.title, loading: :lazy %>
+    </figure>
+  <% end %>
+
+  <div class="card-body p-4">
+    <div class="font-bold text-center truncate">
+      <span title="<%= game.title %>">
+        <%= game.title %>
+      </span>
+    </div>
+
+    <div class="card-actions">
+      <%= render Games::Card::PriceComponent.new(game: game) %>
+    </div>
+  </div>
+</div>

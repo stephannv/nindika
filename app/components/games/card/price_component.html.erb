@@ -1,0 +1,24 @@
+<div class="flex justify-center items-center w-full gap-3">
+  <% if game.current_price.present? %>
+
+    <% if game.on_sale? %>
+      <span class="text-sm font-bold bg-accent text-accent-content px-1 rounded flex items-center">
+        <%= game.price.discount_percentage %>%
+      </span>
+    <% end %>
+
+    <span class="font-bold">
+      <%= render Prices::LabelComponent.new(money: game.current_price) %>
+    </span>
+
+    <% if game.on_sale? %>
+      <span class="text-sm line-through text-slate-400">
+        <%= render Prices::LabelComponent.new(money: game.price.base_price) %>
+      </span>
+    <% end %>
+  <% else %>
+    <span class="text-slate-400">
+      <%= t(".coming_soon") %>
+    </span>
+  <% end %>
+</div>

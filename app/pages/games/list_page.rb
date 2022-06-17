@@ -15,6 +15,10 @@ module Games
 
     private
 
+    def i18n_scope
+      "pages.games.list_page"
+    end
+
     def meta_tags
       helpers.set_meta_tags(
         title: title,
