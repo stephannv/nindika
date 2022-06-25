@@ -18,7 +18,9 @@
       </div>
     </div>
 
-    <%= render Games::GridComponent.new(games: games) %>
+    <div class="flex grow">
+      <%= render Games::GridComponent.new(games: games) %>
+    </div>
 
     <%= render Navigation::PaginationComponent.new(pagy: pagy) %>
   <% else %>
