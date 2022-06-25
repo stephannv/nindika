@@ -20,5 +20,6 @@
     <%= render Layout::FrameComponent.new(title: yield(:page_title)) do %>
       <%= yield %>
     <% end %>
+    <%= yield :modal %>
   </body>
 </html>

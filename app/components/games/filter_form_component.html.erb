@@ -1,0 +1,158 @@
+<label for="filter-modal" class="btn modal-button gap-2">
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" /> </svg>
+  <%= t(".filter") %>
+</label>
+
+<% content_for :modal do %>
+  <input type="checkbox" id="filter-modal" class="modal-toggle toggle-primary" />
+  <div class="modal">
+    <div class="modal-box rounded-none h-screen max-h-screen w-full max-w-full bg-base-200 flex justify-center items-center overflow-y-scroll">
+      <div class="w-full md:w-3/4 lg:w-2/3 xl:w-1/2">
+        <%= form_with scope: :q, method: :get, html: { class: "flex flex-col gap-4" } do |form| %>
+          <h3 class="text-xl font-bold pt-4"><%= t(".filters") %></h3>
+
+          <div class="form-control w-full">
+            <%= form.label :title, t(".title"), class: "label font-bold" %>
+            <%= form.text_field :title,
+              value: filters_form_object.title,
+              placeholder: "Xenoblade",
+              class: "input input-bordered w-full"
+            %>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div class="form-control">
+              <%= form.label :genre, t(".genre"), class: "label font-bold" %>
+              <%= form.select :genre, genres,
+                { include_blank: t(".all"), selected: filters_form_object.genre },
+                { class: "select select-bordered w-full" }
+              %>
+            </div>
+
+            <div class="form-control">
+              <%= form.label :language, t(".language"), class: "label font-bold" %>
+              <%= form.select :language, languages,
+                { include_blank: t(".all"), selected: filters_form_object.language },
+                { class: "select select-bordered w-full" }
+              %>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div class="form-control">
+              <%= form.label :release_date_gteq, t(".release_date_gteq"), class: "label font-bold" %>
+              <%= form.date_field :release_date_gteq,
+                value: filters_form_object.release_date_gteq,
+                placeholder: "DD/MM/YYYY",
+                class: "input input-bordered w-full appearance-none"
+              %>
+            </div>
+
+            <div class="form-control">
+              <%= form.label :release_date_lteq, t(".release_date_lteq"), class: "label font-bold" %>
+              <%= form.date_field :release_date_lteq,
+                value: filters_form_object.release_date_lteq,
+                placeholder: "DD/MM/YYYY",
+                class: "input input-bordered w-full appearance-none"
+              %>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div class="form-control">
+              <%= form.label :price_gteq, t(".price_gteq"), class: "label font-bold" %>
+              <label class="input-group border border-gray-700">
+                <span>R$</span>
+                <%= form.text_field :price_gteq,
+                  value: filters_form_object.price_gteq,
+                  placeholder: "10",
+                  class: "input w-full",
+                  inputmode: "numeric",
+                  data: { controller: "money-input" }
+                %>
+              </label>
+            </div>
+
+            <div class="form-control">
+              <%= form.label :price_lteq, t(".price_lteq"), class: "label font-bold" %>
+              <label class="input-group border border-gray-700">
+                <span>R$</span>
+                <%= form.text_field :price_lteq,
+                  value: filters_form_object.price_lteq,
+                  placeholder: "50",
+                  class: "input w-full",
+                  inputmode: "numeric",
+                  data: { controller: "money-input" }
+                %>
+              </label>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 md:grid-cols-4 gap-2">
+            <div class="form-control">
+              <%= form.label :on_sale, class: "label cursor-pointer flex flex-col gap-2 justify-center" do %>
+                <%= form.check_box :on_sale,
+                  checked: filters_form_object.on_sale,
+                  class: "toggle toggle-primary",
+                  disabled: readonly_checkbox?(:on_sale)
+                %>
+                <span class="label-text font-bold text-center">
+                  <%= t(".on_sale") %>
+                </span>
+              <% end %>
+            </div>
+
+            <div class="form-control">
+              <%= form.label :new_release, class: "label cursor-pointer flex flex-col gap-2 justify-center" do %>
+                <%= form.check_box :new_release,
+                  checked: filters_form_object.new_release,
+                  class: "toggle toggle-primary",
+                  disabled: readonly_checkbox?(:new_release)
+                %>
+                <span class="label-text font-bold text-center">
+                  <%= t(".new_release") %>
+                </span>
+              <% end %>
+            </div>
+
+            <div class="form-control">
+              <%= form.label :pre_order, class: "label cursor-pointer flex flex-col gap-2 justify-center" do %>
+                <%= form.check_box :pre_order,
+                  checked: filters_form_object.pre_order,
+                  class: "toggle toggle-primary",
+                  disabled: readonly_checkbox?(:pre_order)
+                %>
+                <span class="label-text font-bold text-center">
+                  <%= t(".pre_order") %>
+                </span>
+              <% end %>
+            </div>
+
+            <div class="form-control">
+              <%= form.label :coming_soon, class: "label cursor-pointer flex flex-col gap-2 justify-center" do %>
+                <%= form.check_box :coming_soon,
+                  checked: filters_form_object.coming_soon,
+                  class: "toggle toggle-primary",
+                  disabled: readonly_checkbox?(:coming_soon)
+                %>
+                <span class="label-text font-bold text-center">
+                  <%= t(".coming_soon") %>
+                </span>
+              <% end %>
+            </div>
+          </div>
+
+          <div class="modal-action flex gap-2 flex-row">
+            <div>
+              <label for="filter-modal" class="btn">
+                <%= t(".close") %>
+              </label>
+            </div>
+            <%= link_to t(".clear"), request.path, class: "btn" %>
+            <%= form.submit t(".apply"), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

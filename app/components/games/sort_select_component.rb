@@ -11,7 +11,7 @@ module Games
     def call
       select_tag "sort",
         options_for_select(OPTIONS_FOR_SELECT, selected),
-        class: "select select-bordered w-full max-w-xs",
+        class: "select select-bordered w-full max-w-full",
         data: { controller: "sort-select", action: "sort-select#makeRequest" }
     end
 

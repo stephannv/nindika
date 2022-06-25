@@ -3,3 +3,4 @@ pt-BR:
     pagination_component:
       next: Próximo
       prev: Anterior
+      items_count: "%{count} itens"

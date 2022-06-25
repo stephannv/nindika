@@ -5,13 +5,15 @@
 <div class="flex flex-col gap-4 justify-center p-4">
   <div class="flex flex-row justify-between items-center">
     <div>
-      <span class="font-bold">
-        <%= t("games_count", scope: i18n_scope, count: pagy.count) %>
-      </span>
+      <%= render Games::SortSelectComponent.new(selected: params[:sort]) %>
     </div>
 
     <div>
-      <%= render Games::SortSelectComponent.new(selected: params[:sort]) %>
+      <%= render Games::FilterFormComponent.new(
+        filters_form_object: filters_form_object,
+        genres: genres,
+        languages: languages
+      ) %>
     </div>
   </div>
 

@@ -8,6 +8,3 @@ pt-BR:
         coming_soon: Em breve
         new_releases: Lançamentos
         new_games: Novidades
-
-      list_page:
-        games_count: "%{count} jogos"

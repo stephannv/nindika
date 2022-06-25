@@ -6,8 +6,11 @@
     <% end %>
   </div>
 
-  <div class="font-bold">
+  <div class="font-bold flex flex-col items-center justify-center">
     <%= pagy.page %> / <%= pagy.pages %>
+    <span class="text-slate-300 font-normal">
+      <%= t(".items_count", count: pagy.count) %>
+    </span>
   </div>
 
   <div>
