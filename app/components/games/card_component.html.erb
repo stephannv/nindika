@@ -1,5 +1,4 @@
 <div class="card bg-base-200 border border-gray-700">
-  <%= render Games::Card::BannerComponent.new(game: game) %>
   <%= link_to game_path(game.slug) do %>
     <figure class="w-full aspect-video">
       <%= image_tag game.banner_url, alt: game.title, loading: :lazy %>
