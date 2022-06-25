@@ -18,3 +18,8 @@ pt-BR:
       close: Fechar
       clear: Limpar
       apply: Aplicar
+
+    no_results_component:
+      title: Nenhum jogo encontrado
+      description: Não há nenhum jogo para ser exibido aqui
+      action: Ver todos os jogos
