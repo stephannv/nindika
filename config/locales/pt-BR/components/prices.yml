@@ -1,0 +1,5 @@
+pt-BR:
+  prices:
+    info_component:
+      coming_soon: Em breve
+      ends_in: Promoção encerra em %{time}
