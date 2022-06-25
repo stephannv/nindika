@@ -3,15 +3,15 @@
 
   <div class="drawer-content">
     <div class="flex flex-col h-screen">
-      <div class="flex-none">
+      <div class="fixed w-full z-30">
         <%= render Layout::NavbarComponent.new(title: title) %>
       </div>
 
-      <div class="flex grow">
+      <div class="flex grow mt-16">
         <%= content %>
       </div>
 
-      <div class="flex-none">
+      <div>
         <%= render Layout::FooterComponent.new %>
       </div>
     </div>
