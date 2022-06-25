@@ -1,0 +1,5 @@
+pt-BR:
+  navigation:
+    pagination_component:
+      next: Próximo
+      prev: Anterior
