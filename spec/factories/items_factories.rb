@@ -28,7 +28,7 @@ FactoryBot.define do
     rom_size { Faker::Number.number(digits: 10) }
     bg_color { Faker::Color.hex_color }
     headline { Faker::Lorem.paragraph }
-    screenshot_urls { Faker::Lorem.words }
+    screenshot_urls { [Faker::Internet.url, Faker::Internet.url] }
     video_urls { Faker::Lorem.words }
 
     last_scraped_at { Faker::Date.between(from: 3.days.ago, to: Time.zone.today).to_time }

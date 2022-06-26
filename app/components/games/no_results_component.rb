@@ -1,4 +1,6 @@
 # frozen_string_literal: true
 
-class Games::NoResultsComponent < ViewComponent::Base
+module Games
+  class NoResultsComponent < ViewComponent::Base
+  end
 end

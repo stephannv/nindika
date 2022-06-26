@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-class Navigation::PaginationComponent < ViewComponent::Base
-  def initialize(pagy:)
-    @pagy = pagy
+module Navigation
+  class PaginationComponent < ViewComponent::Base
+    def initialize(pagy:)
+      @pagy = pagy
+    end
+
+    private
+
+    attr_reader :pagy
   end
-
-  private
-
-  attr_reader :pagy
 end

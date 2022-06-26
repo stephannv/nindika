@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-class ItemDetails::PriceHistorySectionComponent < ViewComponent::Base
-  def initialize(item:)
-    @item = item
+module ItemDetails
+  class PriceHistorySectionComponent < ViewComponent::Base
+    def initialize(item:)
+      @item = item
+    end
+
+    private
+
+    attr_reader :item
   end
-
-  private
-
-  attr_reader :item
 end
