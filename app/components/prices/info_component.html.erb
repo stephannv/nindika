@@ -2,18 +2,18 @@
   <% if item.current_price.present? %>
 
     <% if item.on_sale? %>
-      <span class="text-sm font-bold bg-accent text-accent-content px-1 rounded flex items-center">
+      <span class="font-bold bg-accent text-accent-content px-1 rounded flex items-center">
         <%= item.price.discount_percentage %>%
       </span>
     <% end %>
 
-    <span class="font-bold">
-      <%= render Prices::LabelComponent.new(money: item.current_price) %>
+    <span class="text-lg font-bold">
+      <%= render Prices::LabelComponent.new(money: item.current_price, force_float: force_float) %>
     </span>
 
     <% if item.on_sale? %>
-      <span class="text-sm line-through text-slate-400">
-        <%= render Prices::LabelComponent.new(money: item.price.base_price) %>
+      <span class="line-through text-slate-400">
+        <%= render Prices::LabelComponent.new(money: item.price.base_price, force_float: force_float) %>
       </span>
     <% end %>
   <% else %>
@@ -23,7 +23,7 @@
   <% end %>
 </div>
 <% if with_ending_sale_text && item.on_sale? %>
-  <div class="w-full text-sm text-slate-300 text-center">
+  <div class="w-full text-slate-300 text-center">
     <%= t(".ends_in", time: time_ago_in_words(item.price.discount_ends_at)) %>
   </div>
 <% end %>

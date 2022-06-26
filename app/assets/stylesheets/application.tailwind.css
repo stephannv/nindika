@@ -1,9 +1,6 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-@import url('https://rsms.me/inter/inter.css');
-html { font-family: 'Inter', sans-serif; }
-@supports (font-variation-settings: normal) {
-  html { font-family: 'Inter var', sans-serif; }
-}
+@import "./inter.css";
+@import "./splidejs.css";

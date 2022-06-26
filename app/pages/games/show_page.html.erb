@@ -1,1 +1,17 @@
 <% meta_tags %>
+
+<% content_for :page_title, game.title %>
+
+<div class="w-full flex justify-center pb-4">
+  <div class="w-full md:w-4/5 lg:w-3/4 xl:w-1/2 flex flex-col gap-4">
+    <%= render ItemDetails::ThumbnailsSectionComponent.new(item: game) %>
+
+    <%= render ItemDetails::MainSectionComponent.new(item: game) %>
+
+    <%= render ItemDetails::DescriptionSectionComponent.new(item: game) %>
+
+    <%= render ItemDetails::SpecsSectionComponent.new(item: game) %>
+
+    <%= render ItemDetails::PriceHistorySectionComponent.new(item: game) %>
+  </div>
+</div>
