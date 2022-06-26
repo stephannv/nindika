@@ -9,6 +9,10 @@ class DataTasks
         Admin::ImportData.call
       end
 
+      task scrap_pending_items_data: :environment do
+        Items::ScrapPendingItemsData.call
+      end
+
       task update_games_visits: :environment do
         Items::UpdateVisits.call
       end

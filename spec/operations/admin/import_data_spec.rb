@@ -23,7 +23,6 @@ RSpec.describe Admin::ImportData, type: :operations do
         RawItems::Import,
         Prices::Import,
         Items::UpdateFlags,
-        Items::ScrapPendingItemsData,
         EventDispatches::SendToTelegram
       ]
     end

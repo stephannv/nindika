@@ -1,6 +1,14 @@
 {
   "cron": [
     {
+      "command": "bundle exec rake admin:import_data",
+      "schedule": "1 * * * *"
+    },
+    {
+      "command": "bundle exec rake admin:scrap_pending_items_data",
+      "schedule": "3,33 * * * *"
+    },
+    {
       "command": "bundle exec rake admin:update_games_visits",
       "schedule": "3 8 * * *"
     }
