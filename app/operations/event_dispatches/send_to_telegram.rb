@@ -29,7 +29,7 @@ module EventDispatches
 
     def send_message(dispatches, index)
       text = build_text(dispatches)
-      response = client.send_message(chat_id: "@nindika_com", bot_token: bot_token(index), text: text)
+      response = client.send_message(chat_id: chat_id, bot_token: bot_token(index), text: text)
 
       if response["ok"]
         EventDispatch.where(id: dispatches.pluck(:id)).update_all(sent_at: Time.zone.now)
@@ -40,6 +40,10 @@ module EventDispatches
 
     def build_text(dispatches)
       dispatches.map { |d| TelegramEventTextBuilder.build(item_event: d.item_event) }.join("\n\n")
+    end
+
+    def chat_id
+      Rails.application.credentials.telegram_channel_id
     end
 
     def bot_token(index)

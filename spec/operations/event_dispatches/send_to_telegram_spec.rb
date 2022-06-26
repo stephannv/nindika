@@ -31,6 +31,7 @@ RSpec.describe EventDispatches::SendToTelegram, type: :operations do
       allow_any_instance_of(described_class).to receive(:sleep) # rubocop:disable RSpec/AnyInstance
       allow(client).to receive(:send_message).and_return(telegram_response)
       allow(Rails.application.credentials).to receive(:telegram_bots).and_return(%w[botA botB botC])
+      allow(Rails.application.credentials).to receive(:telegram_channel_id).and_return("ChannelID")
     end
 
     context "when message is sent with success" do
@@ -51,7 +52,7 @@ RSpec.describe EventDispatches::SendToTelegram, type: :operations do
       let(:text) { TelegramEventTextBuilder.build(item_event: event_dispatch.item_event) }
 
       it "sends message" do
-        expect(client).to receive(:send_message).with(chat_id: "@nindika_com", bot_token: "botA", text: text)
+        expect(client).to receive(:send_message).with(chat_id: "ChannelID", bot_token: "botA", text: text)
 
         result
       end
@@ -73,7 +74,7 @@ RSpec.describe EventDispatches::SendToTelegram, type: :operations do
       it "sends message rotating bot tokens" do
         %w[botA botB botC botA botB].each do |bot_token|
           expect(client).to receive(:send_message)
-            .with(chat_id: "@nindika_com", bot_token: bot_token, text: an_instance_of(String))
+            .with(chat_id: "ChannelID", bot_token: bot_token, text: an_instance_of(String))
         end
 
         result
@@ -94,7 +95,7 @@ RSpec.describe EventDispatches::SendToTelegram, type: :operations do
         text_b = TelegramEventTextBuilder.build(item_event: event_dispatch_b.item_event)
 
         expect(client).to receive(:send_message)
-          .with(chat_id: "@nindika_com", bot_token: "botA", text: "#{text_b}\n\n#{text_a}")
+          .with(chat_id: "ChannelID", bot_token: "botA", text: "#{text_b}\n\n#{text_a}")
 
         result
       end
