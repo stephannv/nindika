@@ -48,6 +48,10 @@ class Item < ApplicationRecord
     slug
   end
 
+  def small_banner_url
+    banner_url&.gsub("w_720", "w_480")
+  end
+
   def release_date_text
     I18n.l(release_date_display.to_date)
   rescue Date::Error

@@ -7,6 +7,7 @@ module Items
     extend ActiveSupport::Concern
 
     included do
+      scope :only_games, -> { where(item_type: %i[game game_bundle]) }
       scope :with_nsuid, -> { where.not(nsuid: nil) }
       scope :on_sale, -> { where(on_sale: true) }
       scope :new_release, -> { where(new_release: true) }

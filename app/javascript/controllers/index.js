@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ItemThumbnailsController from "./item_thumbnails_controller.js"
+application.register("item-thumbnails", ItemThumbnailsController)
+
 import MoneyInputController from "./money_input_controller.js"
 application.register("money-input", MoneyInputController)
 

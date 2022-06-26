@@ -2,14 +2,14 @@
 
 class ItemEventTypes < EnumerateIt::Base
   associate_values(
-    :game_added,
+    :item_added,
     :price_added,
     :discount,
     :permanent_price_change,
     :price_state_change
   )
 
-  class GameAdded
+  class ItemAdded
     def emoji
       @emoji ||= "✨"
     end

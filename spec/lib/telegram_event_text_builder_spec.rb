@@ -25,7 +25,7 @@ RSpec.describe TelegramEventTextBuilder, type: :lib do
         #{emoji} <b>#{item_event.event_type_humanize}</b> #{emoji}
         🕹 <b>Game's Name &amp; #123 &lt;SERVER ERROR&gt;</b>
         📆 #{data['release_date']}
-        💵 #{data['current_price']} <s>#{data['base_price']}</s> (#{data['discount_percentage']})
+        💵 #{data['current_price']} (#{data['base_price']} #{data['discount_percentage']})
         📢 #{data['state']}
         ❌ #{data['old_price']}
 

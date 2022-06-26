@@ -36,7 +36,7 @@ RSpec.describe Items::List, type: :operations do
       it "filters games & game_bundles" do
         result = described_class.result(filters_form: filters_form)
 
-        expect(result.items.to_a).to match [game_bundle_on_sale, game_on_sale]
+        expect(result.items.to_a).to match_array [game_bundle_on_sale, game_on_sale]
       end
     end
 

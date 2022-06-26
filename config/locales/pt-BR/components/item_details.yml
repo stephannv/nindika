@@ -1,0 +1,20 @@
+pt-BR:
+  item_details:
+    main_section_component:
+      buy_now: Comprar
+      unavailable: Em breve
+      free_download: Baixar gratuitamente
+      official_website: Site Oficial
+
+    price_history_section_component:
+      price_history: Histórico de Preços
+
+    specs_section_component:
+      info: Informações
+      release_date: Data de lançamento
+      publisher: Publicado por
+      developer: Desenvolvido por
+      genres: Gêneros
+      languages: Idiomas
+      num_of_players: Qtde. de Jogadores
+      rom_size: Espaço em disco

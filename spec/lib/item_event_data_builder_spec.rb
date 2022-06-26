@@ -7,12 +7,12 @@ RSpec.describe ItemEventDataBuilder, type: :lib do
 
   let(:price) { nil }
 
-  context "when event type is GAME_ADDED" do
-    let(:event_type) { ItemEventTypes::GAME_ADDED }
+  context "when event type is ITEM_ADDED" do
+    let(:event_type) { ItemEventTypes::ITEM_ADDED }
     let(:item) { build(:item) }
 
-    it "has release_date attribute" do
-      expect(data[:release_date]).to eq item.release_date_text
+    it "is blank" do
+      expect(data).to eq({})
     end
   end
 

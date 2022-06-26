@@ -1,0 +1,95 @@
+
+<div class="flex flex-col gap-4 bg-base-200 border border-gray-700 sm:rounded-none md:rounded-2xl p-4">
+  <div class="text-lg font-bold">
+    <%= t(".info") %>
+  </div>
+
+  <dl>
+    <dt class="font-bold flex flex-row gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="fill-accent" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M17 3h4a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h4V1h2v2h6V1h2v2zm3 6V5h-3v2h-2V5H9v2H7V5H4v4h16zm0 2H4v8h16v-8zM6 13h5v4H6v-4z"/></svg>
+      <%= t(".release_date") %>
+    </dt>
+
+    <dd class="text-slate-300">
+      <%= item.release_date_text %>
+    </dd>
+  </dl>
+
+  <% if item.publisher.present? %>
+    <dl>
+      <dt class="font-bold flex flex-row gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="fill-accent" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M21 19h2v2H1v-2h2V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v15h4v-8h-2V9h3a1 1 0 0 1 1 1v9zM5 5v14h8V5H5zm2 6h4v2H7v-2zm0-4h4v2H7V7z"/></svg>
+        <%= t(".publisher") %>
+      </dt>
+
+      <dd class="text-slate-300">
+        <%= item.publisher %>
+      </dd>
+    </dl>
+  <% end %>
+
+  <% if item.developer.present? %>
+    <dl>
+      <dt class="font-bold flex flex-row gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="fill-accent" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M4 18v-3.7a1.5 1.5 0 0 0-1.5-1.5H2v-1.6h.5A1.5 1.5 0 0 0 4 9.7V6a3 3 0 0 1 3-3h1v2H7a1 1 0 0 0-1 1v4.1A2 2 0 0 1 4.626 12 2 2 0 0 1 6 13.9V18a1 1 0 0 0 1 1h1v2H7a3 3 0 0 1-3-3zm16-3.7V18a3 3 0 0 1-3 3h-1v-2h1a1 1 0 0 0 1-1v-4.1a2 2 0 0 1 1.374-1.9A2 2 0 0 1 18 10.1V6a1 1 0 0 0-1-1h-1V3h1a3 3 0 0 1 3 3v3.7a1.5 1.5 0 0 0 1.5 1.5h.5v1.6h-.5a1.5 1.5 0 0 0-1.5 1.5z"/></svg>
+        <%= t(".developer") %>
+      </dt>
+
+      <dd class="text-slate-300">
+        <%= item.developer %>
+      </dd>
+    </dl>
+  <% end %>
+
+  <% if item.genres.any? %>
+    <dl>
+      <dt class="font-bold flex flex-row gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-accent" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+        <%= t(".genres") %>
+      </dt>
+
+      <dd class="text-slate-300">
+        <%= item.genres.to_sentence %>
+      </dd>
+    </dl>
+  <% end %>
+
+  <% if item.languages.any? %>
+    <dl>
+      <dt class="font-bold flex flex-row gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-accent" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" /></svg>
+        <%= t(".languages") %>
+      </dt>
+
+      <dd class="text-slate-300">
+        <%= item.languages.to_sentence %>
+      </dd>
+    </dl>
+  <% end %>
+
+  <% if item.num_of_players.present? %>
+    <dl>
+      <dt class="font-bold flex flex-row gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="fill-accent" viewBox="0 0 24 24" width="20" height="20"><path fill="none" d="M0 0h24v24H0z"/><path d="M17 4a6 6 0 0 1 6 6v4a6 6 0 0 1-6 6H7a6 6 0 0 1-6-6v-4a6 6 0 0 1 6-6h10zm0 2H7a4 4 0 0 0-3.995 3.8L3 10v4a4 4 0 0 0 3.8 3.995L7 18h10a4 4 0 0 0 3.995-3.8L21 14v-4a4 4 0 0 0-3.8-3.995L17 6zm-7 3v2h2v2H9.999L10 15H8l-.001-2H6v-2h2V9h2zm8 4v2h-2v-2h2zm-2-4v2h-2V9h2z"/></svg>
+        <%= t(".num_of_players") %>
+      </dt>
+
+      <dd class="text-slate-300">
+        <%= item.num_of_players %>
+      </dd>
+    </dl>
+  <% end %>
+
+  <% if item.rom_size.present? %>
+    <dl>
+      <dt class="font-bold flex flex-row gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-accent" fill="none" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>
+        <%= t(".rom_size") %>
+      </dt>
+
+      <dd class="text-slate-300">
+        <%= ByteSize.new(item.rom_size).to_s %>
+      </dd>
+    </dl>
+  <% end %>
+</div>

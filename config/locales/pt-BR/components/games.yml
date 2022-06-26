@@ -1,10 +1,25 @@
 pt-BR:
   games:
-    card:
-      banner_component:
-        pre_order: RESERVE JÁ!
-        on_sale: OFERTA!
-        new_release: NOVIDADE!
+    filter_form_component:
+      filters: Filtros
+      filter: Filtrar
+      title: Título
+      genre: Gênero
+      language: Idioma
+      release_date_gteq: Lançado a partir de
+      release_date_lteq: Lançado até
+      price_gteq: Preço mínimo
+      price_lteq: Preço máximo
+      on_sale: Em promoção
+      pre_order: Pré-venda
+      coming_soon: Em breve
+      new_release: Lançamento
+      all: Tudo
+      close: Fechar
+      clear: Limpar
+      apply: Aplicar
 
-      price_component:
-        coming_soon: Em breve
+    no_results_component:
+      title: Nenhum jogo encontrado
+      description: Não há nenhum jogo para ser exibido aqui
+      action: Ver todos os jogos

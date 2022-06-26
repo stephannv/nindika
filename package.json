@@ -4,7 +4,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.1",
-    "@rails/ujs": "^7.0.2-2",
+    "@splidejs/splide": "^4.0.7",
     "autoprefixer": "^10.4.7",
     "axios": "^0.26.0",
     "chart.js": "^3.7.1",
@@ -18,6 +18,9 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+    "build:css": "tailwindcss --postcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify"
+  },
+  "devDependencies": {
+    "postcss-import": "^14.1.0"
   }
 }

@@ -2,11 +2,9 @@ pt-BR:
   pages:
     games:
       index_page:
-        trending_games: Tendências
-        coming_soon_games: Em breve
-        new_releases_games: Lançamentos
-        on_sale_games: Novas promoções
-        new_games: Novas adições
-
-      list_page:
-        games_count: "%{count} jogos"
+        title: Início
+        featured: Destaques
+        on_sale: Novas promoções
+        coming_soon: Em breve
+        new_releases: Lançamentos
+        new_games: Novidades

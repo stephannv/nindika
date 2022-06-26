@@ -1,0 +1,31 @@
+<div class="flex flex-col gap-4" data-controller="item-thumbnails">
+  <div class="splide" data-item-thumbnails-target="main">
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide">
+          <%= image_tag item.banner_url, class: "w-full aspect-video" %>
+        </li>
+        <% item.screenshot_urls.each do |image_url| %>
+          <li class="splide__slide">
+            <%= image_tag image_url, class: "w-full aspect-video" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="splide" data-item-thumbnails-target="thumbnail">
+    <div class="splide__track">
+      <ul class="splide__list">
+        <li class="splide__slide">
+          <%= image_tag item.banner_url %>
+        </li>
+        <% item.screenshot_urls.each do |image_url| %>
+          <li class="splide__slide">
+            <%= image_tag image_url %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

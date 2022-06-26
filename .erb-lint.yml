@@ -4,6 +4,11 @@ exclude:
   - '**/vendor/**/*'
   - '**/node_modules/**/*'
 linters:
+  ClosingErbTagIndent:
+    enabled: false
+  SpaceInHtmlTag:
+    enabled: false
+
   Rubocop:
     enabled: true
     rubocop_config:

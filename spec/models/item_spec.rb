@@ -154,4 +154,12 @@ RSpec.describe Item, type: :model do
       end
     end
   end
+
+  describe "#small_banner_url" do
+    it "replaces w_720 to w_480 from banner url" do
+      item = described_class.new(banner_url: "my.url/w_720/image")
+
+      expect(item.small_banner_url).to eq "my.url/w_480/image"
+    end
+  end
 end

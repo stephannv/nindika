@@ -44,12 +44,12 @@ class TelegramEventTextBuilder
     ["💵", data["current_price"], base_price, discount_percentage].compact.join(" ")
   end
 
-  def discount_percentage
-    "(#{data['discount_percentage']})" if data["discount_percentage"].present?
+  def base_price
+    "(#{data['base_price']}" if data["base_price"].present?
   end
 
-  def base_price
-    "<s>#{data['base_price']}</s>" if data["base_price"].present?
+  def discount_percentage
+    "#{data['discount_percentage']})" if data["discount_percentage"].present?
   end
 
   def price_state

@@ -4,7 +4,7 @@ class ItemEventDataBuilder
   attr_reader :event_type, :item, :price
 
   ATTRIBUTES = {
-    ItemEventTypes::GAME_ADDED => %i[release_date].freeze,
+    ItemEventTypes::ITEM_ADDED => %i[].freeze,
     ItemEventTypes::PRICE_ADDED => %i[current_price base_price discount_percentage discount_ends_at state].freeze,
     ItemEventTypes::DISCOUNT => %i[current_price base_price discount_percentage discount_ends_at].freeze,
     ItemEventTypes::PERMANENT_PRICE_CHANGE => %i[current_price old_price].freeze,
@@ -23,10 +23,6 @@ class ItemEventDataBuilder
 
   def build
     ATTRIBUTES[event_type].index_with { |attribute| send(attribute) }.compact
-  end
-
-  def release_date
-    item.release_date_text
   end
 
   def current_price

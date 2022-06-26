@@ -1,12 +1,11 @@
-<div class="card bg-base-200 border border-gray-700">
-  <%= render Games::Card::BannerComponent.new(game: game) %>
+<div class="card rounded-none">
   <%= link_to game_path(game.slug) do %>
     <figure class="w-full aspect-video">
-      <%= image_tag game.banner_url, alt: game.title, loading: :lazy %>
+      <%= image_tag game.small_banner_url, alt: game.title, loading: :lazy, class: "rounded-2xl" %>
     </figure>
   <% end %>
 
-  <div class="card-body p-4">
+  <div class="card-body p-2">
     <div class="font-bold text-center truncate">
       <span title="<%= game.title %>">
         <%= game.title %>
@@ -14,7 +13,7 @@
     </div>
 
     <div class="card-actions">
-      <%= render Games::Card::PriceComponent.new(game: game) %>
+      <%= render Prices::InfoComponent.new(item: game) %>
     </div>
   </div>
 </div>

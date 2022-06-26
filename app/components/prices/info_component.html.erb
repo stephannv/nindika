@@ -1,0 +1,29 @@
+<div class="flex justify-center items-center w-full gap-3">
+  <% if item.current_price.present? %>
+
+    <% if item.on_sale? %>
+      <span class="font-bold bg-accent text-accent-content px-1 rounded flex items-center">
+        <%= item.price.discount_percentage %>%
+      </span>
+    <% end %>
+
+    <span class="text-lg font-bold">
+      <%= render Prices::LabelComponent.new(money: item.current_price, force_float: force_float) %>
+    </span>
+
+    <% if item.on_sale? %>
+      <span class="line-through text-slate-400">
+        <%= render Prices::LabelComponent.new(money: item.price.base_price, force_float: force_float) %>
+      </span>
+    <% end %>
+  <% else %>
+    <span class="text-slate-400">
+      <%= t(".coming_soon") %>
+    </span>
+  <% end %>
+</div>
+<% if with_ending_sale_text && item.price&.discount? %>
+  <div class="w-full text-slate-300 text-center">
+    <%= t(".ends_in", time: time_ago_in_words(item.price.discount_ends_at)) %>
+  </div>
+<% end %>
