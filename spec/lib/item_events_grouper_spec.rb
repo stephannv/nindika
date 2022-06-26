@@ -6,7 +6,7 @@ RSpec.describe ItemEventsGrouper, type: :lib do
   subject(:grouped_item_events) { described_class.group(item_events: ItemEvent.all) }
 
   let!(:item_event_a) { create(:item_event, created_at: Time.zone.tomorrow) }
-  let!(:item_event_b) { create(:item_event, :game_added, created_at: Time.zone.yesterday) }
+  let!(:item_event_b) { create(:item_event, :item_added, created_at: Time.zone.yesterday) }
   let!(:item_event_c) { create(:item_event, :price_added, created_at: Time.zone.yesterday, title: "Astral") }
   let!(:item_event_d) { create(:item_event, :price_added, created_at: Time.zone.yesterday, title: "Zelda") }
 

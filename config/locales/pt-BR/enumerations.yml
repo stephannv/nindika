@@ -4,7 +4,7 @@ pt-BR:
       telegram: Telegram
 
     item_event_types:
-      game_added: Jogo adicionado
+      item_added: Item adicionado
       price_added: Preço revelado
       discount: Promoção
       permanent_price_change: Reajuste de preço

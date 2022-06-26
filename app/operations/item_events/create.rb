@@ -11,7 +11,7 @@ module ItemEvents
     def call
       self.item_event = item.events.create!(
         event_type: event_type,
-        title: item.title,
+        title: event_title,
         url: Rails.application.routes.url_helpers.game_url(item),
         data: data
       )
@@ -19,6 +19,10 @@ module ItemEvents
     end
 
     private
+
+    def event_title
+      "[#{item.item_type.upcase}] #{item.title}"
+    end
 
     def data
       ItemEventDataBuilder.build(event_type: event_type, item: item, price: price)

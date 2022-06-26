@@ -22,7 +22,7 @@
     </span>
   <% end %>
 </div>
-<% if with_ending_sale_text && item.on_sale? %>
+<% if with_ending_sale_text && item.price&.discount? %>
   <div class="w-full text-slate-300 text-center">
     <%= t(".ends_in", time: time_ago_in_words(item.price.discount_ends_at)) %>
   </div>

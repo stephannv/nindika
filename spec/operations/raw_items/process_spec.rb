@@ -33,7 +33,7 @@ RSpec.describe RawItems::Process, type: :operation do
         expect { result }.not_to change(Item, :count)
       end
 
-      it "doesn`t create game_added item event" do
+      it "doesn`t create item_added item event" do
         expect(ItemEvents::Create).not_to receive(:call)
 
         result
@@ -47,9 +47,9 @@ RSpec.describe RawItems::Process, type: :operation do
         expect { result }.to change(Item, :count).by(1)
       end
 
-      it "creates game_added item event" do
+      it "creates item_added item event" do
         expect(ItemEvents::Create).to receive(:call)
-          .with(event_type: ItemEventTypes::GAME_ADDED, item: an_instance_of(Item))
+          .with(event_type: ItemEventTypes::ITEM_ADDED, item: an_instance_of(Item))
 
         result
       end

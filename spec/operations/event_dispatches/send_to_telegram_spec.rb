@@ -86,7 +86,7 @@ RSpec.describe EventDispatches::SendToTelegram, type: :operations do
         create(:event_dispatch, :telegram, item_event: create(:item_event, :price_added, item: item))
       end
       let(:event_dispatch_b) do
-        create(:event_dispatch, :telegram, item_event: create(:item_event, :game_added, item: item))
+        create(:event_dispatch, :telegram, item_event: create(:item_event, :item_added, item: item))
       end
 
       it "groups dispatches into single text message" do
