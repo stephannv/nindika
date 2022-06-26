@@ -1,7 +1,7 @@
 <div class="card rounded-none">
   <%= link_to game_path(game.slug) do %>
     <figure class="w-full aspect-video">
-      <%= image_tag game.banner_url, alt: game.title, loading: :lazy, class: "rounded-2xl" %>
+      <%= image_tag game.small_banner_url, alt: game.title, loading: :lazy, class: "rounded-2xl" %>
     </figure>
   <% end %>
 
