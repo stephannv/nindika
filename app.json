@@ -1,10 +1,6 @@
 {
   "cron": [
     {
-      "command": "bundle exec rake admin:import_data",
-      "schedule": "1 * * * *"
-    },
-    {
       "command": "bundle exec rake admin:update_games_visits",
       "schedule": "3 8 * * *"
     }
