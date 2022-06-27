@@ -3,7 +3,7 @@
 class DataTasks
   include Rake::DSL
 
-  def initialize
+  def initialize # rubocop:disable Metrics/MethodLength
     namespace :admin do
       task import_data: :environment do
         Admin::ImportData.call
