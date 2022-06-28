@@ -5,60 +5,69 @@
 
 [nindika](https://nindika.com) is a web application focused on Brazilian market that helps users to discover their next Nintendo Switch game.
 
-## Development
-### System dependencies
-**Ruby:** 3.1.2
-
-**PostgreSQL:** 14
-
-**Node.js:** >15
-
-**Yarn:** >1
-
-## Getting Started
+## Development Guide
+### Development Dependencies
+- Ruby 3.1.2
+- Node.js 18.0.0
+- Yarn 1.x
+- Docker + Compose
+- libpq
+  - brew:
+    ```
+      brew install libpq
+    ```
+  - apt:
+    ```
+      sudo apt-get upgrade
+      sudo apt-get install libpq-dev
+### Setup
 1. Clone project
+```sh
+git@github.com:stephannv/nindika.git
+```
 
-        $ git@github.com:stephannv/nindika.git
-
-2. Change directory to `nindika`
-
-        $ cd nindika
+2. Go to `nindika` folder
+```sh
+cd nindika
+```
 
 3. Setup project (Install Ruby and JS dependencies, recreate databases and etc.):
-
-        $ bin/setup
-
+```sh
+bin/setup
+```
 
 4. Generate new credentials with Nintendo API info:
+```sh
+rm config/credentials.yml.enc
+bin/rails credentials:edit
+```
 
-        $ rm config/credentials.yml.enc
-        $ rails credentials:edit
+Then fill app id and app key (you can get this credentials inspecting Nintendo website):
 
-    Fill app id and api key:
-      ```
-      nintendo_algolia_application_id: 'XXXXX'
-      nintendo_algolia_api_key: 'XXXXXX
-      ```
-
+```yaml
+nintendo_app_id: 'XXXXX'
+nintendo_app_key: 'XXXXXX
+```
 
 5. Import data
-
-        $ bundle exec rake admin:import_data
-
+```sh
+bundle exec rake admin:import_data
+```
 
 6. Run project
-
-        $ bin/dev
+```sh
+bin/dev
+```
 
 7. Visit [http://localhost:3000](http://localhost:3000)
 
-## Run tests
+### Run tests
 
     $ bundle exec rspec
 
-## Run linter
+## Run linters
 
-    $ bundle exec rubocop
+    $ bin/lint
 
 ## Run vulnerability scanner
 
@@ -70,4 +79,4 @@
 nindika is licensed under the [MIT](https://github.com/stephannv/nindika/blob/main/LICENSE.txt) license.
 
 ## Copyright
-Copyright 2021, nindika.
+Copyright 2022, nindika.
