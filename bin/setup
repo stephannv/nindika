@@ -20,6 +20,12 @@ FileUtils.chdir APP_ROOT do
   puts "\n== Installing Javascript dependencies =="
   system! "yarn install --check-files"
 
+  puts "\n== Compiling CSS =="
+  system! "bin/rails css:build"
+
+  puts "\n== Compiling Javascript =="
+  system! "bin/rails javascript:build"
+
   puts "\n== Starting services =="
   system! "docker compose up -d"
 

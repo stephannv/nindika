@@ -17,4 +17,4 @@ Start a new discussion at [Github Discussions](https://github.com/stephannv/nind
 ## 👩🏾‍💻👨🏻‍💻 You are a developer / designer
 Please ask first before you put in work for a pull request. Things are constantly being worked on, and it is very difficult to share everything publicly in a meaningful way. So asking lets us avoid working on the same thing, or worse, someone putting in a lot of work for a PR that does not fit into the scope of the project.
 
-Ps.: You work should be built on top of `dev` branch.
+Ps.: You work should be built on top of `main` branch.
