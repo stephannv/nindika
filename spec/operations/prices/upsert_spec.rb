@@ -23,7 +23,7 @@ RSpec.describe Prices::Upsert, type: :operations do
     let(:data) { Faker::Types.rb_hash(number: 4) }
 
     before do
-      allow(NintendoPriceDataAdapter).to receive(:adapt).with(data).and_return(adapted_data)
+      allow(Nintendo::PriceDataAdapter).to receive(:adapt).with(data).and_return(adapted_data)
     end
 
     context "when regular amount is nil" do

@@ -2,7 +2,7 @@
 
 module Prices
   class Fetch < Actor
-    input :client, type: NintendoPricesClient, default: -> { NintendoPricesClient.new }
+    input :client, type: Nintendo::PricesClient, default: -> { Nintendo::PricesClient.new }
 
     output :prices_data, type: Array
 
