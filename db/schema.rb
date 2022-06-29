@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_12_150858) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_29_223033) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
@@ -37,16 +37,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_150858) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
-  end
-
-  create_table "hidden_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "user_id", null: false
-    t.uuid "item_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_id"], name: "index_hidden_items_on_item_id"
-    t.index ["user_id", "item_id"], name: "index_hidden_items_on_user_id_and_item_id", unique: true
-    t.index ["user_id"], name: "index_hidden_items_on_user_id"
   end
 
   create_table "item_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -188,8 +178,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_12_150858) do
   end
 
   add_foreign_key "event_dispatches", "item_events"
-  add_foreign_key "hidden_items", "items"
-  add_foreign_key "hidden_items", "users"
   add_foreign_key "item_relationships", "items", column: "child_id"
   add_foreign_key "item_relationships", "items", column: "parent_id"
   add_foreign_key "price_history_items", "prices"
