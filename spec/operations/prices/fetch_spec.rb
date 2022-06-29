@@ -7,7 +7,7 @@ RSpec.describe Prices::Fetch, type: :operations do
     subject(:inputs) { described_class.inputs }
 
     it "injects nintendo prices client dependency" do
-      expect(inputs[:client][:default].call).to be_a(NintendoPricesClient)
+      expect(inputs[:client][:default].call).to be_a(Nintendo::PricesClient)
     end
   end
 
@@ -20,7 +20,7 @@ RSpec.describe Prices::Fetch, type: :operations do
   describe "#call" do
     subject(:result) { described_class.result(client: client) }
 
-    let(:client) { NintendoPricesClient.new }
+    let(:client) { Nintendo::PricesClient.new }
     let(:items) { create_list(:item, 2) }
     let(:nsuids) { items.map(&:nsuid) }
     let(:prices_data) { [double] }

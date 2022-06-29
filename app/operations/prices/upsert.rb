@@ -17,7 +17,7 @@ module Prices
     private
 
     def import_price(price_data)
-      data = ::NintendoPriceDataAdapter.adapt(price_data)
+      data = Nintendo::PriceDataAdapter.adapt(price_data)
       return if data[:base_price].blank?
 
       ActiveRecord::Base.transaction do

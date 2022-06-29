@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe NintendoPricesClient, type: :clients do
+RSpec.describe Nintendo::PricesClient, type: :clients do
   describe "Configurations" do
     it "has default base_uri" do
       expect(described_class.base_uri).to eq "https://ec.nintendo.com/api"

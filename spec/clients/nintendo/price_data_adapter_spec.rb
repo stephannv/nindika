@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe NintendoPriceDataAdapter, type: :data_adapters do
+RSpec.describe Nintendo::PriceDataAdapter, type: :client do
   subject(:adapted_data) { described_class.adapt(base_data.merge(data)) }
 
   let(:base_data) { { "sales_status" => "onsale" } }
