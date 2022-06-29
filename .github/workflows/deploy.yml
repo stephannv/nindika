@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Add mask
         run: |
-          echo "::add-mask::${{ secrets.GIT_REMOTE_URL }}"
+          echo "::add-mask::${{ secrets.HOSTNAME }}"
 
       - name: Checkout code
         uses: actions/checkout@v3
