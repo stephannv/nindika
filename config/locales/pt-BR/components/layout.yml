@@ -16,5 +16,7 @@ pt-BR:
     footer_component:
       changelog: Novidades
       analytics: Analytics
-      privacy_policy: Política de Privacidade
-      terms_of_service: Termos de Uso
+
+    user_menu_component:
+      wishlist: Lista de Desejos
+      logout: Sair
