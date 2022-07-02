@@ -11,4 +11,8 @@ class User < ApplicationRecord
   validates :uid, presence: true
 
   validates :uid, uniqueness: { scope: :provider }
+
+  def placeholder_avatar_url
+    "https://avatars.dicebear.com/api/big-ears-neutral/#{created_at.to_i}.svg"
+  end
 end
