@@ -95,5 +95,13 @@ RSpec.describe Item, type: :model do
         expect { items.each(&:price) }.to not_talk_to_db
       end
     end
+
+    describe ".with_wishlisted_column" do
+      it "delegates query to WithWishlistedColumnQuery" do
+        expect(Items::WithWishlistedColumnQuery).to receive(:call).with(user_id: "user-id", only_wishlisted: true)
+
+        described_class.with_wishlisted_column(user_id: "user-id", only_wishlisted: true)
+      end
+    end
   end
 end

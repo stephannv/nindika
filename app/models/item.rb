@@ -5,6 +5,8 @@ class Item < ApplicationRecord
   include PgSearch::Model
   include Items::Scopes
 
+  attribute :wishlisted, :boolean, default: false # this attr will be filled using WithWishlistedColumnQuery
+
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
 
