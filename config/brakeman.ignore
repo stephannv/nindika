@@ -19,8 +19,28 @@
       "user_input": null,
       "confidence": "Medium",
       "note": ""
+    },
+    {
+      "warning_type": "SQL Injection",
+      "warning_code": 0,
+      "fingerprint": "96624bb0ed58fd8cba2d1c70a344234787a4fc09f29b79a2fdec19a4e64f4f8a",
+      "check_name": "SQL",
+      "message": "Possible SQL injection",
+      "file": "app/queries/items/with_wishlisted_column_query.rb",
+      "line": 25,
+      "link": "https://brakemanscanner.org/docs/warning_types/sql_injection/",
+      "code": "relation.select(\"items.*\", \"wishlist_items.id IS NOT NULL AS wishlisted\").joins(\"        #{join_clause} JOIN wishlist_items\\n        ON wishlist_items.item_id = items.id and wishlist_items.user_id = '#{user_id}'\\n\".squish)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "Items::WithWishlistedColumnQuery",
+        "method": "call"
+      },
+      "user_input": "join_clause",
+      "confidence": "Weak",
+      "note": ""
     }
   ],
-  "updated": "2022-04-24 09:37:37 -0300",
-  "brakeman_version": "5.2.2"
+  "updated": "2022-07-16 10:31:41 -0300",
+  "brakeman_version": "5.2.3"
 }

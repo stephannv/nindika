@@ -16,6 +16,7 @@ module Items
       scope :pending_scrap, -> { where(last_scraped_at: (..24.hours.ago)).or(where(last_scraped_at: nil)) }
       scope :with_prices, -> { joins(:price).includes(:price) }
       scope :including_prices, -> { left_joins(:price).includes(:price) }
+      scope :with_wishlisted_column, WithWishlistedColumnQuery
     end
   end
 end
