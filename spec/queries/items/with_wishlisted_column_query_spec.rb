@@ -45,9 +45,9 @@ RSpec.describe Items::WithWishlistedColumnQuery, type: :query do
         user = create(:user)
         another_user = create(:user)
         wishlisted_items = create_list(:item, 2)
-        not_wishedlisted_items = create_list(:item, 2)
+        not_wishlisted_items = create_list(:item, 2)
         wishlisted_items.each { |i| create(:wishlist_item, item: i, user: user) }
-        create(:wishlist_item, item: not_wishedlisted_items.first, user: another_user) # wishlisted by another user
+        create(:wishlist_item, item: not_wishlisted_items.first, user: another_user) # wishlisted by another user
 
         relation = described_class.call(user_id: user.id, only_wishlisted: true)
 
@@ -60,13 +60,13 @@ RSpec.describe Items::WithWishlistedColumnQuery, type: :query do
         user = create(:user)
         another_user = create(:user)
         wishlisted_items = create_list(:item, 2)
-        not_wishedlisted_items = create_list(:item, 2)
+        not_wishlisted_items = create_list(:item, 2)
         wishlisted_items.each { |i| create(:wishlist_item, item: i, user: user) }
-        create(:wishlist_item, item: not_wishedlisted_items.first, user: another_user) # wishlisted by another user
+        create(:wishlist_item, item: not_wishlisted_items.first, user: another_user) # wishlisted by another user
 
         relation = described_class.call(user_id: user.id, only_wishlisted: false)
 
-        expect(relation.to_a).to match(wishlisted_items + not_wishedlisted_items)
+        expect(relation.to_a).to match(wishlisted_items + not_wishlisted_items)
       end
     end
   end

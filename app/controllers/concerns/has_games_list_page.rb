@@ -21,7 +21,8 @@ module HasGamesListPage
   end
 
   def list_games(filters_form_object:)
-    result = Items::List.result(filters_form: filters_form_object, sort_param: sort_param)
+    result = Items::List.result(filters_form: filters_form_object, sort_param: sort_param, current_user: current_user)
+
     result.items
   end
 
