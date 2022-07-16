@@ -51,7 +51,7 @@ RSpec.describe ItemsFilter, type: :lib do
       before { create(:item, genres: %w[role_playing]) }
 
       it "returns items filtering by genre" do
-        expect(result.to_a).to eq [item_a, item_c]
+        expect(result.to_a).to match [item_a, item_c]
       end
     end
 
