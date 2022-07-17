@@ -1,0 +1,7 @@
+<% if helpers.current_user.present? %>
+  <%= turbo_frame_tag turbo_frame_id do %>
+    <%= button %>
+  <% end %>
+<% else %>
+  <%= not_signed_in_button %>
+<% end %>

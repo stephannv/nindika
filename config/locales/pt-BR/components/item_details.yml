@@ -4,7 +4,6 @@ pt-BR:
       buy_now: Comprar
       unavailable: Em breve
       free_download: Baixar gratuitamente
-      official_website: Site Oficial
 
     price_history_section_component:
       price_history: Histórico de Preços
@@ -18,3 +17,4 @@ pt-BR:
       languages: Idiomas
       num_of_players: Qtde. de Jogadores
       rom_size: Espaço em disco
+      official_website: Site Oficial

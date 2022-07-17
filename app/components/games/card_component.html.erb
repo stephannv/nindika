@@ -1,11 +1,11 @@
-<div class="card rounded-none">
+<div class="card border border-gray-700 bg-base-200">
   <%= link_to game_path(game.slug) do %>
     <figure class="w-full aspect-video">
-      <%= image_tag game.small_banner_url, alt: game.title, loading: :lazy, class: "rounded-2xl" %>
+      <%= image_tag game.small_banner_url, alt: game.title, loading: :lazy %>
     </figure>
   <% end %>
 
-  <div class="card-body p-2">
+  <div class="card-body p-4">
     <div class="font-bold text-center truncate">
       <span title="<%= game.title %>">
         <%= game.title %>
@@ -13,7 +13,13 @@
     </div>
 
     <div class="card-actions">
-      <%= render Prices::InfoComponent.new(item: game) %>
+      <div class="flex w-full justify-between">
+        <%= render Prices::InfoComponent.new(item: game) %>
+
+        <div class="flex flex-row">
+          <%= render WishlistItems::ButtonComponent.new(item_id: game.id, wishlisted: game.wishlisted?, style: :square) %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

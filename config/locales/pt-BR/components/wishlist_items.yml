@@ -1,0 +1,5 @@
+pt-BR:
+  wishlist_items:
+    button_component:
+      add: Adicionar
+      remove: Remover
