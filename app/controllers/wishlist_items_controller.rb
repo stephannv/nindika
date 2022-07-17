@@ -24,7 +24,7 @@ class WishlistItemsController < ApplicationController
   private
 
   def button_template(item_id:, wishlisted:, style:)
-    WishlistItems::ButtonComponent.new(item_id: params[:item_id], wishlisted: true, style: params[:style])
+    WishlistItems::ButtonComponent.new(item_id: item_id, wishlisted: wishlisted, style: style)
       .render_in(view_context)
   end
 end

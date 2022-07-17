@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
   resources :analytics, only: :index
   resources :games, only: %i[index show], param: :slug
+  resource :wishlist, only: :show
   # WISHLIST
   post "wishlist/:item_id", to: "wishlist_items#create", as: :wishlist_item
   delete "wishlist/:item_id", to: "wishlist_items#destroy"
