@@ -18,6 +18,7 @@ class GameFiltersForm
   attribute :new_release, :boolean
   attribute :coming_soon, :boolean
   attribute :pre_order, :boolean
+  attribute :with_demo, :boolean
   attribute :wishlisted, :boolean
 
   def self.build(attributes = {})

@@ -111,5 +111,17 @@ RSpec.describe ItemsFilter, type: :lib do
         expect(result.to_a).to eq [item]
       end
     end
+
+    context "when with_demo param is true" do
+      it "returns with_demo items" do
+        filters_form = GameFiltersForm.build(with_demo: true)
+        item_with_demo = create(:item, with_demo: true)
+        create_list(:item, 3, with_demo: false) # items without demo
+
+        result = described_class.apply(relation: Item, filters_form: filters_form)
+
+        expect(result.to_a).to eq [item_with_demo]
+      end
+    end
   end
 end

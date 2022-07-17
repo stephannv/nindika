@@ -13,6 +13,7 @@ module Items
       scope :new_release, -> { where(new_release: true) }
       scope :coming_soon, -> { where(coming_soon: true) }
       scope :pre_order, -> { where(pre_order: true) }
+      scope :with_demo, -> { where(with_demo: true) }
       scope :pending_scrap, -> { where(last_scraped_at: (..24.hours.ago)).or(where(last_scraped_at: nil)) }
       scope :with_prices, -> { joins(:price).includes(:price) }
       scope :including_prices, -> { left_joins(:price).includes(:price) }

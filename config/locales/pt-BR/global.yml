@@ -1,7 +1,12 @@
 pt-BR:
+  yes_or_no:
+    "true": Sim
+    "false": Não
+
   time:
     formats:
       shorter: "%d/%m/%Y %H:%M"
+
 
   time_distance_from_now: Há %{distance}
 

@@ -54,6 +54,15 @@ RSpec.describe Item, type: :model do
       end
     end
 
+    describe ".with_demo" do
+      it "returns items with demo" do
+        item_with_demo = create(:item, with_demo: true)
+        create(:item, with_demo: false) # item without demo
+
+        expect(described_class.with_demo.to_a).to eq [item_with_demo]
+      end
+    end
+
     describe ".pending_scrap" do
       let!(:not_scraped) { create(:item, last_scraped_at: nil) }
       let!(:scraped_long_ago) { create(:item, last_scraped_at: 25.hours.ago) }

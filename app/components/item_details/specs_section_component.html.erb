@@ -93,6 +93,17 @@
     </dl>
   <% end %>
 
+  <dl>
+    <dt class="font-bold flex flex-row gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 stroke-accent"  viewBox="0 0 24 24" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /> </svg>
+      <%= t(".with_demo") %>
+    </dt>
+
+    <dd class="text-slate-300">
+      <%= t(item.with_demo?, scope: :yes_or_no) %>
+    </dd>
+  </dl>
+
   <% if item.website_url.present? %>
     <p>
       <%= link_to item.website_url, class: "link flex gap-2", target: "_blank", rel: "noopener noreferrer" do %>
