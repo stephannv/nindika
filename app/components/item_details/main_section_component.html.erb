@@ -5,9 +5,9 @@
 
   <%= render Prices::InfoComponent.new(item: item, with_ending_sale_text: true, force_float: true) %>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 justify-center items-center">
     <%= link_to item.price&.eshop_url,
-      class: "btn btn-primary btn-block gap-2",
+      class: "btn btn-accent btn-block gap-2",
       disabled: disable_download_button,
       target: "_blank",
       rel: "noopener noreferrer" do
@@ -15,10 +15,6 @@
       <%= download_button_text %>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" /> </svg>
     <% end %>
-
-    <%= link_to item.website_url, class: "btn btn-outline btn-block gap-2", target: "_blank", rel: "noopener noreferrer" do %>
-      <%= t(".official_website") %>
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /> </svg>
-    <% end %>
+    <%= render WishlistItems::ButtonComponent.new(item_id: item.id, wishlisted: item.wishlisted?, style: :block) %>
   </div>
 </div>

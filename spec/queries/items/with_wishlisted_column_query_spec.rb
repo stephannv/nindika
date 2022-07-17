@@ -51,7 +51,7 @@ RSpec.describe Items::WithWishlistedColumnQuery, type: :query do
 
         relation = described_class.call(user_id: user.id, only_wishlisted: true)
 
-        expect(relation.to_a).to match wishlisted_items
+        expect(relation.to_a).to match_array wishlisted_items
       end
     end
 
@@ -66,7 +66,7 @@ RSpec.describe Items::WithWishlistedColumnQuery, type: :query do
 
         relation = described_class.call(user_id: user.id, only_wishlisted: false)
 
-        expect(relation.to_a).to match(wishlisted_items + not_wishlisted_items)
+        expect(relation.to_a).to match_array(wishlisted_items + not_wishlisted_items)
       end
     end
   end
