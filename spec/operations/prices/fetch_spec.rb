@@ -27,6 +27,8 @@ RSpec.describe Prices::Fetch, type: :operations do
 
     before do
       create_list(:item, 2, nsuid: nil)
+      create(:item, nsuid: "bayonetta3") # invalid nsuid
+
       allow(client).to receive(:fetch)
         .with(country: "BR", lang: "pt", nsuids: a_collection_containing_exactly(*nsuids))
         .and_return(prices_data)
