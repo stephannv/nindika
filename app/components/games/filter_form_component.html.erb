@@ -88,7 +88,7 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-4 md:grid-cols-4 gap-2">
+          <div class="grid grid-cols-3 md:grid-cols-4 gap-2">
             <div class="form-control">
               <%= form.label :on_sale, class: "label cursor-pointer flex flex-col gap-2 justify-center" do %>
                 <%= form.check_box :on_sale,
@@ -137,6 +137,18 @@
                 %>
                 <span class="label-text font-bold text-center">
                   <%= t(".coming_soon") %>
+                </span>
+              <% end %>
+            </div>
+
+            <div class="form-control">
+              <%= form.label :with_demo, class: "label cursor-pointer flex flex-col gap-2 justify-center" do %>
+                <%= form.check_box :with_demo,
+                  checked: filters_form_object.with_demo,
+                  class: "toggle toggle-primary"
+                %>
+                <span class="label-text font-bold text-center">
+                  <%= t(".with_demo") %>
                 </span>
               <% end %>
             </div>

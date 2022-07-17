@@ -16,12 +16,12 @@ FactoryBot.define do
     developer { Faker::Lorem.word }
     genres { Faker::Lorem.words(number: 3) }
     franchises { Faker::Lorem.words(number: 2) }
-    demo_nsuid { Faker::Lorem.word }
     num_of_players { Faker::Lorem.word }
     on_sale { Faker::Boolean.boolean }
     new_release { Faker::Boolean.boolean }
     coming_soon { Faker::Boolean.boolean }
     pre_order { Faker::Boolean.boolean }
+    with_demo { Faker::Boolean.boolean }
     all_time_visits { Faker::Number.number(digits: 3) }
     last_week_visits { Faker::Number.number(digits: 2) }
     languages { I18nData.languages.keys.sample(3) }

@@ -6,7 +6,7 @@ module Nintendo
 
     ATTRIBUTES = %i[
       item_type title description release_date release_date_display website_url banner_url external_id nsuid genres
-      developer publisher franchises demo_nsuid num_of_players
+      developer publisher franchises with_demo num_of_players
     ].freeze
     IMAGE_BASE_URL = "https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_720/v1"
     ITEM_TYPES = {
@@ -85,8 +85,8 @@ module Nintendo
       data["franchises"].to_a.compact
     end
 
-    def demo_nsuid
-      data["demoNsuid"]
+    def with_demo
+      data["demoNsuid"].present?
     end
 
     def num_of_players

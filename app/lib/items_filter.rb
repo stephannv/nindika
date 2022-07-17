@@ -11,6 +11,7 @@ class ItemsFilter
     filter_new_release
     filter_coming_soon
     filter_pre_order
+    filter_with_demo
   ].freeze
 
   def initialize(filters_form:, relation: Item)
@@ -54,7 +55,7 @@ class ItemsFilter
     self.relation = relation.where("languages @> ARRAY[?]::varchar[]", filters_form.language)
   end
 
-  %i[on_sale new_release coming_soon pre_order].each do |scope|
+  %i[on_sale new_release coming_soon pre_order with_demo].each do |scope|
     define_method :"filter_#{scope}" do
       self.relation = relation.send(scope) if filters_form.public_send(scope)
     end

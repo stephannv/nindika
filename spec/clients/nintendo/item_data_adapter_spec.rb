@@ -156,11 +156,21 @@ RSpec.describe Nintendo::ItemDataAdapter, type: :client do
     end
   end
 
-  describe "#demo_nsuid" do
-    it "returns demoNsuid" do
-      adapted_data = described_class.adapt({ "demoNsuid" => "some nsuid" })
+  describe "#with_demo" do
+    context "when demo_nsuid is present" do
+      it "returns true" do
+        adapted_data = described_class.adapt({ "demoNsuid" => "some nsuid" })
 
-      expect(adapted_data[:demo_nsuid]).to eq "some nsuid"
+        expect(adapted_data[:with_demo]).to be true
+      end
+    end
+
+    context "when demo_nsuid is blank" do
+      it "returns false" do
+        adapted_data = described_class.adapt({ "demoNsuid" => nil })
+
+        expect(adapted_data[:with_demo]).to be false
+      end
     end
   end
 
