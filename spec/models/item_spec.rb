@@ -7,6 +7,8 @@ RSpec.describe Item, type: :model do
     it { is_expected.to have_one(:raw_item).dependent(:destroy) }
     it { is_expected.to have_one(:price).dependent(:destroy) }
 
+    it { is_expected.to have_many(:wishlist_items).dependent(:destroy) }
+
     it do
       expect(described_class.new).to have_many(:parent_relationships)
         .class_name("ItemRelationship")

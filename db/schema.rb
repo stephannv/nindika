@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_17_164537) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_18_224212) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
@@ -95,6 +95,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_17_164537) do
     t.string "headline"
     t.string "video_urls", default: [], null: false, array: true
     t.boolean "with_demo", default: false, null: false
+    t.integer "wishlists_count", default: 0, null: false
     t.index ["all_time_visits"], name: "index_items_on_all_time_visits"
     t.index ["coming_soon"], name: "index_items_on_coming_soon", where: "coming_soon"
     t.index ["created_at"], name: "index_items_on_created_at", order: :desc
@@ -109,6 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_17_164537) do
     t.index ["pre_order"], name: "index_items_on_pre_order", where: "pre_order"
     t.index ["release_date"], name: "index_items_on_release_date"
     t.index ["slug"], name: "index_items_on_slug"
+    t.index ["wishlists_count"], name: "index_items_on_wishlists_count", order: :desc
     t.index ["with_demo"], name: "index_items_on_with_demo", where: "with_demo"
   end
 
