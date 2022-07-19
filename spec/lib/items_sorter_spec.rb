@@ -14,6 +14,10 @@ RSpec.describe ItemsSorter, type: :lib do
       expect(options[:last_week_visits_desc]).to include(text: I18n.t("games.sort_options.last_week_visits_desc"))
     end
 
+    it "has wishlists count desc sort option" do
+      expect(options[:wishlists_count_desc]).to include(text: I18n.t("games.sort_options.wishlists_count_desc"))
+    end
+
     it "has title asc sort option" do
       expect(options[:title_asc]).to include(text: I18n.t("games.sort_options.title_asc"))
     end
@@ -65,6 +69,18 @@ RSpec.describe ItemsSorter, type: :lib do
       let!(:item_b) { create(:item, title: "b") }
 
       it "sorts items by title ascending" do
+        expect(result.to_a).to eq [item_a, item_b, item_c]
+      end
+    end
+
+    context "when sort options is wishlists_count_desc" do
+      it "sorts items by title ascending" do
+        item_c = create(:item, wishlists_count: 10)
+        item_a = create(:item, wishlists_count: 50)
+        item_b = create(:item, wishlists_count: 30)
+
+        result = described_class.apply(relation: Item, param: "wishlists_count_desc")
+
         expect(result.to_a).to eq [item_a, item_b, item_c]
       end
     end

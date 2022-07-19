@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   has_one :raw_item, dependent: :destroy
   has_one :price, dependent: :destroy
 
+  has_many :wishlist_items, dependent: :destroy
   has_many :parent_relationships,
     class_name: "ItemRelationship",
     foreign_key: :parent_id,

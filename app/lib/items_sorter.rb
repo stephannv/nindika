@@ -10,6 +10,10 @@ class ItemsSorter
       text: I18n.t("games.sort_options.last_week_visits_desc"),
       query: "items.last_week_visits DESC NULLS LAST"
     },
+    wishlists_count_desc: {
+      text: I18n.t("games.sort_options.wishlists_count_desc"),
+      query: "items.wishlists_count DESC"
+    },
     title_asc: {
       text: I18n.t("games.sort_options.title_asc"),
       query: "items.title ASC"

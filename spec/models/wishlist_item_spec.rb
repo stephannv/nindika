@@ -5,7 +5,7 @@ require "rails_helper"
 RSpec.describe WishlistItem, type: :model do
   describe "Relations" do
     it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:item) }
+    it { is_expected.to belong_to(:item).counter_cache(:wishlists_count) }
   end
 
   describe "Validations" do
