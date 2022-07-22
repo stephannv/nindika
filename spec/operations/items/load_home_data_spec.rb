@@ -4,16 +4,17 @@ require "rails_helper"
 
 RSpec.describe Items::LoadHomeData, type: :operations do
   describe "#call" do
-    it "loads trending games" do
-      trending_games = create_list(:item, 2, :game, last_week_visits: 100)
-      trending_game_bundles = create_list(:item, 1, :game_bundle, last_week_visits: 100)
-      create_list(:item, 2, :game, last_week_visits: 0) # not trending games
-      create(:item, :dlc, last_week_visits: 200) # not game
-      create(:item, :dlc_bundle, last_week_visits: 200) # not game
+    it "loads featured games" do
+      featured_games = create_list(:item, 25, :game, wishlists_count: 100)
+      featured_game_bundles = create_list(:item, 25, :game_bundle, wishlists_count: 100)
+      create_list(:item, 25, :game, wishlists_count: 0) # not featured games
+      create(:item, :dlc, wishlists_count: 200) # not game
+      create(:item, :dlc_bundle, wishlists_count: 200) # not game
 
       result = described_class.result
 
-      expect(result.trending_games.to_a).to match_array(trending_games + trending_game_bundles)
+      featured_ids = featured_games.pluck(:id) + featured_game_bundles.pluck(:id)
+      expect(featured_ids).to include(*result.featured_games.pluck(:id))
     end
 
     it "loads coming soon games" do

@@ -2,14 +2,14 @@
 
 module Games
   class IndexPage < ViewComponent::Base
-    attr_reader :on_sale_games, :new_games, :coming_soon_games, :new_releases_games, :trending_games
+    attr_reader :on_sale_games, :new_games, :coming_soon_games, :new_releases_games, :featured_games
 
-    def initialize(on_sale_games:, new_games:, coming_soon_games:, new_releases_games:, trending_games:)
+    def initialize(on_sale_games:, new_games:, coming_soon_games:, new_releases_games:, featured_games:)
       @on_sale_games = on_sale_games
       @new_games = new_games
       @coming_soon_games = coming_soon_games
       @new_releases_games = new_releases_games
-      @trending_games = trending_games
+      @featured_games = featured_games
     end
 
     private

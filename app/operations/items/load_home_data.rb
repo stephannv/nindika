@@ -4,14 +4,14 @@ module Items
   class LoadHomeData < Actor
     input :current_user, type: User, default: nil
 
-    output :trending_games, type: Enumerable
+    output :featured_games, type: Enumerable
     output :coming_soon_games, type: Enumerable
     output :new_releases_games, type: Enumerable
     output :on_sale_games, type: Enumerable
     output :new_games, type: Enumerable
 
     def call
-      load_trending_games
+      load_featured_games
       load_coming_soon_games
       load_new_releases_games
       load_on_sale_games
@@ -20,8 +20,8 @@ module Items
 
     private
 
-    def load_trending_games
-      self.trending_games = list_games(sort_param: "last_week_visits_desc").limit(3)
+    def load_featured_games
+      self.featured_games = list_games(sort_param: "wishlists_count_desc").limit(50).sample(3)
     end
 
     def load_coming_soon_games
