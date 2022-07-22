@@ -9,7 +9,7 @@ class GamesController < ApplicationController
       new_games: result.new_games,
       coming_soon_games: result.coming_soon_games,
       new_releases_games: result.new_releases_games,
-      trending_games: result.trending_games
+      featured_games: result.featured_games
     )
   end
 
