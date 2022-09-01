@@ -3,11 +3,11 @@
     <div class="splide__track">
       <ul class="splide__list">
         <li class="splide__slide">
-          <%= image_tag item.banner_url, class: "w-full aspect-video" %>
+          <%= image_tag item.banner_url, class: "w-full aspect-video", width: 720, height: 480 %>
         </li>
         <% item.screenshot_urls.each do |image_url| %>
           <li class="splide__slide">
-            <%= image_tag image_url, class: "w-full aspect-video" %>
+            <%= image_tag image_url, class: "w-full aspect-video", width: 720, height: 480 %>
           </li>
         <% end %>
       </ul>
@@ -18,11 +18,11 @@
     <div class="splide__track">
       <ul class="splide__list">
         <li class="splide__slide">
-          <%= image_tag item.banner_url %>
+          <%= image_tag item.small_banner_url, width: 480, height: 320 %>
         </li>
         <% item.screenshot_urls.each do |image_url| %>
           <li class="splide__slide">
-            <%= image_tag image_url %>
+            <%= image_tag image_url, width: 480, height: 320 %>
           </li>
         <% end %>
       </ul>
