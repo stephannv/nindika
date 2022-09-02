@@ -73,6 +73,11 @@ jobs:
       - name: Install Yarn packages
         run: yarn install --check-files --pure-lockfile
 
+      - name: Compile Assets
+        run: |
+          bin/rails css:build
+          bin/rails javascript:build
+
       - name: Create database structure
         run: RAILS_ENV=test bundle exec rails db:reset
 
