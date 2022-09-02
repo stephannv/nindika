@@ -1,6 +1,8 @@
 pt-BR:
   layout:
     sidebar_component:
+      search: Pesquisar
+
       home: Início
 
       games: Jogos

@@ -29,13 +29,18 @@ module WishlistItems
     end
 
     def button
-      button_to wishlist_item_path(item_id), method: request_method, class: button_classes, params: form_params do
+      button_to wishlist_item_path(item_id), {
+        method: request_method,
+        class: button_classes,
+        params: form_params,
+        "aria-label" => aria_label
+      } do
         button_content
       end
     end
 
     def not_signed_in_button
-      link_to new_user_session_path, class: button_classes do
+      link_to new_user_session_path, class: button_classes, "aria-label" => aria_label do
         button_content
       end
     end
@@ -64,6 +69,10 @@ module WishlistItems
       button_text = wishlisted ? t(".remove") : t(".add")
 
       tag.span(button_text) + unchecked_bookmark_icon
+    end
+
+    def aria_label
+      wishlisted ? t(".remove_from_wishlist") : t(".add_to_wishlist")
     end
 
     def unchecked_bookmark_icon
