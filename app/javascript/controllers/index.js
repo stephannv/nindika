@@ -4,14 +4,8 @@
 
 import { application } from "./application"
 
-import ItemThumbnailsController from "./item_thumbnails_controller.js"
-application.register("item-thumbnails", ItemThumbnailsController)
-
 import MoneyInputController from "./money_input_controller.js"
 application.register("money-input", MoneyInputController)
-
-import PriceHistoryChartController from "./price_history_chart_controller.js"
-application.register("price-history-chart", PriceHistoryChartController)
 
 import SortSelectController from "./sort_select_controller.js"
 application.register("sort-select", SortSelectController)
