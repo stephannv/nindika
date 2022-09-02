@@ -3,3 +3,5 @@ pt-BR:
     button_component:
       add: Adicionar
       remove: Remover
+      add_to_wishlist: Adicionar à lista de desejos
+      remove_from_wishlist: Remover da lista de desejos
