@@ -32,6 +32,9 @@ FileUtils.chdir APP_ROOT do
   puts "\n== Recreating database =="
   system! "bin/rails db:reset"
 
+  puts "\n== Creating development credentials =="
+  system! "bin/setup_dev_credentials"
+
   puts "\n== Removing old logs and tempfiles =="
   system! "bin/rails log:clear tmp:clear"
 
