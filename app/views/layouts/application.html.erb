@@ -12,7 +12,12 @@
     <%= javascript_include_tag "application", defer: true, "data-turbo-track": "reload" %>
 
     <% if Rails.env.production? %>
-      <script data-domain="nindika.com" src="https://analytics.nindika.com/js/plausible.js" async defer></script>
+      <script
+        data-domain="<%= Rails.application.credentials.plausible_data_domain %>"
+        src="<%= Rails.application.credentials.plausible_src %>"
+        async
+        defer
+      ></script>
     <% end %>
 
     <%= yield :head %>
