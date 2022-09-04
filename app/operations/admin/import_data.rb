@@ -6,7 +6,7 @@ module Admin
       wrap_task("Import items") { RawItems::Import.call }
       wrap_task("Import prices") { Prices::Import.call }
       wrap_task("Update flags") { Items::UpdateFlags.call }
-      wrap_task("Send Telegram notifications") { EventDispatches::SendToTelegram.call } if Rails.env.production?
+      wrap_task("Send Telegram notifications") { EventDispatches::SendToTelegram.call }
     end
 
     private

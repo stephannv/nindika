@@ -5,6 +5,8 @@ module EventDispatches
     input :client, type: TelegramClient, default: -> { TelegramClient.new }
 
     def call
+      fail! unless Settings.enable_telegram_notifications?
+
       pending_dispatches_grouped_by_item_id.each_with_index do |(_item_id, dispatches), index|
         send_message(dispatches, index)
         sleep 1

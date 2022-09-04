@@ -3,7 +3,7 @@
 require "rails_helper"
 
 RSpec.describe Users::OmniauthCallbacksController, type: :controller do
-  %i[twitter discord].each do |provider|
+  %i[developer].each do |provider|
     describe "POST /users/auth/#{provider}/callback" do
       let(:auth) { OmniAuth::AuthHash.new(Faker::Omniauth.twitter) }
 

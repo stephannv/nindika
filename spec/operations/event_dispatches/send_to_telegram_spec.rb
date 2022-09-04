@@ -34,6 +34,25 @@ RSpec.describe EventDispatches::SendToTelegram, type: :operations do
       allow(Rails.application.credentials).to receive(:telegram_channel_id).and_return("ChannelID")
     end
 
+    context "when telegram notifications are not enabled" do
+      it "fails" do
+        allow(Settings).to receive(:enable_telegram_notifications?).and_return(false)
+
+        result = described_class.result(client: TelegramClient.new)
+
+        expect(result).to be_failure
+      end
+
+      it "doesn't send telegram notifications" do
+        allow(Settings).to receive(:enable_telegram_notifications?).and_return(false)
+        client = TelegramClient.new
+
+        expect(client).not_to receive(:send_message)
+
+        described_class.result(client: client)
+      end
+    end
+
     context "when message is sent with success" do
       let(:now) { Time.zone.now }
 
