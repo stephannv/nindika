@@ -272,16 +272,20 @@ Devise.setup do |config|
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  config.omniauth :twitter,
-    Rails.application.credentials.twitter_app_id,
-    Rails.application.credentials.twitter_app_secret
+  if Settings.enable_twitter_sign_in?
+    config.omniauth :twitter,
+      Rails.application.credentials.twitter_app_id,
+      Rails.application.credentials.twitter_app_secret
+  end
 
-  config.omniauth :discord,
-    Rails.application.credentials.discord_app_id,
-    Rails.application.credentials.discord_app_secret,
-    scope: "identify email"
+  if Settings.enable_discord_sign_in?
+    config.omniauth :discord,
+      Rails.application.credentials.discord_app_id,
+      Rails.application.credentials.discord_app_secret,
+      scope: "identify email"
+  end
 
-  config.omniauth :developer unless Rails.env.production?
+  config.omniauth :developer if Settings.enable_dev_sign_in?
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

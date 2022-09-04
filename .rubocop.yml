@@ -37,6 +37,9 @@ Layout/MultilineMethodCallBraceLayout:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
+Layout/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
 Lint/MissingSuper:
   Enabled: false
 
@@ -51,6 +54,7 @@ Metrics/BlockLength:
     - "spec/**/*"
     - "config/environments/*"
     - "config/routes.rb"
+    - "config/initializers/devise.rb"
 
 Metrics/MethodLength:
   CountAsOne: ["array", "hash", "heredoc"]
