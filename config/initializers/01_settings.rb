@@ -17,7 +17,9 @@ class Settings
   end
 
   def self.enable_analytics_import?
-    @@enable_analytics_import ||= Rails.application.credentials.plausible_api_key.present?
+    @@enable_analytics_import ||= Rails.application.credentials.plausible_api_key.present? &&
+      Rails.application.credentials.plausible_api_url.present? &&
+      Rails.application.credentials.plausible_api_site_id.present?
   end
 
   def self.enable_twitter_sign_in?

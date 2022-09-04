@@ -40,8 +40,27 @@ RSpec.describe Items::UpdateVisits, type: :operations do
 
     before do
       mega_man.update(title: "mega man")
+      allow(Settings).to receive(:enable_analytics_import?).and_return(true)
       allow(VisitsCollector).to receive(:all_time_game_pages_stats).and_return(all_time_stats)
       allow(VisitsCollector).to receive(:last_week_game_pages_stats).and_return(last_week_stats)
+    end
+
+    context "when analytics import isn't enabled" do
+      it "fails" do
+        allow(Settings).to receive(:enable_analytics_import?).and_return(false)
+
+        result = described_class.result
+
+        expect(result).to be_failure
+      end
+
+      it "doesn't import analytics data" do
+        allow(Settings).to receive(:enable_analytics_import?).and_return(false)
+
+        expect(VisitsCollector).not_to receive(:all_time_game_pages_stats)
+
+        described_class.result
+      end
     end
 
     context "when game doesn`t have stats" do

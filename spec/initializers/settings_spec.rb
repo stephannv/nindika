@@ -73,15 +73,41 @@ RSpec.describe Settings, type: :initializer do
       it "returns false" do
         described_class.class_variable_set(:@@enable_analytics_import, nil)
         allow(Rails.application.credentials).to receive(:plausible_api_key).and_return(nil)
+        allow(Rails.application.credentials).to receive(:plausible_api_url).and_return("value")
+        allow(Rails.application.credentials).to receive(:plausible_api_site_id).and_return("value")
 
         expect(described_class.enable_analytics_import?).to be false
       end
     end
 
-    context "when plausible_api_key is present" do
+    context "when plausible_api_url credential is blank" do
+      it "returns false" do
+        described_class.class_variable_set(:@@enable_analytics_import, nil)
+        allow(Rails.application.credentials).to receive(:plausible_api_key).and_return("value")
+        allow(Rails.application.credentials).to receive(:plausible_api_url).and_return(nil)
+        allow(Rails.application.credentials).to receive(:plausible_api_site_id).and_return("value")
+
+        expect(described_class.enable_analytics_import?).to be false
+      end
+    end
+
+    context "when plausible_api_site_id credential is blank" do
+      it "returns false" do
+        described_class.class_variable_set(:@@enable_analytics_import, nil)
+        allow(Rails.application.credentials).to receive(:plausible_api_key).and_return("value")
+        allow(Rails.application.credentials).to receive(:plausible_api_url).and_return("value")
+        allow(Rails.application.credentials).to receive(:plausible_api_site_id).and_return(nil)
+
+        expect(described_class.enable_analytics_import?).to be false
+      end
+    end
+
+    context "when plausible_api_key, plausible_api_url and plausible_api_site_id are present" do
       it "returns true" do
         described_class.class_variable_set(:@@enable_analytics_import, nil)
         allow(Rails.application.credentials).to receive(:plausible_api_key).and_return("value")
+        allow(Rails.application.credentials).to receive(:plausible_api_url).and_return("value")
+        allow(Rails.application.credentials).to receive(:plausible_api_site_id).and_return("value")
 
         expect(described_class.enable_analytics_import?).to be true
       end

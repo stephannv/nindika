@@ -3,41 +3,35 @@
 require "rails_helper"
 
 RSpec.describe PlausibleClient, type: :clients do
-  describe "Configurations" do
-    it "has default base_uri" do
-      expect(described_class.base_uri).to eq "https://analytics.nindika.com/api/v1"
-    end
-
-    it "has default params" do
-      expect(described_class.default_params).to eq(site_id: "nindika.com")
-    end
-
-    it "has default headers" do
-      expect(described_class.headers).to eq(
-        "Authorization" => "Bearer #{Rails.application.credentials.plausible_api_key}"
-      )
-    end
-  end
-
   describe "#stats_grouped_by_page" do
-    subject(:client) { described_class.new }
-
-    let(:period) { Date.parse("2020-01-01")..Date.parse("2020-04-25") }
-    let(:page) { 4 }
-    let(:limit) { 200 }
-    let(:results) { [Faker::Types.rb_hash(number: 4).stringify_keys, Faker::Types.rb_hash(number: 4).stringify_keys] }
-
-    before do
-      query = described_class.default_params.merge(
-        property: "event:page", period: "custom", date: "2020-01-01,2020-04-25", page: page, limit: limit
-      )
-      stub_request(:get, "#{described_class.base_uri}/stats/breakdown")
-        .with(query: query)
-        .to_return(body: { "results" => results }.to_json, headers: { "Content-Type" => "application/json" })
-    end
-
     it "requests /stats/breakdown grouping by page and filtering by period" do
-      expect(client.stats_grouped_by_page(period: period, page: page, limit: limit)).to eq results
+      api_url = "https://some_plausible.api"
+      api_key = "some_api_key"
+      api_site_id = "some_site_id"
+
+      allow(Rails.application.credentials).to receive(:plausible_api_url).and_return(api_url)
+      allow(Rails.application.credentials).to receive(:plausible_api_key).and_return(api_key)
+      allow(Rails.application.credentials).to receive(:plausible_api_site_id).and_return(api_site_id)
+
+      client = described_class.new
+      period = Date.parse("2020-01-01")..Date.parse("2020-04-25")
+      page = 4
+      limit = 200
+      fake_result = [Faker::Types.rb_hash(number: 4).stringify_keys, Faker::Types.rb_hash(number: 4).stringify_keys]
+      query = {
+        property: "event:page",
+        period: "custom",
+        date: "2020-01-01,2020-04-25",
+        page: page,
+        limit: limit,
+        site_id: api_site_id
+      }
+
+      stub_request(:get, "#{api_url}/stats/breakdown")
+        .with(query: query, headers: { "Authorization" => "Bearer #{api_key}" })
+        .to_return(body: { "results" => fake_result }.to_json, headers: { "Content-Type" => "application/json" })
+
+      expect(client.stats_grouped_by_page(period: period, page: page, limit: limit)).to eq fake_result
     end
   end
 end
