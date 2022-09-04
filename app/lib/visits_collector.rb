@@ -42,7 +42,7 @@ class VisitsCollector
 
   def filter_game_stats(stats)
     stats
-      .select { |s| s["page"].start_with?("/game/") }
-      .each { |s| s["slug"] = s["page"].gsub("/game/", "") }
+      .select { |s| s["page"].start_with?(%r{/games?/}) } # filter paths starting with /game/ or /games/
+      .each { |s| s["slug"] = s["page"].gsub(%r{/games?/}, "") } # extract game slug
   end
 end
