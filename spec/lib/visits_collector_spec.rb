@@ -10,7 +10,7 @@ RSpec.describe VisitsCollector, type: :lib do
     let(:page_1) do
       [
         { "page" => "/", "visitors" => 300 },
-        { "page" => "/game/zelda", "visitors" => 10 },
+        { "page" => "/games/zelda", "visitors" => 10 },
         { "page" => "/game/mario", "visitors" => 12 }
       ]
     end
@@ -38,10 +38,11 @@ RSpec.describe VisitsCollector, type: :lib do
 
     it "returns all game page stats with filled slug" do
       expect(result).to eq [
-        { "page" => "/game/zelda", "visitors" => 10, "slug" => "zelda" },
+        { "page" => "/games/zelda", "visitors" => 10, "slug" => "zelda" },
         { "page" => "/game/mario", "visitors" => 12, "slug" => "mario" },
         { "page" => "/game/metroid", "visitors" => 8, "slug" => "metroid" },
-        { "page" => "/game/kirby", "visitors" => 4, "slug" => "kirby" }
+        { "page" => "/game/kirby", "visitors" => 4, "slug" => "kirby" },
+        { "page" => "/games/on_sale", "visitors" => 20, "slug" => "on_sale" }
       ]
     end
   end
@@ -53,7 +54,7 @@ RSpec.describe VisitsCollector, type: :lib do
     let(:page_1) do
       [
         { "page" => "/", "visitors" => 300 },
-        { "page" => "/game/zelda", "visitors" => 10 },
+        { "page" => "/games/zelda", "visitors" => 10 },
         { "page" => "/game/mario", "visitors" => 12 }
       ]
     end
@@ -81,10 +82,11 @@ RSpec.describe VisitsCollector, type: :lib do
 
     it "returns last week game page stats with filled slug" do
       expect(result).to eq [
-        { "page" => "/game/zelda", "visitors" => 10, "slug" => "zelda" },
+        { "page" => "/games/zelda", "visitors" => 10, "slug" => "zelda" },
         { "page" => "/game/mario", "visitors" => 12, "slug" => "mario" },
         { "page" => "/game/metroid", "visitors" => 8, "slug" => "metroid" },
-        { "page" => "/game/kirby", "visitors" => 4, "slug" => "kirby" }
+        { "page" => "/game/kirby", "visitors" => 4, "slug" => "kirby" },
+        { "page" => "/games/on_sale", "visitors" => 20, "slug" => "on_sale" }
       ]
     end
   end
