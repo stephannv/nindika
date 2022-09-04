@@ -3,6 +3,8 @@
 module Items
   class UpdateVisits < Actor
     def call
+      fail! unless Settings.enable_analytics_import?
+
       Item.update_all(all_time_visits: 0, last_week_visits: 0)
       update_all_time_visits
       update_last_week_visits
