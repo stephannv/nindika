@@ -3,13 +3,13 @@
 module Games
   module Card
     class BadgeComponent < ViewComponent::Base
-      BASE_CLASSES = "absolute -top-2 -right-2 uppercase p-2 text-xs rounded drop-shadow-md
+      BASE_CLASSES = "absolute top-0 right-0 uppercase p-2 text-xs rounded-l-lg drop-shadow-lg
         font-black lg:font-bold border".squish
 
       COLOR_CLASSES = {
         coming_soon: "bg-[#5A94FF] text-white border-[#4876cc]",
         pre_order: "bg-[#C65AFF] text-white border-[#763699]",
-        new_release: "bg-[#ADFF5A] text-black border-[#80FE00]"
+        new_release: "bg-[#ADFF5A] text-black border-[#8acc48]"
       }.freeze
 
       def initialize(game:)
