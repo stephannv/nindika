@@ -11,5 +11,9 @@ module Games
     private
 
     attr_reader :game
+
+    def badge
+      render Games::Card::BadgeComponent.new(game: game)
+    end
   end
 end

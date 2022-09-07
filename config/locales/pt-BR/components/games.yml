@@ -24,3 +24,9 @@ pt-BR:
       title: Nenhum jogo encontrado
       description: Não há nenhum jogo para ser exibido aqui
       action: Ver todos os jogos
+
+    card:
+      badge_component:
+        coming_soon: Em breve
+        pre_order: Reserve já
+        new_release: Lançamento
