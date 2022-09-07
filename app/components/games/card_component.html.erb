@@ -1,7 +1,9 @@
-<div class="card border border-gray-700 bg-base-200">
+<div class="card border border-gray-700 bg-base-200 overflow-visible w-[98%]">
+  <%= badge %>
+
   <%= link_to game_path(game.slug) do %>
     <figure class="w-full aspect-video">
-      <%= image_tag game.small_banner_url, class: "w-full", width: 480, height: 320, alt: game.title, loading: :lazy %>
+      <%= image_tag game.small_banner_url, class: "w-full rounded-t-xl", width: 480, height: 320, alt: game.title, loading: :lazy %>
     </figure>
   <% end %>
 
