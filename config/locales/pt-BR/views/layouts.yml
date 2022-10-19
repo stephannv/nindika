@@ -1,0 +1,4 @@
+pt-BR:
+  layouts:
+    navbar_component:
+      sign_in: Entrar

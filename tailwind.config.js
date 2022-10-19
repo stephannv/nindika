@@ -1,6 +1,7 @@
 module.exports = {
   content: [
     './app/views/**/*.html.erb',
+    './app/views/**/*.rb',
     './app/pages/**/*.rb',
     './app/pages/**/*.html.erb',
     './app/components/**/*.rb',

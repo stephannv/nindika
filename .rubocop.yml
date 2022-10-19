@@ -49,6 +49,10 @@ Lint/SuppressedException:
 Lint/UnusedMethodArgument:
   AllowUnusedKeywordArguments: true
 
+Metrics/AbcSize:
+  Exclude:
+    - "app/views/**/*"
+
 Metrics/BlockLength:
   Exclude:
     - "spec/**/*"
@@ -58,6 +62,8 @@ Metrics/BlockLength:
 
 Metrics/MethodLength:
   CountAsOne: ["array", "hash", "heredoc"]
+  Exclude:
+    - "app/views/**/*"
 
 Naming/VariableNumber:
   Enabled: false
