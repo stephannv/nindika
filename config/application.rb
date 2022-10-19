@@ -22,6 +22,7 @@ Bundler.require(*Rails.groups)
 
 module Nindika
   class Application < Rails::Application
+    config.autoload_paths << "#{root}/app/views"
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
 

@@ -26,6 +26,7 @@ gem "omniauth-twitter", "1.4.0"
 gem "pagy", "5.10.1"
 gem "pg", "1.4.3"
 gem "pg_search", "2.3.6"
+gem "phlex", "0.4.0"
 gem "propshaft", "0.6.4"
 gem "puma", "5.6.5"
 gem "rails", "7.0.3.1"
@@ -54,6 +55,7 @@ group :development do
 end
 
 group :test do
+  gem "capybara", "3.37.1"
   gem "rspec-rails", "5.1.2"
   gem "shoulda-matchers", "5.1.0"
   gem "simplecov", "0.21.2"
