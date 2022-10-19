@@ -18,7 +18,7 @@ RSpec.describe Items::ScrapData, type: :operations do
   end
 
   describe "#call" do
-    before { travel_to Time.zone.now }
+    before { freeze_time }
 
     it "updates last scraped at with current time" do
       item = create(:item)
