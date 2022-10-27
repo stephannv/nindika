@@ -8,7 +8,7 @@ module Layouts
     end
 
     def template
-      div class: "navbar lg:w-[calc(100%-18rem)] bg-base-200" do
+      div class: "navbar bg-base-200" do
         div class: "w-full flex truncate" do
           label for: "app-drawer", class: "btn btn-ghost btn-circle drawer-button lg:hidden" do
             drawer_button_icon
