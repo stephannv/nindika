@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Nintendo::RequestsBuilder, type: :client do
+RSpec.describe Nintendo::RequestsBuilder, type: :lib do
   describe ".build" do
     it "returns every needed request to retrieve nintendo data" do
       result = described_class.build

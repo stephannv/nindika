@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Nintendo::ItemDataAdapter, type: :client do
+RSpec.describe Nintendo::ItemDataAdapter, type: :lib do
   describe "#item_type" do
     context "when dlcType is nil" do
       it "returns :game" do
