@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe PlausibleClient, type: :clients do
+RSpec.describe Plausible::Client, type: :lib do
   describe "#stats_grouped_by_page" do
     it "requests /stats/breakdown grouping by page and filtering by period" do
       api_url = "https://some_plausible.api"

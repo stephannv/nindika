@@ -6,7 +6,7 @@ RSpec.describe VisitsCollector, type: :lib do
   describe "#all_time_game_pages_stats" do
     subject(:result) { described_class.all_time_game_pages_stats(plausible_client: plausible_client) }
 
-    let(:plausible_client) { PlausibleClient.new }
+    let(:plausible_client) { Plausible::Client.new }
     let(:page_1) do
       [
         { "page" => "/", "visitors" => 300 },
@@ -50,7 +50,7 @@ RSpec.describe VisitsCollector, type: :lib do
   describe "#last_week_game_pages_stats" do
     subject(:result) { described_class.last_week_game_pages_stats(plausible_client: plausible_client) }
 
-    let(:plausible_client) { PlausibleClient.new }
+    let(:plausible_client) { Plausible::Client.new }
     let(:page_1) do
       [
         { "page" => "/", "visitors" => 300 },
