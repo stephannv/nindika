@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe Nintendo::Client, type: :client do
+RSpec.describe Nintendo::Client, type: :lib do
   describe "#list_items" do
     it "makes requests to nintendo endpoint and returns response" do
       client = described_class.new(app_id: "MY-APP-ID", app_key: "MY-APP-KEY")
