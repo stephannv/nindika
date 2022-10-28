@@ -2,7 +2,7 @@
 
 module EventDispatches
   class SendToTelegram < Actor
-    input :client, type: TelegramClient, default: -> { TelegramClient.new }
+    input :client, type: Telegram::Client, default: -> { Telegram::Client.new }
 
     def call
       fail! unless Settings.enable_telegram_notifications?

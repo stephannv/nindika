@@ -11,7 +11,7 @@ RSpec.describe EventDispatches::SendToTelegram, type: :operations do
     it "injects Telegram client" do
       default = inputs.dig(:client, :default).call
 
-      expect(default).to be_a(TelegramClient)
+      expect(default).to be_a(Telegram::Client)
     end
   end
 
@@ -24,7 +24,7 @@ RSpec.describe EventDispatches::SendToTelegram, type: :operations do
   describe "#call" do
     subject(:result) { described_class.result(client: client) }
 
-    let(:client) { TelegramClient.new }
+    let(:client) { Telegram::Client.new }
     let(:telegram_response) { { "ok" => true } }
 
     before do
@@ -38,14 +38,14 @@ RSpec.describe EventDispatches::SendToTelegram, type: :operations do
       it "fails" do
         allow(Settings).to receive(:enable_telegram_notifications?).and_return(false)
 
-        result = described_class.result(client: TelegramClient.new)
+        result = described_class.result(client: Telegram::Client.new)
 
         expect(result).to be_failure
       end
 
       it "doesn't send telegram notifications" do
         allow(Settings).to receive(:enable_telegram_notifications?).and_return(false)
-        client = TelegramClient.new
+        client = Telegram::Client.new
 
         expect(client).not_to receive(:send_message)
 
