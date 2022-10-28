@@ -3,15 +3,15 @@
 class VisitsCollector
   attr_reader :plausible_client
 
-  def initialize(plausible_client: PlausibleClient.new)
+  def initialize(plausible_client: Plausible::Client.new)
     @plausible_client = plausible_client
   end
 
-  def self.all_time_game_pages_stats(plausible_client: PlausibleClient.new)
+  def self.all_time_game_pages_stats(plausible_client: Plausible::Client.new)
     new(plausible_client: plausible_client).all_time_game_pages_stats
   end
 
-  def self.last_week_game_pages_stats(plausible_client: PlausibleClient.new)
+  def self.last_week_game_pages_stats(plausible_client: Plausible::Client.new)
     new(plausible_client: plausible_client).last_week_game_pages_stats
   end
 
