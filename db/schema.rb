@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_18_224212) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_29_000002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_18_224212) do
     t.string "developer"
     t.string "publisher"
     t.string "num_of_players"
-    t.integer "item_type", null: false
+    t.string "item_type", null: false
     t.string "bg_color"
     t.string "headline"
     t.string "video_urls", default: [], null: false, array: true

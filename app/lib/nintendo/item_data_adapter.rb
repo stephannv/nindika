@@ -10,10 +10,10 @@ module Nintendo
     ].freeze
     IMAGE_BASE_URL = "https://assets.nintendo.com/image/upload/ar_16:9,b_auto:border,c_lpad/b_white/f_auto/q_auto/dpr_auto/c_scale,w_720/v1"
     ITEM_TYPES = {
-      nil => :game,
-      "Individual" => :dlc,
-      "Bundle" => :dlc_bundle,
-      "ROM Bundle" => :game_bundle
+      nil => ItemTypes::GAME,
+      "Individual" => ItemTypes::DLC,
+      "Bundle" => ItemTypes::DLC_BUNDLE,
+      "ROM Bundle" => ItemTypes::GAME_BUNDLE
     }.freeze
 
     def initialize(data)
