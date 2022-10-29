@@ -22,8 +22,7 @@ RSpec.describe Admin::ImportData, type: :operations do
       [
         RawItems::Import,
         Prices::Import,
-        Items::UpdateFlags,
-        EventDispatches::SendToTelegram
+        Items::UpdateFlags
       ]
     end
 

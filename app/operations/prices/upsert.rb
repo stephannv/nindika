@@ -23,7 +23,6 @@ module Prices
       ActiveRecord::Base.transaction do
         price = upsert_price(data)
         CreateHistoryItem.call(price: price)
-        CreateItemEvent.call(price: price)
       end
     end
 

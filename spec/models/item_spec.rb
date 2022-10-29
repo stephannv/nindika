@@ -23,8 +23,6 @@ RSpec.describe Item, type: :model do
         .dependent(:destroy)
     end
 
-    it { is_expected.to have_many(:events).class_name("ItemEvent").dependent(:destroy) }
-
     it { is_expected.to have_many(:parents).class_name("Item").through(:child_relationships).source(:parent) }
     it { is_expected.to have_many(:children).class_name("Item").through(:parent_relationships).source(:child) }
     it { is_expected.to have_many(:price_history_items).through(:price).source(:history_items) }

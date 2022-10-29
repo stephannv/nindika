@@ -67,12 +67,6 @@ RSpec.describe Prices::Upsert, type: :operations do
 
         result
       end
-
-      it "creates item event" do
-        expect(Prices::CreateItemEvent).to receive(:call).with(price: an_instance_of(Price))
-
-        result
-      end
     end
 
     context "when nsuid is taken" do
@@ -105,12 +99,6 @@ RSpec.describe Prices::Upsert, type: :operations do
 
       it "creates price history item" do
         expect(Prices::CreateHistoryItem).to receive(:call).with(price: an_instance_of(Price))
-
-        result
-      end
-
-      it "creates item event" do
-        expect(Prices::CreateItemEvent).to receive(:call).with(price: an_instance_of(Price))
 
         result
       end
