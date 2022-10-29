@@ -10,23 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_29_000002) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_29_230309) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
   enable_extension "unaccent"
-
-  create_table "event_dispatches", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "item_event_id", null: false
-    t.string "provider", null: false
-    t.string "sent_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["item_event_id", "provider", "sent_at"], name: "idx_event_provider_sent_at", where: "(sent_at IS NULL)"
-    t.index ["item_event_id", "provider"], name: "index_event_dispatches_on_item_event_id_and_provider", unique: true
-    t.index ["item_event_id"], name: "index_event_dispatches_on_item_event_id"
-  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -37,18 +26,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_000002) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
-  end
-
-  create_table "item_events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "item_id", null: false
-    t.string "event_type", null: false
-    t.string "title", null: false
-    t.string "url", null: false
-    t.jsonb "data", default: {}, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["created_at", "event_type"], name: "index_item_events_on_created_at_and_event_type", order: { created_at: :desc }
-    t.index ["item_id"], name: "index_item_events_on_item_id"
   end
 
   create_table "item_relationships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -180,7 +157,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_29_000002) do
     t.index ["user_id"], name: "index_wishlist_items_on_user_id"
   end
 
-  add_foreign_key "event_dispatches", "item_events"
   add_foreign_key "item_relationships", "items", column: "child_id"
   add_foreign_key "item_relationships", "items", column: "parent_id"
   add_foreign_key "price_history_items", "prices"

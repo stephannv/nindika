@@ -15,7 +15,6 @@ module RawItems
 
       ActiveRecord::Base.transaction do
         item.save!
-        ItemEvents::Create.call(event_type: ItemEventTypes::ITEM_ADDED, item: item) if item.saved_change_to_id?
         raw_item.update!(item_id: item.id, imported: true)
       end
     rescue StandardError => e

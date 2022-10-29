@@ -21,7 +21,6 @@ module Items
         foreign_key: :child_id,
         dependent: :destroy,
         inverse_of: :child
-      has_many :events, class_name: "ItemEvent", dependent: :destroy
 
       has_many :children, through: :parent_relationships, class_name: "Item", source: :child
       has_many :parents, through: :child_relationships, class_name: "Item", source: :parent

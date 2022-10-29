@@ -1,20 +1,10 @@
 pt-BR:
   enumerations:
-    event_dispatch_providers:
-      telegram: Telegram
-
-    item_event_types:
-      item_added: Item adicionado
-      price_added: Preço revelado
-      discount: Promoção
-      permanent_price_change: Reajuste de preço
-      price_state_change: Remoção da eShop
-
     item_types:
       game: Jogo
-      game_bundle: 'Bundle'
-      dlc: 'DLC'
-      dlc_bundle: 'Bundle de DLC'
+      game_bundle: Bundle
+      dlc: DLC
+      dlc_bundle: Bundle de DLC
 
     price_states:
       pre_order: Pré-venda
