@@ -2,7 +2,9 @@
 
 FactoryBot.define do
   factory :item do
-    item_type { Item.item_types.keys.sample }
+    traits_for_enum :item_type, ItemTypes.list
+
+    item_type { ItemTypes.list.sample }
     external_id { Faker::Internet.unique.uuid }
     title { Faker::Game.title }
     slug { title.parameterize }

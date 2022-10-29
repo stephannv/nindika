@@ -5,34 +5,34 @@ require "rails_helper"
 RSpec.describe Nintendo::ItemDataAdapter, type: :lib do
   describe "#item_type" do
     context "when dlcType is nil" do
-      it "returns :game" do
+      it "returns ItemTypes::GAME" do
         adapted_data = described_class.adapt({ "dlcType" => nil })
 
-        expect(adapted_data[:item_type]).to eq :game
+        expect(adapted_data[:item_type]).to eq ItemTypes::GAME
       end
     end
 
     context "when dlcType is Individual" do
-      it "returns :dlc" do
+      it "returns ItemTypes::DLC" do
         adapted_data = described_class.adapt({ "dlcType" => "Individual" })
 
-        expect(adapted_data[:item_type]).to eq :dlc
+        expect(adapted_data[:item_type]).to eq ItemTypes::DLC
       end
     end
 
     context "when dlcType is Bundle" do
-      it "returns :dlc_bundler" do
+      it "returns ItemTypes::DLC_BUNDLE" do
         adapted_data = described_class.adapt({ "dlcType" => "Bundle" })
 
-        expect(adapted_data[:item_type]).to eq :dlc_bundle
+        expect(adapted_data[:item_type]).to eq ItemTypes::DLC_BUNDLE
       end
     end
 
     context "when dlcType is ROM Bundle" do
-      it "returns :game_bundle" do
+      it "returns ItemTypes::GAME_BUNDLE" do
         adapted_data = described_class.adapt({ "dlcType" => "ROM Bundle" })
 
-        expect(adapted_data[:item_type]).to eq :game_bundle
+        expect(adapted_data[:item_type]).to eq ItemTypes::GAME_BUNDLE
       end
     end
 

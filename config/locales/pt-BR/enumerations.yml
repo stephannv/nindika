@@ -10,6 +10,12 @@ pt-BR:
       permanent_price_change: Reajuste de preço
       price_state_change: Remoção da eShop
 
+    item_types:
+      game: Jogo
+      game_bundle: 'Bundle'
+      dlc: 'DLC'
+      dlc_bundle: 'Bundle de DLC'
+
     price_states:
       pre_order: Pré-venda
       on_sale: Disponível
