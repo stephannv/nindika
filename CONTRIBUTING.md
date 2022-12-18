@@ -5,14 +5,11 @@
 # How to contribute to nindika
 
 ## 🐞 Did you find a bug?
-
-Do not open up a GitHub issue if the bug is a security vulnerability in Rails, and instead send a message to [@nindika_com](https://twitter.com/nindika_com).
-
 If you're unable to find an open issue addressing the problem, open a new one. Be sure to include a title and clear description, as much relevant information as possible. A screenshot with problem or a step by showing how to reproduce the bug will help a lot.
 
 ## ✨ Do your have a feature request?
 
-Start a new discussion at [Github Discussions](https://github.com/stephannv/nindika/discussions/new) or send a tweet to [@nindika_com](https://twitter.com/nindika_com).
+Start a new discussion at [Github Discussions](https://github.com/stephannv/nindika/discussions/new).
 
 ## 👩🏾‍💻👨🏻‍💻 You are a developer / designer
 Please ask first before you put in work for a pull request. Things are constantly being worked on, and it is very difficult to share everything publicly in a meaningful way. So asking lets us avoid working on the same thing, or worse, someone putting in a lot of work for a PR that does not fit into the scope of the project.
