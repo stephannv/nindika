@@ -1,3 +1,7 @@
+# nindika is shutting down on 15/01/2023
+Thanks for all support. If you need help with nindika code, getting in touch in discussions.
+
+
 # nindika
 [![Releases](https://img.shields.io/github/v/release/stephannv/nindika)](https://github.com/stephannv/nindika/releases)
 [![CI](https://github.com/stephannv/nindika/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/stephannv/nindika/actions/workflows/ci.yml?query=branch%3Amain++)

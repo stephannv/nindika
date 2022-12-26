@@ -1,0 +1,4 @@
+<%= CSV.generate_line(["Jogo", "Site", "Data de lançamento"]).strip %>
+<% @games.each do |game| %>
+<%= CSV.generate_line([game.title.gsub(/[^0-9A-Za-z ]/, ' ').strip, game.website_url, game.release_date_display]).strip %>
+<% end %>

@@ -24,6 +24,12 @@
   </head>
 
   <body>
+    <div class="p-3 text-center bg-error font-medium">
+      O nindika.com sairá do ar em 15/01/2022. Obrigado pelo apoio!
+      <% if current_user.present? %>
+        Exporte sua lista de desejos <%= link_to "aqui", wishlist_path(format: :csv), class: "link", data: { turbo: false } %>.
+      <% end %>
+    </div>
     <%= render Layout::FrameComponent.new(title: yield(:page_title)) do %>
       <%= yield %>
     <% end %>
